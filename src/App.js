@@ -38,7 +38,7 @@ const App = () => {
         <Paper id="inicio" elevation={3} style={{ padding: '0px', marginTop: '0px',boxShadow: 'none'  }}>
 
           <img
-            src="/images/miportada.jpg"
+            src="images/miportada.jpg"
             alt="Descripción de la imagen"
             style={{ maxWidth: '100%', height: 'auto', marginTop: '20px' }}
           />
@@ -86,7 +86,7 @@ const App = () => {
             <Grid item xs={12} md={6}>
               {/* Contenido de la parte izquierda (imagen) */}
               <img
-                src="/images/metodologia.jpg"
+                src="images/metodologia.jpg"
                 alt="Imagen de la metodología"
                 style={{ maxWidth: '100%', height: 'auto', marginTop: '20px' }}
               />
@@ -156,7 +156,7 @@ const App = () => {
             <Grid item xs={12} md={6}>
               {/* Contenido de la parte izquierda (imagen) */}
               <img
-                src="/images/nosotros.jpg"
+                src="images/nosotros.jpg"
                 alt="Imagen de la metodología"
                 style={{ maxWidth: '100%', height: 'auto', marginTop: '20px' }}
               />
