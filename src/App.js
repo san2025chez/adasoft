@@ -10,7 +10,9 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import {Formulario} from './components/Formulario'
-import { NavBar } from './components/NavBar';
+import { NavBar } from "./components/NavBar";
+import './App.css';
+
 const theme = createTheme({
   palette: {
     primary: {
@@ -40,8 +42,15 @@ const App = () => {
           <img
             src="images/miportada.jpg"
             alt="Descripción de la imagen"
-            style={{ maxWidth: '100%', height: 'auto', marginTop: '20px' }}
+            style={{ maxWidth: '100%',height:'70%' }}
+            className="imagen-inicio"
           />
+          <Typography style={{padding:'20px'}}>
+          En ADA soft presentamos un modelo innovador de consultoría tecnológica.
+Tenemos una mirada global: nos especializamos en desarrollo de soluciones
+que agregan valor a todas las áreas de las organizaciones. 
+
+          </Typography>
           
         </Paper>
         <Paper id="servicios" elevation={3} style={{ padding: '20px', margin: '20px 10px', textAlign: 'center',boxShadow: 'none' }}>
@@ -51,7 +60,7 @@ const App = () => {
             <Grid item xs={12} md={4}>
               <Paper style={{ padding: '20px' }}>
                 <Typography variant="h5"> Managed Services</Typography>
-                <Typography>
+                <Typography >
                 
 
                   En Ada Software agregamos valor al área IT de las organizaciones a través de servicios administrados y personalizados. Contamos con un equipo experto a disposición de nuestros clientes, para que puedan aprovechar al máximo nuestra colaboración.
@@ -73,7 +82,8 @@ const App = () => {
               <Paper style={{ padding: '20px',boxShadow: 'none'  }}>
                 <Typography variant="h5">Soluciones </Typography>
                 <Typography>Brindamos soluciones a medida de cada empresa, sin importar su tamaño. Les damos a nuestros clientes las herramientas para comprender y utilizar la tecnología en favor de sus proyectos. </Typography>
-              </Paper>
+              </Paper>import { NavBar } from './components/NavBar';
+
             </Grid>
           </Grid>
           </Container>
