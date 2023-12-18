@@ -10,3 +10,9 @@
     width: 100%; /* Establecer la altura deseada para dispositivos móviles */
   }
 }
+@media (max-width: 600px) {
+  /* Estilos específicos para dispositivos móviles */
+  .inicio {
+    height: 200px; /* Ajusta la altura según tus necesidades */
+  }
+}
