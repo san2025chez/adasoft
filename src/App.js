@@ -38,13 +38,15 @@ const App = () => {
     background-size: cover;
     background-position: center;
     height: 450px;
-  
+    box-shadow: none;
     margin-top: 40px;
     width: 50%;
     @media (max-width: 600px) {
       height: 200px;
-      width: 270px;
+      width: 400px;
       marginTop: 50px
+      margin:20px;
+      box-shadow: none;
     }
   `;
 
@@ -55,11 +57,14 @@ const App = () => {
     margin-top: 40px;
     height: 350px;
     width: 50%;
+    box-shadow: none;
  
     background-image: url('${process.env.PUBLIC_URL}/images/nosotros.jpg');
         @media (max-width: 600px) {
           height: 200px;
-          width: 270px;
+          width: 300px;
+          
+
      
       
       
@@ -92,7 +97,37 @@ const App = () => {
   
 }
   `;
+  const StyledPaper = styled(Paper)`
+  padding: 30px;
+  margin-top: 30px;
+  box-shadow: none;
+ 
 
+  @media (max-width: 600px) {
+    padding: 10px; // Tamaño de padding reducido para dispositivos móviles
+    margin-top: 10px; // Tamaño de marginTop reducido para dispositivos móviles
+    box-shadow: none
+  }
+`;
+
+  const StyledPaper2 = styled(Paper)`
+  padding: 30px,
+   margin-top: 30px,
+    margin-left: 10px,
+     margin-right: 10px, 
+     text-align: center, 
+     box-Shadow: none
+ 
+
+  @media (max-width: 600px) {
+    padding: 10px; // Tamaño de padding reducido para dispositivos móviles
+    margin-top: 10px; // Tamaño de marginTop reducido para dispositivos móviles
+    box-shadow: none
+  }
+`;
+
+
+/* padding: '30px', marginTop: '30px', marginLeft: '10px', marginRight: '10px', textAlign: 'center', boxShadow: 'none' */
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -104,7 +139,7 @@ const App = () => {
         >
        
         </GridPaper>
-        <Container style={{ marginTop:'30px'}}>
+        <Container style={{ marginTop:'30px',padding:'30px'}}>
         <TextComponent>
                       En Ada Software agregamos valor al área IT de las organizaciones a través de servicios administrados y personalizados. Contamos con un equipo experto a disposición de nuestros clientes, para que puedan aprovechar al máximo nuestra colaboración.
         
@@ -116,7 +151,7 @@ const App = () => {
             <Typography variant="h4" color="primary" style={{ fontWeight: 'bold', color: '#1976d2' }}>Servicios</Typography>
             <Grid container spacing={2} justifyContent="center">
               <Grid item xs={12} md={4}>
-                <Paper style={{ padding: '20px' }}>
+                <Paper style={{ padding: '20px', boxShadow:'none' }}>
                   <Typography variant="h5"> Managed Services</Typography>
                   <Typography >
 
@@ -146,17 +181,17 @@ const App = () => {
             </Grid>
           </Container>
         </Paper>
-        <Paper id="metodologia" elevation={3} style={{ padding: '30px', marginTop: '30px', marginLeft: '10px', marginRight: '10px', textAlign: 'center', boxShadow: 'none' }}>
-          <Typography variant="h4" color="primary" style={{ fontWeight: 'bold', color: '#1976d2' }}>Nuestra Metodología</Typography>
+        <Paper id="metodologia" elevation={3} component={StyledPaper2}>
+          <Typography variant="h4" color="primary" style={{ fontWeight: 'bold', color: '#1976d2' ,textAlign:'center'}}>Nuestra Metodología</Typography>
           {/* Cuadrícula para dividir en dos partes */}
-          <Container maxWidth="md" style={{ padding: '5px' }}>
-            <Grid container spacing={2} justifyContent="center">
+          <Container maxWidth="md" style={{ padding: '5px' ,boxShadow:'none'}}>
+            <Grid container spacing={2} justifyContent="center" style={{boxShadow:'none'}}>
               <GridItem></GridItem>
               <Grid item xs={12} md={6}>
                 {/* Contenido de la parte derecha (descripción) */}
                 <Paper
                   id="metodologia"
-                  style={{ padding: '5px',boxShadow: 'none', marginTop:'20px' }}
+                  style={{ padding: '5px',boxShadow: 'none', marginTop:'20px', }}
                 >
                   <Typography component="div">
                     <Typography variant="h5" gutterBottom style={{ textAlign: 'left', }}>
@@ -196,7 +231,7 @@ const App = () => {
             </Grid>
           </Container>
         </Paper>
-        <Paper id="nosotros" elevation={3} style={{ padding: '30px', marginTop: '30px', boxShadow: 'none' }}>
+        <Paper id="nosotros" elevation={3} component={StyledPaper}>
           <Container maxWidth="md" style={{ padding: '20px' }}>
             <Typography variant="h4" color="primary" style={{ fontWeight: 'bold', color: '#1976d2', textAlign: 'center' }}>Nosotros</Typography>
             {/* Cuadrícula para dividir en dos partes */}

@@ -7,7 +7,9 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-
+import  { useRef } from 'react';
+import emailjs from '@emailjs/browser';
+import './Formulrio.css'
 const theme = createTheme({
   palette: {
     primary: {
@@ -20,58 +22,28 @@ const theme = createTheme({
 });
 
 export const Formulario = () => {
-  const [formulario, setFormulario] = useState({
-    nombre: '',
-    email: '',
-    asunto: '',
-    mensaje: '',
-  });
+  const form = useRef();
 
-  const handleChange = (campo) => (event) => {
-    setFormulario({ ...formulario, [campo]: event.target.value });
-  };
+  const sendEmail = (e) => {
+    e.preventDefault();
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Aquí puedes realizar acciones con los datos del formulario
-    console.log('Datos del formulario:', formulario);
+    emailjs.sendForm('service_mo6xcsa', 'template_49qbndc', form.current, 'XT5EO2oI14qIFykvW')
+      .then((result) => {
+          console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <TextField
-        label="Nombre"
-        fullWidth
-        margin="normal"
-        value={formulario.nombre}
-        onChange={handleChange('nombre')}
-      />
-      <TextField
-        label="Email"
-        fullWidth
-        margin="normal"
-        value={formulario.email}
-        onChange={handleChange('email')}
-      />
-      <TextField
-        label="Asunto"
-        fullWidth
-        margin="normal"
-        value={formulario.asunto}
-        onChange={handleChange('asunto')}
-      />
-      <TextField
-        label="Mensaje"
-        fullWidth
-        multiline
-        rows={4}
-        margin="normal"
-        value={formulario.mensaje}
-        onChange={handleChange('mensaje')}
-      />
-      <Button variant="contained" style={{backgroundColor:'#1976d2'}} type="submit">
-        Enviar
-      </Button>
-    </form>
+    <form ref={form} onSubmit={sendEmail} className='field'>
+    <label>Name</label>
+    <input type="text" name="user_name" />
+    <label>Email</label>
+    <input type="email" name="user_email" />
+    <label>Message</label>
+    <textarea name="message" />
+    <input type="submit" value="Send" />
+  </form>
   );
 };

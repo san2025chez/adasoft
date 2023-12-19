@@ -2,7 +2,14 @@
 .imagen-inicio {
   width: 100%; /* Asegurar que la imagen ocupa el 100% del ancho del contenedor */
 }
-
+.metodologia{
+ padding: 30px;
+  margin-top: 30px;
+    margin-left: 20px;
+    margin-right: 10px;
+    text-align: center;
+    box-shadow: none;
+}
 /* Media query para dispositivos móviles */
 @media (max-width: 600px) {
   .imagen-inicio {
