@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/adasoft/static/css/main.a451b5bb.css",
-    "main.js": "/adasoft/static/js/main.799db914.js",
+    "main.js": "/adasoft/static/js/main.181c7fa2.js",
     "static/js/787.92b60eab.chunk.js": "/adasoft/static/js/787.92b60eab.chunk.js",
     "index.html": "/adasoft/index.html",
     "main.a451b5bb.css.map": "/adasoft/static/css/main.a451b5bb.css.map",
-    "main.799db914.js.map": "/adasoft/static/js/main.799db914.js.map",
+    "main.181c7fa2.js.map": "/adasoft/static/js/main.181c7fa2.js.map",
     "787.92b60eab.chunk.js.map": "/adasoft/static/js/787.92b60eab.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a451b5bb.css",
-    "static/js/main.799db914.js"
+    "static/js/main.181c7fa2.js"
   ]
 }
