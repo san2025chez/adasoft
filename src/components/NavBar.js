@@ -68,7 +68,15 @@ export const NavBar = () => {
         </AppBar>
 
         {/* Drawer para dispositivos móviles */}
-        <Drawer anchor="left" open={drawerOpen} onClose={() => toggleDrawer(false)}>
+        <Drawer anchor="left" open={drawerOpen}
+          sx={{
+            // Añadir estilos específicos del Drawer para dispositivos móviles
+            '& .MuiDrawer-paper': {
+              width: '60vw', // Ajusta el ancho como desees
+             
+            },
+          }}
+         onClose={() => toggleDrawer(false)}>
           <List>
             {menuItems.map((item) => (
               <ListItem button key={item.id} onClick={() => scrollToSection(item.id)}>

@@ -292,7 +292,7 @@ const App = () => {
         </Paper>
         <Box component="footer" style={{ backgroundColor: '#333', color: 'white', padding: '20px', textAlign: 'center', marginTop: '20px' }}>
           <Typography>Contacto:softadait@gmail.com</Typography>
-          <Typography>&copy; ADA Software 2023</Typography>
+          <Typography>&copy; ADASoftware 2023</Typography>
         </Box>
       </Container>
     </ThemeProvider>
