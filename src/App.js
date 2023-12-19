@@ -14,6 +14,7 @@ import { NavBar } from "./components/NavBar";
 import './App.css';
 import styled from '@emotion/styled';
 
+
 const theme = createTheme({
   palette: {
     primary: {
@@ -22,6 +23,9 @@ const theme = createTheme({
     secondary: {
       main: '#1976d2', // Azul más oscuro para acentos
     },
+  },
+  typography: {
+    fontFamily: 'Constantia, serif', // Reemplaza 'TuFuentePersonalizada' con la fuente que desees
   },
 });
 
@@ -37,17 +41,18 @@ const App = () => {
     background-image: url("${process.env.PUBLIC_URL}/images/metodologia.jpg");
     background-size: cover;
     background-position: center;
-    height: 450px;
+    height: 95%;
     box-shadow: none;
-    margin-top: 40px;
-    width: 50%;
+    margin-top: 20px;
+    width: 100%;
     @media (max-width: 600px) {
       background-size: contain;
       background-repeat: no-repeat;
       height: 200px;
       width: 100%;
       marginTop: 50px
-      margin:20px;
+   
+   
       box-shadow: none;
     }
   `;
@@ -89,6 +94,7 @@ const App = () => {
     background-size: cover;
     background-position: center;
     height: 500px;
+    
     width: 100%
     position: relative;
     @media (max-width: 600px) {
@@ -188,28 +194,31 @@ const App = () => {
           </Container>
         </Paper>
         <Paper id="metodologia" elevation={3} component={StyledPaper2} style={{boxShadow:'none'}}>
-          <Typography variant="h4" color="primary" style={{ fontWeight: 'bold', color: '#1976d2' ,textAlign:'center'}}>Nuestra Metodología</Typography>
+          <Typography variant="h4" color="primary" style={{ fontWeight: 'bold' ,textAlign:'center', color: '#1976d2'}}>Nuestra Metodología</Typography>
           {/* Cuadrícula para dividir en dos partes */}
           <Container maxWidth="md" style={{ padding: '0px' ,boxShadow:'none'}}>
             <Grid container spacing={2} justifyContent="center" style={{boxShadow:'none'}}>
-              <GridItem></GridItem>
+            <Grid item xs={12} md={6}>
+              <GridItem 
+              ></GridItem>
+              </Grid>
               <Grid item xs={12} md={6}>
                 {/* Contenido de la parte derecha (descripción) */}
                 <Paper
                   id="metodologia"
-                  style={{ padding: '5px',boxShadow: 'none', marginTop:'20px', }}
+                  style={{boxShadow: 'none', marginTop:'20px' }}
                 >
                   <Typography component="div">
-                    <Typography variant="h5" gutterBottom style={{ textAlign: 'left', }}>
+                    <Typography variant="h6" gutterBottom style={{ textAlign: 'left',marginLeft: '20px'  }}>
                       Fase 1: Consultoría
                     </Typography>
-                    <ul style={{ textAlign: 'left', marginLeft: '20px',marginLeft: '20px' }}>
+                    <ul style={{ textAlign: 'left',marginLeft: '20px' }}>
                       <li>Analizamos los procesos.</li>
                       <li>Detectamos oportunidades.</li>
                       <li>Evaluamos en qué parte del proceso agregar valor.</li>
                     </ul>
 
-                    <Typography variant="h5" gutterBottom style={{ textAlign: 'left', marginLeft: '20px' }}>
+                    <Typography variant="h6" gutterBottom style={{ textAlign: 'left', marginLeft: '20px' }}>
                       Fase 2: Propuesta
                     </Typography>
                     <ul style={{ textAlign: 'left', marginLeft: '20px' }}>
@@ -218,7 +227,7 @@ const App = () => {
                       <li>Analizamos el retorno de la inversión.</li>
                     </ul>
 
-                    <Typography variant="h5" gutterBottom style={{ textAlign: 'left', marginLeft: '20px' }}>
+                    <Typography variant="h6" gutterBottom style={{ textAlign: 'left', marginLeft: '20px' }}>
                       Fase 3: Implementación
                     </Typography>
                     <ul style={{ textAlign: 'left', marginLeft: '20px' }}>
