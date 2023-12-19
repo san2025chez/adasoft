@@ -181,7 +181,7 @@ const App = () => {
             </Grid>
           </Container>
         </Paper>
-        <Paper id="metodologia" elevation={3} component={StyledPaper2}>
+        <Paper id="metodologia" elevation={3} component={StyledPaper2} style={{boxShadow:'none'}}>
           <Typography variant="h4" color="primary" style={{ fontWeight: 'bold', color: '#1976d2' ,textAlign:'center'}}>Nuestra Metodología</Typography>
           {/* Cuadrícula para dividir en dos partes */}
           <Container maxWidth="md" style={{ padding: '5px' ,boxShadow:'none'}}>
@@ -273,7 +273,7 @@ const App = () => {
           </Container>
         </Paper>
         <Box component="footer" style={{ backgroundColor: '#333', color: 'white', padding: '20px', textAlign: 'center', marginTop: '20px' }}>
-          <Typography>Contacto: info@tusoftwarefactory.com</Typography>
+          <Typography>Contacto:softadait@gmail.com</Typography>
           <Typography>&copy; ADA Software 2023</Typography>
         </Box>
       </Container>

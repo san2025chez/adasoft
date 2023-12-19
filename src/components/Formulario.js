@@ -37,13 +37,30 @@ export const Formulario = () => {
 
   return (
     <form ref={form} onSubmit={sendEmail} className='field'>
-    <label>Name</label>
-    <input type="text" name="user_name" />
-    <label>Email</label>
-    <input type="email" name="user_email" />
-    <label>Message</label>
-    <textarea name="message" />
-    <input type="submit" value="Send" />
+   <TextField
+  label="Name"
+  name="user_name"
+  className="my-input"
+  style={{ marginTop: '10px' }}
+/>
+<TextField
+  label="Email"
+  name="user_email"
+  className="my-input"
+  style={{ marginTop: '10px' }}
+/>
+<TextField
+  label="Message"
+  name="message"
+  className="my-input"
+  style={{ marginTop: '10px', width: '100%', minHeight: '200px' }}
+  multiline
+  rows={6} 
+/>
+
+<Button variant="contained"  type="submit" style={{ marginTop: '10px', backgroundColor:'blue', }}>
+        Enviar
+      </Button>
   </form>
   );
 };
