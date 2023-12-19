@@ -42,8 +42,10 @@ const App = () => {
     margin-top: 40px;
     width: 50%;
     @media (max-width: 600px) {
+      background-size: contain;
+      background-repeat: no-repeat;
       height: 200px;
-      width: 400px;
+      width: 100%;
       marginTop: 50px
       margin:20px;
       box-shadow: none;
@@ -56,13 +58,16 @@ const App = () => {
     background-position: center;
     margin-top: 40px;
     height: 350px;
-    width: 50%;
+    width: 100%;
     box-shadow: none;
  
     background-image: url('${process.env.PUBLIC_URL}/images/nosotros.jpg');
         @media (max-width: 600px) {
+          background-size: contain;
+          background-repeat: no-repeat;
           height: 200px;
-          width: 300px;
+          width: 100%;
+      
           
 
      
@@ -98,9 +103,10 @@ const App = () => {
 }
   `;
   const StyledPaper = styled(Paper)`
-  padding: 30px;
+  
   margin-top: 30px;
   box-shadow: none;
+  
  
 
   @media (max-width: 600px) {
@@ -184,7 +190,7 @@ const App = () => {
         <Paper id="metodologia" elevation={3} component={StyledPaper2} style={{boxShadow:'none'}}>
           <Typography variant="h4" color="primary" style={{ fontWeight: 'bold', color: '#1976d2' ,textAlign:'center'}}>Nuestra Metodología</Typography>
           {/* Cuadrícula para dividir en dos partes */}
-          <Container maxWidth="md" style={{ padding: '5px' ,boxShadow:'none'}}>
+          <Container maxWidth="md" style={{ padding: '0px' ,boxShadow:'none'}}>
             <Grid container spacing={2} justifyContent="center" style={{boxShadow:'none'}}>
               <GridItem></GridItem>
               <Grid item xs={12} md={6}>
@@ -197,7 +203,7 @@ const App = () => {
                     <Typography variant="h5" gutterBottom style={{ textAlign: 'left', }}>
                       Fase 1: Consultoría
                     </Typography>
-                    <ul style={{ textAlign: 'left', marginLeft: '20px' }}>
+                    <ul style={{ textAlign: 'left', marginLeft: '20px',marginLeft: '20px' }}>
                       <li>Analizamos los procesos.</li>
                       <li>Detectamos oportunidades.</li>
                       <li>Evaluamos en qué parte del proceso agregar valor.</li>
@@ -231,8 +237,8 @@ const App = () => {
             </Grid>
           </Container>
         </Paper>
-        <Paper id="nosotros" elevation={3} component={StyledPaper}>
-          <Container maxWidth="md" style={{ padding: '20px' }}>
+        <Paper id="nosotros" elevation={3} component={StyledPaper} style={{  display: 'flex', justifyContent: 'center', alignItems: 'center',boxShadow:'none' }}>
+          <Container maxWidth="md">
             <Typography variant="h4" color="primary" style={{ fontWeight: 'bold', color: '#1976d2', textAlign: 'center' }}>Nosotros</Typography>
             {/* Cuadrícula para dividir en dos partes */}
 
@@ -256,8 +262,11 @@ const App = () => {
                   </Typography>
                 </Paper>
               </Grid>
-
+              <Grid item xs={12} md={6}>
               <GridItemNosotros />
+              </Grid>
+
+     
 
 
 
