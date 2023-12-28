@@ -48,7 +48,7 @@ const App = () => {
     @media (max-width: 600px) {
       background-size: contain;
       background-repeat: no-repeat;
-      height: 200px;
+      height: 230px;
       width: 100%;
       marginTop: 50px
    
@@ -62,7 +62,7 @@ const App = () => {
     background-size: cover;
     background-position: center;
     margin-top: 40px;
-    height: 350px;
+    height:95%;
     width: 100%;
     box-shadow: none;
  
@@ -70,8 +70,10 @@ const App = () => {
         @media (max-width: 600px) {
           background-size: contain;
           background-repeat: no-repeat;
-          height: 200px;
+          height: 270px;
           width: 100%;
+          border: solid red
+          marginTop: 50px
       
           
 
@@ -246,11 +248,11 @@ const App = () => {
             </Grid>
           </Container>
         </Paper>
-        <Paper id="nosotros" elevation={3} component={StyledPaper} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', boxShadow: 'none' }}>
-          <Container maxWidth="md">
+        <Paper id="nosotros" elevation={3} component={StyledPaper2} style={{ boxShadow: 'none' }}>
+         
             <Typography variant="h4" color="primary" style={{ fontWeight: 'bold', color: '#1976d2', textAlign: 'center' }}>Nosotros</Typography>
             {/* Cuadrícula para dividir en dos partes */}
-
+            <Container maxWidth="md">
             <Grid container spacing={2} justifyContent="center">
 
               <Grid item xs={12} md={6}>
