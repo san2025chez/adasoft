@@ -2,7 +2,7 @@
   "name": "my-landing-page",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://san2025chez.github.io/adasoft",
+  "homepage": "https://adasoft.com.ar",
   "dependencies": {
     "@emailjs/browser": "^3.11.0",
     "@emotion/react": "^11.11.1",
@@ -20,7 +20,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "predeploy": "npm run build",
+    "predeploy": "npm run build && echo 'adasoft.com.ar' > ./build/CNAME",
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
