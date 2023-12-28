@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/adasoft/static/css/main.a451b5bb.css",
-    "main.js": "/adasoft/static/js/main.ef315388.js",
-    "static/js/787.92b60eab.chunk.js": "/adasoft/static/js/787.92b60eab.chunk.js",
-    "index.html": "/adasoft/index.html",
-    "main.a451b5bb.css.map": "/adasoft/static/css/main.a451b5bb.css.map",
-    "main.ef315388.js.map": "/adasoft/static/js/main.ef315388.js.map",
-    "787.92b60eab.chunk.js.map": "/adasoft/static/js/787.92b60eab.chunk.js.map"
+    "main.css": "/static/css/main.a451b5bb.css",
+    "main.js": "/static/js/main.a751fba1.js",
+    "static/js/787.92b60eab.chunk.js": "/static/js/787.92b60eab.chunk.js",
+    "index.html": "/index.html",
+    "main.a451b5bb.css.map": "/static/css/main.a451b5bb.css.map",
+    "main.a751fba1.js.map": "/static/js/main.a751fba1.js.map",
+    "787.92b60eab.chunk.js.map": "/static/js/787.92b60eab.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a451b5bb.css",
-    "static/js/main.ef315388.js"
+    "static/js/main.a751fba1.js"
   ]
 }
