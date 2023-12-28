@@ -2,7 +2,7 @@
   "name": "my-landing-page",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://san2025chez.github.io/adasoft",
+  "homepage": "https://san2025chez.github.io/adasoft",
   "dependencies": {
     "@emailjs/browser": "^3.11.0",
     "@emotion/react": "^11.11.1",
