@@ -66,7 +66,7 @@ const App = () => {
     width: 100%;
     box-shadow: none;
  
-    background-image: url('${process.env.PUBLIC_URL}/images/nosotros-transformed.jpeg');
+    background-image: url('${process.env.PUBLIC_URL}/images/nosotros2.jpeg');
         @media (max-width: 600px) {
           background-size: contain;
           background-repeat: no-repeat;
