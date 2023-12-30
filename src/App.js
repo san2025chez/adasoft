@@ -38,7 +38,7 @@ const App = () => {
   };
 
   const GridItem = styled.div`
-    background-image: url("${process.env.PUBLIC_URL}/images/metodologia.jpg");
+    background-image: url("${process.env.PUBLIC_URL}/images/metodologia-transformed.jpeg");
     background-size: cover;
     background-position: center;
     height: 95%;
@@ -66,7 +66,7 @@ const App = () => {
     width: 100%;
     box-shadow: none;
  
-    background-image: url('${process.env.PUBLIC_URL}/images/nosotros.jpg');
+    background-image: url('${process.env.PUBLIC_URL}/images/nosotros-transformed.jpeg');
         @media (max-width: 600px) {
           background-size: contain;
           background-repeat: no-repeat;
@@ -92,7 +92,7 @@ const App = () => {
     padding: 0px;
     margin: 0px;
     box-shadow: none;
-    background-image: url(${process.env.PUBLIC_URL}/images/miportada.jpg);
+    background-image: url(${process.env.PUBLIC_URL}/images/miportada22.png);
     background-size: cover;
     background-position: center;
     height: 500px;
@@ -101,7 +101,7 @@ const App = () => {
     position: relative;
     @media (max-width: 600px) {
  
-      background-image: url(${process.env.PUBLIC_URL}/images/metodologia.jpg);
+      background-image: url(${process.env.PUBLIC_URL}/images/metodologia-transformed.jpeg);
       background-size: contain;
       background-repeat: no-repeat;
       height: 300px
@@ -248,7 +248,7 @@ const App = () => {
             </Grid>
           </Container>
         </Paper>
-        <Paper id="nosotros" elevation={3} component={StyledPaper2} style={{ boxShadow: 'none' }}>
+        <Paper id="nosotros" elevation={3} component={StyledPaper2} style={{   margin: '20px 10px',boxShadow: 'none' }}>
          
             <Typography variant="h4" color="primary" style={{ fontWeight: 'bold', color: '#1976d2', textAlign: 'center' }}>Nosotros</Typography>
             {/* Cuadrícula para dividir en dos partes */}

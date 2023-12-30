@@ -36,7 +36,12 @@ export const NavBar = () => {
 
   return (
 <>
-    <AppBar position="fixed" color="primary">
+    <AppBar 
+    position="fixed" 
+     sx={{
+      position: { sm: 'static' }, // Establece 'static' en dispositivos más grandes
+    }}
+    color="primary">
           <Toolbar>
             {/* Botón del menú para dispositivos móviles */}
             <IconButton
