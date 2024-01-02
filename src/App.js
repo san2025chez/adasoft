@@ -88,46 +88,51 @@ const App = () => {
  paddingTop: 40px
 `;
 
-  const GridPaper = styled(Paper)`
-    padding: 0px;
-    margin: 0px;
-    box-shadow: none;
-    background-image: url(${process.env.PUBLIC_URL}/images/miportada22.png);
-    background-size: cover;
-    background-position: center;
-    height: 500px;
-    
-    width: 100%
-    position: relative;
-    @media (max-width: 600px) {
- 
-      background-image: url(${process.env.PUBLIC_URL}/images/metodologia-transformed.jpeg);
-      background-size: contain;
-      background-repeat: no-repeat;
-      height: 300px
-
-  
-  
-}
-  `;
-  const StyledPaper = styled(Paper)`
-  
-  margin-top: 30px;
+const GridPaper = styled(Paper)`
+display: flex;  // Agregado para usar flexbox
+align-items: center;  // Centrar verticalmente en el contenedor principal
+justify-content: center;  
+  padding: 0;
+  margin: 0;
   box-shadow: none;
-  
- 
+  background-image: url(${process.env.PUBLIC_URL}/images/miportada22.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  height: 500px;
+  width: 100%;
+  position: relative;
 
   @media (max-width: 600px) {
-    padding: 10px; // Tamaño de padding reducido para dispositivos móviles
-    margin-top: 10px; // Tamaño de marginTop reducido para dispositivos móviles
-    box-shadow: none
+    background-image: url(${process.env.PUBLIC_URL}/images/portadapeq.png);
+    background-color: blue; 
+    background-position: center bottom;
+    background-size: contain;  
+    justify-content: center; 
+    background-repeat: no-repeat;
+    height: 200px;
+    width: 100%;
+ 
   }
+`;
+  const StyledPaper = styled(Paper)`
+ 
+    margin-top: 30px, 
+    padding-top: 20px 
+    
+    box-shadow: none;
+   @media (max-width: 767px): {  // Aplicar estilos para dispositivos con ancho máximo de 767px
+      margin-top: 5px,  // Reducir marginTop para dispositivos móviles
+      padding: 5px   
+      box-shadow: none; // Reducir padding para dispositivos móviles
+    }
+
 `;
 
   const StyledPaper2 = styled(Paper)`
-  padding: 30px,
+  padding: 0px,
    margin-top: 30px,
-    margin-left: 10px,
+    margin-left: 103px,
      margin-right: 10px, 
      text-align: center, 
      box-Shadow: none
@@ -148,13 +153,17 @@ const App = () => {
       <Container maxWidth="xl" style={{ padding: 0, margin: 0, minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
         <NavBar />
 
-        <GridPaper
-
-        >
-
+        <GridPaper >
         </GridPaper>
-        <Container style={{ marginTop: '30px', padding: '30px' }}>
-          <TextComponent>
+        <Container   style={{ 
+  marginTop: '30px', 
+  padding: '30px',
+  '@media (max-width: 600px)': {  // Aplicar estilos para dispositivos con ancho máximo de 767px
+ // Reducir marginTop para dispositivos móviles
+    padding: '1px'     // Reducir padding para dispositivos móviles
+  }
+}}>
+          <TextComponent style={{ boxShadow: 'none' }} >
             En Ada Software agregamos valor al área IT de las organizaciones a través de servicios administrados y personalizados. Contamos con un equipo experto a disposición de nuestros clientes, para que puedan aprovechar al máximo nuestra colaboración.
 
           </TextComponent>
@@ -248,11 +257,11 @@ const App = () => {
             </Grid>
           </Container>
         </Paper>
-        <Paper id="nosotros" elevation={3} component={StyledPaper2} style={{   margin: '20px 10px',boxShadow: 'none' }}>
-         
-            <Typography variant="h4" color="primary" style={{ fontWeight: 'bold', color: '#1976d2', textAlign: 'center' }}>Nosotros</Typography>
-            {/* Cuadrícula para dividir en dos partes */}
-            <Container maxWidth="md">
+        <Paper id="nosotros" elevation={3} component={StyledPaper2} style={{ margin: '20px 10px', boxShadow: 'none' }}>
+
+          <Typography variant="h4" color="primary" style={{ fontWeight: 'bold', color: '#1976d2', textAlign: 'center' }}>Nosotros</Typography>
+          {/* Cuadrícula para dividir en dos partes */}
+          <Container maxWidth="md">
             <Grid container spacing={2} justifyContent="center">
 
               <Grid item xs={12} md={6}>
