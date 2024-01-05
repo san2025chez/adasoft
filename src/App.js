@@ -95,7 +95,7 @@ justify-content: center;
   padding: 0;
   margin: 0;
   box-shadow: none;
-  background-image: url(${process.env.PUBLIC_URL}/images/miportada22.png);
+  background-image: url(${process.env.PUBLIC_URL}/images/portadaoriginal.png);
   background-repeat: no-repeat;
   background-size: contain;
 
@@ -104,13 +104,13 @@ justify-content: center;
   position: relative;
 
   @media (max-width: 600px) {
-    background-image: url(${process.env.PUBLIC_URL}/images/portadapeq.png);
-    background-color: blue; 
+    background-image: url(${process.env.PUBLIC_URL}/images/mobile2.png);
+    background-color: #2196F3; 
     background-position: center bottom;
     background-size: contain;  
     justify-content: center; 
     background-repeat: no-repeat;
-    height: 200px;
+    height: 230px;
     width: 100%;
  
   }
