@@ -72,7 +72,7 @@ const App = () => {
           background-repeat: no-repeat;
           height: 270px;
           width: 100%;
-          border: solid red
+    
           marginTop: 50px
       
           
@@ -153,7 +153,7 @@ justify-content: center;
       <Container maxWidth="xl" style={{ padding: 0, margin: 0, minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
         <NavBar />
 
-        <GridPaper >
+        <GridPaper  loading="lazy" alt="Portada" >
         </GridPaper>
         <Container   style={{ 
   marginTop: '30px', 
