@@ -89,30 +89,33 @@ const App = () => {
 `;
 
 const GridPaper = styled(Paper)`
-display: flex;  // Agregado para usar flexbox
-align-items: center;  // Centrar verticalmente en el contenedor principal
-justify-content: center;  
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 0;
   margin: 0;
   box-shadow: none;
-  background-image: url(${process.env.PUBLIC_URL}/images/portadaoriginal.png);
-  background-repeat: no-repeat;
-  background-size: contain;
-
   height: 500px;
   width: 100%;
   position: relative;
 
   @media (max-width: 600px) {
-    background-image: url(${process.env.PUBLIC_URL}/images/mobile2.png);
-    background-color: #2196F3; 
-    background-position: center bottom;
-    background-size: contain;  
-    justify-content: center; 
-    background-repeat: no-repeat;
-    height: 230px;
+    height: 180px;
+    background-color: #2196F3;
+    margin-top: 45px;
+    img {
+      content: url(${process.env.PUBLIC_URL}/images/mobile.png);
+      object-fit: contain;
+      background-position: center bottom;
+  
+     
+    }
+  }
+
+  img {
     width: 100%;
- 
+    height: 100%;
+    object-fit: cover;
   }
 `;
   const StyledPaper = styled(Paper)`
@@ -153,7 +156,8 @@ justify-content: center;
       <Container maxWidth="xl" style={{ padding: 0, margin: 0, minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
         <NavBar />
 
-        <GridPaper  loading="lazy" alt="Portada" >
+            <GridPaper>
+          <img src={`${process.env.PUBLIC_URL}/images/portadaoriginal.png`} alt="Portada" />
         </GridPaper>
         <Container   style={{ 
   marginTop: '30px', 
