@@ -100,12 +100,12 @@ const GridPaper = styled(Paper)`
   position: relative;
 
   @media (max-width: 600px) {
-    height: 180px;
+    height: 150px;
     background-color: #2196F3;
-    margin-top: 45px;
+    margin-top: 50px;
     img {
-      content: url(${process.env.PUBLIC_URL}/images/mobile.png);
-      object-fit: contain;
+      content: url(${process.env.PUBLIC_URL}/images/portadapeq.png);
+      object-fit: cover;
       background-position: center bottom;
   
      
