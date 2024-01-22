@@ -13,6 +13,7 @@ import { Formulario } from './components/Formulario'
 import { NavBar } from "./components/NavBar";
 import './App.css';
 import styled from '@emotion/styled';
+import { Helmet } from 'react-helmet';
 
 
 const theme = createTheme({
@@ -102,7 +103,7 @@ const GridPaper = styled(Paper)`
   @media (max-width: 600px) {
     height: 150px;
     background-color: #2196F3;
-    margin-top: 50px;
+    margin-top: 55px;
     img {
       content: url(${process.env.PUBLIC_URL}/images/portadapeq.png);
       object-fit: cover;
@@ -152,6 +153,9 @@ const GridPaper = styled(Paper)`
   /* padding: '30px', marginTop: '30px', marginLeft: '10px', marginRight: '10px', textAlign: 'center', boxShadow: 'none' */
   return (
     <ThemeProvider theme={theme}>
+    <Helmet>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </Helmet>
       <CssBaseline />
       <Container maxWidth="xl" style={{ padding: 0, margin: 0, minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
         <NavBar />
