@@ -89,7 +89,7 @@ const App = () => {
  paddingTop: 40px
 `;
 
-const GridPaper = styled(Paper)`
+  const GridPaper = styled(Paper)`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -147,37 +147,52 @@ const GridPaper = styled(Paper)`
     box-shadow: none
   }
 `;
+const containerStyles = {
+  marginTop: '10px',
+  padding: '10px',
+/*   display: 'flex', 
+  flexDirection: 'column',
+   alignItems: 'center' , */
+};
+
+const mobileStyles = {
+  marginTop: '5px',
+  padding: '3px'/*   display: 'flex', 
+  flexDirection: 'column',
+   alignItems: 'center' , */
+};
 
 
   /* padding: '30px', marginTop: '30px', marginLeft: '10px', marginRight: '10px', textAlign: 'center', boxShadow: 'none' */
   return (
     <ThemeProvider theme={theme}>
-    <Helmet>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    </Helmet>
+      <Helmet>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </Helmet>
       <CssBaseline />
       <Container maxWidth="xl" style={{ padding: 0, margin: 0, minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
         <NavBar />
-
-            <GridPaper>
+        
+    
+        <GridPaper>
           <img src={`${process.env.PUBLIC_URL}/images/portadaoriginal.png`} alt="Portada" />
         </GridPaper>
-        <Container   style={{ 
-  marginTop: '30px', 
-  padding: '30px',
-  '@media (max-width: 600px)': {  // Aplicar estilos para dispositivos con ancho máximo de 767px
- // Reducir marginTop para dispositivos móviles
-    padding: '1px'     // Reducir padding para dispositivos móviles
-  }
-}}>
-          <TextComponent style={{ boxShadow: 'none' }} >
-            En Ada Software agregamos valor al área IT de las organizaciones a través de servicios administrados y personalizados. Contamos con un equipo experto a disposición de nuestros clientes, para que puedan aprovechar al máximo nuestra colaboración.
+       
+        <Container style={{ ...containerStyles, ...(window.innerWidth <= 600 && mobileStyles)}}>
+        <Grid container spacing={1} justifyContent="center" style={{ boxShadow: 'none' }}>
+        <Grid item xs={12} md={12}>
+        <Paper style={{ padding: '15px', boxShadow: 'none',textAlign: 'center' }}>
+  <TextComponent style={{ boxShadow: 'none' }}>
+    En Ada Software agregamos valor al área IT de las organizaciones a través de servicios administrados y personalizados. Contamos con un equipo experto a disposición de nuestros clientes, para que puedan aprovechar al máximo nuestra colaboración.
+  </TextComponent>
+  </Paper>
+  </Grid>
+  </Grid>
+</Container>;
 
-          </TextComponent>
-        </Container>
 
         <Paper id="servicios" elevation={3} style={{ padding: '20px', margin: '20px 10px', textAlign: 'center', boxShadow: 'none' }}>
-          <Container maxWidth="md" style={{ padding: '20px' }}>
+          <Container maxWidth="md">
             <Typography variant="h4" color="primary" style={{ fontWeight: 'bold', color: '#1976d2' }}>Servicios</Typography>
             <Grid container spacing={2} justifyContent="center">
               <Grid item xs={12} md={4}>
