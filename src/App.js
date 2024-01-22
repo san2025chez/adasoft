@@ -104,12 +104,11 @@ const GridPaper = styled(Paper)`
     height: 150px;
     background-color: #2196F3;
     margin-top: 55px;
+
     img {
-      content: url(${process.env.PUBLIC_URL}/images/portadapeq.png);
+      width: 90%;
+      height: 100%;
       object-fit: cover;
-      background-position: center bottom;
-  
-     
     }
   }
 
