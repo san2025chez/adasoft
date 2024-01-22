@@ -183,7 +183,10 @@ const mobileStyles = {
         <Grid item xs={12} md={12}>
         <Paper style={{ padding: '15px', boxShadow: 'none',textAlign: 'center' }}>
   <TextComponent style={{ boxShadow: 'none' }}>
-    En Ada Software agregamos valor al área IT de las organizaciones a través de servicios administrados y personalizados. Contamos con un equipo experto a disposición de nuestros clientes, para que puedan aprovechar al máximo nuestra colaboración.
+  En AdaSoft, entendemos que cada sueño, proyecto o negocio merece tener su presencia única en línea. Nos enorgullece ser tu aliado para transformar ideas en experiencias digitales cautivadoras.
+
+¿Necesitas una página web que refleje la esencia y visión de tu marca? Estás en el lugar adecuado. Desde diseñar sitios web intuitivos hasta implementar soluciones tecnológicas avanzadas, nuestro equipo de expertos está listo para hacer que tu presencia en línea sea inolvidable.
+
   </TextComponent>
   </Paper>
   </Grid>
