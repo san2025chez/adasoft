@@ -96,7 +96,7 @@ const App = () => {
   padding: 0;
   margin: 0;
   box-shadow: none;
-  height: 500px;
+  height: 410px;
   width: 100%;
   position: relative;
 
