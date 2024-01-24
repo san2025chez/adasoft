@@ -57,7 +57,7 @@ export const NavBar = () => {
             {/* Título del navbar */}
             <div style={{ flexGrow: 1 }}>
               <Typography variant="h5" style={{ fontWeight: 'bold', paddingTop: '10px' }}>
-                ADA Software
+                AdaSoft
               </Typography>
             </div>
 

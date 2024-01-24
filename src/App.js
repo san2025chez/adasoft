@@ -175,7 +175,8 @@ const mobileStyles = {
         
     
         <GridPaper>
-          <img src={`${process.env.PUBLIC_URL}/images/portadaoriginal.png`} alt="Portada" />
+        <img src={`${process.env.PUBLIC_URL}/images/portadaoriginal.png`} alt="Portada" loading="lazy" />
+
         </GridPaper>
        
         <Container style={{ ...containerStyles, ...(window.innerWidth <= 600 && mobileStyles)}}>
@@ -183,9 +184,9 @@ const mobileStyles = {
         <Grid item xs={12} md={12}>
         <Paper style={{ padding: '15px', boxShadow: 'none',textAlign: 'center' }}>
   <TextComponent style={{ boxShadow: 'none' }}>
-  En AdaSoft, entendemos que cada sueño, proyecto o negocio merece tener su presencia única en línea. Nos enorgullece ser tu aliado para transformar ideas en experiencias digitales cautivadoras.
-
-¿Necesitas una página web que refleje la esencia y visión de tu marca? Estás en el lugar adecuado. Desde diseñar sitios web intuitivos hasta implementar soluciones tecnológicas avanzadas, nuestro equipo de expertos está listo para hacer que tu presencia en línea sea inolvidable.
+  En AdaSoft, reconocemos la vital importancia de establecer una sólida presencia en línea 
+  para potenciar el crecimiento de tu negocio, independientemente de su naturaleza. Si eres dueño de una PYME, emprendimiento o cualquier tipo de negocio, y aún no has dado el salto al mundo digital,
+   ¡hoy es el día perfecto para cambiar esa realidad!
 
   </TextComponent>
   </Paper>
@@ -200,29 +201,32 @@ const mobileStyles = {
             <Grid container spacing={2} justifyContent="center">
               <Grid item xs={12} md={4}>
                 <Paper style={{ padding: '20px', boxShadow: 'none' }}>
-                  <Typography variant="h5"> Managed Services</Typography>
+                  <Typography variant="h5"> Landing Page</Typography>
                   <Typography >
+El diseño de una Landing page se enfoca en guiar al visitante hacia la accion deseada.
+esto suele implicar un diseño limpio, con elementos visuales llamativos. 
+Una Landing page permite transmitir tu mensaje de manera impactante y motivar a los visitantes a dar el siguiente paso.
 
 
-                    En Ada Software agregamos valor al área IT de las organizaciones a través de servicios administrados y personalizados. Contamos con un equipo experto a disposición de nuestros clientes, para que puedan aprovechar al máximo nuestra colaboración.
                   </Typography>
 
                 </Paper>
               </Grid>
               <Grid item xs={12} md={4}>
                 <Paper style={{ padding: '20px', boxShadow: 'none' }}>
-                  <Typography variant="h5" > IT Consulting</Typography>
+                  <Typography variant="h5" > Paginas Web</Typography>
                   <Typography>
 
-
-                    Ayudamos a definir y alinear la estrategia de IT con la de la organización. Contamos con las habilidades y la experiencia adecuadas, brindamos herramientas que posibilitan mejorar y optimizar procesos, ahorrando tiempo y dinero, simplificando proyectos complejos y protegiendo los datos comerciales de nuestros clientes. En Ada Software transformamos negocios.
-                  </Typography>
+                  Nuestro equipo de profesionales está aquí para brindarte asesoramiento personalizado, ayudándote a construir la web que realmente deseas y que mejor se adapte a tus necesidades.
+                   Juntos, convertiremos tus ideas en una realidad digital que te beneficie al máximo.               </Typography>
                 </Paper>
               </Grid>
               <Grid item xs={12} md={4}>
                 <Paper style={{ padding: '20px', boxShadow: 'none' }}>
-                  <Typography variant="h5">Soluciones </Typography>
-                  <Typography>Brindamos soluciones a medida de cada empresa, sin importar su tamaño. Les damos a nuestros clientes las herramientas para comprender y utilizar la tecnología en favor de sus proyectos. </Typography>
+                  <Typography variant="h5">Mantenimiento</Typography>
+                  <Typography>Ofrecemos un servicio completo de mantenimiento para asegurarnos de que tu presencia en línea esté siempre actualizada, segura y en su mejor forma.
+
+</Typography>
                 </Paper>
 
               </Grid>
