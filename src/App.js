@@ -175,7 +175,7 @@ const mobileStyles = {
         
     
         <GridPaper>
-        <img src={`${process.env.PUBLIC_URL}/images/portadaoriginal.png`} alt="Portada" loading="lazy" />
+        <img src={`${process.env.PUBLIC_URL}/images/portadaoriginal.webp`} alt="Portada" loading="lazy" />
 
         </GridPaper>
        
