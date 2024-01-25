@@ -38,8 +38,9 @@ export const NavBar = () => {
 <>
     <AppBar 
     position="fixed" 
-     sx={{
+    sx={{
       position: { sm: 'static' }, // Establece 'static' en dispositivos más grandes
+      backgroundColor: 'rgba(0, 0, 0, 1)', // Fondo semitransparente
     }}
     color="primary">
           <Toolbar>
@@ -49,14 +50,14 @@ export const NavBar = () => {
               color="inherit"
               aria-label="menu"
               onClick={() => toggleDrawer(true)}
-              sx={{ mr: 2, display: { sm: 'none' } }}
+              sx={{ mr: 2, display: { sm: 'none' } ,color: 'white'}}
             >
               <MenuIcon />
             </IconButton>
 
             {/* Título del navbar */}
             <div style={{ flexGrow: 1 }}>
-              <Typography variant="h6" style={{ fontWeight: 'bold', paddingTop: '10px' }}>
+              <Typography variant="h6" style={{ fontWeight: 'bold', paddingTop: '10px',color: 'white' }}>
                 ADA SOFT
               </Typography>
             </div>
@@ -64,7 +65,7 @@ export const NavBar = () => {
             {/* Botones del menú para dispositivos de escritorio */}
             <Box sx={{ display: { xs: 'none', sm: 'flex' } }}>
               {menuItems.map((item) => (
-                <Button color="inherit" key={item.id} onClick={() => scrollToSection(item.id)}>
+                <Button color="inherit" key={item.id} onClick={() => scrollToSection(item.id)}  style={{ color: 'white' }}>
                   {item.label}
                 </Button>
               ))}
@@ -78,8 +79,9 @@ export const NavBar = () => {
             // Añadir estilos específicos del Drawer para dispositivos móviles
             '& .MuiDrawer-paper': {
               width: '60vw', // Ajusta el ancho como desees
-             
+              marginBottom: '60px', // Asegura que el Drawer esté por debajo de la imagen y la capa oscura   
             },
+            
           }}
          onClose={() => toggleDrawer(false)}>
           <List>

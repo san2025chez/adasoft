@@ -13,7 +13,8 @@ import { Formulario } from './components/Formulario'
 import { NavBar } from "./components/NavBar";
 import './App.css';
 import styled from '@emotion/styled';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet'
+import Inicio from './components/inicio';
 
 
 const theme = createTheme({
@@ -174,26 +175,23 @@ const mobileStyles = {
         <NavBar />
         
     
-        <GridPaper>
-        <img src={`${process.env.PUBLIC_URL}/images/portadaoriginal.webp`} alt="Portada" loading="lazy" />
-
-        </GridPaper>
+       <Inicio/>
        
-        <Container style={{ ...containerStyles, ...(window.innerWidth <= 600 && mobileStyles)}}>
+       {/*  <Container style={{ ...containerStyles, ...(window.innerWidth <= 600 && mobileStyles)}}>
         <Grid container spacing={1} justifyContent="center" style={{ boxShadow: 'none' }}>
         <Grid item xs={12} md={12}>
         <Paper style={{ padding: '15px', boxShadow: 'none',textAlign: 'center' }}>
   <TextComponent style={{ boxShadow: 'none' }}>
-  En AdaSoft, reconocemos la vital importancia de establecer una sólida presencia en línea 
-  para potenciar el crecimiento de tu negocio, independientemente de su naturaleza. Si eres dueño de una PYME, emprendimiento o cualquier tipo de negocio, y aún no has dado el salto al mundo digital,
-   ¡hoy es el día perfecto para cambiar esa realidad!
+ 
 
+  ¡Potencia tu crecimiento empresarial! 💼✨ 
+  Descubre la mejor solución para llevar tu negocio al mundo digital. 🌐💻 Creamos páginas web impactantes y efectivas que destacarán tu marca. ¡Con Ada Soft, haz que tu presencia en línea impulse tu éxito! 🚀✨
   </TextComponent>
   </Paper>
   </Grid>
   </Grid>
 </Container>;
-
+ */}
 
         <Paper id="servicios" elevation={3} style={{ padding: '20px', margin: '20px 10px', textAlign: 'center', boxShadow: 'none' }}>
           <Container maxWidth="md">
