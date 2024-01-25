@@ -27,7 +27,7 @@ const Inicio = () => {
 
       {/* Texto superpuesto */}
       <div className="texto-superpuesto">
-        <h1> ¡Potencia el crecimiento de tu negocio! ✨</h1>
+        <h1> ¡Potencia el crecimiento de tu negocio!</h1>
     <h4>¡Con Ada Soft, haz que tu presencia en línea impulse tu éxito! </h4>
       </div>
     </div>
