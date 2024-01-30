@@ -36,42 +36,47 @@ export const NavBar = () => {
 
   return (
 <>
-    <AppBar 
-    position="fixed" 
-    sx={{
-      position: { sm: 'static' }, // Establece 'static' en dispositivos más grandes
-      backgroundColor: 'rgba(0, 0, 0, 1)', // Fondo semitransparente
-    }}
-    color="primary">
-          <Toolbar>
-            {/* Botón del menú para dispositivos móviles */}
-            <IconButton
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              onClick={() => toggleDrawer(true)}
-              sx={{ mr: 2, display: { sm: 'none' } ,color: 'white'}}
-            >
-              <MenuIcon />
-            </IconButton>
+<AppBar 
+  position="fixed" 
+  sx={{
+    position: { sm: 'static' },
+    backgroundColor: 'black',
+    boxShadow: 'none',
 
-            {/* Título del navbar */}
-            <div style={{ flexGrow: 1 }}>
-              <Typography variant="h6" style={{ fontWeight: 'bold', paddingTop: '10px',color: 'white' }}>
-                ADA SOFT
-              </Typography>
-            </div>
+    
+  }}
+  color="primary"
+>
+  <Toolbar>
+    {/* Botón del menú para dispositivos móviles */}
+    <IconButton
+      edge="start"
+      color="inherit"
+      aria-label="menu"
+      onClick={() => toggleDrawer(true)}
+      sx={{ mr: 2, display: { sm: 'none' } ,color: 'white'}}
+    >
+      <MenuIcon />
+    </IconButton>
 
-            {/* Botones del menú para dispositivos de escritorio */}
-            <Box sx={{ display: { xs: 'none', sm: 'flex' } }}>
-              {menuItems.map((item) => (
-                <Button color="inherit" key={item.id} onClick={() => scrollToSection(item.id)}  style={{ color: 'white' }}>
-                  {item.label}
-                </Button>
-              ))}
-            </Box>
-          </Toolbar>
-        </AppBar>
+    {/* Título del navbar */}
+    <div style={{ flexGrow: 1 }}>
+      <Typography variant="h6" style={{ fontWeight: 'bold', paddingTop: '10px', color: 'white' }}>
+        ADA SOFT
+      </Typography>
+    </div>
+
+    {/* Botones del menú para dispositivos de escritorio */}
+    <Box sx={{ display: { xs: 'none', sm: 'flex' } }}>
+      {menuItems.map((item) => (
+        <Button color="inherit" key={item.id} onClick={() => scrollToSection(item.id)} style={{ color: 'white' }}>
+          {item.label}
+        </Button>
+      ))}
+    </Box>
+  </Toolbar>
+</AppBar>
+
 
         {/* Drawer para dispositivos móviles */}
         <Drawer anchor="left" open={drawerOpen}

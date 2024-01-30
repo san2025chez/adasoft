@@ -1,40 +1,47 @@
 .contenedor-imagen {
-    position: relative;
-    overflow: hidden; /* Evita que la imagen se desborde fuera del contenedor */
-
+  position: relative;
+  overflow: hidden;
+  width: 100%; /* o un tamaño específico en píxeles o porcentaje */
+  height: 90vh; /* o el tamaño que desees */
 }
-  
-  .imagen-fondo {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Ajusta la imagen para cubrir completamente el contenedor */
-    display: block;
-  }
-  
-  .capa-oscura {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7); /* Negro con 50% de opacidad */
-  }
-  
-  .texto-superpuesto {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    text-align: center;
-  }
-  
-  .texto-superpuesto h1 {
-    font-size: 24px;
-    font-weight: bold;
-  }
-  .texto-superpuesto h4 {
-    font-size: 20px;
-    font-weight:lighter
-  }
-  
+
+.imagen-fondo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ajusta para cubrir completamente el contenedor sin deformar */
+
+  top: 0;
+  left: 0;
+ 
+}
+
+
+ .capa-oscura {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 900; /* Asegúrate de que el z-index sea menor que el AppBar */
+} 
+
+.texto-superpuesto {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+  z-index: 900; /* Asegúrate de que el z-index sea menor que el AppBar */
+}
+
+.texto-superpuesto h1 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.texto-superpuesto h4 {
+  font-size: 20px;
+  font-weight: lighter;
+}

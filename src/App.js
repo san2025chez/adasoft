@@ -172,26 +172,15 @@ const mobileStyles = {
       </Helmet>
       <CssBaseline />
       <Container maxWidth="xl" style={{ padding: 0, margin: 0, minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+     
+   
         <NavBar />
-        
-    
-       <Inicio/>
-       
-       {/*  <Container style={{ ...containerStyles, ...(window.innerWidth <= 600 && mobileStyles)}}>
-        <Grid container spacing={1} justifyContent="center" style={{ boxShadow: 'none' }}>
-        <Grid item xs={12} md={12}>
-        <Paper style={{ padding: '15px', boxShadow: 'none',textAlign: 'center' }}>
-  <TextComponent style={{ boxShadow: 'none' }}>
- 
+        <Paper id="inicio" elevation={3} style={{  textAlign: 'center', boxShadow: 'none' }}>
 
-  ¡Potencia tu crecimiento empresarial! 💼✨ 
-  Descubre la mejor solución para llevar tu negocio al mundo digital. 🌐💻 Creamos páginas web impactantes y efectivas que destacarán tu marca. ¡Con Ada Soft, haz que tu presencia en línea impulse tu éxito! 🚀✨
-  </TextComponent>
-  </Paper>
-  </Grid>
-  </Grid>
-</Container>;
- */}
+ <Inicio id="inicio"/>
+ </Paper>
+    
+    
 
         <Paper id="servicios" elevation={3} style={{ padding: '20px', margin: '20px 10px', textAlign: 'center', boxShadow: 'none' }}>
           <Container maxWidth="md">
