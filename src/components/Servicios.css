@@ -1,0 +1,12 @@
+.transicion-texto {
+    transition: opacity 0.5s;
+    opacity: 0;
+  }
+  
+  .aparecer {
+    opacity: 1;
+  }
+  .MuiGrid-root {
+    border: none;
+  }
+  

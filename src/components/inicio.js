@@ -1,39 +1,49 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './inicio.css'; // Asegúrate de importar tus estilos CSS
 import CustomSpinner from './CustomSpinner';
 import { NavBar } from './NavBar';
 
 const Inicio = () => {
   const [imagenCargada, setImagenCargada] = useState(false);
+  const [cargandoImagen, setCargandoImagen] = useState(true);
+  const [imagen, setImagen] = useState('')
+
   const esMobile = window.innerWidth <= 600; // Define tu propia lógica para determinar si es mobile
 
   const handleImagenCargada = () => {
     // Se llama cuando la imagen se ha cargado completamente
     setImagenCargada(true);
+    setCargandoImagen(false);
   };
 
+  useEffect(() => {
+setImagen(`${process.env.PUBLIC_URL}/images/portadaoriginal.webp`)
+
+  }, []); // Dependencias vacías, ejecutar solo una vez al montar el componente
+
   return (
-    <div className="contenedor-imagen" >
-      {/* Spinner mientras se carga la imagen */}
-      {!imagenCargada && <div className="spinner"><CustomSpinner/></div>}
+    <div className="contenedor-imagen">
+      {cargandoImagen && <div className="spinner"><CustomSpinner /></div>}
 
-      {/* Imagen de fondo */}
-      <img
-        className={`imagen-fondo ${imagenCargada ? 'visible' : 'oculto'}`}
-        src={`${process.env.PUBLIC_URL}/images/portadaoriginal.webp`}
-        alt="Descripción de la imagen"
-      
-        onLoad={handleImagenCargada} // Manejar el evento de carga de la imagen
-      />
- 
-      {/* Capa oscura transparente */}
-    <div className="capa-oscura"></div>
+      {imagen && (
+        <>
+          {/* Imagen de fondo */}
+          <img
+            className={`imagen-fondo ${imagenCargada ? 'visible' : 'oculto'}`}
+            src={imagen}
+            alt="imagen"
+            onLoad={handleImagenCargada} // Manejar el evento de carga de la imagen
+          />
 
-   
-      <div className={`texto-superpuesto ${imagenCargada ? 'visible' : 'oculto'}`}>
-        <h1> ¡Potencia el crecimiento de tu negocio!</h1>
-        <h4>¡Con Ada Soft, haz que tu presencia en línea impulse tu éxito! </h4>
-      </div>  
+          {/* Capa oscura transparente */}
+          <div className="capa-oscura"></div>
+
+          <div className={`texto-superpuesto ${imagenCargada ? 'visible' : 'oculto'}`}>
+            <h1> ¡Potencia el crecimiento de tu negocio!</h1>
+            <h4>¡Con Ada Soft, haz que tu presencia en línea impulse tu éxito! </h4>
+          </div>
+        </>
+      )}
     </div>
   );
 };

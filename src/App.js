@@ -15,6 +15,8 @@ import './App.css';
 import styled from '@emotion/styled';
 import { Helmet } from 'react-helmet'
 import Inicio from './components/inicio';
+import Servicios from './components/Servicios';
+import Footer from './components/Footer/Footer';
 
 
 const theme = createTheme({
@@ -148,20 +150,21 @@ const App = () => {
     box-shadow: none
   }
 `;
-const containerStyles = {
-  marginTop: '10px',
-  padding: '10px',
-/*   display: 'flex', 
-  flexDirection: 'column',
-   alignItems: 'center' , */
-};
+  const containerStyles = {
+    marginTop: '10px',
+    padding: '10px',
+    /*   display: 'flex', 
+      flexDirection: 'column',
+       alignItems: 'center' , */
+  };
 
-const mobileStyles = {
-  marginTop: '5px',
-  padding: '3px'/*   display: 'flex', 
+  const mobileStyles = {
+    marginTop: '5px',
+    padding: '3px'/*   display: 'flex', 
   flexDirection: 'column',
    alignItems: 'center' , */
-};
+  };
+
 
 
   /* padding: '30px', marginTop: '30px', marginLeft: '10px', marginRight: '10px', textAlign: 'center', boxShadow: 'none' */
@@ -172,54 +175,15 @@ const mobileStyles = {
       </Helmet>
       <CssBaseline />
       <Container maxWidth="xl" style={{ padding: 0, margin: 0, minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-     
-   
+
+
         <NavBar />
-        <Paper id="inicio" elevation={3} style={{  textAlign: 'center', boxShadow: 'none' }}>
+        <Paper id="inicio" elevation={3} style={{ textAlign: 'center', boxShadow: 'none' }}>
 
- <Inicio id="inicio"/>
- </Paper>
-    
-    
-
-        <Paper id="servicios" elevation={3} style={{ padding: '20px', margin: '20px 10px', textAlign: 'center', boxShadow: 'none' }}>
-          <Container maxWidth="md">
-            <Typography variant="h4" color="primary" style={{ fontWeight: 'bold', color: '#1976d2' }}>Servicios</Typography>
-            <Grid container spacing={2} justifyContent="center">
-              <Grid item xs={12} md={4}>
-                <Paper style={{ padding: '20px', boxShadow: 'none' }}>
-                  <Typography variant="h5"> Landing Page</Typography>
-                  <Typography >
-El diseño de una Landing page se enfoca en guiar al visitante hacia la accion deseada.
-esto suele implicar un diseño limpio, con elementos visuales llamativos. 
-Una Landing page permite transmitir tu mensaje de manera impactante y motivar a los visitantes a dar el siguiente paso.
-
-
-                  </Typography>
-
-                </Paper>
-              </Grid>
-              <Grid item xs={12} md={4}>
-                <Paper style={{ padding: '20px', boxShadow: 'none' }}>
-                  <Typography variant="h5" > Paginas Web</Typography>
-                  <Typography>
-
-                  Nuestro equipo de profesionales está aquí para brindarte asesoramiento personalizado, ayudándote a construir la web que realmente deseas y que mejor se adapte a tus necesidades.
-                   Juntos, convertiremos tus ideas en una realidad digital que te beneficie al máximo.               </Typography>
-                </Paper>
-              </Grid>
-              <Grid item xs={12} md={4}>
-                <Paper style={{ padding: '20px', boxShadow: 'none' }}>
-                  <Typography variant="h5">Mantenimiento</Typography>
-                  <Typography>Ofrecemos un servicio completo de mantenimiento para asegurarnos de que tu presencia en línea esté siempre actualizada, segura y en su mejor forma.
-
-</Typography>
-                </Paper>
-
-              </Grid>
-            </Grid>
-          </Container>
+          <Inicio id="inicio" />
         </Paper>
+
+<Servicios/>
         <Paper id="metodologia" elevation={3} component={StyledPaper2} style={{ boxShadow: 'none' }}>
           <Typography variant="h4" color="primary" style={{ fontWeight: 'bold', textAlign: 'center', color: '#1976d2' }}>Nuestra Metodología</Typography>
           {/* Cuadrícula para dividir en dos partes */}
@@ -239,7 +203,7 @@ Una Landing page permite transmitir tu mensaje de manera impactante y motivar a 
                     <Typography variant="h6" gutterBottom style={{ textAlign: 'left', marginLeft: '20px' }}>
                       Fase 1: Consultoría
                     </Typography>
-                    <ul style={{ textAlign: 'left', marginLeft: '20px' }}>
+                    <ul style={{ textAlign: 'left', marginLeft: '20px' ,fontSize: '15px' }}>
                       <li>Analizamos los procesos.</li>
                       <li>Detectamos oportunidades.</li>
                       <li>Evaluamos en qué parte del proceso agregar valor.</li>
@@ -248,7 +212,7 @@ Una Landing page permite transmitir tu mensaje de manera impactante y motivar a 
                     <Typography variant="h6" gutterBottom style={{ textAlign: 'left', marginLeft: '20px' }}>
                       Fase 2: Propuesta
                     </Typography>
-                    <ul style={{ textAlign: 'left', marginLeft: '20px' }}>
+                    <ul style={{ textAlign: 'left', marginLeft: '20px',fontSize: '15px'  }}>
                       <li>Ofrecemos soluciones, presentando nuestra propuesta de valor.</li>
                       <li>Exponemos los beneficios de implementarlas.</li>
                       <li>Analizamos el retorno de la inversión.</li>
@@ -257,7 +221,7 @@ Una Landing page permite transmitir tu mensaje de manera impactante y motivar a 
                     <Typography variant="h6" gutterBottom style={{ textAlign: 'left', marginLeft: '20px' }}>
                       Fase 3: Implementación
                     </Typography>
-                    <ul style={{ textAlign: 'left', marginLeft: '20px' }}>
+                    <ul style={{ textAlign: 'left', marginLeft: '20px',fontSize: '15px'  }}>
                       <li>Comenzamos el proceso de implementación.</li>
                       <li>Damos soporte.</li>
                       <li>Realizamos seguimiento de los cambios.</li>
@@ -283,7 +247,7 @@ Una Landing page permite transmitir tu mensaje de manera impactante y motivar a 
               <Grid item xs={12} md={6}>
                 {/* Contenido de la parte derecha (descripción) */}
                 <Paper style={{ padding: '20px', marginTop: '20px', boxShadow: 'none' }}>
-                  <Typography>
+                  <Typography style={{fontSize: '15px' }}>
 
 
                     En ADA SOFTWARE no trabajamos de manera estandarizada, sino que adaptamos las mejoras a cada organización, según sus necesidades y sus proyecciones. Nuestras soluciones son a medida de cada cliente.
@@ -317,10 +281,9 @@ Una Landing page permite transmitir tu mensaje de manera impactante y motivar a 
             <Formulario></Formulario>
           </Container>
         </Paper>
-        <Box component="footer" style={{ backgroundColor: '#333', color: 'white', padding: '20px', textAlign: 'center', marginTop: '20px' }}>
-          <Typography>Contacto:softadait@gmail.com</Typography>
-          <Typography>&copy; ADASoftware 2023</Typography>
-        </Box>
+      
+          <Footer/>
+
       </Container>
     </ThemeProvider>
   );

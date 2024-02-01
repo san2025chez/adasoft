@@ -1,50 +1,38 @@
-import React from 'react';
-import { CircularProgress, Typography } from '@mui/material';
-import { makeStyles } from '@mui/styles';
-
-const useStyles = makeStyles((theme) => ({
-  spinnerContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: '100vh',
-  },
-  spinner: {
-    color: theme.palette.primary.main,
-    marginBottom: theme.spacing(2),
-  },
-  image: {
-    width: '100%', // Ajusta el tamaño de la imagen según tus necesidades
-    borderRadius: theme.shape.borderRadius,
-    boxShadow: theme.shadows[3], // Agrega una sombra si lo deseas
-  },
-  text: {
-    color: theme.palette.text.primary,
-  },
-}));
+import React, { useState } from "react";
+import { Triangle } from "react-loader-spinner";
 
 const CustomSpinner = () => {
-  const classes = useStyles();
+  const [loading, setLoading] = useState(true);
+  const [color, setColor] = useState("#4fa94d");
 
-  // Acción o contenido adicional
-  const renderAdditionalContent = () => (
-    <>
-      <img
-        src={`${process.env.PUBLIC_URL}/images/logoada2.jpg`}
-        alt="Fondo"
-        className={classes.image}
-      />
-      <Typography variant="h6" className={classes.text}>
-        Procesando datos...
-      </Typography>
-    </>
-  );
+  const override = {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    height: "100%",
+  };
+
+  const triangleContainerStyle = {
+    marginTop: "150px", // Ajusta el valor del margen superior según tus preferencias
+  };
 
   return (
-    <div className={classes.spinnerContainer}>
-      <CircularProgress className={classes.spinner} size={60} thickness={4} />
-      {renderAdditionalContent()}
+    <div className="sweet-loading" style={{ height: "100vh", ...override }}>
+      {/* button y Triangle son opcionales, dependiendo de si quieres tener un botón para mostrar/ocultar el spinner */}
+      {/* <button onClick={() => setLoading(!loading)}>Toggle Loader</button> */}
+
+      <div style={triangleContainerStyle}>
+        <Triangle
+          visible={true}
+          height={100}
+          width={100}
+          color={'blue'}
+          ariaLabel="triangle-loading"
+          strokeWidth={8} // Ajusta el grosor de las líneas según tus preferencias
+          wrapperStyle={{}}
+          wrapperClass=""
+        />
+      </div>
     </div>
   );
 };
