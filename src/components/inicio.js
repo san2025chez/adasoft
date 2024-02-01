@@ -16,22 +16,22 @@ const Inicio = () => {
 
   return (
     <div className="contenedor-imagen">
-      {!imagenCargada && <div className="spinner"><CustomSpinner /></div>}
+      {!imagen && <div className="spinner"><CustomSpinner /></div>}
 
       {imagen && (
         <>
           {/* Imagen de fondo */}
           <img
-            className={`imagen-fondo ${imagenCargada ? 'visible' : 'oculto'}`}
+            className={`imagen-fondo ${imagen ? 'visible' : 'oculto'}`}
             src={imagen}
             alt="imagen"
-            onLoad={() => setImagenCargada(true)} // Manejar el evento de carga de la imagen
+    
           />
 
           {/* Capa oscura transparente */}
-          {imagenCargada && <div className="capa-oscura"></div>}
+          {imagen && <div className="capa-oscura"></div>}
 
-          <div className={`texto-superpuesto ${imagenCargada ? 'visible' : 'oculto'}`}>
+          <div className={`texto-superpuesto ${imagen? 'visible' : 'oculto'}`}>
             <h1> ¡Potencia el crecimiento de tu negocio!</h1>
             <h4>¡Con Ada Soft, haz que tu presencia en línea impulse tu éxito! </h4>
           </div>
