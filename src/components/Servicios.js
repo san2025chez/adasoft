@@ -31,8 +31,8 @@ const Servicios = () => {
         <Grid container spacing={2} justifyContent="center" >
           <Grid item xs={12} md={3} >
             <Paper className={`transicion-texto ${inView ? 'aparecer' : ''}`} style={{ boxShadow: 'none' }}>
-              <Typography variant="h5" style={{paddingBottom:'10px', textAlign: 'left'}}> Landing Page</Typography>
-              <Typography style={{ textAlign: 'left',fontSize: '15px'  }}>
+              <Typography variant="h5" style={{paddingBottom:'10px', textAlign: 'center'}}> Landing Page</Typography>
+              <Typography style={{ textAlign: 'center',fontSize: '15px'  }}>
               Desarrollamos Landing Pages personalizadas que se ajustan perfectamente a las necesidades de tu negocio.
             Creamos un diseño cautivador que no solo transmite tu mensaje de manera impactante,
                sino que también convierte visitas en valiosos clientes potenciales.
@@ -41,8 +41,8 @@ const Servicios = () => {
           </Grid>
           <Grid item xs={12} md={3}>
             <Paper className={`transicion-texto ${inView ? 'aparecer' : ''}` } style={{ boxShadow: 'none' }}>
-              <Typography variant="h5" style={{paddingBottom:'10px', textAlign: 'left'}}>Desarrolo de Apliaciones Web</Typography>
-              <Typography  style={{ textAlign: 'left'  ,fontSize: '15px' }}>
+              <Typography variant="h5" style={{paddingBottom:'10px', textAlign: 'center'}}>Desarrolo de Apliaciones Web</Typography>
+              <Typography  style={{ textAlign: 'center'  ,fontSize: '15px' }}>
               Desarrollamos aplicaciones web a medida,
                 ayudándote a construir la web que realmente deseas y que mejor se adapte a tus necesidades.
                 Juntos, convertiremos tus ideas en una realidad digital que te beneficie al máximo.
@@ -51,8 +51,8 @@ const Servicios = () => {
           </Grid>
           <Grid item xs={12} md={3}>
             <Paper className={`transicion-texto ${inView ? 'aparecer' : ''}`} style={{ boxShadow: 'none' }}>
-              <Typography variant="h5" style={{paddingBottom:'10px', textAlign: 'left'}}>Tiendas Online</Typography>
-              <Typography style={{ textAlign: 'left',fontSize: '15px'  }}>
+              <Typography variant="h5" style={{paddingBottom:'10px', textAlign: 'center'}}>Tiendas Online</Typography>
+              <Typography style={{ textAlign: 'center',fontSize: '15px'  }}>
                 Creamos tiendas online personalizadas, con un diseño atractivo y funcionalidades
                 que te ayudarán a vender tus productos de forma efectiva.
               </Typography>
@@ -60,8 +60,8 @@ const Servicios = () => {
           </Grid>
           <Grid item xs={12} md={3}>
             <Paper className={`transicion-texto ${inView ? 'aparecer' : ''}` }  style={{ boxShadow: 'none' }}>
-              <Typography variant="h5" style={{paddingBottom:'10px', textAlign: 'left'}}>Mantenimiento</Typography>
-              <Typography  style={{ textAlign: 'left' ,fontSize: '15px' }}>
+              <Typography variant="h5" style={{paddingBottom:'10px', textAlign: 'center'}}>Mantenimiento</Typography>
+              <Typography  style={{ textAlign: 'center' ,fontSize: '15px' }}>
                 Ofrecemos un servicio completo de mantenimiento para asegurarnos de que tu presencia en línea esté siempre actualizada, segura y en su mejor forma.
               </Typography>
             </Paper>
