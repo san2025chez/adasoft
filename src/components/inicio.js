@@ -13,25 +13,28 @@ const Inicio = () => {
   useEffect(() => {
     setImagen(`${process.env.PUBLIC_URL}/images/portadaoriginal.webp`);
   }, []); // Dependencias vacías, ejecutar solo una vez al montar el componente
+  if(imagen ==! ''){
+setImagenCargada(true)
+  }
 
   return (
     <div className="contenedor-imagen">
-      {!imagen && <div className="spinner"><CustomSpinner /></div>}
+      {!imagenCargada && <div className="spinner"><CustomSpinner /></div>}
 
       {imagen && (
         <>
           {/* Imagen de fondo */}
           <img
-            className={`imagen-fondo ${imagen ? 'visible' : 'oculto'}`}
+            className={`imagen-fondo ${imagenCargada ? 'visible' : 'oculto'}`}
             src={imagen}
             alt="imagen"
-    
+            onLoad={() => setImagenCargada(true)} // Manejar el evento de carga de la imagen
           />
 
           {/* Capa oscura transparente */}
-          {imagen && <div className="capa-oscura"></div>}
+          {imagenCargada && <div className="capa-oscura"></div>}
 
-          <div className={`texto-superpuesto ${imagen? 'visible' : 'oculto'}`}>
+          <div className={`texto-superpuesto ${imagenCargada ? 'visible' : 'oculto'}`}>
             <h1> ¡Potencia el crecimiento de tu negocio!</h1>
             <h4>¡Con Ada Soft, haz que tu presencia en línea impulse tu éxito! </h4>
           </div>
