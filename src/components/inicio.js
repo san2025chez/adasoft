@@ -6,24 +6,17 @@ import { NavBar } from './NavBar';
 const Inicio = () => {
   const [imagenCargada, setImagenCargada] = useState(false);
   const [cargandoImagen, setCargandoImagen] = useState(true);
-  const [imagen, setImagen] = useState('')
+  const [imagen, setImagen] = useState('');
 
   const esMobile = window.innerWidth <= 600; // Define tu propia lógica para determinar si es mobile
 
-  const handleImagenCargada = () => {
-    // Se llama cuando la imagen se ha cargado completamente
-    setImagenCargada(true);
-    setCargandoImagen(false);
-  };
-
   useEffect(() => {
-setImagen(`${process.env.PUBLIC_URL}/images/portadaoriginal.webp`)
-
+    setImagen(`${process.env.PUBLIC_URL}/images/portadaoriginal.webp`);
   }, []); // Dependencias vacías, ejecutar solo una vez al montar el componente
 
   return (
     <div className="contenedor-imagen">
-      {cargandoImagen && <div className="spinner"><CustomSpinner /></div>}
+      {!imagenCargada && <div className="spinner"><CustomSpinner /></div>}
 
       {imagen && (
         <>
@@ -32,11 +25,11 @@ setImagen(`${process.env.PUBLIC_URL}/images/portadaoriginal.webp`)
             className={`imagen-fondo ${imagenCargada ? 'visible' : 'oculto'}`}
             src={imagen}
             alt="imagen"
-            onLoad={handleImagenCargada} // Manejar el evento de carga de la imagen
+            onLoad={() => setImagenCargada(true)} // Manejar el evento de carga de la imagen
           />
 
           {/* Capa oscura transparente */}
-          <div className="capa-oscura"></div>
+          {imagenCargada && <div className="capa-oscura"></div>}
 
           <div className={`texto-superpuesto ${imagenCargada ? 'visible' : 'oculto'}`}>
             <h1> ¡Potencia el crecimiento de tu negocio!</h1>
