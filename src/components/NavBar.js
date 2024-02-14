@@ -40,14 +40,42 @@ export const NavBar = () => {
   position="fixed" 
   sx={{
     position: { sm: 'static' },
-    backgroundColor: 'black',
+    background: 'rgba(42, 27, 161, 0.7)',
+
+    background: 'linear-gradient(45deg, rgba(131, 84, 218, 0.1), rgba(54, 85, 224, 0.1) 100%)',
+  
     boxShadow: 'none',
+
 
     
   }}
-  color="primary"
+  md={{
+    position: { sm: 'static' },
+    background: 'rgba(42, 27, 161, 0.7)',
+
+    background: 'linear-gradient(45deg, rgba(131, 84, 218, 0.1), rgba(54, 85, 224, 0.1) 100%)',
+  
+    boxShadow: 'none',
+
+
+    
+  }}
+  lg={{
+    position: { sm: 'static' },
+    background: 'rgba(42, 27, 161, 0.7)',
+
+    background: 'linear-gradient(45deg, rgba(131, 84, 218, 0.1), rgba(54, 85, 224, 0.1) 100%)',
+  
+    boxShadow: 'none',
+
+
+    
+  }}
+
+
 >
-  <Toolbar>
+<Toolbar style={{ background: 'linear-gradient(45deg, rgba(131, 84, 218, 0.1), rgba(54, 85, 224, 0.1) 100%), rgba(42, 27, 161, 0.7)' }}>
+
     {/* Botón del menú para dispositivos móviles */}
     <IconButton
       edge="start"

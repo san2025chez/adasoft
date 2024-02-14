@@ -22,7 +22,7 @@ import Footer from './components/Footer/Footer';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#FFFFFF', // Azul claro
+      main: 'rgba(42, 27, 161, 0.1)', // Azul claro
     },
     secondary: {
       main: '#1976d2', // Azul más oscuro para acentos
