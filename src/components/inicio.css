@@ -2,7 +2,7 @@
   position: relative;
   overflow: hidden;
   width: 100%; /* o un tamaño específico en píxeles o porcentaje */
-  height: 90vh; /* o el tamaño que desees */
+  height: 100vh; /* o el tamaño que desees */
 }
 
 .imagen-fondo {

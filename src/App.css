@@ -13,7 +13,7 @@
 /* Media query para dispositivos móviles */
 @media (max-width: 600px) {
   .imagen-inicio {
-    height: 200px;
+    height: 100%;
     width: 100%; /* Establecer la altura deseada para dispositivos móviles */
   }
 }
