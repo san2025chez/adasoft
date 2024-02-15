@@ -69,7 +69,7 @@ const App = () => {
   
     @media (min-width: 1281px) and (orientation: landscape) {
       /* Estilos para pantallas más grandes en orientación horizontal */
-      height: 600px;
+      height: 420px;
     }
   `;
 
@@ -99,17 +99,17 @@ const App = () => {
     }
     @media (min-width: 601px) and (max-width: 960px) and (orientation: landscape) {
       /* Estilos para tabletas en orientación horizontal */
-      height: 400px;
+      height: 300px;
     }
   
     @media (min-width: 961px) and (max-width: 1280px) and (orientation: landscape) {
       /* Estilos para tabletas en orientación horizontal */
-      height: 500px;
+      height: 400px;
     }
   
     @media (min-width: 1281px) and (orientation: landscape) {
       /* Estilos para pantallas más grandes en orientación horizontal */
-      height: 600px;
+      height: 300px;
     }
   `;
   const TextComponent = styled.div`
