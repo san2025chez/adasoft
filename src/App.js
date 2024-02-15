@@ -55,9 +55,21 @@ const App = () => {
       height: 230px;
       width: 100%;
       marginTop: 50px
-   
-   
       box-shadow: none;
+    }
+    @media (min-width: 601px) and (max-width: 960px) and (orientation: landscape) {
+      /* Estilos para tabletas en orientación horizontal */
+      height: 400px;
+    }
+  
+    @media (min-width: 961px) and (max-width: 1280px) and (orientation: landscape) {
+      /* Estilos para tabletas en orientación horizontal */
+      height: 500px;
+    }
+  
+    @media (min-width: 1281px) and (orientation: landscape) {
+      /* Estilos para pantallas más grandes en orientación horizontal */
+      height: 600px;
     }
   `;
 
@@ -84,6 +96,20 @@ const App = () => {
      
       
       
+    }
+    @media (min-width: 601px) and (max-width: 960px) and (orientation: landscape) {
+      /* Estilos para tabletas en orientación horizontal */
+      height: 400px;
+    }
+  
+    @media (min-width: 961px) and (max-width: 1280px) and (orientation: landscape) {
+      /* Estilos para tabletas en orientación horizontal */
+      height: 500px;
+    }
+  
+    @media (min-width: 1281px) and (orientation: landscape) {
+      /* Estilos para pantallas más grandes en orientación horizontal */
+      height: 600px;
     }
   `;
   const TextComponent = styled.div`
@@ -191,6 +217,7 @@ const App = () => {
             <Grid container spacing={2} justifyContent="center" style={{ boxShadow: 'none' }}>
               <Grid item xs={12} md={6}>
                 <GridItem
+                
                 ></GridItem>
               </Grid>
               <Grid item xs={12} md={6}>
@@ -277,7 +304,7 @@ const App = () => {
           <Container maxWidth="md" style={{ padding: '20px' }}>
             <Typography variant="h4" color="primary" style={{ fontWeight: 'bold', color: '#1976d2', textAlign: 'center' }}>Contacto</Typography>
             {/* Cuadrícula para dividir en dos partes */}
-            <Typography variant="h5" color="primary" style={{ fontWeight: 'bold' }}>Comunicate</Typography>
+
             <Formulario></Formulario>
           </Container>
         </Paper>
