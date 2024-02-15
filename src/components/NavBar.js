@@ -33,6 +33,8 @@ export const NavBar = () => {
     const toggleDrawer = (open) => {
       setDrawerOpen(open);
     };
+    const drawerHeight = menuItems.length * 40;
+
 
   return (
 <>
@@ -106,25 +108,28 @@ export const NavBar = () => {
 </AppBar>
 
 
-        {/* Drawer para dispositivos móviles */}
-        <Drawer anchor="left" open={drawerOpen}
-          sx={{
-            // Añadir estilos específicos del Drawer para dispositivos móviles
-            '& .MuiDrawer-paper': {
-              width: '60vw', // Ajusta el ancho como desees
-              marginBottom: '60px', // Asegura que el Drawer esté por debajo de la imagen y la capa oscura   
-            },
-            
-          }}
-         onClose={() => toggleDrawer(false)}>
-          <List>
-            {menuItems.map((item) => (
-              <ListItem button key={item.id} onClick={() => scrollToSection(item.id)}>
-                <ListItemText primary={item.label} />
-              </ListItem>
-            ))}
-          </List>
-        </Drawer>
+<Drawer
+        anchor="left" // Cambia el anchor a top para que el Drawer se despliegue desde arriba hacia abajo
+        open={drawerOpen}
+        sx={{
+          '& .MuiDrawer-paper': {
+            width: '100vw',
+            marginTop: '56px', // Altura del Navbar
+            background:  'linear-gradient(45deg, rgba(131, 84, 218, 0.1), rgba(54, 85, 224, 0.5) 100%), rgba(42, 27, 161, 0.7)'
+          },
+        }}
+        onClose={() => toggleDrawer(false)}
+      >
+  <Box sx={{ width: '100%'}} > {/* Cambia el color de fondo aquí */}
+  <List sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
+      {menuItems.map((item) => (
+        <ListItem button key={item.id} onClick={() => scrollToSection(item.id)} sx={{ width: '100%', textAlign: 'center' }}>
+          <ListItemText primary={item.label} />
+        </ListItem>
+      ))}
+    </List>
+  </Box>
+</Drawer>
 </>
 
   )
