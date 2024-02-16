@@ -1,5 +1,5 @@
 import { useState } from "react";
-import React from 'react'
+import React, {useEffect} from 'react'
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Drawer from '@mui/material/Drawer';
@@ -21,6 +21,7 @@ const menuItems = [
   ];
 export const NavBar = () => {
     const [drawerOpen, setDrawerOpen] = useState(false);
+    const [navColor, setNavColor] = useState('transparent');
 
     const scrollToSection = (id) => {
       const element = document.getElementById(id);
@@ -29,7 +30,26 @@ export const NavBar = () => {
         setDrawerOpen(false); // Cerrar el Drawer después de hacer clic en un elemento
       }
     };
-  
+    const handleScroll = () => {
+      const offset = window.scrollY;
+      const sectionHeight = window.innerHeight;
+      const section = Math.floor(offset / sectionHeight);
+      console.log("seccion", section);
+    
+      if (section === 1 || section === 2  || section === 3 || section === 4 ) {
+        setNavColor('blue'); // Cambia el color del Navbar cuando se desplaza a la segunda sección
+      } else {
+        setNavColor('transparent'); // Vuelve al color original cuando se desplaza a otras secciones
+      }
+    };
+    
+    useEffect(() => {
+      window.addEventListener('scroll', handleScroll);
+    
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+      };
+    }, []);
     const toggleDrawer = (open) => {
       setDrawerOpen(open);
     };
@@ -41,42 +61,30 @@ export const NavBar = () => {
 <AppBar 
   position="fixed" 
   sx={{
-    position: { sm: 'static' },
-    background: 'rgba(42, 27, 161, 0.7)',
-
-    background: 'linear-gradient(45deg, rgba(131, 84, 218, 0.1), rgba(54, 85, 224, 0.1) 100%)',
-  
+    background: navColor === 'transparent' ? 'linear-gradient(45deg, rgba(131, 84, 218, 0), rgba(54, 85, 224, 0.1) 100%), rgba(42, 27, 161, 0)' :  'linear-gradient(45deg, rgba(131, 84, 218, 0.1), rgba(54, 85, 224, 0.1) 100%), rgba(42, 27, 161, 0.7)',
     boxShadow: 'none',
-
-
-    
+    zIndex: (theme) => theme.zIndex.drawer + 2,
+    height: '60px',
+    display: 'flex',
+    justifyContent: 'center',
+    border: 0
   }}
   md={{
     position: { sm: 'static' },
-    background: 'rgba(42, 27, 161, 0.7)',
-
-    background: 'linear-gradient(45deg, rgba(131, 84, 218, 0.1), rgba(54, 85, 224, 0.1) 100%)',
-  
+    background: navColor === 'transparent' ? 'linear-gradient(45deg, rgba(131, 84, 218, 0.1), rgba(54, 85, 224, 0.1) 100%), rgba(42, 27, 161, 0.1)' :  'linear-gradient(45deg, rgba(131, 84, 218, 0.1), rgba(54, 85, 224, 0.1) 100%), rgba(42, 27, 161, 0.7)',
     boxShadow: 'none',
-
-
-    
+    border: 0
   }}
   lg={{
     position: { sm: 'static' },
-    background: 'rgba(42, 27, 161, 0.7)',
-
-    background: 'linear-gradient(45deg, rgba(131, 84, 218, 0.1), rgba(54, 85, 224, 0.1) 100%)',
-  
+    background: navColor === 'transparent' ? 'linear-gradient(45deg, rgba(131, 84, 218, 0.1), rgba(54, 85, 224, 0.1) 100%), rgba(42, 27, 161, 0.1)' : 'linear-gradient(45deg, rgba(131, 84, 218, 0.1), rgba(54, 85, 224, 0.1) 100%), rgba(42, 27, 161, 0.7)',
     boxShadow: 'none',
-
-
-    
+    border: 0
   }}
-
-
 >
-<Toolbar style={{ background: 'linear-gradient(45deg, rgba(131, 84, 218, 0.1), rgba(54, 85, 224, 0.1) 100%), rgba(42, 27, 161, 0.7)' }}>
+<Toolbar 
+style={{ background: 'linear-gradient(45deg, rgba(131, 84, 218, 0.1), rgba(54, 85, 224, 0.1) 100%), rgba(42, 27, 161, 0.1)',
+height: '60px' }}>
 
     {/* Botón del menú para dispositivos móviles */}
     <IconButton
@@ -115,9 +123,8 @@ export const NavBar = () => {
           '& .MuiDrawer-paper': {
             width: '100vw',
             marginTop: '56px', // Altura del Navbar
-            background:  'linear-gradient(45deg, rgba(131, 84, 218, 0.1), rgba(54, 85, 224, 0.5) 100%), rgba(42, 27, 161, 0.7)'
-          },
-        }}
+            background:  'linear-gradient(45deg, rgba(131, 84, 218, 0.1), rgba(54, 85, 224, 0.1) 100%), rgba(42, 27, 161, 0.7)',
+                }        }}
         onClose={() => toggleDrawer(false)}
       >
   <Box sx={{ width: '100%'}} > {/* Cambia el color de fondo aquí */}

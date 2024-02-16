@@ -3,9 +3,11 @@
   overflow: hidden;
   width: 100%; /* o un tamaño específico en píxeles o porcentaje */
   height: 100vh; /* o el tamaño que desees */
+  
 }
 
 .imagen-fondo {
+ 
   width: 100%;
   height: 100%;
   object-fit: cover; /* Ajusta para cubrir completamente el contenedor sin deformar */
