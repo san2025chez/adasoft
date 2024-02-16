@@ -36,7 +36,7 @@ export const NavBar = () => {
       const section = Math.floor(offset / sectionHeight);
       console.log("seccion", section);
     
-      if (section === 1 || section === 2  || section === 3 || section === 4 ) {
+      if (section === 1 || section === 2  || section === 3 || section === 4  ) {
         setNavColor('blue'); // Cambia el color del Navbar cuando se desplaza a la segunda sección
       } else {
         setNavColor('transparent'); // Vuelve al color original cuando se desplaza a otras secciones

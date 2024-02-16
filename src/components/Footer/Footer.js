@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
-    backgroundColor: 'linear-gradient(45deg, rgba(131, 84, 218, 0.1), rgba(54, 85, 224, 0.1) 100%), rgba(42, 27, 161, 0.7)',
+    background: 'linear-gradient(45deg, rgba(131, 84, 218, 0.1), rgba(54, 85, 224, 0.1) 100%), rgba(42, 27, 161, 0.7)',
     top: 'auto',
     bottom: 0,
   },
