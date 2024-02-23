@@ -77,7 +77,7 @@ const Servicios = () => {
           <Grid item xs={12} md={3}>
             <Paper 
             style={{ boxShadow: 'none' }}>
-              <Typography variant="h5" style={{paddingBottom:'10px', textAlign: 'center'}}>Desarrolo de Apliaciones Web</Typography>
+              <Typography variant="h5" style={{paddingBottom:'10px', textAlign: 'center'}}>Desarrolo de Aplicaciones Web</Typography>
               <Typography  style={{ textAlign: 'center'  ,fontSize: '15px' }}>
               Desarrollamos aplicaciones web a medida,
                 ayudándote a construir la web que realmente deseas y que mejor se adapte a tus necesidades.
