@@ -54,15 +54,15 @@ const Servicios = () => {
     <Paper
       id="servicios"
       elevation={3}
-      style={{ padding: '20px', margin: '20px 20px 20px', textAlign: 'center', boxShadow: 'none' ,
+      style={{ padding: '20px 10px', margin: '20px 20px 20px ', textAlign: 'center', boxShadow: 'none' ,
       animation: roll ? `${rollInRight} 0.6s ease-out both` : 'none'}}
  
     >
-      <Container maxWidth="md" >
+      <Container maxWidth="lg" >
         <Typography variant="h4" color="primary" style={{ fontWeight: 'bold', color: '#1976d2' , padding:'10px'}}>
           Servicios
         </Typography>
-        <Grid container spacing={2} justifyContent="center" >
+        <Grid container spacing={4} justifyContent="center" >
           <Grid item xs={12} md={3} >
             <Paper
            style={{ boxShadow: 'none'}}>
@@ -77,7 +77,7 @@ const Servicios = () => {
           <Grid item xs={12} md={3}>
             <Paper 
             style={{ boxShadow: 'none' }}>
-              <Typography variant="h5" style={{paddingBottom:'10px', textAlign: 'center'}}>Desarrolo de Aplicaciones Web</Typography>
+              <Typography variant="h5" style={{paddingBottom:'10px', textAlign: 'center'}}>Desarrollo de Aplicaciones Web</Typography>
               <Typography  style={{ textAlign: 'center'  ,fontSize: '15px' }}>
               Desarrollamos aplicaciones web a medida,
                 ayudándote a construir la web que realmente deseas y que mejor se adapte a tus necesidades.
