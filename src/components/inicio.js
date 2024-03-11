@@ -12,36 +12,48 @@ const Inicio = () => {
 
   useEffect(() => {
     setImagen(`${process.env.PUBLIC_URL}/images/portadaoriginal.webp`);
+    setImagenCargada(true)
   }, []); // Dependencias vacías, ejecutar solo una vez al montar el componente
-  if(imagen ==! ''){
-setImagenCargada(true)
-  }
+  console.log(imagen);
+/*   if(imagen ==! ''){
 
-  return (
-    <div className="contenedor-imagen">
-      {!imagenCargada && <div className="spinner"><CustomSpinner /></div>}
+  } */
 
-      {imagen && (
-        <>
-          {/* Imagen de fondo */}
-          <img
-            className={`imagen-fondo ${imagenCargada ? 'visible' : 'oculto'}`}
-            src={imagen}
-            alt="imagen"
-            onLoad={() => setImagenCargada(true)} // Manejar el evento de carga de la imagen
-          />
+ 
 
-          {/* Capa oscura transparente */}
-          {imagenCargada && <div className="capa-oscura"></div>}
+    {
+      if(!imagenCargada) {
+        return <div className="spinner"><CustomSpinner /></div>
+       
+      } else{
+        return (<div className="contenedor-imagen">
+     
 
-          <div className={`texto-superpuesto ${imagenCargada ? 'visible' : 'oculto'}`}>
-            <h1> ¡Potencia el crecimiento de tu negocio!</h1>
-            <h4>¡Con Ada Soft, haz que tu presencia en línea impulse tu éxito! </h4>
-          </div>
-        </>
-      )}
-    </div>
-  );
+        {imagen && (
+          <>
+            {/* Imagen de fondo */}
+            <img
+              className={`imagen-fondo ${imagenCargada ? 'visible' : 'oculto'}`}
+              src={imagen}
+              alt="imagen"
+              onLoad={() => setImagenCargada(true)} // Manejar el evento de carga de la imagen
+            />
+  
+            {/* Capa oscura transparente */}
+            {imagenCargada && <div className="capa-oscura"></div>}
+  
+            <div className={`texto-superpuesto ${imagenCargada ? 'visible' : 'oculto'}`}>
+              <h1> ¡Potencia el crecimiento de tu negocio!</h1>
+              <h4>¡Con Ada Soft, haz que tu presencia en línea impulse tu éxito! </h4>
+            </div>
+          </>
+        )}
+      </div> )
+    }
+   
+    }
+ 
+
 };
 
 export default Inicio;
