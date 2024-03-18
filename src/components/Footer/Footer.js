@@ -44,7 +44,7 @@ const Footer = () => {
             <FacebookIcon className={classes.icon} />
           </IconButton>
         </Link>
-        <Link href="https://wa.link/406n0s" target="_blank" rel="noopener noreferrer" color="inherit">
+        <Link href="https://walink.co/8ac4ac" target="_blank" rel="noopener noreferrer" color="inherit">
           <IconButton>
             <WhatsappIcon className={classes.icon} />
           </IconButton>
