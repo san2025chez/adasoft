@@ -209,23 +209,25 @@ const App = () => {
 
           <Inicio id="inicio" />
         </Paper>
-
+        <Fade triggerOnce='true' >
 <Servicios/>
+</Fade>
         <Paper id="metodologia" elevation={3} component={StyledPaper2} style={{ boxShadow: 'none' }}>
           <Typography variant="h4" color="primary" style={{ fontWeight: 'bold', textAlign: 'center', color: '#1976d2' }}>Nuestra Metodología</Typography>
           {/* Cuadrícula para dividir en dos partes */}
           <Container maxWidth="md" style={{ padding: '0px', boxShadow: 'none' }}>
+            <Fade direction='left' triggerOnce='true' >
             <Grid container spacing={2} justifyContent="center" style={{ boxShadow: 'none' }}>
               <Grid item xs={12} md={6}>
-                <Fade direction='left'>
+           
                 <GridItem
                 
                 ></GridItem>
-                </Fade>
+        
               </Grid>
               <Grid item xs={12} md={6}>
                 {/* Contenido de la parte derecha (descripción) */}
-                <Fade direction='right'>
+          
                 <Paper
                   id="metodologia"
                   style={{ boxShadow: 'none', marginTop: '20px' }}
@@ -264,9 +266,10 @@ const App = () => {
 
 
                 </Paper>
-                </Fade>
+              
               </Grid>
             </Grid>
+            </Fade>
           </Container>
         </Paper>
         <Paper id="nosotros" elevation={3} component={StyledPaper2} style={{ margin: '20px 10px', boxShadow: 'none' }}>
@@ -274,10 +277,11 @@ const App = () => {
           <Typography variant="h4" color="primary" style={{ fontWeight: 'bold', color: '#1976d2', textAlign: 'center' }}>Nosotros</Typography>
           {/* Cuadrícula para dividir en dos partes */}
           <Container maxWidth="md">
+            <Fade direction='left' triggerOnce='true' delay={200}>
             <Grid container spacing={2} justifyContent="center">
 
               <Grid item xs={12} md={6}>
-              <Fade direction='left'>
+             
                 {/* Contenido de la parte derecha (descripción) */}
                 <Paper style={{ padding: '20px', marginTop: '20px', boxShadow: 'none' }}>
                   <Typography style={{fontSize: '15px' }}>
@@ -294,12 +298,11 @@ const App = () => {
 
                   </Typography>
                 </Paper>
-                </Fade>
+             
               </Grid>
               <Grid item xs={12} md={6}>
-              <Fade direction='right'>
-                <GridItemNosotros />
-                </Fade>
+                            <GridItemNosotros />
+          
               </Grid>
 
 
@@ -307,6 +310,7 @@ const App = () => {
 
 
             </Grid>
+            </Fade>
           </Container>
         </Paper>
         <Paper id="contacto" elevation={3} style={{ padding: '20px', marginTop: '20px', boxShadow: 'none' }}>
