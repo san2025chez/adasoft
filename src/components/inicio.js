@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './inicio.css'; // Asegúrate de importar tus estilos CSS
 import CustomSpinner from './CustomSpinner';
 import { NavBar } from './NavBar';
+import {Fade} from 'react-awesome-reveal'
 
 const Inicio = () => {
   const [imagenCargada, setImagenCargada] = useState(false);
@@ -41,11 +42,16 @@ const Inicio = () => {
   
             {/* Capa oscura transparente */}
             {imagenCargada && <div className="capa-oscura"></div>}
-  
+          
             <div className={`texto-superpuesto ${imagenCargada ? 'visible' : 'oculto'}`}>
+            <Fade direction='down'>
               <h1> ¡Potencia el crecimiento de tu negocio!</h1>
+              </Fade>
+              <Fade direction='up'>
               <h4>¡Con Ada Soft, haz que tu presencia en línea impulse tu éxito! </h4>
+              </Fade>
             </div>
+         
           </>
         )}
       </div> )

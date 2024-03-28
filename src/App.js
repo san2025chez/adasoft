@@ -17,6 +17,7 @@ import { Helmet } from 'react-helmet'
 import Inicio from './components/inicio';
 import Servicios from './components/Servicios';
 import Footer from './components/Footer/Footer';
+import {Fade} from 'react-awesome-reveal'
 
 
 const theme = createTheme({
@@ -216,12 +217,15 @@ const App = () => {
           <Container maxWidth="md" style={{ padding: '0px', boxShadow: 'none' }}>
             <Grid container spacing={2} justifyContent="center" style={{ boxShadow: 'none' }}>
               <Grid item xs={12} md={6}>
+                <Fade direction='left'>
                 <GridItem
                 
                 ></GridItem>
+                </Fade>
               </Grid>
               <Grid item xs={12} md={6}>
                 {/* Contenido de la parte derecha (descripción) */}
+                <Fade direction='right'>
                 <Paper
                   id="metodologia"
                   style={{ boxShadow: 'none', marginTop: '20px' }}
@@ -260,6 +264,7 @@ const App = () => {
 
 
                 </Paper>
+                </Fade>
               </Grid>
             </Grid>
           </Container>
@@ -272,6 +277,7 @@ const App = () => {
             <Grid container spacing={2} justifyContent="center">
 
               <Grid item xs={12} md={6}>
+              <Fade direction='left'>
                 {/* Contenido de la parte derecha (descripción) */}
                 <Paper style={{ padding: '20px', marginTop: '20px', boxShadow: 'none' }}>
                   <Typography style={{fontSize: '15px' }}>
@@ -288,9 +294,12 @@ const App = () => {
 
                   </Typography>
                 </Paper>
+                </Fade>
               </Grid>
               <Grid item xs={12} md={6}>
+              <Fade direction='right'>
                 <GridItemNosotros />
+                </Fade>
               </Grid>
 
 

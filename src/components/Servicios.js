@@ -11,6 +11,9 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import './Servicios.css';
 import  keyframes  from '@emotion/styled';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import {Fade} from 'react-awesome-reveal'
 
 const rollInRight= keyframes `
 0% {
@@ -24,6 +27,13 @@ const rollInRight= keyframes `
   opacity: 1;
 }`
 
+
+const services=[
+  {
+    "id": "1",
+    "description":""
+  }
+]
 const Servicios = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -62,48 +72,58 @@ const Servicios = () => {
         <Typography variant="h4" color="primary" style={{ fontWeight: 'bold', color: '#1976d2' , padding:'10px'}}>
           Servicios
         </Typography>
+        <Fade direction='up' cascade='false' delay={100}>
         <Grid container spacing={4} justifyContent="center" >
           <Grid item xs={12} md={3} >
-            <Paper
-           style={{ boxShadow: 'none'}}>
+         
+          <Card variant="outlined" style={{borderRadius:"15px"}}>
+          <CardContent>
               <Typography variant="h5" style={{paddingBottom:'10px', textAlign: 'center'}}> Landing Page</Typography>
               <Typography style={{ textAlign: 'center',fontSize: '15px'  }}>
               Desarrollamos Landing Pages personalizadas que se ajustan perfectamente a las necesidades de tu negocio.
             Creamos un diseño cautivador que no solo transmite tu mensaje de manera impactante,
                sino que también convierte visitas en valiosos clientes potenciales.
               </Typography>
-            </Paper>
+              </CardContent>
+              </Card>
+          
           </Grid>
           <Grid item xs={12} md={3}>
-            <Paper 
-            style={{ boxShadow: 'none' }}>
+          <Card variant="outlined" style={{borderRadius:"15px"}}>
+          <CardContent>
               <Typography variant="h5" style={{paddingBottom:'10px', textAlign: 'center'}}>Desarrollo de Aplicaciones Web</Typography>
               <Typography  style={{ textAlign: 'center'  ,fontSize: '15px' }}>
               Desarrollamos aplicaciones web a medida,
                 ayudándote a construir la web que realmente deseas y que mejor se adapte a tus necesidades.
                 Juntos, convertiremos tus ideas en una realidad digital que te beneficie al máximo.
               </Typography>
-            </Paper>
+              </CardContent>
+              </Card>
           </Grid>
           <Grid item xs={12} md={3}>
-            <Paper  style={{ boxShadow: 'none' }}>
+          <Card variant="outlined" style={{borderRadius:"15px"}}>
+          <CardContent>
               <Typography variant="h5" style={{paddingBottom:'10px', textAlign: 'center'}}>Tiendas Online</Typography>
               <Typography style={{ textAlign: 'center',fontSize: '15px'  }}>
                 Creamos tiendas online personalizadas, con un diseño atractivo y funcionalidades
                 que te ayudarán a vender tus productos de forma efectiva.
               </Typography>
-            </Paper>
+              </CardContent>
+              </Card>
           </Grid>
           <Grid item xs={12} md={3}>
-            <Paper  style={{ boxShadow: 'none' }}>
+          <Card variant="outlined" style={{borderRadius:"15px"}}>
+          <CardContent>
               <Typography variant="h5" style={{paddingBottom:'10px', textAlign: 'center'}}>Mantenimiento</Typography>
               <Typography  style={{ textAlign: 'center' ,fontSize: '15px' }}>
                 Ofrecemos un servicio completo de mantenimiento para asegurarnos de que tu presencia en línea esté siempre actualizada, segura y en su mejor forma.
               </Typography>
-            </Paper>
+              </CardContent>
+              </Card>
           </Grid>
          
         </Grid>
+            </Fade>
       </Container>
     </Paper>
   );
