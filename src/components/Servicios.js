@@ -72,10 +72,10 @@ const Servicios = () => {
         <Typography variant="h4" color="primary" style={{ fontWeight: 'bold', color: '#1976d2' , padding:'10px'}}>
           Servicios
         </Typography>
-        <Fade direction='up' cascade='false' delay={100}>
+      
         <Grid container spacing={4} justifyContent="center" >
           <Grid item xs={12} md={3} >
-         
+          <Fade direction='left'>
           <Card variant="outlined" style={{borderRadius:"15px"}}>
           <CardContent>
               <Typography variant="h5" style={{paddingBottom:'10px', textAlign: 'center'}}> Landing Page</Typography>
@@ -86,9 +86,10 @@ const Servicios = () => {
               </Typography>
               </CardContent>
               </Card>
-          
+              </Fade>
           </Grid>
           <Grid item xs={12} md={3}>
+          <Fade direction='right'>
           <Card variant="outlined" style={{borderRadius:"15px"}}>
           <CardContent>
               <Typography variant="h5" style={{paddingBottom:'10px', textAlign: 'center'}}>Desarrollo de Aplicaciones Web</Typography>
@@ -99,8 +100,10 @@ const Servicios = () => {
               </Typography>
               </CardContent>
               </Card>
+              </Fade>
           </Grid>
           <Grid item xs={12} md={3}>
+          <Fade direction='left'>
           <Card variant="outlined" style={{borderRadius:"15px"}}>
           <CardContent>
               <Typography variant="h5" style={{paddingBottom:'10px', textAlign: 'center'}}>Tiendas Online</Typography>
@@ -110,8 +113,10 @@ const Servicios = () => {
               </Typography>
               </CardContent>
               </Card>
+              </Fade>
           </Grid>
           <Grid item xs={12} md={3}>
+          <Fade direction='right'>
           <Card variant="outlined" style={{borderRadius:"15px"}}>
           <CardContent>
               <Typography variant="h5" style={{paddingBottom:'10px', textAlign: 'center'}}>Mantenimiento</Typography>
@@ -120,10 +125,11 @@ const Servicios = () => {
               </Typography>
               </CardContent>
               </Card>
+              </Fade>
           </Grid>
          
         </Grid>
-            </Fade>
+     
       </Container>
     </Paper>
   );
