@@ -37,7 +37,7 @@ export const NavBar = () => {
       console.log("seccion", section);
     
       if (section === 1 || section === 2  || section === 3 || section === 4  ) {
-        setNavColor('blue'); // Cambia el color del Navbar cuando se desplaza a la segunda sección
+        setNavColor('linear-gradient(45deg, rgba(131, 84, 218, 0.1), rgba(54, 85, 224, 0.1) 100%), rgba(42, 27, 161, 0.7)'); // Cambia el color del Navbar cuando se desplaza a la segunda sección
       } else {
         setNavColor('transparent'); // Vuelve al color original cuando se desplaza a otras secciones
       }
@@ -77,7 +77,8 @@ export const NavBar = () => {
   }}
   lg={{
     position: { sm: 'static' },
-    background: navColor === 'transparent' ? 'linear-gradient(45deg, rgba(131, 84, 218, 0.1), rgba(54, 85, 224, 0.1) 100%), rgba(42, 27, 161, 0.1)' : 'linear-gradient(45deg, rgba(131, 84, 218, 0.1), rgba(54, 85, 224, 0.1) 100%), rgba(42, 27, 161, 0.7)',
+    background: navColor === 'transparent' ? 'linear-gradient(45deg, rgba(131, 84, 218, 0.1), rgba(54, 85, 224, 0.1) 100%), rgba(42, 27, 161, 0.1)' :
+     'linear-gradient(45deg, rgba(131, 84, 218, 0.1), rgba(54, 85, 224, 0.1) 100%), rgba(42, 27, 161, 0.7)',
     boxShadow: 'none',
     border: 0
   }}
