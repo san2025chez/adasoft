@@ -21,7 +21,7 @@ const menuItems = [
   ];
 export const NavBar = () => {
     const [drawerOpen, setDrawerOpen] = useState(false);
-    const [navColor, setNavColor] = useState('transparent');
+    const [navColor, setNavColor] = useState('#33ffff');
 
     const scrollToSection = (id) => {
       const element = document.getElementById(id);
@@ -61,7 +61,7 @@ export const NavBar = () => {
 <AppBar 
   position="fixed" 
   sx={{
-    background: navColor === 'transparent' ? 'linear-gradient(45deg, rgba(131, 84, 218, 0), rgba(54, 85, 224, 0.1) 100%), rgba(42, 27, 161, 0)' :  'linear-gradient(45deg, rgba(131, 84, 218, 0.1), rgba(54, 85, 224, 0.1) 100%), rgba(42, 27, 161, 0.7)',
+    background: '#33ffff',
     boxShadow: 'none',
     zIndex: (theme) => theme.zIndex.drawer + 2,
     height: '60px',
@@ -71,20 +71,18 @@ export const NavBar = () => {
   }}
   md={{
     position: { sm: 'static' },
-    background: navColor === 'transparent' ? 'linear-gradient(45deg, rgba(131, 84, 218, 0.1), rgba(54, 85, 224, 0.1) 100%), rgba(42, 27, 161, 0.1)' :  'linear-gradient(45deg, rgba(131, 84, 218, 0.1), rgba(54, 85, 224, 0.1) 100%), rgba(42, 27, 161, 0.7)',
-    boxShadow: 'none',
+    background: '#33ffff',    boxShadow: 'none',
     border: 0
   }}
   lg={{
     position: { sm: 'static' },
-    background: navColor === 'transparent' ? 'linear-gradient(45deg, rgba(131, 84, 218, 0.1), rgba(54, 85, 224, 0.1) 100%), rgba(42, 27, 161, 0.1)' :
-     'linear-gradient(45deg, rgba(131, 84, 218, 0.1), rgba(54, 85, 224, 0.1) 100%), rgba(42, 27, 161, 0.7)',
+    background: '#33ffff',
     boxShadow: 'none',
     border: 0
   }}
 >
 <Toolbar 
-style={{ background: 'linear-gradient(45deg, rgba(131, 84, 218, 0.1), rgba(54, 85, 224, 0.1) 100%), rgba(42, 27, 161, 0.1)',
+style={{ background: '#33ffff',
 height: '60px' }}>
 
     {/* Botón del menú para dispositivos móviles */}
@@ -93,14 +91,14 @@ height: '60px' }}>
       color="inherit"
       aria-label="menu"
       onClick={() => toggleDrawer(true)}
-      sx={{ mr: 2, display: { sm: 'none' } ,color: 'white'}}
+      sx={{ mr: 2, display: { sm: 'none' } ,color: 'black'}}
     >
       <MenuIcon />
     </IconButton>
 
     {/* Título del navbar */}
     <div style={{ flexGrow: 1 }}>
-      <Typography variant="h6" style={{ fontWeight: 'bold', paddingTop: '10px', color: 'white' }}>
+      <Typography variant="h6" style={{ fontWeight: 'bold', paddingTop: '10px', color: 'black' }}>
         ADA SOFT
       </Typography>
     </div>
@@ -108,7 +106,7 @@ height: '60px' }}>
     {/* Botones del menú para dispositivos de escritorio */}
     <Box sx={{ display: { xs: 'none', sm: 'flex' } }}>
       {menuItems.map((item) => (
-        <Button color="inherit" key={item.id} onClick={() => scrollToSection(item.id)} style={{ color: 'white' }}>
+        <Button color="inherit" key={item.id} onClick={() => scrollToSection(item.id)} style={{ color: 'black' }}>
           {item.label}
         </Button>
       ))}
@@ -124,7 +122,7 @@ height: '60px' }}>
           '& .MuiDrawer-paper': {
             width: '100vw',
             marginTop: '56px', // Altura del Navbar
-            background:  'linear-gradient(45deg, rgba(131, 84, 218, 0.1), rgba(54, 85, 224, 0.1) 100%), rgba(42, 27, 161, 0.7)',
+            background: '#33ffff',
                 }        }}
         onClose={() => toggleDrawer(false)}
       >
@@ -132,7 +130,7 @@ height: '60px' }}>
   <List sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
       {menuItems.map((item) => (
         <ListItem button key={item.id} onClick={() => scrollToSection(item.id)} sx={{ width: '100%', textAlign: 'center' }}>
-          <ListItemText primary={item.label}  sx={{ color: 'white' }} />
+          <ListItemText primary={item.label}  sx={{ color: 'black' }} />
         </ListItem>
       ))}
     </List>

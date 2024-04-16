@@ -71,7 +71,7 @@ const Servicios = () => {
 
     >
       <Container maxWidth="lg" >
-        <Typography variant="h4" color="primary" style={{ fontWeight: 'bold', color: '#1976d2', padding: '10px' }}>
+        <Typography variant="h4" color="primary" style={{ fontWeight: 'bold', color: '#00ffff', padding: '10px' }}>
           Servicios
         </Typography>
 

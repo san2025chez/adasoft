@@ -3,50 +3,69 @@
   overflow: hidden;
   width: 100%; /* o un tamaño específico en píxeles o porcentaje */
   height: 100vh; /* o el tamaño que desees */
+/*   background-color: rgb(134, 233, 233);
+ */  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 50px;
+
+}
+.centrado {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+}
+.centrado > div {
+  text-align: center;
+}
+@media (max-width: 600px) {
+  .contenedor-imagen h1 {
+    font-size: 24px; /* Tamaño de fuente más pequeño para dispositivos móviles */
+ 
+ padding-top: 50px;
+padding-left: 10px;
+padding-right: 10px; }
   
+  .contenedor-imagen h4 {
+    font-size: 12px; /* Tamaño de fuente más pequeño para dispositivos móviles */
+    padding-top: 30px;
+    padding-left: 10px;
+padding-right: 10px; 
+  }
 }
-
-.imagen-fondo {
- 
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Ajusta para cubrir completamente el contenedor sin deformar */
-
-  top: 0;
-  left: 0;
- 
-}
-
-
- .capa-oscura {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
- 
-  background: rgba(42, 27, 161, 0.7);
-  background: linear-gradient(60deg, rgba(131, 84, 218, 0.7), rgba(54, 85, 224, 0.7) 100%);
-
-  z-index: 900; /* Asegúrate de que el z-index sea menor que el AppBar */
-} 
-
 .texto-superpuesto {
   position: absolute;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateY(-50%);
+  left: 10%; /* Ajusta este valor según tu diseño */
+  z-index: 2;
   color: white;
-  text-align: center;
-  z-index: 900; /* Asegúrate de que el z-index sea menor que el AppBar */
 }
 
-.texto-superpuesto h1 {
-  font-size: 24px;
-  font-weight: bold;
+.imagen-fondo {
+  position: absolute;
+  right: 0; /* Ajusta este valor para posicionar la imagen a la derecha */
+  top: 0;
+  width: 50%; /* Ajusta este valor según tu diseño */
+  height: 100%; /* Ajusta este valor según tu diseño */
+  object-fit: cover;
 }
 
-.texto-superpuesto h4 {
-  font-size: 20px;
-  font-weight: lighter;
+/* Media queries para dispositivos móviles */
+@media (max-width: 600px) {
+  .texto-superpuesto {
+    position: relative;
+    transform: translateY(0);
+    left: 0;
+    text-align: center;
+  }
+
+  .imagen-fondo {
+    position: relative;
+    width: 100%;
+    height: auto;
+  }
 }
