@@ -21,7 +21,7 @@ const menuItems = [
   ];
 export const NavBar = () => {
     const [drawerOpen, setDrawerOpen] = useState(false);
-    const [navColor, setNavColor] = useState('#33ffff');
+    const [navColor, setNavColor] = useState('#1ae5e2');
 
     const scrollToSection = (id) => {
       const element = document.getElementById(id);
@@ -61,7 +61,7 @@ export const NavBar = () => {
 <AppBar 
   position="fixed" 
   sx={{
-    background: '#33ffff',
+    background: '#1ae5e2',
     boxShadow: 'none',
     zIndex: (theme) => theme.zIndex.drawer + 2,
     height: '60px',
@@ -71,18 +71,18 @@ export const NavBar = () => {
   }}
   md={{
     position: { sm: 'static' },
-    background: '#33ffff',    boxShadow: 'none',
+    background: '#1ae5e2',    boxShadow: 'none',
     border: 0
   }}
   lg={{
     position: { sm: 'static' },
-    background: '#33ffff',
+    background: '#1ae5e2',
     boxShadow: 'none',
     border: 0
   }}
 >
 <Toolbar 
-style={{ background: '#33ffff',
+style={{ background: '#1ae5e2',
 height: '60px' }}>
 
     {/* Botón del menú para dispositivos móviles */}
@@ -122,7 +122,7 @@ height: '60px' }}>
           '& .MuiDrawer-paper': {
             width: '100vw',
             marginTop: '56px', // Altura del Navbar
-            background: '#33ffff',
+            background: '#1ae5e2',
                 }        }}
         onClose={() => toggleDrawer(false)}
       >

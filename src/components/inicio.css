@@ -3,8 +3,8 @@
   overflow: hidden;
   width: 100%; /* o un tamaño específico en píxeles o porcentaje */
   height: 100vh; /* o el tamaño que desees */
-/*   background-color: rgb(134, 233, 233);
- */  display: flex;
+ background-color: #1ae5e2;
+display: flex;
   justify-content: center;
   align-items: center;
   padding-top: 50px;
