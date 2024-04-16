@@ -23,14 +23,14 @@
 }
 @media (max-width: 600px) {
   .contenedor-imagen h1 {
-    font-size: 24px; /* Tamaño de fuente más pequeño para dispositivos móviles */
+    font-size: 30px; /* Tamaño de fuente más pequeño para dispositivos móviles */
  
  padding-top: 20px;
 padding-left: 10px;
 padding-right: 10px; }
   
   .contenedor-imagen h4 {
-    font-size: 12px; /* Tamaño de fuente más pequeño para dispositivos móviles */
+    font-size: 16px; /* Tamaño de fuente más pequeño para dispositivos móviles */
     padding-top: 30px;
     padding-left: 10px;
 padding-right: 10px; 
