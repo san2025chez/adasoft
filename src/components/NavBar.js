@@ -98,7 +98,7 @@ height: '60px' }}>
 
     {/* Título del navbar */}
     <div style={{ flexGrow: 1 }}>
-      <Typography variant="h6" style={{ fontWeight: 'bold', paddingTop: '10px', color: 'black' }}>
+      <Typography variant="h5" style={{ fontWeight: 'bold', paddingTop: '10px', color: 'black' }}>
         ADA SOFT
       </Typography>
     </div>

@@ -236,7 +236,7 @@ const App = () => {
                   style={{ boxShadow: 'none', marginTop: '20px' }}
                 >
                   <Typography component="div">
-                    <Typography variant="h6" gutterBottom style={{ textAlign: 'left', marginLeft: '20px' }}>
+                    <Typography variant="h6" gutterBottom style={{ textAlign: 'left', marginLeft: '40px' }}>
                       Fase 1: Consultoría
                     </Typography>
                     <ul style={{ textAlign: 'left', marginLeft: '20px'  }}>
@@ -245,7 +245,7 @@ const App = () => {
                       <li>Evaluamos en qué parte del proceso agregar valor.</li>
                     </ul>
 
-                    <Typography variant="h6" gutterBottom style={{ textAlign: 'left', marginLeft: '20px' }}>
+                    <Typography variant="h6" gutterBottom style={{ textAlign: 'left', marginLeft: '40px' }}>
                       Fase 2: Propuesta
                     </Typography>
                     <ul style={{ textAlign: 'left', marginLeft: '20px' }}>
@@ -254,7 +254,7 @@ const App = () => {
                       <li>Analizamos el retorno de la inversión.</li>
                     </ul>
 
-                    <Typography variant="h6" gutterBottom style={{ textAlign: 'left', marginLeft: '20px' }}>
+                    <Typography variant="h6" gutterBottom style={{ textAlign: 'left', marginLeft: '40px' }}>
                       Fase 3: Implementación
                     </Typography>
                     <ul style={{ textAlign: 'left', marginLeft: '20px'  }}>
@@ -286,7 +286,7 @@ const App = () => {
               <Grid item xs={12} md={6}>
              
                 {/* Contenido de la parte derecha (descripción) */}
-                <Paper style={{ padding: '20px', marginTop: '0px', boxShadow: 'none' }}>
+                <Paper style={{ padding: '20px', marginTop: '0px', boxShadow: 'none',textAlign: 'justify' }}>
                   <Typography>
 
 
@@ -316,9 +316,9 @@ const App = () => {
             </Fade>
           </Container>
         </Paper>
-        <Paper id="contacto" elevation={3} style={{ padding: '20px', marginTop: '20px', boxShadow: 'none' }}>
+        <Paper id="contacto" elevation={3} style={{  boxShadow: 'none' }}>
           <Container maxWidth="md" style={{ padding: '20px' }}>
-            <Typography variant="h4" color="primary" style={{ fontWeight: 'bold', color: '#00ffff', textAlign: 'center' }}>Contacto</Typography>
+            <Typography variant="h4" color="primary" style={{ fontWeight: 'bold', color: '#00ffff', textAlign: 'center',paddingBottom:'20px' }}>Contacto</Typography>
             {/* Cuadrícula para dividir en dos partes */}
 
             <Formulario></Formulario>
