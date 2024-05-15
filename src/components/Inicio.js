@@ -9,7 +9,7 @@ const Inicio = () => {
     <div className="contenedor-imagen">
     <Grid container spacing={2}   alignItems="center">
       {/* Primera división con grid */}
-      <Grid item xs={12} md={6} className='centrado' style={{}}>
+      <Grid item xs={12} md={6} className='centrado' style={{fontWeight: 600 }}>
         <div>
       <Fade direction='down'>
 

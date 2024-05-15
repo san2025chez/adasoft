@@ -80,8 +80,8 @@ const Servicios = () => {
             <Fade direction='left'>
               <Card variant="outlined" style={{ borderRadius: "15px" }}>
                 <CardContent>
-                  <Typography variant="h5" style={{ paddingBottom: '10px', textAlign: 'center' }}> Landing Page</Typography>
-                  <Typography style={{ textAlign: 'center', fontSize: '15px' }}>
+                  <Typography variant="h6" style={{ paddingBottom: '10px', textAlign: 'center' }}> Landing Page</Typography>
+                  <Typography style={{ textAlign: 'center'}}>
                     Desarrollamos Landing Pages personalizadas que se ajustan perfectamente a las necesidades de tu negocio.
                     Creamos un diseño cautivador que no solo transmite tu mensaje de manera impactante,
                     sino que también convierte visitas en valiosos clientes potenciales.
@@ -94,8 +94,8 @@ const Servicios = () => {
             <Fade direction='right' >
               <Card variant="outlined" style={{ borderRadius: "15px" }}>
                 <CardContent>
-                  <Typography variant="h5" style={{ paddingBottom: '10px', textAlign: 'center' }}>Desarrollo de Aplicaciones Web</Typography>
-                  <Typography style={{ textAlign: 'center', fontSize: '15px' }}>
+                  <Typography variant="h6" style={{ paddingBottom: '10px', textAlign: 'center' }}>Desarrollo de Aplicaciones Web</Typography>
+                  <Typography style={{ textAlign: 'center' }}>
                     Desarrollamos aplicaciones web a medida,
                     ayudándote a construir la web que realmente deseas y que mejor se adapte a tus necesidades.
                     Juntos, convertiremos tus ideas en una realidad digital que te beneficie al máximo.
@@ -108,8 +108,8 @@ const Servicios = () => {
             <Fade direction='left' >
               <Card variant="outlined" style={{ borderRadius: "15px" }}>
                 <CardContent>
-                  <Typography variant="h5" style={{ paddingBottom: '10px', textAlign: 'center' }}>Tiendas Online</Typography>
-                  <Typography style={{ textAlign: 'center', fontSize: '15px' }}>
+                  <Typography variant="h6" style={{ paddingBottom: '10px', textAlign: 'center' }}>Tiendas Online</Typography>
+                  <Typography style={{ textAlign: 'center'}}>
                     Creamos tiendas online personalizadas, con un diseño atractivo y funcionalidades
                     que te ayudarán a vender tus productos de forma efectiva.
                   </Typography>
@@ -121,8 +121,8 @@ const Servicios = () => {
             <Fade direction='right' >
               <Card variant="outlined" style={{ borderRadius: "15px" }}>
                 <CardContent>
-                  <Typography variant="h5" style={{ paddingBottom: '10px', textAlign: 'center' }}>Mantenimiento</Typography>
-                  <Typography style={{ textAlign: 'center', fontSize: '15px' }}>
+                  <Typography variant="h6" style={{ paddingBottom: '10px', textAlign: 'center' }}>Mantenimiento</Typography>
+                  <Typography style={{ textAlign: 'center' }}>
                     Ofrecemos un servicio completo de mantenimiento para asegurarnos de que tu presencia en línea esté siempre actualizada, segura y en su mejor forma.
                   </Typography>
                 </CardContent>

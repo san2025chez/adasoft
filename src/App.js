@@ -30,7 +30,10 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: 'Constantia, serif', // Reemplaza 'TuFuentePersonalizada' con la fuente que desees
+    fontFamily:  "Poppins",
+    fontWeight: 100,
+  fontStyle: 'normal',
+  fontSize:'15px'
   },
 });
 
@@ -236,7 +239,7 @@ const App = () => {
                     <Typography variant="h6" gutterBottom style={{ textAlign: 'left', marginLeft: '20px' }}>
                       Fase 1: Consultoría
                     </Typography>
-                    <ul style={{ textAlign: 'left', marginLeft: '20px' ,fontSize: '15px' }}>
+                    <ul style={{ textAlign: 'left', marginLeft: '20px'  }}>
                       <li>Analizamos los procesos.</li>
                       <li>Detectamos oportunidades.</li>
                       <li>Evaluamos en qué parte del proceso agregar valor.</li>
@@ -245,7 +248,7 @@ const App = () => {
                     <Typography variant="h6" gutterBottom style={{ textAlign: 'left', marginLeft: '20px' }}>
                       Fase 2: Propuesta
                     </Typography>
-                    <ul style={{ textAlign: 'left', marginLeft: '20px',fontSize: '15px'  }}>
+                    <ul style={{ textAlign: 'left', marginLeft: '20px' }}>
                       <li>Ofrecemos soluciones, presentando nuestra propuesta de valor.</li>
                       <li>Exponemos los beneficios de implementarlas.</li>
                       <li>Analizamos el retorno de la inversión.</li>
@@ -254,7 +257,7 @@ const App = () => {
                     <Typography variant="h6" gutterBottom style={{ textAlign: 'left', marginLeft: '20px' }}>
                       Fase 3: Implementación
                     </Typography>
-                    <ul style={{ textAlign: 'left', marginLeft: '20px',fontSize: '15px'  }}>
+                    <ul style={{ textAlign: 'left', marginLeft: '20px'  }}>
                       <li>Comenzamos el proceso de implementación.</li>
                       <li>Damos soporte.</li>
                       <li>Realizamos seguimiento de los cambios.</li>
@@ -272,7 +275,7 @@ const App = () => {
             </Fade>
           </Container>
         </Paper>
-        <Paper id="nosotros" elevation={3} component={StyledPaper2} style={{ margin: '20px 10px', boxShadow: 'none' }}>
+        <Paper id="nosotros" elevation={3} component={StyledPaper2} style={{ margin: '20px 0px', boxShadow: 'none' }}>
 
           <Typography variant="h4" color="primary" style={{ fontWeight: 'bold', color: '#00ffff', textAlign: 'center' }}>Nosotros</Typography>
           {/* Cuadrícula para dividir en dos partes */}
@@ -283,8 +286,8 @@ const App = () => {
               <Grid item xs={12} md={6}>
              
                 {/* Contenido de la parte derecha (descripción) */}
-                <Paper style={{ padding: '20px', marginTop: '20px', boxShadow: 'none' }}>
-                  <Typography style={{fontSize: '15px' }}>
+                <Paper style={{ padding: '20px', marginTop: '0px', boxShadow: 'none' }}>
+                  <Typography>
 
 
                     En ADA SOFTWARE no trabajamos de manera estandarizada, sino que adaptamos las mejoras a cada organización, según sus necesidades y sus proyecciones. Nuestras soluciones son a medida de cada cliente.
