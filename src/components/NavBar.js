@@ -122,7 +122,7 @@ height: '60px' }}>
           '& .MuiDrawer-paper': {
             width: '100vw',
             marginTop: '56px', // Altura del Navbar
-            background: '#1ae5e2',
+            background: '#abe6e5',
                 }        }}
         onClose={() => toggleDrawer(false)}
       >
