@@ -21,7 +21,7 @@ const menuItems = [
   ];
 export const NavBar = () => {
     const [drawerOpen, setDrawerOpen] = useState(false);
-    const [navColor, setNavColor] = useState('#1ae5e2');
+    const [navColor, setNavColor] = useState('#abe6e5');
 
     const scrollToSection = (id) => {
       const element = document.getElementById(id);
@@ -61,7 +61,7 @@ export const NavBar = () => {
 <AppBar 
   position="fixed" 
   sx={{
-    background: '#1ae5e2',
+    background: '#abe6e5',
     boxShadow: 'none',
     zIndex: (theme) => theme.zIndex.drawer + 2,
     height: '60px',
@@ -71,18 +71,18 @@ export const NavBar = () => {
   }}
   md={{
     position: { sm: 'static' },
-    background: '#1ae5e2',    boxShadow: 'none',
+    background: '#abe6e5',    boxShadow: 'none',
     border: 0
   }}
   lg={{
     position: { sm: 'static' },
-    background: '#1ae5e2',
+    background: '#abe6e5',
     boxShadow: 'none',
     border: 0
   }}
 >
 <Toolbar 
-style={{ background: '#1ae5e2',
+style={{ background: '#abe6e5',
 height: '60px' }}>
 
     {/* Botón del menú para dispositivos móviles */}

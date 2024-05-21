@@ -71,13 +71,13 @@ const Servicios = () => {
 
     >
       <Container maxWidth="lg" >
-        <Typography variant="h4" color="primary" style={{ fontWeight: 'bold', color: '#00ffff', padding: '15px' }}>
+        <Typography variant="h4" color="primary" style={{ fontWeight: 'bold', color:'black', padding: '15px' }}>
           Servicios
         </Typography>
 
         <Grid container spacing={4} justifyContent="center" >
           <Grid item xs={12} md={3} >
-            <Fade direction='left'>
+            <Fade direction='left' triggerOnce='true'>
               <Card variant="outlined" style={{ borderRadius: "15px" }}>
                 <CardContent>
                   <Typography variant="h6" style={{ paddingBottom: '10px', textAlign: 'center' }}> Landing Page</Typography>
@@ -91,7 +91,7 @@ const Servicios = () => {
             </Fade>
           </Grid>
           <Grid item xs={12} md={3}>
-            <Fade direction='right' >
+            <Fade direction='right' triggerOnce='true' >
               <Card variant="outlined" style={{ borderRadius: "15px" }}>
                 <CardContent>
                   <Typography variant="h6" style={{ paddingBottom: '10px', textAlign: 'center' }}>Desarrollo de Aplicaciones Web</Typography>
@@ -105,7 +105,7 @@ const Servicios = () => {
             </Fade>
           </Grid>
           <Grid item xs={12} md={3}>
-            <Fade direction='left' >
+            <Fade direction='left' triggerOnce='true'>
               <Card variant="outlined" style={{ borderRadius: "15px" }}>
                 <CardContent>
                   <Typography variant="h6" style={{ paddingBottom: '10px', textAlign: 'center' }}>Tiendas Online</Typography>
@@ -118,7 +118,7 @@ const Servicios = () => {
             </Fade>
           </Grid>
           <Grid item xs={12} md={3}>
-            <Fade direction='right' >
+            <Fade direction='right' triggerOnce='true' >
               <Card variant="outlined" style={{ borderRadius: "15px" }}>
                 <CardContent>
                   <Typography variant="h6" style={{ paddingBottom: '10px', textAlign: 'center' }}>Mantenimiento</Typography>

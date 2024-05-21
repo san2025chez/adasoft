@@ -216,7 +216,7 @@ const App = () => {
 <Servicios/>
 </Fade>
         <Paper id="metodologia" elevation={3} component={StyledPaper2} style={{ boxShadow: 'none' }}>
-          <Typography variant="h4" color="primary" style={{ fontWeight: 'bold', textAlign: 'center', color: '#00ffff' }}>Nuestra Metodología</Typography>
+          <Typography variant="h4" color="primary" style={{ fontWeight: 'bold', textAlign: 'center', color: 'black'}}>Nuestra Metodología</Typography>
           {/* Cuadrícula para dividir en dos partes */}
           <Container maxWidth="md" style={{ padding: '0px', boxShadow: 'none' }}>
             <Fade direction='left' triggerOnce='true' >
@@ -277,7 +277,7 @@ const App = () => {
         </Paper>
         <Paper id="nosotros" elevation={3} component={StyledPaper2} style={{ margin: '20px 0px', boxShadow: 'none' }}>
 
-          <Typography variant="h4" color="primary" style={{ fontWeight: 'bold', color: '#00ffff', textAlign: 'center' }}>Nosotros</Typography>
+          <Typography variant="h4" color="primary" style={{ fontWeight: 'bold', color: 'black', textAlign: 'center' }}>Nosotros</Typography>
           {/* Cuadrícula para dividir en dos partes */}
           <Container maxWidth="md">
             <Fade direction='left' triggerOnce='true' delay={200}>
@@ -318,7 +318,7 @@ const App = () => {
         </Paper>
         <Paper id="contacto" elevation={3} style={{  boxShadow: 'none' }}>
           <Container maxWidth="md" style={{ padding: '20px' }}>
-            <Typography variant="h4" color="primary" style={{ fontWeight: 'bold', color: '#00ffff', textAlign: 'center',paddingBottom:'20px' }}>Contacto</Typography>
+            <Typography variant="h4" color="primary" style={{ fontWeight: 'bold', color: 'black', textAlign: 'center',paddingBottom:'20px' }}>Contacto</Typography>
             {/* Cuadrícula para dividir en dos partes */}
 
             <Formulario></Formulario>

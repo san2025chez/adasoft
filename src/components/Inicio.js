@@ -11,11 +11,11 @@ const Inicio = () => {
       {/* Primera división con grid */}
       <Grid item xs={12} md={6} className='centrado' style={{fontWeight: 600 }}>
         <div>
-      <Fade direction='down'>
-
+      <Fade direction='down' triggerOnce='true'>
+   
               <h1> ¡Potencia el crecimiento de tu negocio!</h1>
               </Fade>
-              <Fade direction='up'>
+              <Fade direction='up' triggerOnce='true'>
               <h4>¡Con Ada Soft, haz que tu presencia en línea impulse tu éxito! </h4>
               </Fade>
               </div>
