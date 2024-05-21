@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
-    background: '#abe6e5;',
+    background: '#8bdedd',
     top: 'auto',
     bottom: 0,
   },
