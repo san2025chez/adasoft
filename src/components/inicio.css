@@ -4,6 +4,7 @@
   width: 100%; /* o un tamaño específico en píxeles o porcentaje */
   height: 100vh; /* o el tamaño que desees */
  background-color: #8bdedd;
+/* background-color: #94f5e9; */
 
  display: flex;
   justify-content: center;

@@ -18,6 +18,9 @@ import Inicio from './components/Inicio';
 import Servicios from './components/Servicios';
 import Footer from './components/Footer/Footer';
 import {Fade} from 'react-awesome-reveal'
+import {Link } from '@material-ui/core';
+import IconButton from '@mui/material/IconButton';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 
 
 const theme = createTheme({
@@ -194,7 +197,21 @@ const App = () => {
   flexDirection: 'column',
    alignItems: 'center' , */
   };
+  const GreenIconButton = styled(IconButton)`
+  background-color: #4caf50; /* Fondo verde */
+  color: #fff !important; /* Texto blanco */
+  border-radius: 50%; /* Bordes redondeados */
+  position: fixed;
+  bottom: 10px;
+  right: 20px;
+  z-index: 1000;
+`;
 
+
+  const handleWhatsAppClick = () => {
+    // Aquí puedes agregar la lógica para abrir la ventana de chat de WhatsApp
+    // Puedes usar el API de WhatsApp o simplemente redireccionar a la URL de WhatsApp
+  };
 
 
   /* padding: '30px', marginTop: '30px', marginLeft: '10px', marginRight: '10px', textAlign: 'center', boxShadow: 'none' */
@@ -204,6 +221,25 @@ const App = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Helmet>
       <CssBaseline />
+
+     
+          <GreenIconButton
+           component="a"
+           href="https://wa.link/3311zp"
+           target="_blank"
+           rel="noopener noreferrer"
+    sx={{
+      position: 'fixed',
+      bottom: 10,
+      right: 20,
+      zIndex: 1000,
+      '&:hover': {
+        backgroundColor: '#64dd17', // Mantener el color verde al pasar el mouse
+      }
+    }}
+     >
+    <WhatsAppIcon />
+  </GreenIconButton>
       <Container maxWidth="xl" style={{ padding: 0, margin: 0, minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
 
 
@@ -326,6 +362,7 @@ const App = () => {
         </Paper>
       
           <Footer/>
+        
 
       </Container>
     </ThemeProvider>
