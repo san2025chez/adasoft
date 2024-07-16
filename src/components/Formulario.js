@@ -72,7 +72,7 @@ export const Formulario = () => {
         rows={6}
       />
 
-      <Button variant="contained" type="submit" style={{ marginTop: '10px', backgroundColor: '#8bdedd', color:'black' }}>
+      <Button variant="contained" type="submit" style={{ marginTop: '10px', backgroundColor: '#5AC6C3', color:'black' }}>
         Enviar
       </Button>
 
