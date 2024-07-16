@@ -13,7 +13,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 
 const menuItems = [
-  { id: 'inicio', label: 'Inicio' },
+  /* { id: 'inicio', label: 'Inicio' }, */
   { id: 'servicios', label: 'Servicios' },
   { id: 'metodologia', label: 'Metodología' },
   { id: 'nosotros', label: 'Nosotros' },
@@ -44,7 +44,7 @@ export const NavBar = () => {
     if (section === 1 || section === 2 || section === 3 || section === 4) {
       setNavColor('#5AC6C3');
     } else {
-      setNavColor('transparent');
+      setNavColor('#5AC6C3');
     }
   };
 
@@ -93,7 +93,7 @@ export const NavBar = () => {
           </div>
           <Box sx={{ display: { xs: 'none', sm: 'flex' } }}>
             {menuItems.map((item) => (
-              <Button color="inherit" key={item.id} onClick={() => scrollToSection(item.id)} style={{ color: 'black' }}>
+              <Button color="inherit" key={item.id} onClick={() => scrollToSection(item.id)} style={{ color: '#5AC6C3' }}>
                 {item.label}
               </Button>
             ))}
@@ -108,7 +108,7 @@ export const NavBar = () => {
           '& .MuiDrawer-paper': {
             width: '100vw',
             marginTop: '56px',
-            background: '#8bdedd',
+            background: '#5AC6C3',
           }
         }}
         onClose={() => toggleDrawer(false)}
