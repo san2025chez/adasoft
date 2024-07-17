@@ -22,7 +22,7 @@ const menuItems = [
 
 export const NavBar = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [navColor, setNavColor] = useState('#5AC6C3');
+  const [navColor, setNavColor] = useState('#8BE6E2');
 
   const scrollToSection = (id) => {
     if (id === 'inicio') {
@@ -42,9 +42,9 @@ export const NavBar = () => {
     const section = Math.floor(offset / sectionHeight);
 
     if (section === 1 || section === 2 || section === 3 || section === 4) {
-      setNavColor('#5AC6C3');
+      setNavColor('#8BE6E2');
     } else {
-      setNavColor('#5AC6C3');
+      setNavColor('#8BE6E2');
     }
   };
 
@@ -93,7 +93,7 @@ export const NavBar = () => {
           </div>
           <Box sx={{ display: { xs: 'none', sm: 'flex' } }}>
             {menuItems.map((item) => (
-              <Button color="inherit" key={item.id} onClick={() => scrollToSection(item.id)} style={{ color: '#5AC6C3' }}>
+              <Button color="inherit" key={item.id} onClick={() => scrollToSection(item.id)} style={{ color: 'black' }}>
                 {item.label}
               </Button>
             ))}
@@ -108,7 +108,7 @@ export const NavBar = () => {
           '& .MuiDrawer-paper': {
             width: '100vw',
             marginTop: '56px',
-            background: '#5AC6C3',
+            background: '#8BE6E2',
           }
         }}
         onClose={() => toggleDrawer(false)}
