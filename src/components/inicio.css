@@ -3,6 +3,7 @@
  background-image: url(../assets/home3-slider.png);
  @media (max-width: 600px) {
   background-color: #19d8db;
+
  }
  background-position: bottom;
  background-size: cover;

@@ -26,20 +26,15 @@ const Inicio = () => {
     item
     xs={12}
     md={6}
-    sx={{
+    sx={(theme) => ({
       paddingLeft: '15px',
       paddingRight: '15px',
       position: 'relative',
       width: '100%',
-      paddingTop: '150px',
-      '@media (max-width:600px)': {
-        paddingTop: '50px', // Ajusta el padding-top para móvil
-        paddingLeft: '0px',
-        paddingRight: '0px',
-      }
-    }}
+      paddingTop: theme.breakpoints.up('md') ? '100px' : '50px',
+    })}
   >
-    <img src={`${process.env.PUBLIC_URL}/images/imageSOFT.png`} alt="Imagen" style={{ maxWidth: '70%', height: 'auto' }} />
+    <img src={`${process.env.PUBLIC_URL}/images/imageSOFT.png`} alt="Imagen" style={{ maxWidth: '70%', height: 'auto', paddingTop:'150px'}} />
   </Grid>
 
     </Grid>
