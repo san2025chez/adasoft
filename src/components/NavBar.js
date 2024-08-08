@@ -11,6 +11,7 @@ import Typography from '@mui/material/Typography';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
+import Fade from 'react-reveal/Fade'; // Asumiendo que estás utilizando react-reveal para animaciones
 
 const menuItems = [
   /* { id: 'inicio', label: 'Inicio' }, */
@@ -22,7 +23,7 @@ const menuItems = [
 
 export const NavBar = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [navColor, setNavColor] = useState('#8BE6E2');
+  const [navColor, setNavColor] = useState('transparent');
 
   const scrollToSection = (id) => {
     if (id === 'inicio') {
@@ -42,9 +43,9 @@ export const NavBar = () => {
     const section = Math.floor(offset / sectionHeight);
 
     if (section === 1 || section === 2 || section === 3 || section === 4) {
-      setNavColor('#8BE6E2');
+      setNavColor('#19d8db');
     } else {
-      setNavColor('#8BE6E2');
+      setNavColor('#19d8db');
     }
   };
 
@@ -80,20 +81,31 @@ export const NavBar = () => {
             color="inherit"
             aria-label="menu"
             onClick={() => toggleDrawer(true)}
-            sx={{ mr: 2, display: { sm: 'none' }, color: 'black' }}
+            sx={{ mr: 2, display: { sm: 'none' }, color: 'white' }}
           >
             <MenuIcon />
           </IconButton>
-          <div style={{ flexGrow: 1 }}>
-            <a href="#" style={{ textDecoration: 'none', 
-            color: 'black',  fontSize: '24px' ,fontWeight: 'bold', paddingTop: '10px' }} 
-            onClick={() => scrollToSection('inicio')}>
-              ADA SOFT
-            </a>
-          </div>
+         <div style={{ flexGrow: 1 }}>
+    <a
+      href="#"
+      style={{
+        textDecoration: 'none',
+        color: 'white',
+        fontSize: '30px', // Tamaño de fuente por defecto para pantallas grandes
+        fontWeight: 'bold',
+        paddingTop: '10px',
+        '@media (max-width:600px)': { // Media Query para dispositivos móviles
+          fontSize: '20px', // Ajuste de tamaño de fuente para móviles
+        }
+      }}
+      onClick={() => scrollToSection('inicio')}
+    >
+      ADA SOFT
+    </a>
+  </div>
           <Box sx={{ display: { xs: 'none', sm: 'flex' } }}>
             {menuItems.map((item) => (
-              <Button color="inherit" key={item.id} onClick={() => scrollToSection(item.id)} style={{ color: 'black' }}>
+              <Button color="inherit" key={item.id} onClick={() => scrollToSection(item.id)} sx={{ color: 'white', fontWeight: 'bold' ,fontSize: '14px'}}>
                 {item.label}
               </Button>
             ))}
@@ -108,7 +120,7 @@ export const NavBar = () => {
           '& .MuiDrawer-paper': {
             width: '100vw',
             marginTop: '56px',
-            background: '#8BE6E2',
+            background: '#19d8db',
           }
         }}
         onClose={() => toggleDrawer(false)}
@@ -117,7 +129,7 @@ export const NavBar = () => {
           <List sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
             {menuItems.map((item) => (
               <ListItem button key={item.id} onClick={() => scrollToSection(item.id)} sx={{ width: '100%', textAlign: 'center' }}>
-                <ListItemText primary={item.label} sx={{ color: 'black' }} />
+                <ListItemText primary={item.label} sx={{ color: 'white', fontWeight: 'bold', fontSize:'18px' }} />
               </ListItem>
             ))}
           </List>

@@ -1,17 +1,30 @@
 .contenedor-imagen {
+
+ background-image: url(../assets/home3-slider.png);
+ @media (max-width: 600px) {
+  background-color: #19d8db;
+ }
+ background-position: bottom;
+ background-size: cover;
+ display: block;
+ background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh !important;
+  margin-top: 0;
   position: relative;
-  overflow: hidden;
-  width: 100%; /* o un tamaño específico en píxeles o porcentaje */
-  height: 100vh; /* o el tamaño que desees */
-  background-color:#8BE6E2;
-  /* background-color: #5AC6C3; */
+  width: 100%;
+
+/*   background-color: #19d8db;
+ */
+/*   background-color:#8BE6E2;
+   /* background-color: #5AC6C3; */
 /*  background-color: #8bdedd; */
 /* background-color: #94f5e9; */
 
  display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 50px;
+/*   padding-top: 50px; */
 
 }
 .centrado {
