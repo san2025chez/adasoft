@@ -14,7 +14,6 @@ import ListItemText from '@mui/material/ListItemText';
 import Fade from 'react-reveal/Fade'; // Asumiendo que estás utilizando react-reveal para animaciones
 
 const menuItems = [
-  /* { id: 'inicio', label: 'Inicio' }, */
   { id: 'servicios', label: 'Servicios' },
   { id: 'metodologia', label: 'Metodología' },
   { id: 'nosotros', label: 'Nosotros' },
@@ -28,6 +27,7 @@ export const NavBar = () => {
   const scrollToSection = (id) => {
     if (id === 'inicio') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
+      setNavColor('transparent'); // Cambia el color del nav a transparente
     } else {
       const element = document.getElementById(id);
       if (element) {
@@ -85,27 +85,25 @@ export const NavBar = () => {
           >
             <MenuIcon />
           </IconButton>
-         <div style={{ flexGrow: 1 }}>
-    <a
-      href="#"
-      style={{
-        textDecoration: 'none',
-        color: 'white',
-        fontSize: '30px', // Tamaño de fuente por defecto para pantallas grandes
-        fontWeight: 'bold',
-        paddingTop: '10px',
-        '@media (max-width:600px)': { // Media Query para dispositivos móviles
-          fontSize: '20px', // Ajuste de tamaño de fuente para móviles
-        }
-      }}
-      onClick={() => scrollToSection('inicio')}
-    >
-      ADA SOFT
-    </a>
-  </div>
+          <div style={{ flexGrow: 1 }}>
+            <a
+              href="#"
+              style={{
+                textDecoration: 'none',
+                color: 'white',
+                fontSize: '30px',
+                fontWeight: 'bold',
+                paddingTop: '10px',
+                cursor: 'pointer',
+              }}
+              onClick={() => scrollToSection('inicio')}
+            >
+              ADA SOFT
+            </a>
+          </div>
           <Box sx={{ display: { xs: 'none', sm: 'flex' } }}>
             {menuItems.map((item) => (
-              <Button color="inherit" key={item.id} onClick={() => scrollToSection(item.id)} sx={{ color: 'white', fontWeight: 'bold' ,fontSize: '14px'}}>
+              <Button color="inherit" key={item.id} onClick={() => scrollToSection(item.id)} sx={{ color: 'white', fontWeight: 'bold', fontSize: '14px' }}>
                 {item.label}
               </Button>
             ))}
