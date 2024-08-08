@@ -98,7 +98,7 @@ export const NavBar = () => {
               }}
               onClick={() => scrollToSection('inicio')}
             >
-              ADA SOFT
+ADA SOFT
             </a>
           </div>
           <Box sx={{ display: { xs: 'none', sm: 'flex' } }}>
@@ -127,7 +127,7 @@ export const NavBar = () => {
           <List sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
             {menuItems.map((item) => (
               <ListItem button key={item.id} onClick={() => scrollToSection(item.id)} sx={{ width: '100%', textAlign: 'center' }}>
-                <ListItemText primary={item.label} sx={{ color: 'white', fontWeight: 'bold', fontSize:'18px' }} />
+                <ListItemText primary={item.label} sx={{ color: 'white', fontWeight: 'bold', fontSize:'18px' ,fontFamily: 'Poppins, sans-serif'}} />
               </ListItem>
             ))}
           </List>

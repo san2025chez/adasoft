@@ -34,11 +34,34 @@
   justify-content: center;
   align-items: center;
   height: 100%;
-
+  padding-top: 20px; /* Ajusta este valor según sea necesario */
 }
+
 .centrado > div {
   text-align: center;
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  letter-spacing: .05em;
+  line-height: 1.9em;
+  text-transform: capitalize;
+  margin-top: -100px; /* Ajusta este valor para subir el texto */
+ 
 }
+
+.centrado > div h2, .centrado > div p {
+  margin: 0;
+}
+
+.centrado > div h2 {
+  font-size: 24px; /* Ajusta según sea necesario */
+  font-family: 'Poppins', sans-serif;
+}
+
+.centrado > div p {
+  font-size: 18px; /* Ajusta según sea necesario */
+  margin-top: 30px; /* Espacio entre el h2 y el párrafo */
+}
+
 @media (max-width: 600px) {
   .contenedor-imagen h1 {
     font-size: 30px; /* Tamaño de fuente más pequeño para dispositivos móviles */
@@ -53,7 +76,23 @@ padding-right: 10px; }
     padding-left: 10px;
 padding-right: 10px; 
   }
+  .centrado > div {
+    margin-top: 30px; /* Ajusta este valor para subir el texto */
+padding-left: 9px;
+padding-right: 9px;
+letter-spacing: .03em;
+  line-height: 2.0em;
+  }
+
+  .centrado > div p {
+    font-size: 20px; /* Ajusta según sea necesario */
+    margin-top: 30px; /* Espacio entre el h2 y el párrafo */
+    letter-spacing: .00em;
+    line-height: 1.8em;
+
+  }
 }
+
 .texto-superpuesto {
   position: absolute;
   top: 50%;
@@ -62,7 +101,15 @@ padding-right: 10px;
   z-index: 2;
   color: white;
 }
+.boton-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px; /* Espacio entre el texto y el botón */
+}
 
+.boton-container > button {
+  /* Ajusta el tamaño del botón si es necesario */
+}
 .imagen-fondo {
   position: absolute;
   right: 0; /* Ajusta este valor para posicionar la imagen a la derecha */
