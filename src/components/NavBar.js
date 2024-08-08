@@ -45,7 +45,7 @@ export const NavBar = () => {
     if (section === 1 || section === 2 || section === 3 || section === 4) {
       setNavColor('#19d8db');
     } else {
-      setNavColor('#19d8db');
+      setNavColor('transparent');
     }
   };
 
