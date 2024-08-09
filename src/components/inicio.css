@@ -77,7 +77,7 @@ padding-right: 10px; }
 padding-right: 10px; 
   }
   .centrado > div {
-    margin-top: 30px; /* Ajusta este valor para subir el texto */
+   
 padding-left: 9px;
 padding-right: 9px;
 letter-spacing: .03em;
@@ -85,7 +85,7 @@ letter-spacing: .03em;
   }
 
   .centrado > div p {
-    font-size: 20px; /* Ajusta según sea necesario */
+    font-size: 15px; /* Ajusta según sea necesario */
     margin-top: 30px; /* Espacio entre el h2 y el párrafo */
     letter-spacing: .00em;
     line-height: 1.8em;

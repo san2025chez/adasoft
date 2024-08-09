@@ -35,12 +35,12 @@ const Inicio = () => {
             flexDirection: 'column',
             alignItems: 'center',
             paddingTop: {
-              xs: '10px',  // Ajuste para pantallas pequeñas (móviles)
+              xs: '20px',  // Ajuste para pantallas pequeñas (móviles)
               sm: '30px',  // Ajuste para pantallas medianas (tabletas)
               md: '0px'  // Ajuste para pantallas grandes (escritorio)
             },
             marginTop: {
-              xs: '60px',  // Ajuste para pantallas pequeñas (móviles)
+              xs: '85px',  // Ajuste para pantallas pequeñas (móviles)
               sm: '30px',  // Ajuste para pantallas medianas (tabletas)
               md: '170px'  // Ajuste para pantallas grandes (escritorio)
             },
