@@ -12,6 +12,8 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Fade from 'react-reveal/Fade'; // Asumiendo que estás utilizando react-reveal para animaciones
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 
 const menuItems = [
   { id: 'servicios', label: 'Servicios' },
@@ -23,16 +25,32 @@ const menuItems = [
 export const NavBar = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [navColor, setNavColor] = useState('transparent');
+  const [logoColor, setLogoColor] = useState('white');
+  const [menuIconColor, setMenuIconColor] = useState('white');
+  const [isInicio, setIsInicio] = useState(true);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   const scrollToSection = (id) => {
     if (id === 'inicio') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
-      setNavColor('transparent'); // Cambia el color del nav a transparente
+      setIsInicio(true);
+      if (isMobile) {
+        setNavColor('#19d8db');
+        setLogoColor('white');
+        setMenuIconColor('white');
+      } else {
+        setNavColor('transparent');
+      }
     } else {
       const element = document.getElementById(id);
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
         setDrawerOpen(false);
+        setIsInicio(false);
+        if (!isMobile) {
+          setNavColor('#19d8db');
+        }
       }
     }
   };
@@ -42,10 +60,26 @@ export const NavBar = () => {
     const sectionHeight = window.innerHeight;
     const section = Math.floor(offset / sectionHeight);
 
-    if (section === 1 || section === 2 || section === 3 || section === 4) {
-      setNavColor('#19d8db');
+    if (isMobile) {
+      if (section === 0) {
+        setNavColor('#19d8db');
+        setLogoColor('white');
+        setMenuIconColor('white');
+        setIsInicio(true);
+      } else {
+        setNavColor('white');
+        setLogoColor('#00000080');
+        setMenuIconColor('#00000080');
+        setIsInicio(false);
+      }
     } else {
-      setNavColor('transparent');
+      if (section === 0) {
+        setNavColor('transparent');
+        setIsInicio(true);
+      } else {
+        setNavColor('#19d8db');
+        setIsInicio(false);
+      }
     }
   };
 
@@ -55,7 +89,7 @@ export const NavBar = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [isMobile]);
 
   const toggleDrawer = (open) => {
     setDrawerOpen(open);
@@ -66,7 +100,7 @@ export const NavBar = () => {
       <AppBar
         position="fixed"
         sx={{
-          background: navColor,
+          background: isMobile ? navColor : navColor,
           boxShadow: 'none',
           zIndex: (theme) => theme.zIndex.drawer + 2,
           height: '60px',
@@ -75,13 +109,13 @@ export const NavBar = () => {
           border: 0
         }}
       >
-        <Toolbar style={{ background: navColor, height: '60px' }}>
+        <Toolbar style={{ background: isMobile ? navColor : navColor, height: '60px' }}>
           <IconButton
             edge="start"
             color="inherit"
             aria-label="menu"
             onClick={() => toggleDrawer(true)}
-            sx={{ mr: 2, display: { sm: 'none' }, color: 'white' }}
+            sx={{ mr: 2, display: { sm: 'none' }, color: isMobile ? menuIconColor : 'white' }}
           >
             <MenuIcon />
           </IconButton>
@@ -90,7 +124,7 @@ export const NavBar = () => {
               href="#"
               style={{
                 textDecoration: 'none',
-                color: 'white',
+                color: isMobile ? logoColor : 'white',
                 fontSize: '30px',
                 fontWeight: 'bold',
                 paddingTop: '10px',
@@ -103,7 +137,17 @@ ADA SOFT
           </div>
           <Box sx={{ display: { xs: 'none', sm: 'flex' } }}>
             {menuItems.map((item) => (
-              <Button color="inherit" key={item.id} onClick={() => scrollToSection(item.id)} sx={{ color: 'white', fontWeight: 'bold', fontSize: '14px' }}>
+              <Button 
+                color="inherit" 
+                key={item.id} 
+                onClick={() => scrollToSection(item.id)} 
+                sx={{ 
+                  color: 'white', 
+                  fontWeight: 'bold', 
+                  fontSize: '14px',
+                  fontFamily: 'Poppins, sans-serif'
+                }}
+              >
                 {item.label}
               </Button>
             ))}
@@ -116,18 +160,28 @@ ADA SOFT
         open={drawerOpen}
         sx={{
           '& .MuiDrawer-paper': {
-            width: '100vw',
-            marginTop: '56px',
-            background: '#19d8db',
+            width: '100%',
+            height: 'auto',
+            maxHeight: '100%',
+            marginTop: '60px',
+            background: isMobile && isInicio ? '#19d8db' : 'white',
           }
         }}
         onClose={() => toggleDrawer(false)}
       >
         <Box sx={{ width: '100%' }}>
-          <List sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
+          <List sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', padding: '16px' }}>
             {menuItems.map((item) => (
-              <ListItem button key={item.id} onClick={() => scrollToSection(item.id)} sx={{ width: '100%', textAlign: 'center' }}>
-                <ListItemText primary={item.label} sx={{ color: 'white', fontWeight: 'bold', fontSize:'18px' ,fontFamily: 'Poppins, sans-serif'}} />
+              <ListItem button key={item.id} onClick={() => scrollToSection(item.id)} sx={{ width: '100%' }}>
+                <ListItemText 
+                  primary={item.label} 
+                  sx={{ 
+                    color: isMobile && isInicio ? 'white' : '#00000080', 
+                    fontWeight: 'bold', 
+                    fontSize:'18px',
+                    fontFamily: 'Poppins, sans-serif'
+                  }} 
+                />
               </ListItem>
             ))}
           </List>
