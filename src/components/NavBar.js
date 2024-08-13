@@ -36,7 +36,7 @@ export const NavBar = () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
       setIsInicio(true);
       if (isMobile) {
-        setNavColor('#19d8db');
+        setNavColor(drawerOpen ? '#19d8db' : 'transparent');
         setLogoColor('white');
         setMenuIconColor('white');
       } else {
@@ -62,7 +62,7 @@ export const NavBar = () => {
 
     if (isMobile) {
       if (section === 0) {
-        setNavColor('#19d8db');
+        setNavColor(drawerOpen ? '#19d8db' : 'transparent');
         setLogoColor('white');
         setMenuIconColor('white');
         setIsInicio(true);
@@ -89,10 +89,13 @@ export const NavBar = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [isMobile]);
+  }, [isMobile, drawerOpen]);
 
   const toggleDrawer = (open) => {
     setDrawerOpen(open);
+    if (isMobile && isInicio) {
+      setNavColor(open ? '#19d8db' : 'transparent');
+    }
   };
 
   return (
@@ -100,7 +103,7 @@ export const NavBar = () => {
       <AppBar
         position="fixed"
         sx={{
-          background: isMobile ? navColor : navColor,
+          background: navColor,
           boxShadow: 'none',
           zIndex: (theme) => theme.zIndex.drawer + 2,
           height: '60px',
@@ -109,12 +112,12 @@ export const NavBar = () => {
           border: 0
         }}
       >
-        <Toolbar style={{ background: isMobile ? navColor : navColor, height: '60px' }}>
+        <Toolbar style={{ background: navColor, height: '60px' }}>
           <IconButton
             edge="start"
             color="inherit"
             aria-label="menu"
-            onClick={() => toggleDrawer(true)}
+            onClick={() => toggleDrawer(!drawerOpen)}
             sx={{ mr: 2, display: { sm: 'none' }, color: isMobile ? menuIconColor : 'white' }}
           >
             <MenuIcon />
