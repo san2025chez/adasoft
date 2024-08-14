@@ -112,16 +112,7 @@ export const NavBar = () => {
           border: 0
         }}
       >
-        <Toolbar style={{ background: navColor, height: '60px' }}>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            onClick={() => toggleDrawer(!drawerOpen)}
-            sx={{ mr: 2, display: { sm: 'none' }, color: isMobile ? menuIconColor : 'white' }}
-          >
-            <MenuIcon />
-          </IconButton>
+        <Toolbar style={{ background: navColor, height: '60px', justifyContent: 'space-between' }}>
           <div style={{ flexGrow: 1 }}>
             <a
               href="#"
@@ -155,6 +146,15 @@ ADA SOFT
               </Button>
             ))}
           </Box>
+          <IconButton
+            edge="end"
+            color="inherit"
+            aria-label="menu"
+            onClick={() => toggleDrawer(!drawerOpen)}
+            sx={{ display: { sm: 'none' }, color: isMobile ? menuIconColor : 'white' }}
+          >
+            <MenuIcon />
+          </IconButton>
         </Toolbar>
       </AppBar>
 
@@ -181,8 +181,17 @@ ADA SOFT
                   sx={{ 
                     color: isMobile && isInicio ? 'white' : '#00000080', 
                     fontWeight: 'bold', 
-                    fontSize:'18px',
-                    fontFamily: 'Poppins, sans-serif'
+                    fontSize:'15px',
+                    fontFamily: 'Poppins, sans-serif',
+                    letterSpacing: '1px',
+                 padding: '10px 0 10px 5px',
+                 textTransform: 'uppercase',
+                 fontWeight: 400,
+                 lineHeight: 1.0,
+                 textAlign: 'left',
+
+
+
                   }} 
                 />
               </ListItem>
