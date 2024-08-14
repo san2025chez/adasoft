@@ -21,7 +21,7 @@ import {Fade} from 'react-awesome-reveal'
 import {Link } from '@material-ui/core';
 import IconButton from '@mui/material/IconButton';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-
+import  Metodologias from "./components/metodologias";
 
 const theme = createTheme({
   palette: {
@@ -251,69 +251,23 @@ const App = () => {
         <Fade triggerOnce='true' >
 <Servicios/>
 </Fade>
-        <Paper id="metodologia" elevation={3} component={StyledPaper2} style={{ boxShadow: 'none' }}>
-          <Typography variant="h4" color="primary" style={{ fontWeight: 'bold', textAlign: 'center', color: 'black'}}>Nuestra Metodología</Typography>
-          {/* Cuadrícula para dividir en dos partes */}
-          <Container maxWidth="md" style={{ padding: '0px', boxShadow: 'none' }}>
-            <Fade direction='left' triggerOnce='true' >
-            <Grid container spacing={2} justifyContent="center" style={{ boxShadow: 'none' }}>
-              <Grid item xs={12} md={6}>
-           
-                <GridItem
-                
-                ></GridItem>
-        
-              </Grid>
-              <Grid item xs={12} md={6}>
-                {/* Contenido de la parte derecha (descripción) */}
-          
-                <Paper
-                  id="metodologia"
-                  style={{ boxShadow: 'none', marginTop: '20px' }}
-                >
-                  <Typography component="div">
-                    <Typography variant="h6" gutterBottom style={{ textAlign: 'left', marginLeft: '40px' }}>
-                      Fase 1: Consultoría
-                    </Typography>
-                    <ul style={{ textAlign: 'left', marginLeft: '20px'  }}>
-                      <li>Analizamos los procesos.</li>
-                      <li>Detectamos oportunidades.</li>
-                      <li>Evaluamos en qué parte del proceso agregar valor.</li>
-                    </ul>
-
-                    <Typography variant="h6" gutterBottom style={{ textAlign: 'left', marginLeft: '40px' }}>
-                      Fase 2: Propuesta
-                    </Typography>
-                    <ul style={{ textAlign: 'left', marginLeft: '20px' }}>
-                      <li>Ofrecemos soluciones, presentando nuestra propuesta de valor.</li>
-                      <li>Exponemos los beneficios de implementarlas.</li>
-                      <li>Analizamos el retorno de la inversión.</li>
-                    </ul>
-
-                    <Typography variant="h6" gutterBottom style={{ textAlign: 'left', marginLeft: '40px' }}>
-                      Fase 3: Implementación
-                    </Typography>
-                    <ul style={{ textAlign: 'left', marginLeft: '20px'  }}>
-                      <li>Comenzamos el proceso de implementación.</li>
-                      <li>Damos soporte.</li>
-                      <li>Realizamos seguimiento de los cambios.</li>
-                    </ul>
-                  </Typography>
-
-
-
-
-
-                </Paper>
+      
+              <Metodologias></Metodologias>
               
-              </Grid>
-            </Grid>
-            </Fade>
-          </Container>
-        </Paper>
         <Paper id="nosotros" elevation={3} component={StyledPaper2} style={{ margin: '20px 0px', boxShadow: 'none' }}>
 
-          <Typography variant="h4" color="primary" style={{ fontWeight: 'bold', color: 'black', textAlign: 'center' }}>Nosotros</Typography>
+          <Typography variant="h2" style={{ 
+            color: '#444',
+            fontSize: '30px',
+            letterSpacing: '4px',
+            marginBottom: '32px',
+            fontWeight: 300,
+            lineHeight: '28px',
+            textTransform: 'uppercase',
+            textAlign: 'center'
+          }}>
+            Nosotros
+          </Typography>
           {/* Cuadrícula para dividir en dos partes */}
           <Container maxWidth="md">
             <Fade direction='left' triggerOnce='true' delay={200}>
@@ -322,10 +276,17 @@ const App = () => {
               <Grid item xs={12} md={6}>
              
                 {/* Contenido de la parte derecha (descripción) */}
-                <Paper style={{ padding: '20px', marginTop: '0px', boxShadow: 'none',textAlign: 'justify' }}>
-                  <Typography>
-
-
+                <Paper style={{ padding: '20px', marginTop: '0px', boxShadow: 'none', textAlign: 'justify' }}>
+                  <Typography style={{
+                    fontFamily: 'Poppins, sans-serif',
+                    fontWeight: 400,
+                    textAlign: 'left',
+                    color: '#777',
+                    fontSize: '15px',
+                    letterSpacing: '.03em',
+                    lineHeight: '1.8em',
+                    textTransform: 'capitalize'
+                  }}>
                     En ADA SOFTWARE no trabajamos de manera estandarizada, sino que adaptamos las mejoras a cada organización, según sus necesidades y sus proyecciones. Nuestras soluciones son a medida de cada cliente.
 
                     Contamos con años de trayectoria en el mercado que nos permiten analizar, proponer mejoras, resolver problemas y generar cambios superadores desde una mirada experimentada y profesional.
@@ -334,10 +295,8 @@ const App = () => {
 
                     Somos el aliado que tu equipo de trabajo necesita.
                     Somos ADA SOFTWARE – Fabricamos soluciones.
-
                   </Typography>
                 </Paper>
-             
               </Grid>
               <Grid item xs={12} md={6}>
                             <GridItemNosotros />
@@ -354,7 +313,19 @@ const App = () => {
         </Paper>
         <Paper id="contacto" elevation={3} style={{  boxShadow: 'none' }}>
           <Container maxWidth="md" style={{ padding: '20px' }}>
-            <Typography variant="h4" color="primary" style={{ fontWeight: 'bold', color: 'black', textAlign: 'center',paddingBottom:'20px' }}>Contacto</Typography>
+            <Typography variant="h2" style={{ 
+              color: '#444',
+              fontSize: '30px',
+              letterSpacing: '4px',
+              marginBottom: '32px',
+              fontWeight: 300,
+              lineHeight: '28px',
+              textTransform: 'uppercase',
+              textAlign: 'center',
+              paddingBottom: '20px'
+            }}>
+              Contacto
+            </Typography>
             {/* Cuadrícula para dividir en dos partes */}
 
             <Formulario></Formulario>

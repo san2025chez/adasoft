@@ -14,6 +14,7 @@ import keyframes from '@emotion/styled';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import { Fade } from 'react-awesome-reveal'
+import styled from '@emotion/styled';
 
 const rollInRight = keyframes`
 0% {
@@ -27,6 +28,16 @@ const rollInRight = keyframes`
   opacity: 1;
 }`
 
+const StyledDescription = styled(Typography)`
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  text-align: left;
+  color: #777;
+  font-size: 15px;
+  letter-spacing: .03em;
+  line-height: 1.8em;
+  text-transform: capitalize;
+`;
 
 const services = [
   {
@@ -71,7 +82,16 @@ const Servicios = () => {
 
     >
       <Container maxWidth="lg" >
-        <Typography variant="h4" color="primary" style={{ fontWeight: 'bold', color:'black', padding: '15px' }}>
+        <Typography variant="h2" style={{
+          color: '#444',
+          fontSize: '30px',
+          letterSpacing: '4px',
+          marginBottom: '32px',
+          fontWeight: 300,
+          lineHeight: '28px',
+          textTransform: 'uppercase',
+          padding: '15px'
+        }}>
           Servicios
         </Typography>
 
@@ -81,11 +101,11 @@ const Servicios = () => {
               <Card variant="outlined" style={{ borderRadius: "15px" }}>
                 <CardContent>
                   <Typography variant="h6" style={{ paddingBottom: '10px', textAlign: 'center' }}> Landing Page</Typography>
-                  <Typography style={{ textAlign: 'center'}}>
+                  <StyledDescription style={{ textAlign: 'center'}}>
                     Desarrollamos Landing Pages personalizadas que se ajustan perfectamente a las necesidades de tu negocio.
                     Creamos un diseño cautivador que no solo transmite tu mensaje de manera impactante,
                     sino que también convierte visitas en valiosos clientes potenciales.
-                  </Typography>
+                  </StyledDescription>
                 </CardContent>
               </Card>
             </Fade>
@@ -95,11 +115,11 @@ const Servicios = () => {
               <Card variant="outlined" style={{ borderRadius: "15px" }}>
                 <CardContent>
                   <Typography variant="h6" style={{ paddingBottom: '10px', textAlign: 'center' }}>Desarrollo de Aplicaciones Web</Typography>
-                  <Typography style={{ textAlign: 'center' }}>
+                  <StyledDescription style={{ textAlign: 'center' }}>
                     Desarrollamos aplicaciones web a medida,
                     ayudándote a construir la web que realmente deseas y que mejor se adapte a tus necesidades.
                     Juntos, convertiremos tus ideas en una realidad digital que te beneficie al máximo.
-                  </Typography>
+                  </StyledDescription>
                 </CardContent>
               </Card>
             </Fade>
@@ -109,10 +129,10 @@ const Servicios = () => {
               <Card variant="outlined" style={{ borderRadius: "15px" }}>
                 <CardContent>
                   <Typography variant="h6" style={{ paddingBottom: '10px', textAlign: 'center' }}>Tiendas Online</Typography>
-                  <Typography style={{ textAlign: 'center'}}>
+                  <StyledDescription style={{ textAlign: 'center'}}>
                     Creamos tiendas online personalizadas, con un diseño atractivo y funcionalidades
                     que te ayudarán a vender tus productos de forma efectiva.
-                  </Typography>
+                  </StyledDescription>
                 </CardContent>
               </Card>
             </Fade>
@@ -122,9 +142,9 @@ const Servicios = () => {
               <Card variant="outlined" style={{ borderRadius: "15px" }}>
                 <CardContent>
                   <Typography variant="h6" style={{ paddingBottom: '10px', textAlign: 'center' }}>Mantenimiento</Typography>
-                  <Typography style={{ textAlign: 'center' }}>
+                  <StyledDescription style={{ textAlign: 'center' }}>
                     Ofrecemos un servicio completo de mantenimiento para asegurarnos de que tu presencia en línea esté siempre actualizada, segura y en su mejor forma.
-                  </Typography>
+                  </StyledDescription>
                 </CardContent>
               </Card>
             </Fade>
