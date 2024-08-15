@@ -1,7 +1,8 @@
 import React from 'react';
-import { Paper, Typography, Container, Grid, Card, CardContent, Box } from '@mui/material';
+import { Paper, Typography, Container, Grid, Card, CardContent, Box, useMediaQuery } from '@mui/material';
 import { Fade } from 'react-awesome-reveal';
 import styled from '@emotion/styled';
+import { useTheme } from '@mui/material/styles';
 
 const StyledPaper2 = styled(Paper)`
   background-image: url(${process.env.PUBLIC_URL}/images/team-bg.png);
@@ -103,15 +104,18 @@ const StyledDescription = styled.li`
 
 const StyledTitle = styled(Typography)`
   color: #444;
-  font-size: 30px;
+  font-size: ${props => props.isMobile ? '22px' : '30px'};
   letter-spacing: 4px;
   margin-bottom: 32px;
   font-weight: 300;
-  line-height: 28px;
+  line-height: ${props => props.isMobile ? '23px' : '28px'};
   text-transform: uppercase;
 `;
 
 const Metodologias = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
   const fases = [
     {
       titulo: "Consultoría",
@@ -144,7 +148,7 @@ const Metodologias = () => {
 
   return (
     <StyledPaper2 id="metodologia" elevation={3} style={{ boxShadow: 'none' }}>
-      <StyledTitle variant="h2" color="primary" style={{ textAlign: 'center', position: 'relative', zIndex: 2 }}>Nuestra Metodología</StyledTitle>
+      <StyledTitle variant="h2" color="primary" style={{ textAlign: 'center', position: 'relative', zIndex: 2 }} isMobile={isMobile}>Metodología</StyledTitle>
       <Container maxWidth="lg" style={{ padding: '0px', boxShadow: 'none' }}>
         <Grid container spacing={3} alignItems="center" justifyContent="center">
           <Grid item xs={12} style={{ 

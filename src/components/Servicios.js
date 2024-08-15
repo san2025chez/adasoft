@@ -15,6 +15,8 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import { Fade } from 'react-awesome-reveal'
 import styled from '@emotion/styled';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 
 const rollInRight = keyframes`
 0% {
@@ -52,6 +54,8 @@ const Servicios = () => {
   });
 
   const [roll, setRoll] = useState(false)
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   useEffect(() => {
     const handleScroll = () => {
@@ -84,11 +88,11 @@ const Servicios = () => {
       <Container maxWidth="lg" >
         <Typography variant="h2" style={{
           color: '#444',
-          fontSize: '30px',
+          fontSize: isMobile ? '23px' : '30px',
           letterSpacing: '4px',
           marginBottom: '32px',
           fontWeight: 300,
-          lineHeight: '28px',
+          lineHeight: isMobile ? '23px' : '28px',
           textTransform: 'uppercase',
           padding: '15px'
         }}>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Button, useMediaQuery, useTheme } from '@mui/material';
+import { Grid, Button, useMediaQuery, useTheme, Typography } from '@mui/material';
 import { Fade } from 'react-awesome-reveal';
 import './inicio.css';
 
@@ -15,11 +15,15 @@ const Inicio = () => {
         {/* Primera división con grid */}
         <Grid item xs={12} md={6} className='centrado' style={{ fontWeight: 500, color: '#fff', fontFamily: 'Poppins, sans-serif' }}>
           <div>
-            <Fade direction='down' triggerOnce='true' style={{ fontSize: isMobile ? '16px' : '18px', fontWeight: 700, textTransform: 'uppercase' }}>
-              <h2>¡Potencia el crecimiento de tu negocio!</h2>
+            <Fade direction='down' triggerOnce='true'>
+              <Typography variant={isMobile ? 'h5' : 'h4'} style={{ fontWeight: 700, textTransform: 'uppercase', marginBottom: '1rem' }}>
+                ¡Potencia el crecimiento de tu negocio!
+              </Typography>
             </Fade>
             <Fade direction='up' triggerOnce='true'>
-              <p style={{ fontSize: isMobile ? '14px' : '16px' }}>¡Con Ada Soft, haz que tu presencia en línea impulse tu éxito!</p>
+              <Typography variant={isMobile ? 'body2' : 'body1'} style={{ marginBottom: '1rem' }}>
+                ¡Con Ada Soft, haz que tu presencia en línea impulse tu éxito!
+              </Typography>
             </Fade>
           </div>
         </Grid>

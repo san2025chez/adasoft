@@ -22,6 +22,7 @@ import {Link } from '@material-ui/core';
 import IconButton from '@mui/material/IconButton';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import  Metodologias from "./components/metodologias";
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const theme = createTheme({
   palette: {
@@ -41,6 +42,8 @@ const theme = createTheme({
 });
 
 const App = () => {
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
@@ -258,11 +261,11 @@ const App = () => {
 
           <Typography variant="h2" style={{ 
             color: '#444',
-            fontSize: '30px',
+            fontSize: isMobile ? '23px' : '30px',
             letterSpacing: '4px',
             marginBottom: '32px',
             fontWeight: 300,
-            lineHeight: '28px',
+            lineHeight: isMobile ? '23px' : '28px',
             textTransform: 'uppercase',
             textAlign: 'center'
           }}>
@@ -315,11 +318,11 @@ const App = () => {
           <Container maxWidth="md" style={{ padding: '20px' }}>
             <Typography variant="h2" style={{ 
               color: '#444',
-              fontSize: '30px',
+              fontSize: isMobile ? '23px' : '28px',
               letterSpacing: '4px',
               marginBottom: '32px',
               fontWeight: 300,
-              lineHeight: '28px',
+              lineHeight: isMobile ? '23px' : '28px',
               textTransform: 'uppercase',
               textAlign: 'center',
               paddingBottom: '20px'
