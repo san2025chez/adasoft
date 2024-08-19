@@ -119,7 +119,7 @@ export const NavBar = () => {
       <AppBar
         position="fixed"
         sx={{
-          background: navColor,
+          backgroundColor: navColor,
           boxShadow: 'none',
           zIndex: (theme) => theme.zIndex.drawer + 2,
           height: '60px',
@@ -128,7 +128,7 @@ export const NavBar = () => {
           border: 0
         }}
       >
-        <Toolbar style={{ background: navColor, height: '60px', justifyContent: 'space-between' }}>
+        <Toolbar style={{ backgroundColor: navColor, height: '60px', justifyContent: 'space-between' }}>
           <div style={{ flexGrow: 1 }}>
             <a
               href="#"

@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { AppBar, Toolbar, IconButton, Link } from '@material-ui/core';
+import { AppBar, Toolbar, IconButton, Link, useMediaQuery } from '@material-ui/core';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import FacebookIcon from '@material-ui/icons/Facebook';
@@ -9,39 +9,41 @@ import Typography from '@mui/material/Typography';
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
-    background: '#19d8db',
+    backgroundColor: '#fff',
+    color: '#fff',
     top: 'auto',
     bottom: 0,
+    fontFamily: 'Poppins, sans-serif',
   },
   toolbar: {
     display: 'flex',
-    flexDirection: 'column', // Cambiado a column para alinear los elementos en columnas
-    alignItems: 'center', // Para centrar horizontalmente los elementos
-    padding: theme.spacing(2), // Espaciado entre las filas
+    flexDirection: 'column',
+    alignItems: 'center',
+    padding: theme.spacing(2),
   },
   row: {
     display: 'flex',
     alignItems: 'center',
-    marginBottom: theme.spacing(1), // Espaciado entre las filas
+    marginBottom: theme.spacing(1),
   },
   icon: {
-    color: 'black',
+   
     fontSize: 30,
-    marginRight: theme.spacing(1), // Espacio entre el icono y el texto
+    marginRight: theme.spacing(1),
   },
   copyright: {
-    color: 'black',
-    textAlign: 'center', // Alinear el texto al centro
+    color: '#777',
+    textAlign: 'center',
   },
 }));
 
 const Footer = () => {
+  const isMobile = useMediaQuery('(max-width:600px)');
   const classes = useStyles();
 
   return (
     <AppBar position="relative" className={classes.appBar}>
       <Toolbar className={classes.toolbar}>
-        {/* Primera fila */}
         <div className={classes.row}>
           <Link href="https://www.instagram.com/adasoft_tech?utm_source=qr&igsh=enQ0Zm1uanZvNzNy" target="_blank" rel="noopener noreferrer" color="inherit">
             <IconButton>
@@ -65,7 +67,6 @@ const Footer = () => {
           </Link>
         </div>
 
-        {/* Segunda fila */}
         <div className={classes.row}>
           <Typography variant="body2" className={classes.copyright}>
           &copy;2024 Creado por <Link href="https://adasoft.com.ar/" target="_blank" rel="noopener noreferrer" color="inherit">AdaSoft</Link>.

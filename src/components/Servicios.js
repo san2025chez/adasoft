@@ -102,7 +102,7 @@ const Servicios = () => {
         <Grid container spacing={4} justifyContent="center" >
           <Grid item xs={12} md={3} >
             <Fade direction='left' triggerOnce='true'>
-              <Card variant="outlined" style={{ borderRadius: "15px" }}>
+              <Card variant="outlined" style={{ borderRadius: "15px", border: "none", boxShadow: "none" }}>
                 <CardContent>
                   <Typography variant="h6" style={{ paddingBottom: '10px', textAlign: 'center' }}> Landing Page</Typography>
                   <StyledDescription style={{ textAlign: 'center'}}>
@@ -116,7 +116,7 @@ const Servicios = () => {
           </Grid>
           <Grid item xs={12} md={3}>
             <Fade direction='right' triggerOnce='true' >
-              <Card variant="outlined" style={{ borderRadius: "15px" }}>
+              <Card variant="outlined" style={{ borderRadius: "15px", border: "none", boxShadow: "none" }}>
                 <CardContent>
                   <Typography variant="h6" style={{ paddingBottom: '10px', textAlign: 'center' }}>Desarrollo de Aplicaciones Web</Typography>
                   <StyledDescription style={{ textAlign: 'center' }}>
@@ -130,7 +130,7 @@ const Servicios = () => {
           </Grid>
           <Grid item xs={12} md={3}>
             <Fade direction='left' triggerOnce='true'>
-              <Card variant="outlined" style={{ borderRadius: "15px" }}>
+              <Card variant="outlined" style={{ borderRadius: "15px", border: "none", boxShadow: "none" }}>
                 <CardContent>
                   <Typography variant="h6" style={{ paddingBottom: '10px', textAlign: 'center' }}>Tiendas Online</Typography>
                   <StyledDescription style={{ textAlign: 'center'}}>
@@ -143,7 +143,7 @@ const Servicios = () => {
           </Grid>
           <Grid item xs={12} md={3}>
             <Fade direction='right' triggerOnce='true' >
-              <Card variant="outlined" style={{ borderRadius: "15px" }}>
+              <Card variant="outlined" style={{ borderRadius: "15px", border: "none", boxShadow: "none" }}>
                 <CardContent>
                   <Typography variant="h6" style={{ paddingBottom: '10px', textAlign: 'center' }}>Mantenimiento</Typography>
                   <StyledDescription style={{ textAlign: 'center' }}>

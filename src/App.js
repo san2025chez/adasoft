@@ -36,8 +36,8 @@ const theme = createTheme({
   typography: {
     fontFamily:  "Poppins",
     fontWeight: 100,
-  fontStyle: 'normal',
-  fontSize:'15px'
+    fontStyle: 'normal',
+    fontSize:'15px'
   },
 });
 
@@ -84,140 +84,158 @@ const App = () => {
   `;
 
   const GridItemNosotros = styled.div`
-   
+    background-image: url('${process.env.PUBLIC_URL}/images/nosotros2.jpeg');
     background-size: cover;
     background-position: center;
-    margin-top: 40px;
-    height:95%;
-    width: 100%;
+    background-repeat: no-repeat;
+    height: 300px;
+    width: 300px;
+    border-radius: 50%;
     box-shadow: none;
- 
-    background-image: url('${process.env.PUBLIC_URL}/images/nosotros2.jpeg');
-        @media (max-width: 600px) {
-          background-size: contain;
-          background-repeat: no-repeat;
-          height: 270px;
-          width: 100%;
     
-          marginTop: 50px
-      
-          
-
-     
-      
-      
+    @media (max-width: 600px) {
+      display: none;
     }
-    @media (min-width: 601px) and (max-width: 960px) and (orientation: landscape) {
-      /* Estilos para tabletas en orientación horizontal */
+    
+    @media (min-width: 601px) {
+      height: 250px;
+      width: 250px;
+      margin-left: auto;
+    }
+    
+    @media (min-width: 961px) {
       height: 300px;
+      width: 300px;
+      margin-left: auto;
     }
-  
-    @media (min-width: 961px) and (max-width: 1280px) and (orientation: landscape) {
-      /* Estilos para tabletas en orientación horizontal */
-      height: 400px;
-    }
-  
-    @media (min-width: 1281px) and (orientation: landscape) {
-      /* Estilos para pantallas más grandes en orientación horizontal */
-      height: 300px;
+    
+    @media (min-width: 1281px) {
+      height: 350px;
+      width: 350px;
+      margin-left: auto;
     }
   `;
+
   const TextComponent = styled.div`
- fontSize:20px,
- marginTop: 40px
- paddingTop: 40px
-`;
+    fontSize: 20px,
+    marginTop: 40px,
+    paddingTop: 40px
+  `;
 
   const GridPaper = styled(Paper)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  margin: 0;
-  box-shadow: none;
-  height: 410px;
-  width: 100%;
-  position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+    height: 410px;
+    width: 100%;
+    position: relative;
 
-  @media (max-width: 600px) {
-    height: 150px;
-    background-color: #2196F3;
-    margin-top: 55px;
+    @media (max-width: 600px) {
+      height: 150px;
+      background-color: #2196F3;
+      margin-top: 55px;
+
+      img {
+        width: 90%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
 
     img {
-      width: 90%;
+      width: 100%;
       height: 100%;
       object-fit: cover;
     }
-  }
+  `;
 
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-`;
   const StyledPaper = styled(Paper)`
- 
-    margin-top: 30px, 
-    padding-top: 20px 
-    
+    margin-top: 30px;
+    padding-top: 20px;
     box-shadow: none;
-   @media (max-width: 767px): {  // Aplicar estilos para dispositivos con ancho máximo de 767px
-      margin-top: 5px,  // Reducir marginTop para dispositivos móviles
-      padding: 5px   
-      box-shadow: none; // Reducir padding para dispositivos móviles
+    @media (max-width: 767px) {
+      margin-top: 5px;
+      padding: 5px;
+      box-shadow: none;
+    }
+  `;
+  const StyledPaper2 = styled(Paper)`
+    padding: 0px;
+    margin-top: 30px;
+    margin-left: 103px;
+    margin-right: 0px;
+    text-align: center;
+    box-shadow: none;
+    background-image: url(${process.env.PUBLIC_URL}/images/about-nosotros.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    align-items: center;
+    position: relative;
+    width: 100%;
+
+    @media (max-width: 600px) {
+      padding: 10px;
+      margin-top: 10px;
+      margin-left: 0;
+      margin-right: 0;
+      box-shadow: none;
+      background-image: 
+        url(${process.env.PUBLIC_URL}/images/about-nosotros.png),
+       
+      background-size: cover, contain;
+      background-position: center, bottom;
+      background-repeat: no-repeat, no-repeat;
     }
 
-`;
+    @media (min-width: 601px) and (max-width: 960px) {
+      margin-left: 50px;
+      margin-right: 50px;
+    }
 
-  const StyledPaper2 = styled(Paper)`
-  padding: 0px,
-   margin-top: 30px,
-    margin-left: 103px,
-     margin-right: 10px, 
-     text-align: center, 
-     box-Shadow: none
- 
+    @media (min-width: 961px) {
+      margin-left: 103px;
+      margin-right: 10px;
+    }
 
-  @media (max-width: 600px) {
-    padding: 10px; // Tamaño de padding reducido para dispositivos móviles
-    margin-top: 10px; // Tamaño de marginTop reducido para dispositivos móviles
-    box-shadow: none
-  }
-`;
+    @media (max-width: 1024px) {
+      background-size: contain;
+    }
+
+    @media (max-width: 1366px) {
+      background-position: 100%;
+    }
+
+  `;
+
   const containerStyles = {
     marginTop: '10px',
     padding: '10px',
-    /*   display: 'flex', 
-      flexDirection: 'column',
-       alignItems: 'center' , */
   };
 
   const mobileStyles = {
     marginTop: '5px',
-    padding: '3px'/*   display: 'flex', 
-  flexDirection: 'column',
-   alignItems: 'center' , */
+    padding: '3px'
   };
-  const GreenIconButton = styled(IconButton)`
-  background-color: #4caf50; /* Fondo verde */
-  color: #fff !important; /* Texto blanco */
-  border-radius: 50%; /* Bordes redondeados */
-  position: fixed;
-  bottom: 10px;
-  right: 20px;
-  z-index: 1000;
-`;
 
+  const GreenIconButton = styled(IconButton)`
+    background-color: #4caf50;
+    color: #fff !important;
+    border-radius: 50%;
+    position: fixed;
+    bottom: 10px;
+    right: 20px;
+    z-index: 1000;
+  `;
 
   const handleWhatsAppClick = () => {
     // Aquí puedes agregar la lógica para abrir la ventana de chat de WhatsApp
     // Puedes usar el API de WhatsApp o simplemente redireccionar a la URL de WhatsApp
   };
 
-
-  /* padding: '30px', marginTop: '30px', marginLeft: '10px', marginRight: '10px', textAlign: 'center', boxShadow: 'none' */
   return (
     <ThemeProvider theme={theme}>
       <Helmet>
@@ -225,45 +243,47 @@ const App = () => {
       </Helmet>
       <CssBaseline />
 
-     
-          <GreenIconButton
-           component="a"
-           href="https://wa.link/3311zp"
-           target="_blank"
-           rel="noopener noreferrer"
-    sx={{
-      position: 'fixed',
-      bottom: 10,
-      right: 20,
-      zIndex: 1000,
-      '&:hover': {
-        backgroundColor: '#64dd17', // Mantener el color verde al pasar el mouse
-      }
-    }}
-     >
-    <WhatsAppIcon />
-  </GreenIconButton>
+      <GreenIconButton
+        component="a"
+        href="https://wa.link/3311zp"
+        target="_blank"
+        rel="noopener noreferrer"
+        sx={{
+          position: 'fixed',
+          bottom: 10,
+          right: 20,
+          zIndex: 1000,
+          '&:hover': {
+            backgroundColor: '#64dd17',
+          }
+        }}
+      >
+        <WhatsAppIcon />
+      </GreenIconButton>
       <Container maxWidth="xl" style={{ padding: 0, margin: 0, minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-
-
         <NavBar />
         <Paper id="inicio" elevation={3} style={{ textAlign: 'center', boxShadow: 'none' }}>
-
           <Inicio id="inicio" />
         </Paper>
-        <Fade triggerOnce='true' >
-<Servicios/>
-</Fade>
-      
-              <Metodologias></Metodologias>
-              
-        <Paper id="nosotros" elevation={3} component={StyledPaper2} style={{ margin: '20px 0px', boxShadow: 'none' }}>
-
+        <Fade triggerOnce='true'>
+          <Servicios/>
+        </Fade>
+        <Metodologias></Metodologias>
+        <Paper id="nosotros" elevation={3} component={StyledPaper2} style={{ 
+          margin: '20px 0px', 
+          boxShadow: 'none',
+          padding: '40px 20px',
+          minHeight: '90vh',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          backgroundColor: 'rgba(255, 255, 255, 0.7)'
+        }}>
           <Typography variant="h2" style={{ 
             color: '#444',
             fontSize: isMobile ? '23px' : '30px',
             letterSpacing: '4px',
-            marginBottom: '32px',
+            marginBottom: '16px', // Reducido de 32px a 16px
             fontWeight: 300,
             lineHeight: isMobile ? '23px' : '28px',
             textTransform: 'uppercase',
@@ -271,46 +291,45 @@ const App = () => {
           }}>
             Nosotros
           </Typography>
-          {/* Cuadrícula para dividir en dos partes */}
-          <Container maxWidth="md">
+          <Container maxWidth="md" style={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
             <Fade direction='left' triggerOnce='true' delay={200}>
-            <Grid container spacing={2} justifyContent="center">
-
-              <Grid item xs={12} md={6}>
-             
-                {/* Contenido de la parte derecha (descripción) */}
-                <Paper style={{ padding: '20px', marginTop: '0px', boxShadow: 'none', textAlign: 'justify' }}>
-                  <Typography style={{
-                    fontFamily: 'Poppins, sans-serif',
-                    fontWeight: 400,
-                    textAlign: 'left',
-                    color: '#777',
-                    fontSize: '15px',
-                    letterSpacing: '.03em',
-                    lineHeight: '1.8em',
-                    textTransform: 'capitalize'
+              <Grid container spacing={isMobile ? 4 : 12} justifyContent="center" alignItems="center">
+                <Grid item xs={12} md={6}>
+                  <Paper style={{ 
+                    padding: '20px', 
+                    boxShadow: 'none', 
+                    textAlign: 'justify',
+                    backgroundColor: 'transparent',
+                    height: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center'
                   }}>
-                    En ADA SOFTWARE no trabajamos de manera estandarizada, sino que adaptamos las mejoras a cada organización, según sus necesidades y sus proyecciones. Nuestras soluciones son a medida de cada cliente.
+                    <Typography style={{
+                      fontFamily: 'Poppins, sans-serif',
+                      fontWeight: 400,
+                      textAlign: 'left',
+                      color: '#777',
+                      fontSize: isMobile ? '14px' : '15px',
+                      letterSpacing: '.03em',
+                      lineHeight: '1.8em',
+                      textTransform: 'capitalize'
+                    }}>
+                      En ADA SOFTWARE no trabajamos de manera estandarizada, sino que adaptamos las mejoras a cada organización, según sus necesidades y sus proyecciones. Nuestras soluciones son a medida de cada cliente.
 
-                    Contamos con años de trayectoria en el mercado que nos permiten analizar, proponer mejoras, resolver problemas y generar cambios superadores desde una mirada experimentada y profesional.
+                      Contamos con años de trayectoria en el mercado que nos permiten analizar, proponer mejoras, resolver problemas y generar cambios superadores desde una mirada experimentada y profesional.
 
-                    Trabajamos codo a codo con cada cliente para resolver, optimizar y generar nuevos proyectos.
+                      Trabajamos codo a codo con cada cliente para resolver, optimizar y generar nuevos proyectos.
 
-                    Somos el aliado que tu equipo de trabajo necesita.
-                    Somos ADA SOFTWARE – Fabricamos soluciones.
-                  </Typography>
-                </Paper>
+                      Somos el aliado que tu equipo de trabajo necesita.
+                      Somos ADA SOFTWARE – Fabricamos soluciones.
+                    </Typography>
+                  </Paper>
+                </Grid>
+                <Grid item xs={12} md={6} style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
+                  <GridItemNosotros />
+                </Grid>
               </Grid>
-              <Grid item xs={12} md={6}>
-                            <GridItemNosotros />
-          
-              </Grid>
-
-
-
-
-
-            </Grid>
             </Fade>
           </Container>
         </Paper>
@@ -329,15 +348,10 @@ const App = () => {
             }}>
               Contacto
             </Typography>
-            {/* Cuadrícula para dividir en dos partes */}
-
             <Formulario></Formulario>
           </Container>
         </Paper>
-      
-          <Footer/>
-        
-
+        <Footer/>
       </Container>
     </ThemeProvider>
   );
