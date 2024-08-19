@@ -34,7 +34,9 @@ const useStyles = makeStyles((theme) => ({
   copyright: {
     color: '#777',
     textAlign: 'center',
-  },
+    fontSize:13,
+    fontFamily: 'Poppins, sans-serif',
+  }
 }));
 
 const Footer = () => {
