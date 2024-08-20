@@ -336,28 +336,62 @@ const App = () => {
         </Paper>
         <Paper id="contacto" elevation={3} style={{
           boxShadow: 'none',
-          backgroundImage: `url(${process.env.PUBLIC_URL}/images/main-banner12.png), url(${process.env.PUBLIC_URL}/images/main-banner1.png)`,
-          backgroundSize: isMobile ? '20%, 30%' : '15%, 20%',
-          backgroundPosition: '90% 20%, 10% center',
-          backgroundRepeat: 'no-repeat, no-repeat',
-          padding: '20px',
+          backgroundImage: `url(${process.env.PUBLIC_URL}/images/Contact.png)`,
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'cover',
           overflow: 'hidden',
           position: 'relative',
+          padding: '100px 20px',
           '@media (max-width: 991px)': {
-            backgroundPosition: '100% 30%, 0% 50%',
-            backgroundSize: '25%, 40%',
+            backgroundPosition: '50%',
           },
           '@media (max-width: 1024px)': {
-            backgroundSize: '30%, 25%',
+            backgroundSize: 'cover',
           },
-          '& [src*="main-banner12.png"]': {
-            left: '280px',
-            position: 'absolute',
-            top: '20%',
-            animation: 'moveleftbounce 3s linear infinite',
-          }
+          '@media (max-width: 576px)': {
+            paddingTop: '50px',
+            paddingBottom: '50px',
+            backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url(${process.env.PUBLIC_URL}/images/Contact.png)`,
+            backgroundBlendMode: 'overlay',
+          },
+          '@media (max-width: 1199px)': {
+            paddingBottom: '80px',
+            paddingTop: '80px',
+          },
+          display: 'block'
         }}>
-          <Container maxWidth="md" style={{ padding: '20px' }}>
+          <div className="contact-decor" style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, zIndex: 1 }}>
+            <div className="contact-circle1" style={{
+              bottom: '300px',
+              left: '300px',
+              position: 'absolute',
+              animation: 'moveleftbounce 3s linear infinite',
+              '@media (max-width: 1199px)': {
+                left: '280px',
+                position: 'absolute',
+                top: 'auto',
+              }
+            }}>
+              <img src={`${process.env.PUBLIC_URL}/images/main-banner12.png`} alt="" style={{ verticalAlign: 'middle' }} />
+            </div>
+            <div className="contact-circle2" style={{
+              bottom: '90px',
+              left: '175px',
+              position: 'absolute',
+              animation: 'moveleftbounce 3.9s linear infinite',
+              '@media (max-width: 1024px)': {
+                bottom: '0',
+                left: '10%',
+                top: 'auto',
+              },
+              '@media (max-width: 1199px)': {
+                top: 'auto',
+              }
+            }}>
+              <img src={`${process.env.PUBLIC_URL}/images/main-banner1.png`} alt="" style={{ verticalAlign: 'middle' }} />
+            </div>
+          </div>
+          <Container maxWidth="md" style={{ padding: '20px', position: 'relative', zIndex: 2 }}>
             <Typography variant="h2" style={{ 
               color: '#444',
               fontSize: isMobile ? '23px' : '28px',
@@ -373,6 +407,62 @@ const App = () => {
             </Typography>
             <Formulario></Formulario>
           </Container>
+          <style>
+            {`
+              img, svg {
+                vertical-align: middle;
+              }
+              img {
+                border-style: none;
+              }
+              @media (max-width: 991px) {
+                #contacto {
+                  background-position: 50%;
+                }
+              }
+              @media (max-width: 1024px) {
+                #contacto {
+                  background-size: cover;
+                }
+              }
+              #contacto {
+                background-repeat: no-repeat;
+                background-size: cover;
+                overflow: hidden;
+                position: 'relative';
+              }
+              @media (max-width: 576px) {
+                #contacto {
+                  padding-bottom: 50px;
+                  padding-top: 50px;
+                }
+              }
+              @media (max-width: 1199px) {
+                #contacto {
+                  padding-bottom: 80px;
+                  padding-top: 80px;
+                }
+              }
+              #contacto {
+                padding-bottom: 100px;
+                padding-top: 100px;
+                position: relative;
+                display: block;
+              }
+              .MuiInputBase-root {
+                background-color: rgba(255, 255, 255, 0.8) !important;
+                z-index: 1;
+              }
+              .MuiInputLabel-root {
+                z-index: 2;
+                background-color: transparent !important;
+              }
+              .MuiInputBase-input::placeholder {
+                opacity: 1 !important;
+                color: rgba(0, 0, 0, 0.6) !important;
+              }
+            `}
+          </style>
         </Paper>
         <Footer/>
       </Container>

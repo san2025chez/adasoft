@@ -96,19 +96,49 @@ export const Formulario = () => {
         label="Nombre"
         name="user_name"
         className="my-input"
-        style={textFieldStyle}
+        style={{
+          ...textFieldStyle,
+          '& .MuiInputLabel-root': {
+            color: 'black',
+            backgroundColor: 'rgba(255, 255, 255, 0.8)',
+            padding: '0 5px',
+          },
+        }}
+        InputLabelProps={{
+          shrink: true,
+        }}
       />
       <TextField
         label="Correo Electronico"
         name="user_email"
         className="my-input"
-        style={textFieldStyle}
+        style={{
+          ...textFieldStyle,
+          '& .MuiInputLabel-root': {
+            color: 'black',
+            backgroundColor: 'rgba(255, 255, 255, 0.8)',
+            padding: '0 5px',
+          },
+        }}
+        InputLabelProps={{
+          shrink: true,
+        }}
       />
       <TextField
         label="Mensaje"
         name="message"
         className="my-input"
-        style={{...textFieldStyle, width: '100%', minHeight: '200px'}}
+        style={{
+          ...textFieldStyle,
+          '& .MuiInputLabel-root': {
+            color: 'black',
+            backgroundColor: 'rgba(255, 255, 255, 0.8)',
+            padding: '0 5px',
+          },
+        }}
+        InputLabelProps={{
+          shrink: true,
+        }}
         multiline
         rows={6}
       />
