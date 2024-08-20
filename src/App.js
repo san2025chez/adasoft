@@ -272,18 +272,19 @@ const App = () => {
         <Paper id="nosotros" elevation={3} component={StyledPaper2} style={{ 
           margin: '20px 0px', 
           boxShadow: 'none',
-          padding: '40px 20px',
-          minHeight: '90vh',
+          padding: isMobile ? '1px 15px 15px' : '25px 25px 25px',
+          minHeight: 'auto',
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'center',
+          justifyContent: 'flex-start',
           backgroundColor: 'rgba(255, 255, 255, 0.7)'
         }}>
           <Typography variant="h2" style={{ 
             color: '#444',
             fontSize: isMobile ? '23px' : '30px',
             letterSpacing: '4px',
-            marginBottom: '16px', // Reducido de 32px a 16px
+            marginBottom: '20px',
+            paddingBottom:'15px',
             fontWeight: 300,
             lineHeight: isMobile ? '23px' : '28px',
             textTransform: 'uppercase',
@@ -291,19 +292,19 @@ const App = () => {
           }}>
             Nosotros
           </Typography>
-          <Container maxWidth="md" style={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
+          <Container maxWidth="md" style={{ flexGrow: 1, display: 'flex', alignItems: 'flex-start' }}>
             <Fade direction='left' triggerOnce='true' delay={200}>
-              <Grid container spacing={isMobile ? 4 : 12} justifyContent="center" alignItems="center">
+              <Grid container spacing={isMobile ? 2 : 6} justifyContent="center" alignItems="flex-start">
                 <Grid item xs={12} md={6}>
                   <Paper style={{ 
-                    padding: '20px', 
+                    padding: '10px', 
                     boxShadow: 'none', 
                     textAlign: 'justify',
                     backgroundColor: 'transparent',
                     height: '100%',
                     display: 'flex',
                     flexDirection: 'column',
-                    justifyContent: 'center'
+                    justifyContent: 'flex-start'
                   }}>
                     <Typography style={{
                       fontFamily: 'Poppins, sans-serif',
@@ -326,14 +327,36 @@ const App = () => {
                     </Typography>
                   </Paper>
                 </Grid>
-                <Grid item xs={12} md={6} style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
+                <Grid item xs={12} md={6} style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-start' }}>
                   <GridItemNosotros />
                 </Grid>
               </Grid>
             </Fade>
           </Container>
         </Paper>
-        <Paper id="contacto" elevation={3} style={{  boxShadow: 'none' }}>
+        <Paper id="contacto" elevation={3} style={{
+          boxShadow: 'none',
+          backgroundImage: `url(${process.env.PUBLIC_URL}/images/main-banner12.png), url(${process.env.PUBLIC_URL}/images/main-banner1.png)`,
+          backgroundSize: isMobile ? '20%, 30%' : '15%, 20%',
+          backgroundPosition: '90% 20%, 10% center',
+          backgroundRepeat: 'no-repeat, no-repeat',
+          padding: '20px',
+          overflow: 'hidden',
+          position: 'relative',
+          '@media (max-width: 991px)': {
+            backgroundPosition: '100% 30%, 0% 50%',
+            backgroundSize: '25%, 40%',
+          },
+          '@media (max-width: 1024px)': {
+            backgroundSize: '30%, 25%',
+          },
+          '& [src*="main-banner12.png"]': {
+            left: '280px',
+            position: 'absolute',
+            top: '20%',
+            animation: 'moveleftbounce 3s linear infinite',
+          }
+        }}>
           <Container maxWidth="md" style={{ padding: '20px' }}>
             <Typography variant="h2" style={{ 
               color: '#444',

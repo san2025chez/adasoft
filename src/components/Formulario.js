@@ -12,6 +12,7 @@ import emailjs from '@emailjs/browser';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import './Formulrio.css'
+
 const theme = createTheme({
   palette: {
     primary: {
@@ -49,25 +50,65 @@ export const Formulario = () => {
       });
   };
 
+  const textFieldStyle = {
+    marginTop: '10px',
+    '& .MuiOutlinedInput-root': {
+      border: 'none',
+      borderRadius: '50px',
+      boxShadow: '0 0 5px 0 red',
+      fontSize: '12px',
+      height: 'auto',
+      padding: '12px 30px',
+      transition: 'box-shadow 0.3s ease-in-out',
+      '&:hover, &:focus': {
+        boxShadow: '0 0 15px 0 red',
+        animation: '$pulseRed 1.5s infinite',
+      },
+    },
+    '@keyframes pulseRed': {
+      '0%': {
+        boxShadow: '0 0 0 0 rgba(255, 0, 0, 0.7)',
+      },
+      '70%': {
+        boxShadow: '0 0 0 10px rgba(255, 0, 0, 0)',
+      },
+      '100%': {
+        boxShadow: '0 0 0 0 rgba(255, 0, 0, 0)',
+      },
+    },
+    '@media (max-width: 768px)': {
+      '& .MuiOutlinedInput-root': {
+        boxShadow: '0 0 5px 0 red',
+      },
+    },
+    '@media (max-width: 576px)': {
+      '& .MuiOutlinedInput-root': {
+        borderRadius: '20px',
+        paddingBottom: '10px',
+        paddingTop: '10px',
+      },
+    },
+  };
+
   return (
-    <form ref={form} onSubmit={sendEmail} className='field'>
+    <form ref={form} onSubmit={sendEmail} className='field contact' >
       <TextField
         label="Nombre"
         name="user_name"
         className="my-input"
-        style={{ marginTop: '10px' }}
+        style={textFieldStyle}
       />
       <TextField
         label="Correo Electronico"
         name="user_email"
         className="my-input"
-        style={{ marginTop: '10px' }}
+        style={textFieldStyle}
       />
       <TextField
         label="Mensaje"
         name="message"
         className="my-input"
-        style={{ marginTop: '10px', width: '100%', minHeight: '200px' }}
+        style={{...textFieldStyle, width: '100%', minHeight: '200px'}}
         multiline
         rows={6}
       />
@@ -101,7 +142,6 @@ export const Formulario = () => {
         Enviar
       </Button>
 
-
       <Snackbar open={openSnackbar} autoHideDuration={6000} onClose={handleCloseSnackbar}>
         <Alert onClose={handleCloseSnackbar} severity="success">
           Correo enviado con éxito.
@@ -110,4 +150,3 @@ export const Formulario = () => {
     </form>
   );
 };
-
