@@ -153,7 +153,54 @@ const Servicios = () => {
               </Card>
             </Fade>
           </Grid>
-
+          <Grid item xs={12} md={3}>
+            <Fade direction='right' triggerOnce='true' >
+              <Card variant="outlined" style={{ borderRadius: "15px", border: "none", boxShadow: "none" }}>
+                <CardContent>
+                  <Typography variant="h6" style={{ paddingBottom: '10px', textAlign: 'center' }}>Desarrollo de Software a Medida</Typography>
+                  <StyledDescription style={{ textAlign: 'center' }}>
+                  Realizamos software a medida que se adapta perfectamente a tus requerimientos específicos, ofreciendo soluciones personalizadas que optimizan tus procesos y mejoran la eficiencia de tu negocio.
+                  </StyledDescription>
+                </CardContent>
+              </Card>
+            </Fade>
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <Fade direction='right' triggerOnce='true' >
+              <Card variant="outlined" style={{ borderRadius: "15px", border: "none", boxShadow: "none" }}>
+                <CardContent>
+                  <Typography variant="h6" style={{ paddingBottom: '10px', textAlign: 'center' }}>Formateo e Instalación de Software</Typography>
+                  <StyledDescription style={{ textAlign: 'center' }}>
+                  Proporcionamos servicios completos de formateo, instalación y configuración de software, asegurando que tu equipo esté listo para funcionar de manera óptima.
+                  </StyledDescription>
+                </CardContent>
+              </Card>
+            </Fade>
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <Fade direction='right' triggerOnce='true' >
+              <Card variant="outlined" style={{ borderRadius: "15px", border: "none", boxShadow: "none" }}>
+                <CardContent>
+                  <Typography variant="h6" style={{ paddingBottom: '10px', textAlign: 'center' }}>Consultoría en Arquitectura de Software</Typography>
+                  <StyledDescription style={{ textAlign: 'center' }}>
+                  Ofrecemos asesoramiento experto para diseñar arquitecturas de software robustas y escalables que satisfagan tus necesidades actuales y futuras.
+                  </StyledDescription>
+                </CardContent>
+              </Card>
+            </Fade>
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <Fade direction='right' triggerOnce='true' >
+              <Card variant="outlined" style={{ borderRadius: "15px", border: "none", boxShadow: "none" }}>
+                <CardContent>
+                  <Typography variant="h6" style={{ paddingBottom: '10px', textAlign: 'center' }}>Actualización y Optimización de Sistemas</Typography>
+                  <StyledDescription style={{ textAlign: 'center' }}>
+                  Realizamos actualizaciones y optimizaciones para mejorar el rendimiento de tus sistemas, garantizando que estén al día con las últimas características y correcciones de seguridad.
+                  </StyledDescription>
+                </CardContent>
+              </Card>
+            </Fade>
+          </Grid>
         </Grid>
 
       </Container>

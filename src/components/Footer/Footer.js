@@ -6,6 +6,7 @@ import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import WhatsappIcon from '@material-ui/icons/WhatsApp';
 import Typography from '@mui/material/Typography';
+import { FaMapMarkerAlt } from 'react-icons/fa';
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -68,7 +69,7 @@ const Footer = () => {
             </IconButton>
           </Link>
         </div>
-
+        <Location address="Bs. As. 50, Perico, Jujuy" />
         <div className={classes.row}>
           <Typography variant="body2" className={classes.copyright}>
           &copy;2024 Creado por <Link href="https://adasoft.com.ar/" target="_blank" rel="noopener noreferrer" color="inherit">AdaSoft</Link>.
@@ -76,6 +77,15 @@ const Footer = () => {
         </div>
       </Toolbar>
     </AppBar>
+  );
+};
+
+const Location = ({ address }) => {
+  const classes = useStyles();
+  return (
+    <p  className={classes.copyright}>
+      <FaMapMarkerAlt /> {address}
+    </p>
   );
 };
 
