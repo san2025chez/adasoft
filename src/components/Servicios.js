@@ -165,18 +165,7 @@ const Servicios = () => {
               </Card>
             </Fade>
           </Grid>
-          <Grid item xs={12} md={3}>
-            <Fade direction='right' triggerOnce='true' >
-              <Card variant="outlined" style={{ borderRadius: "15px", border: "none", boxShadow: "none" }}>
-                <CardContent>
-                  <Typography variant="h6" style={{ paddingBottom: '10px', textAlign: 'center' }}>Formateo e Instalación de Software</Typography>
-                  <StyledDescription style={{ textAlign: 'center' }}>
-                  Proporcionamos servicios completos de formateo, instalación y configuración de software, asegurando que tu equipo esté listo para funcionar de manera óptima.
-                  </StyledDescription>
-                </CardContent>
-              </Card>
-            </Fade>
-          </Grid>
+       
           <Grid item xs={12} md={3}>
             <Fade direction='right' triggerOnce='true' >
               <Card variant="outlined" style={{ borderRadius: "15px", border: "none", boxShadow: "none" }}>
