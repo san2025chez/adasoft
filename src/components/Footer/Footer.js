@@ -69,7 +69,7 @@ const Footer = () => {
             </IconButton>
           </Link>
         </div>
-        <Location address="Bs. As. 50, Perico, Jujuy" />
+        <Location address="Perico, Jujuy" />
         <div className={classes.row}>
           <Typography variant="body2" className={classes.copyright}>
           &copy;2024 Creado por <Link href="https://adasoft.com.ar/" target="_blank" rel="noopener noreferrer" color="inherit">AdaSoft</Link>.
