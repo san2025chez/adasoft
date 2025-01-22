@@ -169,10 +169,11 @@ const Servicios = () => {
             <Fade direction='right' triggerOnce='true' >
               <Card variant="outlined" style={{ borderRadius: "15px", border: "none", boxShadow: "none" }}>
                 <CardContent>
-                  <Typography variant="h6" style={{ paddingBottom: '10px', textAlign: 'center' }}>Formateo e Instalación de Software</Typography>
+                  <Typography variant="h6" style={{ paddingBottom: '10px', textAlign: 'center' }}>Clases de Informatica y Programacion </Typography>
                   <StyledDescription style={{ textAlign: 'center' }}>
-                  Proporcionamos servicios completos de formateo, instalación y configuración de software, asegurando que tu equipo esté listo para funcionar de manera óptima.
-                  </StyledDescription>
+                 Aprende Informatica de forma sencilla y divertida con nuestros cursos
+                  de Informatica y programacion. 
+                 Adaptamos nuestro plan personalizado para tu aprendizaje           </StyledDescription>
                 </CardContent>
               </Card>
             </Fade>
@@ -190,16 +191,15 @@ const Servicios = () => {
             </Fade>
           </Grid>
           <Grid item xs={12} md={3}>
-            <Fade direction='right' triggerOnce='true' >
+            {/* <Fade direction='right' triggerOnce='true' >
               <Card variant="outlined" style={{ borderRadius: "15px", border: "none", boxShadow: "none" }}>
                 <CardContent>
-                  <Typography variant="h6" style={{ paddingBottom: '10px', textAlign: 'center' }}>Actualización y Optimización de Sistemas</Typography>
+                  <Typography variant="h6" style={{ paddingBottom: '10px', textAlign: 'center' }}>Clases de Informatica y Programación</Typography>
                   <StyledDescription style={{ textAlign: 'center' }}>
-                  Realizamos actualizaciones y optimizaciones para mejorar el rendimiento de tus sistemas, garantizando que estén al día con las últimas características y correcciones de seguridad.
-                  </StyledDescription>
+                  Aprende a tu propio ritmo y con un enfoque adaptado a tus necesidades. Dominarás los conceptos clave y desarrollarás proyectos práctico</StyledDescription>
                 </CardContent>
               </Card>
-            </Fade>
+            </Fade> */}
           </Grid>
         </Grid>
 
