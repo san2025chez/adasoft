@@ -1,5 +1,5 @@
-import { useState } from "react";
-import React, { useEffect } from 'react';
+import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Drawer from '@mui/material/Drawer';
@@ -11,7 +11,6 @@ import Typography from '@mui/material/Typography';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
-import Slide from '@mui/material/Slide';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
@@ -19,223 +18,197 @@ const menuItems = [
   { id: 'servicios', label: 'Servicios' },
   { id: 'metodologia', label: 'Metodología' },
   { id: 'nosotros', label: 'Nosotros' },
+  { id: 'blog', label: 'Blog' },
   { id: 'contacto', label: 'Contacto' },
 ];
 
 export const NavBar = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [navColor, setNavColor] = useState('transparent');
   const [logoColor, setLogoColor] = useState('white');
   const [menuIconColor, setMenuIconColor] = useState('white');
-  const [isInicio, setIsInicio] = useState(true);
   const [activeSection, setActiveSection] = useState('inicio');
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   const scrollToSection = (id) => {
-    if (id === 'inicio') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      setIsInicio(true);
-      setActiveSection('inicio');
-      if (isMobile) {
-        setNavColor('transparent');
-        setLogoColor('white');
-        setMenuIconColor('white');
-      } else {
-        setNavColor('transparent');
-      }
+    if (id === 'blog') {
+      navigate('/blog');
+      setDrawerOpen(false);
+      return;
+    }
+
+    if (location.pathname !== '/') {
+      navigate('/');
+      // Wait for navigation to complete before scrolling
+      setTimeout(() => {
+        const element = document.getElementById(id);
+        if (element) {
+          const offset = 60;
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - offset;
+          
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }
+      }, 100);
     } else {
-      const element = document.getElementById(id);
-      if (element) {
-        const offset = 60; // Altura de la barra de navegación
-        const elementPosition = element.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - offset;
-        
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
-        
-        setDrawerOpen(false);
-        setIsInicio(false);
-        setActiveSection(id);
-        if (!isMobile) {
+      if (id === 'inicio') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        setActiveSection('inicio');
+        if (isMobile) {
+          setNavColor('transparent');
+          setLogoColor('white');
+          setMenuIconColor('white');
+        } else {
           setNavColor('#19d8db');
-        } else if (id === 'servicios') {
-          setNavColor('white');
-          setLogoColor('black');
-          setMenuIconColor('#00000080');
+        }
+      } else {
+        const element = document.getElementById(id);
+        if (element) {
+          const offset = 60;
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - offset;
+          
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+          
+          setDrawerOpen(false);
+          setActiveSection(id);
+          if (!isMobile) {
+            setNavColor('#19d8db');
+          } else if (id === 'servicios') {
+            setNavColor('white');
+            setLogoColor('black');
+            setMenuIconColor('#00000080');
+          }
         }
       }
     }
   };
 
-  const handleScroll = () => {
-    const offset = window.scrollY;
-    const sectionHeight = window.innerHeight;
-    const section = Math.floor(offset / sectionHeight);
+  useEffect(() => {
+    const handleScroll = () => {
+      if (location.pathname === '/blog') {
+        setNavColor('#19d8db');
+        setLogoColor('white');
+        setMenuIconColor('white');
+        return;
+      }
 
-    if (isMobile) {
-      if (section === 0) {
+      const offset = window.scrollY;
+      const isHomePage = location.pathname === '/';
+      
+      if (isHomePage && offset < 100) {
+        // En el inicio (primeros 100px), navbar transparente
         setNavColor('transparent');
         setLogoColor('white');
         setMenuIconColor('white');
-        setIsInicio(true);
         setActiveSection('inicio');
       } else {
-        setNavColor('white');
-        setLogoColor('black');
-        setMenuIconColor('#00000080');
-        setIsInicio(false);
-        setActiveSection(menuItems[section - 1]?.id || '');
-      }
-    } else {
-      if (section === 0) {
-        setNavColor('transparent');
-        setIsInicio(true);
-        setActiveSection('inicio');
-      } else {
+        // En cualquier otra sección o página, navbar con color sólido
         setNavColor('#19d8db');
-        setIsInicio(false);
-        setActiveSection(menuItems[section - 1]?.id || '');
+        setLogoColor('white');
+        setMenuIconColor('white');
+        
+        if (isHomePage) {
+          const sectionHeight = window.innerHeight;
+          const section = Math.floor(offset / sectionHeight);
+          setActiveSection(section === 0 ? 'inicio' : menuItems[section - 1]?.id || '');
+        }
       }
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
     };
-  }, [isMobile, drawerOpen]);
 
-  const toggleDrawer = (open) => {
-    setDrawerOpen(open);
-  };
+    // Ejecutar handleScroll al montar el componente
+    handleScroll();
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [location.pathname]);
 
   return (
-    <>
-      <AppBar
-        position="fixed"
-        sx={{
-          backgroundColor: navColor,
-          boxShadow: 'none',
-          zIndex: (theme) => theme.zIndex.drawer + 2,
-          height: '60px',
-          display: 'flex',
-          justifyContent: 'center',
-          border: 0
-        }}
-      >
-        <Toolbar style={{ backgroundColor: navColor, height: '60px', justifyContent: 'space-between' }}>
-          <div style={{ flexGrow: 1 }}>
-            <a
-              href="#"
-              style={{
-                textDecoration: 'none',
-                color: isMobile ? logoColor : 'white',
-                fontSize: isMobile ? '27px' : '30px',
-                fontWeight: 'bold',
-                paddingTop: '10px',
-                cursor: 'pointer',
-              }}
-              onClick={() => scrollToSection('inicio')}
+    <AppBar position="fixed" sx={{ 
+      backgroundColor: navColor,
+      boxShadow: 'none',
+      transition: 'background-color 0.3s ease'
+    }}>
+      <Toolbar>
+        <Typography
+          variant="h6"
+          component="div"
+          sx={{
+            flexGrow: 1,
+            color: logoColor,
+            cursor: 'pointer',
+            transition: 'color 0.3s ease'
+          }}
+          onClick={() => scrollToSection('inicio')}
+        >
+          ADA SOFTWARE
+        </Typography>
+
+        {isMobile ? (
+          <>
+            <IconButton
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+              onClick={() => setDrawerOpen(true)}
+              sx={{ color: menuIconColor }}
             >
-ADASOFT
-            </a>
-          </div>
-          <Box sx={{ display: { xs: 'none', sm: 'flex' } }}>
+              <MenuIcon />
+            </IconButton>
+            <Drawer
+              anchor="right"
+              open={drawerOpen}
+              onClose={() => setDrawerOpen(false)}
+            >
+              <Box sx={{ width: 250 }} role="presentation">
+                <List>
+                  {menuItems.map((item) => (
+                    <ListItem
+                      button
+                      key={item.id}
+                      onClick={() => scrollToSection(item.id)}
+                      selected={activeSection === item.id}
+                    >
+                      <ListItemText primary={item.label} />
+                    </ListItem>
+                  ))}
+                </List>
+              </Box>
+            </Drawer>
+          </>
+        ) : (
+          <Box sx={{ display: 'flex', gap: 2 }}>
             {menuItems.map((item) => (
-              <Button 
-                color="inherit" 
-                key={item.id} 
-                onClick={() => scrollToSection(item.id)} 
-                sx={{ 
-                  color: 'white', 
-                  fontWeight: 'bold', 
-                  fontSize: '14px',
-                  fontFamily: 'Poppins, sans-serif'
+              <Button
+                key={item.id}
+                color="inherit"
+                onClick={() => scrollToSection(item.id)}
+                sx={{
+                  color: logoColor,
+                  '&:hover': {
+                    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                  },
+                  ...(activeSection === item.id && {
+                    borderBottom: '2px solid',
+                    borderRadius: 0,
+                  }),
                 }}
               >
                 {item.label}
               </Button>
             ))}
           </Box>
-          <IconButton
-            edge="end"
-            color="inherit"
-            aria-label="menu"
-            onClick={() => toggleDrawer(!drawerOpen)}
-            sx={{ display: { sm: 'none' }, color: isMobile ? menuIconColor : 'white' }}
-          >
-            <MenuIcon />
-          </IconButton>
-        </Toolbar>
-      </AppBar>
-
-      <Drawer
-        anchor="right"
-        open={drawerOpen}
-        sx={{
-          '& .MuiDrawer-paper': {
-            width: '81%',
-            height: 'auto',
-            maxHeight: '100%',
-            marginTop: '60px',
-            background: 'white',
-            boxShadow: 'none',
-            left: '9.5%',
-            right: '9.5%',
-          }
-        }}
-        onClose={() => toggleDrawer(false)}
-        BackdropProps={{ invisible: true }}
-      >
-        <Slide direction="down" in={drawerOpen} mountOnEnter unmountOnExit>
-          <Box sx={{ width: '100%', padding: '0 16px' }}>
-            <List sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '16px' }}>
-              {menuItems.map((item, index) => (
-                <Slide direction="down" in={drawerOpen} style={{ transitionDelay: `${index * 100}ms` }}>
-                  <ListItem button key={item.id} onClick={() => scrollToSection(item.id)} sx={{ width: '100%' }}>
-                    <ListItemText 
-                      primary={item.label} 
-                      sx={{ 
-                        color: isMobile && activeSection === item.id ? '#19d8db' : '#00000080', 
-                        fontWeight: 400, 
-                        fontSize: '15px',
-                        fontFamily: 'Poppins, sans-serif',
-                        letterSpacing: '1px',
-                        padding: '10px 0 10px 5px',
-                        textTransform: 'uppercase',
-                        lineHeight: 1.0,
-                        textAlign: 'left',
-                        ...(isMobile && {
-                          fontSize: '13px',
-                          fontWeight: 400,
-                          paddingTop: 1.0,
-                          paddingBottom: 1.0,
-                          lineHeight: 1.5,
-                          letterSpacing: '1px',
-                          textTransform: 'uppercase',
-                        }),
-                        '& .MuiTypography-root': {
-                          margin: 0,
-                          fontFamily: 'Poppins',
-                          fontWeight: 400,
-                          lineHeight: 1.1,
-                          display: 'block',
-                          fontSize: '13px',
-                        }
-                      }} 
-                    />
-                  </ListItem>
-                </Slide>
-              ))}
-            </List>
-          </Box>
-        </Slide>
-      </Drawer>
-    </>
+        )}
+      </Toolbar>
+    </AppBar>
   );
 };

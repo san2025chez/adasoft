@@ -154,6 +154,18 @@ const Servicios = () => {
             </Fade>
           </Grid>
           <Grid item xs={12} md={3}>
+            <Fade direction='left' triggerOnce='true'>
+              <Card variant="outlined" style={{ borderRadius: "15px", border: "none", boxShadow: "none" }}>
+                <CardContent>
+                  <Typography variant="h6" style={{ paddingBottom: '10px', textAlign: 'center' }}>Integración de Inteligencia Artificial</Typography>
+                  <StyledDescription style={{ textAlign: 'center'}}>
+                    Hacemos que tu negocio sea más inteligente y eficiente. Automatizamos tareas repetitivas, creamos asistentes virtuales que atienden a tus clientes 24/7, y desarrollamos sistemas que aprenden de tus datos para ayudarte a tomar mejores decisiones comerciales.
+                  </StyledDescription>
+                </CardContent>
+              </Card>
+            </Fade>
+          </Grid>
+          <Grid item xs={12} md={3}>
             <Fade direction='right' triggerOnce='true' >
               <Card variant="outlined" style={{ borderRadius: "15px", border: "none", boxShadow: "none" }}>
                 <CardContent>

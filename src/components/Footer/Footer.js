@@ -1,91 +1,90 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { AppBar, Toolbar, IconButton, Link, useMediaQuery } from '@material-ui/core';
-import InstagramIcon from '@material-ui/icons/Instagram';
-import LinkedInIcon from '@material-ui/icons/LinkedIn';
-import FacebookIcon from '@material-ui/icons/Facebook';
-import WhatsappIcon from '@material-ui/icons/WhatsApp';
-import Typography from '@mui/material/Typography';
+import { styled } from '@mui/material/styles';
+import { AppBar, Toolbar, IconButton, Link, useMediaQuery, Typography, Box } from '@mui/material';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import { FaMapMarkerAlt } from 'react-icons/fa';
+import { useTheme } from '@mui/material/styles';
 
-const useStyles = makeStyles((theme) => ({
-  appBar: {
-    backgroundColor: '#fff',
-    color: '#fff',
-    top: 'auto',
-    bottom: 0,
-    fontFamily: 'Poppins, sans-serif',
+const StyledFooter = styled(AppBar)(({ theme }) => ({
+  position: 'relative',
+  backgroundColor: '#19d8db',
+  padding: '20px 0',
+  marginTop: 'auto',
+}));
+
+const StyledToolbar = styled(Toolbar)({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  gap: '20px',
+});
+
+const SocialIcons = styled(Box)({
+  display: 'flex',
+  gap: '10px',
+  '& .MuiIconButton-root': {
+    color: 'white',
+    '&:hover': {
+      backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    },
   },
-  toolbar: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    padding: theme.spacing(2),
+  '& .MuiSvgIcon-root': {
+    fontSize: '1.8rem',
   },
-  row: {
-    display: 'flex',
-    alignItems: 'center',
-    marginBottom: theme.spacing(1),
-  },
-  icon: {
-   
-    fontSize: 30,
-    marginRight: theme.spacing(1),
-  },
-  copyright: {
-    color: '#777',
-    textAlign: 'center',
-    fontSize:13,
-    fontFamily: 'Poppins, sans-serif',
-  }
+});
+
+const StyledTypography = styled(Typography)(({ theme }) => ({
+  color: 'white',
+  textAlign: 'center',
+  display: 'flex',
+  alignItems: 'center',
+  gap: '8px',
+  fontSize: '0.9rem',
 }));
 
 const Footer = () => {
-  const isMobile = useMediaQuery('(max-width:600px)');
-  const classes = useStyles();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
-    <AppBar position="relative" className={classes.appBar}>
-      <Toolbar className={classes.toolbar}>
-        <div className={classes.row}>
-          <Link href="https://www.instagram.com/adasoft_tech?utm_source=qr&igsh=enQ0Zm1uanZvNzNy" target="_blank" rel="noopener noreferrer" color="inherit">
-            <IconButton>
-              <InstagramIcon className={classes.icon} />
+    <StyledFooter position="static">
+      <StyledToolbar>
+        <SocialIcons>
+          <Link href="https://www.instagram.com/adasoft.ar/" target="_blank" rel="noopener noreferrer" color="inherit">
+            <IconButton size="large">
+              <InstagramIcon />
             </IconButton>
           </Link>
-          <Link href="https://www.linkedin.com/company/101532286/admin/feed/posts/?feedType=following" target="_blank" rel="noopener noreferrer" color="inherit">
-            <IconButton>
-              <LinkedInIcon className={classes.icon} />
+          <Link href="https://www.linkedin.com/company/ada-software-argentina/" target="_blank" rel="noopener noreferrer" color="inherit">
+            <IconButton size="large">
+              <LinkedInIcon />
             </IconButton>
           </Link>
-          <Link href="https://www.facebook.com/adasoftwareIT/" target="_blank" rel="noopener noreferrer" color="inherit">
-            <IconButton>
-              <FacebookIcon className={classes.icon} />
+          <Link href="https://www.facebook.com/adasoft.ar" target="_blank" rel="noopener noreferrer" color="inherit">
+            <IconButton size="large">
+              <FacebookIcon />
             </IconButton>
           </Link>
           <Link href="https://wa.link/3311zp" target="_blank" rel="noopener noreferrer" color="inherit">
-            <IconButton>
-              <WhatsappIcon className={classes.icon} />
+            <IconButton size="large">
+              <WhatsAppIcon />
             </IconButton>
           </Link>
-        </div>
-        <Location address="Perico, Jujuy" />
-        <div className={classes.row}>
-          <Typography variant="body2" className={classes.copyright}>
-          &copy;2024 Creado por <Link href="https://adasoft.com.ar/" target="_blank" rel="noopener noreferrer" color="inherit">AdaSoft</Link>.
-          </Typography>
-        </div>
-      </Toolbar>
-    </AppBar>
-  );
-};
-
-const Location = ({ address }) => {
-  const classes = useStyles();
-  return (
-    <p  className={classes.copyright}>
-      <FaMapMarkerAlt /> {address}
-    </p>
+        </SocialIcons>
+        
+        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1 }}>
+          <StyledTypography variant="body2">
+            <FaMapMarkerAlt /> Perico, Jujuy, Argentina
+          </StyledTypography>
+          <StyledTypography variant="body2">
+            &copy; {new Date().getFullYear()} ADA SOFTWARE. Todos los derechos reservados.
+          </StyledTypography>
+        </Box>
+      </StyledToolbar>
+    </StyledFooter>
   );
 };
 

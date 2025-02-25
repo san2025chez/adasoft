@@ -9,6 +9,10 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
+import Link from '@mui/material/Link';
+import IconButton from '@mui/material/IconButton';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import { Formulario } from './components/Formulario'
 import { NavBar } from "./components/NavBar";
 import './App.css';
@@ -18,11 +22,10 @@ import Inicio from './components/Inicio';
 import Servicios from './components/Servicios';
 import Footer from './components/Footer/Footer';
 import {Fade} from 'react-awesome-reveal'
-import {Link } from '@material-ui/core';
-import IconButton from '@mui/material/IconButton';
-import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-import  Metodologias from "./components/metodologias";
-import useMediaQuery from '@mui/material/useMediaQuery';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Blog from './pages/Blog';
+import BlogPost from './pages/BlogPost';
+import Metodologias from "./components/metodologias";
 
 const theme = createTheme({
   palette: {
@@ -34,11 +37,33 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily:  "Poppins",
+    fontFamily: "Poppins",
     fontWeight: 100,
     fontStyle: 'normal',
-    fontSize:'15px'
+    fontSize: '15px',
+    h6: {
+      fontSize: '1.2rem', // Tamaño base aumentado en 2 puntos
+      '@media (max-width:600px)': {
+        fontSize: '1.1rem', // Tamaño móvil aumentado en 2 puntos
+      },
+      lineHeight: 1.6,
+      marginTop: '1rem',
+      marginBottom: '0.5rem'
+    }
   },
+  components: {
+    MuiTypography: {
+      styleOverrides: {
+        h6: {
+          fontSize: '1.2rem',
+          '@media (max-width:600px)': {
+            fontSize: '1.1rem',
+          },
+          lineHeight: 1.6
+        }
+      }
+    }
+  }
 });
 
 const App = () => {
@@ -237,236 +262,245 @@ const App = () => {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <Helmet>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      </Helmet>
-      <CssBaseline />
-
-      <GreenIconButton
-        component="a"
-        href="https://wa.link/3311zp"
-        target="_blank"
-        rel="noopener noreferrer"
-        sx={{
-          position: 'fixed',
-          bottom: 10,
-          right: 20,
-          zIndex: 1000,
-          '&:hover': {
-            backgroundColor: '#64dd17',
-          }
-        }}
-      >
-        <WhatsAppIcon />
-      </GreenIconButton>
-      <Container maxWidth="xl" style={{ padding: 0, margin: 0, minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-        <NavBar />
-        <Paper id="inicio" elevation={3} style={{ textAlign: 'center', boxShadow: 'none' }}>
-          <Inicio id="inicio" />
-        </Paper>
-        <Fade triggerOnce='true'>
-          <Servicios/>
-        </Fade>
-        <Metodologias></Metodologias>
-        <Paper id="nosotros" elevation={3} component={StyledPaper2} style={{ 
-          margin: '20px 0px', 
-          boxShadow: 'none',
-          padding: isMobile ? '1px 15px 15px' : '25px 25px 25px',
-          minHeight: 'auto',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'flex-start',
-          backgroundColor: 'rgba(255, 255, 255, 0.7)'
-        }}>
-          <Typography variant="h2" style={{ 
-            color: '#444',
-            fontSize: isMobile ? '23px' : '30px',
-            letterSpacing: '4px',
-            marginBottom: '20px',
-            paddingBottom:'15px',
-            fontWeight: 300,
-            lineHeight: isMobile ? '23px' : '28px',
-            textTransform: 'uppercase',
-            textAlign: 'center'
-          }}>
-            Nosotros
-          </Typography>
-          <Container maxWidth="md" style={{ flexGrow: 1, display: 'flex', alignItems: 'flex-start' }}>
-            <Fade direction='left' triggerOnce='true' delay={200}>
-              <Grid container spacing={isMobile ? 2 : 6} justifyContent="center" alignItems="flex-start">
-                <Grid item xs={12} md={6}>
-                  <Paper style={{ 
-                    padding: '10px', 
-                    boxShadow: 'none', 
-                    textAlign: 'justify',
-                    backgroundColor: 'transparent',
-                    height: '100%',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'flex-start'
+    <Router>
+      <ThemeProvider theme={theme}>
+        <Helmet>
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        </Helmet>
+        <CssBaseline />
+        <GreenIconButton
+          component="a"
+          href="https://wa.link/3311zp"
+          target="_blank"
+          rel="noopener noreferrer"
+          sx={{
+            position: 'fixed',
+            bottom: 10,
+            right: 20,
+            zIndex: 1000,
+            '&:hover': {
+              backgroundColor: '#64dd17',
+            }
+          }}
+        >
+          <WhatsAppIcon />
+        </GreenIconButton>
+        <Container maxWidth="xl" style={{ padding: 0, margin: 0, minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+          <NavBar />
+          <Routes>
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:id" element={<BlogPost />} />
+            <Route path="/" element={
+              <>
+                <Paper id="inicio" elevation={3} style={{ textAlign: 'center', boxShadow: 'none' }}>
+                  <Inicio id="inicio" />
+                </Paper>
+                <Fade triggerOnce='true'>
+                  <Servicios/>
+                </Fade>
+                <Metodologias></Metodologias>
+                <Paper id="nosotros" elevation={3} component="div" style={{ 
+                  margin: '20px 0px', 
+                  boxShadow: 'none',
+                  padding: isMobile ? '1px 15px 15px' : '25px 25px 25px',
+                  minHeight: 'auto',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'flex-start',
+                  backgroundColor: 'rgba(255, 255, 255, 0.7)'
+                }}>
+                  <Typography variant="h2" style={{ 
+                    color: '#444',
+                    fontSize: isMobile ? '23px' : '30px',
+                    letterSpacing: '4px',
+                    marginBottom: '20px',
+                    paddingBottom:'15px',
+                    fontWeight: 300,
+                    lineHeight: isMobile ? '23px' : '28px',
+                    textTransform: 'uppercase',
+                    textAlign: 'center'
                   }}>
-                    <Typography style={{
-                      fontFamily: 'Poppins, sans-serif',
-                      fontWeight: 400,
-                      textAlign: 'left',
-                      color: '#777',
-                      fontSize: isMobile ? '14px' : '15px',
-                      letterSpacing: '.03em',
-                      lineHeight: '1.8em',
-                      textTransform: 'capitalize'
+                    Nosotros
+                  </Typography>
+                  <Container maxWidth="md" style={{ flexGrow: 1, display: 'flex', alignItems: 'flex-start' }}>
+                    <Fade direction='left' triggerOnce='true' delay={200}>
+                      <Grid container spacing={isMobile ? 2 : 6} justifyContent="center" alignItems="flex-start">
+                        <Grid item xs={12} md={6}>
+                          <Paper style={{ 
+                            padding: '10px', 
+                            boxShadow: 'none', 
+                            textAlign: 'justify',
+                            backgroundColor: 'transparent',
+                            height: '100%',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            justifyContent: 'flex-start'
+                          }}>
+                            <Typography style={{
+                              fontFamily: 'Poppins, sans-serif',
+                              fontWeight: 400,
+                              textAlign: 'left',
+                              color: '#777',
+                              fontSize: isMobile ? '14px' : '15px',
+                              letterSpacing: '.03em',
+                              lineHeight: '1.8em',
+                              textTransform: 'capitalize'
+                            }}>
+                              En ADA SOFTWARE no trabajamos de manera estandarizada, sino que adaptamos las mejoras a cada organización, según sus necesidades y sus proyecciones. Nuestras soluciones son a medida de cada cliente.
+
+                              Contamos con años de trayectoria en el mercado que nos permiten analizar, proponer mejoras, resolver problemas y generar cambios superadores desde una mirada experimentada y profesional.
+
+                              Trabajamos codo a codo con cada cliente para resolver, optimizar y generar nuevos proyectos.
+
+                              Somos el aliado que tu equipo de trabajo necesita.
+                              Somos ADA SOFTWARE – Fabricamos soluciones.
+                            </Typography>
+                          </Paper>
+                        </Grid>
+                        <Grid item xs={12} md={6} style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-start' }}>
+                          <GridItemNosotros />
+                        </Grid>
+                      </Grid>
+                    </Fade>
+                  </Container>
+                </Paper>
+                <Paper id="contacto" elevation={3} style={{
+                  boxShadow: 'none',
+                  backgroundImage: `url(${process.env.PUBLIC_URL}/images/Contact.png)`,
+                  backgroundRepeat: 'no-repeat',
+                  backgroundSize: 'cover',
+                  overflow: 'hidden',
+                  position: 'relative',
+                  padding: '100px 20px',
+                  '@media (max-width: 991px)': {
+                    backgroundPosition: '50%',
+                  },
+                  '@media (max-width: 1024px)': {
+                    backgroundSize: 'cover',
+                  },
+                  '@media (max-width: 576px)': {
+                    paddingTop: '50px',
+                    paddingBottom: '50px',
+                    backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url(${process.env.PUBLIC_URL}/images/Contact.png)`,
+                    backgroundBlendMode: 'overlay',
+                  },
+                  '@media (max-width: 1199px)': {
+                    paddingBottom: '80px',
+                    paddingTop: '80px',
+                  },
+                  display: 'block'
+                }}>
+                  <div className="contact-decor" style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, zIndex: 1 }}>
+                    <div className="contact-circle1" style={{
+                      bottom: '300px',
+                      left: '300px',
+                      position: 'absolute',
+                      animation: 'moveleftbounce 3s linear infinite',
+                      '@media (max-width: 1199px)': {
+                        left: '280px',
+                        position: 'absolute',
+                        top: 'auto',
+                      }
                     }}>
-                      En ADA SOFTWARE no trabajamos de manera estandarizada, sino que adaptamos las mejoras a cada organización, según sus necesidades y sus proyecciones. Nuestras soluciones son a medida de cada cliente.
-
-                      Contamos con años de trayectoria en el mercado que nos permiten analizar, proponer mejoras, resolver problemas y generar cambios superadores desde una mirada experimentada y profesional.
-
-                      Trabajamos codo a codo con cada cliente para resolver, optimizar y generar nuevos proyectos.
-
-                      Somos el aliado que tu equipo de trabajo necesita.
-                      Somos ADA SOFTWARE – Fabricamos soluciones.
+                      <img src={`${process.env.PUBLIC_URL}/images/main-banner12.png`} alt="" style={{ verticalAlign: 'middle' }} />
+                    </div>
+                    <div className="contact-circle2" style={{
+                      bottom: '90px',
+                      left: '175px',
+                      position: 'absolute',
+                      animation: 'moveleftbounce 3.9s linear infinite',
+                      '@media (max-width: 1024px)': {
+                        bottom: '0',
+                        left: '10%',
+                        top: 'auto',
+                      },
+                      '@media (max-width: 1199px)': {
+                        top: 'auto',
+                      }
+                    }}>
+                      <img src={`${process.env.PUBLIC_URL}/images/main-banner1.png`} alt="" style={{ verticalAlign: 'middle' }} />
+                    </div>
+                  </div>
+                  <Container maxWidth="md" style={{ padding: '20px', position: 'relative', zIndex: 2 }}>
+                    <Typography variant="h2" style={{ 
+                      color: '#444',
+                      fontSize: isMobile ? '23px' : '28px',
+                      letterSpacing: '4px',
+                      marginBottom: '32px',
+                      fontWeight: 300,
+                      lineHeight: isMobile ? '23px' : '28px',
+                      textTransform: 'uppercase',
+                      textAlign: 'center',
+                      paddingBottom: '20px'
+                    }}>
+                      Contacto
                     </Typography>
-                  </Paper>
-                </Grid>
-                <Grid item xs={12} md={6} style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-start' }}>
-                  <GridItemNosotros />
-                </Grid>
-              </Grid>
-            </Fade>
-          </Container>
-        </Paper>
-        <Paper id="contacto" elevation={3} style={{
-          boxShadow: 'none',
-          backgroundImage: `url(${process.env.PUBLIC_URL}/images/Contact.png)`,
-          backgroundRepeat: 'no-repeat',
-          backgroundSize: 'cover',
-          overflow: 'hidden',
-          position: 'relative',
-          padding: '100px 20px',
-          '@media (max-width: 991px)': {
-            backgroundPosition: '50%',
-          },
-          '@media (max-width: 1024px)': {
-            backgroundSize: 'cover',
-          },
-          '@media (max-width: 576px)': {
-            paddingTop: '50px',
-            paddingBottom: '50px',
-            backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url(${process.env.PUBLIC_URL}/images/Contact.png)`,
-            backgroundBlendMode: 'overlay',
-          },
-          '@media (max-width: 1199px)': {
-            paddingBottom: '80px',
-            paddingTop: '80px',
-          },
-          display: 'block'
-        }}>
-          <div className="contact-decor" style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, zIndex: 1 }}>
-            <div className="contact-circle1" style={{
-              bottom: '300px',
-              left: '300px',
-              position: 'absolute',
-              animation: 'moveleftbounce 3s linear infinite',
-              '@media (max-width: 1199px)': {
-                left: '280px',
-                position: 'absolute',
-                top: 'auto',
-              }
-            }}>
-              <img src={`${process.env.PUBLIC_URL}/images/main-banner12.png`} alt="" style={{ verticalAlign: 'middle' }} />
-            </div>
-            <div className="contact-circle2" style={{
-              bottom: '90px',
-              left: '175px',
-              position: 'absolute',
-              animation: 'moveleftbounce 3.9s linear infinite',
-              '@media (max-width: 1024px)': {
-                bottom: '0',
-                left: '10%',
-                top: 'auto',
-              },
-              '@media (max-width: 1199px)': {
-                top: 'auto',
-              }
-            }}>
-              <img src={`${process.env.PUBLIC_URL}/images/main-banner1.png`} alt="" style={{ verticalAlign: 'middle' }} />
-            </div>
-          </div>
-          <Container maxWidth="md" style={{ padding: '20px', position: 'relative', zIndex: 2 }}>
-            <Typography variant="h2" style={{ 
-              color: '#444',
-              fontSize: isMobile ? '23px' : '28px',
-              letterSpacing: '4px',
-              marginBottom: '32px',
-              fontWeight: 300,
-              lineHeight: isMobile ? '23px' : '28px',
-              textTransform: 'uppercase',
-              textAlign: 'center',
-              paddingBottom: '20px'
-            }}>
-              Contacto
-            </Typography>
-            <Formulario></Formulario>
-          </Container>
-          <style>
-            {`
-              img, svg {
-                vertical-align: middle;
-              }
-              img {
-                border-style: none;
-              }
-              @media (max-width: 991px) {
-                #contacto {
-                  background-position: 50%;
-                }
-              }
-              @media (max-width: 1024px) {
-                #contacto {
-                  background-size: cover;
-                }
-              }
-              #contacto {
-                background-repeat: no-repeat;
-                background-size: cover;
-                overflow: hidden;
-                position: 'relative';
-              }
-              @media (max-width: 576px) {
-                #contacto {
-                  padding-bottom: 50px;
-                  padding-top: 50px;
-                }
-              }
-              @media (max-width: 1199px) {
-                #contacto {
-                  padding-bottom: 80px;
-                  padding-top: 80px;
-                }
-              }
-              #contacto {
-                padding-bottom: 100px;
-                padding-top: 100px;
-                position: relative;
-                display: block;
-              }
-              .MuiInputBase-root {
-                background-color: rgba(255, 255, 255, 0.8) !important;
-                z-index: 1;
-              }
-              .MuiInputLabel-root {
-                z-index: 2;
-                background-color: transparent !important;
-              }
-              .MuiInputBase-input::placeholder {
-                opacity: 1 !important;
-                color: rgba(0, 0, 0, 0.6) !important;
-              }
-            `}
-          </style>
-        </Paper>
-        <Footer/>
-      </Container>
-    </ThemeProvider>
+                    <Formulario></Formulario>
+                  </Container>
+                  <style>
+                    {`
+                      img, svg {
+                        vertical-align: middle;
+                      }
+                      img {
+                        border-style: none;
+                      }
+                      @media (max-width: 991px) {
+                        #contacto {
+                          background-position: 50%;
+                        }
+                      }
+                      @media (max-width: 1024px) {
+                        #contacto {
+                          background-size: cover;
+                        }
+                      }
+                      #contacto {
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                        overflow: hidden;
+                        position: 'relative';
+                      }
+                      @media (max-width: 576px) {
+                        #contacto {
+                          padding-bottom: 50px;
+                          padding-top: 50px;
+                        }
+                      }
+                      @media (max-width: 1199px) {
+                        #contacto {
+                          padding-bottom: 80px;
+                          padding-top: 80px;
+                        }
+                      }
+                      #contacto {
+                        padding-bottom: 100px;
+                        padding-top: 100px;
+                        position: relative;
+                        display: block;
+                      }
+                      .MuiInputBase-root {
+                        background-color: rgba(255, 255, 255, 0.8) !important;
+                        z-index: 1;
+                      }
+                      .MuiInputLabel-root {
+                        z-index: 2;
+                        background-color: transparent !important;
+                      }
+                      .MuiInputBase-input::placeholder {
+                        opacity: 1 !important;
+                        color: rgba(0, 0, 0, 0.6) !important;
+                      }
+                    `}
+                  </style>
+                </Paper>
+                <Footer/>
+              </>
+            } />
+          </Routes>
+        </Container>
+      </ThemeProvider>
+    </Router>
   );
 }
 
