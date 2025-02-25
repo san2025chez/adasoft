@@ -22,7 +22,7 @@ import Inicio from './components/Inicio';
 import Servicios from './components/Servicios';
 import Footer from './components/Footer/Footer';
 import {Fade} from 'react-awesome-reveal'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
 import Metodologias from "./components/metodologias";
