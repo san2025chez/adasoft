@@ -25,7 +25,10 @@ const BlogPost = () => {
     return null;
   }
 
-  const shareUrl = window.location.href;
+  // Construir URLs absolutas
+  const baseUrl = 'https://adasoft.com.ar';
+  const shareUrl = `${baseUrl}/blog/${id}`;
+  const imageUrl = post.image.startsWith('http') ? post.image : `${baseUrl}${post.image}`;
   
   // Filtrar posts relacionados (excluyendo el post actual)
   const relatedPosts = blogPosts
@@ -35,17 +38,18 @@ const BlogPost = () => {
   return (
     <>
       <Helmet>
-        <title>{post.title}</title>
+        <title>{post.title} | ADASOFT</title>
         <meta name="description" content={post.description} />
+        <link rel="canonical" href={shareUrl} />
         
         {/* Open Graph / Facebook Meta Tags */}
         <meta property="og:url" content={shareUrl} />
         <meta property="og:type" content="article" />
-        <meta property="og:title" content={post.title} />
+        <meta property="og:title" content={`${post.title} | ADASOFT`} />
         <meta property="og:description" content={post.description} />
-        <meta property="og:image" content={post.image} />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
+        <meta property="og:image" content={imageUrl} />
+        <meta property="og:image:secure_url" content={imageUrl} />
+        <meta property="og:image:type" content="image/jpeg" />
         <meta property="og:site_name" content="ADASOFT" />
         
         {/* WhatsApp specific meta tags */}
@@ -53,9 +57,11 @@ const BlogPost = () => {
         
         {/* Twitter Meta Tags */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={post.title} />
+        <meta name="twitter:site" content="@ADASOFT" />
+        <meta name="twitter:creator" content="@ADASOFT" />
+        <meta name="twitter:title" content={`${post.title} | ADASOFT`} />
         <meta name="twitter:description" content={post.description} />
-        <meta name="twitter:image" content={post.image} />
+        <meta name="twitter:image" content={imageUrl} />
         <meta name="twitter:image:alt" content={post.title} />
       </Helmet>
       
@@ -75,7 +81,7 @@ const BlogPost = () => {
                 objectFit: 'cover',
                 objectPosition: 'center',
               }}
-              image={post.image}
+              image={imageUrl}
               alt={post.title}
             />
             <Box sx={{ p: { xs: 3, md: 5 } }}>
@@ -150,7 +156,7 @@ const BlogPost = () => {
                   <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' } }}>
                     <Box sx={{ width: { xs: '100%', sm: '200px' }, height: { xs: '200px', sm: 'auto' } }}>
                       <img 
-                        src={post.image} 
+                        src={imageUrl} 
                         alt={post.title}
                         style={{ 
                           width: '100%', 

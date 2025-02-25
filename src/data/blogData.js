@@ -4,8 +4,8 @@ export const blogPosts = [
     title: 'Desarrollo Web Moderno',
     subtitle: 'Tendencias y mejores prácticas',
     date: '24 Feb 2025',
-    image: '/images/blog-1.jpg',
-    description: 'Descubre las últimas tendencias en desarrollo web y cómo implementar las mejores prácticas en tus proyectos.',
+    image: 'https://adasoft.com.ar/images/blog-1.jpg',
+    description: '¿Por qué tu negocio necesita una página web? Descubre cómo la presencia digital puede impulsar tu credibilidad, alcance global y ventas en el mundo actual. 🚀 #DesarrolloWeb #Marketing',
     content: `
 <h3>Por qué Tener una Página Web es Imprescindible en el Mundo Digital Actual</h3>
 En la era digital en la que vivimos, tener una presencia en línea ya no es una opción, sino una necesidad. Ya seas un emprendedor, un profesional independiente, una pequeña empresa o incluso una gran corporación, una página web es tu tarjeta de presentación en el mundo virtual. Pero, ¿por qué es tan importante? Como experto en desarrollo de software y ventas de servicios digitales, te explicaré las razones clave por las que toda persona o negocio debería tener una página web.
@@ -47,7 +47,7 @@ En resumen, tener una página web no es solo una ventaja, es una necesidad en el
     title: 'Inteligencia Artificial en 2025',
     subtitle: 'El futuro de la tecnología',
     date: '23 Feb 2025',
-    image: '/images/blog-2.jpg',
+    image: 'https://adasoft.com.ar/images/blog-2.jpg',
     description: 'Explora cómo la IA está transformando la industria del software y qué podemos esperar en los próximos años.',
     content: `El Machine Learning (ML) es una rama de la inteligencia artificial que permite a las máquinas aprender de datos y mejorar su rendimiento sin ser programadas explícitamente. Desde recomendaciones personalizadas en Netflix hasta diagnósticos médicos precisos, el ML está revolucionando industrias enteras.
 
@@ -84,7 +84,7 @@ El algoritmo aprende mediante prueba y error, recibiendo recompensas por decisio
     title: 'Seguridad en Aplicaciones Web',
     subtitle: 'Protegiendo tu aplicación',
     date: '22 Feb 2025',
-    image: '/images/blog-3.webp',
+    image: 'https://adasoft.com.ar/images/blog-3.webp',
     description: 'Aprende las mejores prácticas de seguridad para proteger tus aplicaciones web contra amenazas modernas.',
     content: `La seguridad es un aspecto crucial en el desarrollo de aplicaciones web modernas. Con el aumento de las amenazas cibernéticas, es fundamental implementar medidas de seguridad robustas.
 
