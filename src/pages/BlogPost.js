@@ -99,37 +99,12 @@ const BlogPost = () => {
               <Typography 
                 variant="body1" 
                 component="div"
-                sx={{ 
-                  mb: 4,
-                  fontSize: { xs: '1rem', md: '1.1rem' },
-                  lineHeight: 1.8,
-                  '& h2': {
-                    fontSize: '1.8rem',
-                    fontWeight: 'bold',
-                    color: '#333',
-                    marginTop: '2rem',
-                    marginBottom: '1rem'
-                  },
-                  '& h3': {
-                    fontSize: '1.5rem',
-                    fontWeight: 'bold',
-                    color: '#444',
-                    marginTop: '1.5rem',
-                    marginBottom: '0.8rem'
-                  },
-                  '& h4': {
-                    fontSize: '1.2rem',
-                    fontWeight: 'bold',
-                    color: '#555',
-                    marginTop: '1.2rem',
-                    marginBottom: '0.6rem'
-                  },
-                  '& p': {
-                    marginBottom: '1rem'
-                  },
-                  '& strong': {
-                    fontWeight: 'bold',
-                    color: '#444'
+                sx={{
+                  color: '#333',
+                  lineHeight: 1.7,
+                  fontSize: { 
+                    xs: '0.875rem', 
+                    sm: '1rem' 
                   }
                 }}
                 dangerouslySetInnerHTML={{ __html: post.content }}
