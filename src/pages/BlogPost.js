@@ -38,18 +38,25 @@ const BlogPost = () => {
         <title>{post.title}</title>
         <meta name="description" content={post.description} />
         
-        {/* Facebook Meta Tags */}
+        {/* Open Graph / Facebook Meta Tags */}
         <meta property="og:url" content={shareUrl} />
         <meta property="og:type" content="article" />
         <meta property="og:title" content={post.title} />
         <meta property="og:description" content={post.description} />
         <meta property="og:image" content={post.image} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:site_name" content="ADASOFT" />
+        
+        {/* WhatsApp specific meta tags */}
+        <meta property="og:image:alt" content={post.title} />
         
         {/* Twitter Meta Tags */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={post.title} />
         <meta name="twitter:description" content={post.description} />
         <meta name="twitter:image" content={post.image} />
+        <meta name="twitter:image:alt" content={post.title} />
       </Helmet>
       
       <Box sx={{ 
