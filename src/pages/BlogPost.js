@@ -25,7 +25,7 @@ const BlogPost = () => {
     return null;
   }
 
-  const shareUrl = 'https://www.facebook.com/anasanchez2022/friends';
+  const shareUrl = window.location.href;
   
   // Filtrar posts relacionados (excluyendo el post actual)
   const relatedPosts = blogPosts
