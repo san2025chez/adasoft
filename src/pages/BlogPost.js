@@ -38,8 +38,10 @@ if (!id) {
   // Construir URLs absolutas
   const baseUrl = 'https://adasoft.com.ar';
   const shareUrl = `${baseUrl}/#/blog/${id}`;
-  const imageUrl = post.image.startsWith('http') ? post.image : `${baseUrl}${post.image}`;
-  
+/*   const imageUrl = post.image.startsWith('http') ? post.image : `${baseUrl}${post.image}`;
+ */  
+const imageUrl = `${baseUrl}${post.image}`;
+
   // Filtrar posts relacionados (excluyendo el post actual)
   const relatedPosts = blogPosts
     .filter(p => p.id !== id)
@@ -197,22 +199,30 @@ if (!id) {
                     '& button': {
                       transition: 'transform 0.2s',
                       '&:hover': {
-                        transform: 'translateY(-4px)'
+                        transform: 'scale(1.1)'
                       }
                     }
                   }}
                 >
-                  <FacebookShareButton url={shareUrl} quote={post.title} hashtags={['IA', 'MachineLearning', 'InteligenciaArtificial','adaSoftware']}>
-                    <FacebookIcon size={56} round />
+                  <FacebookShareButton url={shareUrl} quote={post.title}>
+                    <FacebookIcon size={40} round />
                   </FacebookShareButton>
-                  <TwitterShareButton url={shareUrl} title={post.title} hashtags={[['IA', 'MachineLearning', 'InteligenciaArtificial','adaSoftware']]}>
-                    <TwitterIcon size={56} round />
+
+                  <TwitterShareButton url={shareUrl} title={post.title}>
+                    <TwitterIcon size={40} round />
                   </TwitterShareButton>
-                  <LinkedinShareButton url={shareUrl} title={post.title} summary={post.description}>
-                    <LinkedinIcon size={56} round />
+
+                  <LinkedinShareButton url={shareUrl} title={post.title}>
+                    <LinkedinIcon size={40} round />
                   </LinkedinShareButton>
-                  <WhatsappShareButton url={shareUrl} title={post.title}>
-                    <WhatsappIcon size={56} round />
+
+                  <WhatsappShareButton 
+                    url={`${shareUrl}?image=${encodeURIComponent(imageUrl)}`}
+                    title={post.title}
+                    separator=" - "
+                    media={imageUrl}
+                  >
+                    <WhatsappIcon size={40} round />
                   </WhatsappShareButton>
                 </Stack>
               </Box>
