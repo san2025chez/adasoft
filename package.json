@@ -19,6 +19,7 @@
     "react-awesome-reveal": "^4.2.8",
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
+    "react-helmet-async": "^2.0.5",
     "react-icons": "^5.3.0",
     "react-intersection-observer": "^9.5.3",
     "react-lazyload": "^3.2.0",
@@ -55,5 +56,25 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "reactSnap": {
+    "skipThirdPartyRequests": true,
+    "puppeteerArgs": [
+      "--no-sandbox",
+      "--disable-setuid-sandbox"
+    ],
+    "inlineCss": true,
+    "minifyHtml": true,
+    "fixWebpackChunksIssue": false,
+    "removeBlobs": true,
+    "cacheAjaxRequests": true,
+    "http2PushManifest": true,
+    "removeStyleTags": false,
+    "removeScriptTags": false,
+    "waitFor": 1000
+  },
+  "devDependencies": {
+    "puppeteer": "^24.3.0",
+    "react-snap": "^1.23.0"
   }
 }

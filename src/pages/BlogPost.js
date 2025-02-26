@@ -1,8 +1,8 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Container, Typography, Box, Paper, CardMedia, Stack, Grid, Card, CardContent, CardActionArea } from '@mui/material';
+import { Container, Typography, Box, Paper, CardMedia, Stack } from '@mui/material';
 import { blogPosts } from '../data/blogData';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import {
   FacebookShareButton,
   LinkedinShareButton,
@@ -24,7 +24,6 @@ const BlogPost = () => {
     return null;
   }
 
-  // Construir URLs absolutas
   const baseUrl = 'https://adasoft.com.ar';
   const shareUrl = `${baseUrl}/#/blog/${id}`;
   const imageUrl = post.image.startsWith('http') ? post.image : `${baseUrl}${post.image}`;
@@ -36,10 +35,10 @@ const BlogPost = () => {
         <meta name="description" content={post.description} />
         <link rel="canonical" href={shareUrl} />
         
-        {/* Open Graph / Facebook Meta Tags */}
+        {/* Open Graph / Facebook / WhatsApp Meta Tags */}
         <meta property="og:url" content={shareUrl} />
         <meta property="og:type" content="article" />
-        <meta property="og:title" content={`${post.title} | ADASOFT`} />
+        <meta property="og:title" content={post.title} />
         <meta property="og:description" content={post.description} />
         <meta property="og:image" content={imageUrl} />
         <meta property="og:image:secure_url" content={imageUrl} />
@@ -50,15 +49,12 @@ const BlogPost = () => {
         
         {/* Twitter Meta Tags */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@ADASOFT" />
-        <meta name="twitter:creator" content="@ADASOFT" />
-        <meta name="twitter:title" content={`${post.title} | ADASOFT`} />
+        <meta name="twitter:title" content={post.title} />
         <meta name="twitter:description" content={post.description} />
         <meta name="twitter:image" content={imageUrl} />
         <meta name="twitter:image:alt" content={post.title} />
       </Helmet>
 
-      {/* Resto del componente */}
       <Box sx={{ pt: { xs: '64px', sm: '72px' }, pb: 8, bgcolor: '#f5f5f5', minHeight: '100vh' }}>
         <Container maxWidth="lg">
           <Paper elevation={3} sx={{ overflow: 'hidden', mb: 4 }}>
@@ -77,7 +73,6 @@ const BlogPost = () => {
               </Typography>
               <Typography variant="body1" component="div" sx={{ color: '#333', lineHeight: 1.7, fontSize: { xs: '0.875rem', sm: '1rem' } }} dangerouslySetInnerHTML={{ __html: post.content }} />
               
-              {/* Botones de compartir */}
               <Box sx={{ mt: 6, p: 4, bgcolor: '#fff', borderRadius: 2, boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
                 <Typography variant="h6" sx={{ mb: 3, textAlign: 'center', fontWeight: 'bold', color: '#333' }}>
                   ¿Te gustó este artículo? ¡Compártelo!
