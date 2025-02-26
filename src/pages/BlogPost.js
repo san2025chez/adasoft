@@ -38,9 +38,9 @@ if (!id) {
   // Construir URLs absolutas
   const baseUrl = 'https://adasoft.com.ar';
   const shareUrl = `${baseUrl}/#/blog/${id}`;
-/*   const imageUrl = post.image.startsWith('http') ? post.image : `${baseUrl}${post.image}`;
- */  
-const imageUrl = `${baseUrl}${post.image}`;
+  const imageUrl = post.image.startsWith('http') ? post.image : `${baseUrl}${post.image}`;
+ 
+
 
   // Filtrar posts relacionados (excluyendo el post actual)
   const relatedPosts = blogPosts
