@@ -16,6 +16,8 @@ import {
 
 const BlogPost = () => {
   const { id } = useParams();
+  console.log("el id es:", id);
+  
   const navigate = useNavigate();
   
   const post = blogPosts.find(post => post.id === id);
@@ -25,9 +27,17 @@ const BlogPost = () => {
     return null;
   }
 
+
+if (!id) {
+  navigate('/blog');
+  return null;
+}
+
+
+
   // Construir URLs absolutas
   const baseUrl = 'https://adasoft.com.ar';
-  const shareUrl = `${baseUrl}/blog/${id}`;
+  const shareUrl = `${baseUrl}/#/blog/${id}`;
   const imageUrl = post.image.startsWith('http') ? post.image : `${baseUrl}${post.image}`;
   
   // Filtrar posts relacionados (excluyendo el post actual)
@@ -145,36 +155,39 @@ const BlogPost = () => {
                 
                 {/* Preview Card */}
                 <Paper 
-                  elevation={0} 
-                  sx={{ 
-                    mb: 4, 
-                    border: '1px solid #e0e0e0',
-                    borderRadius: 1,
-                    overflow: 'hidden'
-                  }}
-                >
-                  <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' } }}>
-                    <Box sx={{ width: { xs: '100%', sm: '200px' }, height: { xs: '200px', sm: 'auto' } }}>
-                      <img 
-                        src={imageUrl} 
-                        alt={post.title}
-                        style={{ 
-                          width: '100%', 
-                          height: '100%', 
-                          objectFit: 'cover' 
-                        }}
-                      />
-                    </Box>
-                    <Box sx={{ p: 2, flex: 1 }}>
-                      <Typography variant="subtitle1" fontWeight="bold">
-                        {post.title}
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
-                        {post.description}
-                      </Typography>
-                    </Box>
-                  </Box>
-                </Paper>
+  elevation={0} 
+  sx={{ 
+    mb: 4, 
+    border: '1px solid #e0e0e0',
+    borderRadius: 1,
+    overflow: 'hidden'
+  }}
+>
+  <Box 
+    component="article" 
+    sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' } }}
+  >
+    <Box sx={{ width: { xs: '100%', sm: '200px' }, height: { xs: '200px', sm: 'auto' } }}>
+      <img 
+        src={imageUrl} 
+        alt={post.title}
+        style={{ 
+          width: '100%', 
+          height: '100%', 
+          objectFit: 'cover' 
+        }}
+      />
+    </Box>
+    <Box sx={{ p: 2, flex: 1 }}>
+      <Typography variant="subtitle1" fontWeight="bold" component="h2">
+        {post.title}
+      </Typography>
+      <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+        {post.description}
+      </Typography>
+    </Box>
+  </Box>
+</Paper>
 
                 <Stack 
                   direction="row" 
