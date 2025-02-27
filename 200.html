@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ADASOFT</title>
+    <script type="text/javascript">
+        // Redirigir a la página principal con la ruta correcta
+        var l = window.location;
+        var path = l.pathname;
+        var redirect = l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '');
+        
+        // Si la ruta contiene blog, mantener la ruta completa
+        if (path.includes('/blog/')) {
+            redirect = redirect + path;
+        } else {
+            redirect = redirect + '/#' + path;
+        }
+        
+        window.location.replace(redirect);
+    </script>
+</head>
+<body>
+    <h1>Cargando...</h1>
+</body>
+</html>
