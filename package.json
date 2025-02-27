@@ -2,7 +2,7 @@
   "name": "my-landing-page",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://adasoft.com.ar",
+  "homepage": "https://adasoft.com.ar/",
   "dependencies": {
     "@emailjs/browser": "^3.11.0",
     "@emotion/react": "^11.11.4",
@@ -32,8 +32,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "predeploy": "npm run build && echo 'adasoft.com.ar' > ./build/CNAME && cp public/_redirects build/",
-    "deploy": "gh-pages -d build",
+    "predeploy": "npm run build && echo 'adasoft.com.ar' > ./build/CNAME && cp public/_redirects build/ && cp build/index.html build/404.html && cp build/index.html build/200.html",
+    "deploy": "gh-pages -d build -b gh-pages",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

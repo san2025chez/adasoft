@@ -19,25 +19,37 @@ const BlogPost = () => {
   const navigate = useNavigate();
   const post = blogPosts.find(post => post.id === id);
   
-  // Asegurarnos de que las URLs sean absolutas
+  // Asegurarnos de que las URLs sean absolutas y accesibles
   const baseUrl = 'https://adasoft.com.ar';
   const shareUrl = `${baseUrl}/blog/${id}`;
   
   // Forzar actualización de meta tags
   useEffect(() => {
-    if (!post) return; // Early return dentro del useEffect
-    
-    const script = document.createElement('script');
-    script.innerHTML = `
-      if (typeof window.FB !== 'undefined') {
-        window.FB.XFBML.parse();
-      }
-    `;
-    document.body.appendChild(script);
-    return () => {
-      document.body.removeChild(script);
+    if (!post) return;
+
+    // Actualizar meta tags
+    const updateMetaTags = () => {
+      // Actualizar Open Graph meta tags
+      document.querySelector('meta[property="og:url"]')?.setAttribute('content', shareUrl);
+      document.querySelector('meta[property="og:title"]')?.setAttribute('content', post.title);
+      document.querySelector('meta[property="og:description"]')?.setAttribute('content', post.description);
+      document.querySelector('meta[property="og:image"]')?.setAttribute('content', post.image.startsWith('http') ? post.image : `${baseUrl}${post.image}`);
+      
+      // Actualizar Twitter meta tags
+      document.querySelector('meta[name="twitter:url"]')?.setAttribute('content', shareUrl);
+      document.querySelector('meta[name="twitter:title"]')?.setAttribute('content', post.title);
+      document.querySelector('meta[name="twitter:description"]')?.setAttribute('content', post.description);
+      document.querySelector('meta[name="twitter:image"]')?.setAttribute('content', post.image.startsWith('http') ? post.image : `${baseUrl}${post.image}`);
     };
-  }, [post]);
+
+    // Actualizar meta tags después de que el componente se monte
+    updateMetaTags();
+
+    // Actualizar Facebook si está disponible
+    if (typeof window.FB !== 'undefined') {
+      window.FB.XFBML.parse();
+    }
+  }, [post, shareUrl]);
 
   if (!post || !id) {
     navigate('/blog');
