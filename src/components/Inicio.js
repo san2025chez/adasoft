@@ -22,8 +22,9 @@ const Inicio = () => {
                   fontWeight: 700, 
                   textTransform: 'uppercase', 
                   marginBottom: '1rem',
+                  fontSize: 'calc(1.5rem + 1pt)', // Aumenta 1 punto para escritorio por defecto
                   ...(isMobile && {
-                    fontSize: 'calc(1.5rem + 2pt)' // Aumenta 2 puntos solo en móvil
+                    fontSize: 'calc(1.5rem - 1pt)' // Reduce 1 punto solo en móvil
                   })
                 }}
               >

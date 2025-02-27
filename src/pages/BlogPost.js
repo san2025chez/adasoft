@@ -62,6 +62,7 @@ const BlogPost = () => {
         <meta property="og:image:secure_url" content={imageUrl} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content={post.title} />
         <meta property="og:site_name" content="ADASOFT" />
         
         {/* Twitter Meta Tags */}
