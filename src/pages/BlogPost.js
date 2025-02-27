@@ -25,8 +25,8 @@ const BlogPost = () => {
   }
 
   const baseUrl = 'https://adasoft.com.ar';
-  const shareUrl = `${baseUrl}/#/blog/${id}`;
-  const imageUrl = post.image.startsWith('http') ? post.image : `${baseUrl}${post.image}`;
+  const shareUrl = `${baseUrl}/blog/${id}`;
+  const imageUrl = post.image.startsWith('http') ? post.image : `${baseUrl}${post.image.startsWith('/') ? '' : '/'}${post.image}`;
 
   return (
     <>
