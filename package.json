@@ -32,7 +32,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "predeploy": "npm run build && echo 'adasoft.com.ar' > ./build/CNAME",
+    "predeploy": "npm run build && echo 'adasoft.com.ar' > ./build/CNAME && cp public/_redirects build/",
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",

@@ -160,7 +160,13 @@ export const NavBar = () => {
               color="inherit"
               aria-label="menu"
               onClick={() => setDrawerOpen(true)}
-              sx={{ color: menuIconColor }}
+              sx={{ 
+                color: menuIconColor,
+                padding: '12px',
+                '& .MuiSvgIcon-root': {
+                  fontSize: '2rem' // Aumentando el tamaño del icono
+                }
+              }}
             >
               <MenuIcon />
             </IconButton>
@@ -168,8 +174,19 @@ export const NavBar = () => {
               anchor="right"
               open={drawerOpen}
               onClose={() => setDrawerOpen(false)}
+              PaperProps={{
+                sx: {
+                  width: '280px', // Haciendo el drawer un poco más ancho
+                  '& .MuiListItem-root': {
+                    padding: '12px 24px', // Aumentando el padding de los items
+                    '& .MuiListItemText-primary': {
+                      fontSize: '1.1rem' // Aumentando el tamaño del texto
+                    }
+                  }
+                }
+              }}
             >
-              <Box sx={{ width: 250 }} role="presentation">
+              <Box sx={{ width: '100%' }} role="presentation">
                 <List>
                   {menuItems.map((item) => (
                     <ListItem

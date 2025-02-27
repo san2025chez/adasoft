@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Container, Typography, Box, Paper, CardMedia, Stack } from '@mui/material';
 import { blogPosts } from '../data/blogData';
@@ -18,31 +18,48 @@ const BlogPost = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const post = blogPosts.find(post => post.id === id);
+  
+  // Asegurarnos de que las URLs sean absolutas
+  const baseUrl = 'https://adasoft.com.ar';
+  const shareUrl = `${baseUrl}/blog/${id}`;
+  
+  // Forzar actualización de meta tags
+  useEffect(() => {
+    if (!post) return; // Early return dentro del useEffect
+    
+    const script = document.createElement('script');
+    script.innerHTML = `
+      if (typeof window.FB !== 'undefined') {
+        window.FB.XFBML.parse();
+      }
+    `;
+    document.body.appendChild(script);
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, [post]);
 
   if (!post || !id) {
     navigate('/blog');
     return null;
   }
 
-  const baseUrl = 'https://adasoft.com.ar';
-  const shareUrl = `${baseUrl}/blog/${id}`;
-  const imageUrl = post.image.startsWith('http') ? post.image : `${baseUrl}${post.image.startsWith('/') ? '' : '/'}${post.image}`;
+  const imageUrl = post.image;
 
   return (
     <>
-      <Helmet>
-        <title>{post.title} | ADASOFT</title>
+      <Helmet prioritizeSeoTags>
+        <title>{`${post.title} | ADASOFT`}</title>
         <meta name="description" content={post.description} />
         <link rel="canonical" href={shareUrl} />
         
-        {/* Open Graph / Facebook / WhatsApp Meta Tags */}
+        {/* Open Graph / Facebook Meta Tags */}
         <meta property="og:url" content={shareUrl} />
         <meta property="og:type" content="article" />
         <meta property="og:title" content={post.title} />
         <meta property="og:description" content={post.description} />
         <meta property="og:image" content={imageUrl} />
         <meta property="og:image:secure_url" content={imageUrl} />
-        <meta property="og:image:type" content="image/jpeg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:site_name" content="ADASOFT" />
@@ -52,7 +69,6 @@ const BlogPost = () => {
         <meta name="twitter:title" content={post.title} />
         <meta name="twitter:description" content={post.description} />
         <meta name="twitter:image" content={imageUrl} />
-        <meta name="twitter:image:alt" content={post.title} />
       </Helmet>
 
       <Box sx={{ pt: { xs: '64px', sm: '72px' }, pb: 8, bgcolor: '#f5f5f5', minHeight: '100vh' }}>

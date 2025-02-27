@@ -16,7 +16,17 @@ const Inicio = () => {
         <Grid item xs={12} md={6} className='centrado' style={{ fontWeight: 500, color: '#fff', fontFamily: 'Poppins, sans-serif' }}>
           <div>
             <Fade direction='down' triggerOnce='true'>
-              <Typography variant={isMobile ? 'h5' : 'h4'} style={{ fontWeight: 700, textTransform: 'uppercase', marginBottom: '1rem' }}>
+              <Typography 
+                variant={isMobile ? 'h5' : 'h4'} 
+                style={{ 
+                  fontWeight: 700, 
+                  textTransform: 'uppercase', 
+                  marginBottom: '1rem',
+                  ...(isMobile && {
+                    fontSize: 'calc(1.5rem + 2pt)' // Aumenta 2 puntos solo en móvil
+                  })
+                }}
+              >
                 ¡Potencia el crecimiento de tu negocio!
               </Typography>
             </Fade>
