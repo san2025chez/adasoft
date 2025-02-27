@@ -21,7 +21,7 @@ const BlogPost = () => {
   
   // Asegurarnos de que las URLs sean absolutas
   const baseUrl = 'https://adasoft.com.ar';
-  const shareUrl = `${baseUrl}/blog/${id}`;
+  const shareUrl = `${baseUrl}/#/blog/${id}`;
   
   // Forzar actualización de meta tags
   useEffect(() => {
