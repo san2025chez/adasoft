@@ -1,0 +1,19 @@
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.html$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-l
+RewriteRule . /index.html [L]
+
+# Habilitar CORS para los meta tags
+Header set Access-Control-Allow-Origin "*"
+
+# Configuración de caché para imágenes y recursos estáticos
+<FilesMatch "\.(jpg|jpeg|png|gif|ico)$">
+Header set Cache-Control "max-age=2592000, public"
+</FilesMatch>
+
+# Forzar HTTPS
+RewriteCond %{HTTPS} !=on
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301,NE]

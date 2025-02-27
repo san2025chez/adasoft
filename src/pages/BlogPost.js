@@ -44,7 +44,7 @@ const BlogPost = () => {
     return null;
   }
 
-  const imageUrl = post.image;
+  const imageUrl = post.image.startsWith('http') ? post.image : `${baseUrl}${post.image}`;
 
   return (
     <>
@@ -64,12 +64,22 @@ const BlogPost = () => {
         <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content={post.title} />
         <meta property="og:site_name" content="ADASOFT" />
+        <meta property="article:published_time" content={post.date} />
+        <meta property="article:author" content="ADASOFT" />
         
         {/* Twitter Meta Tags */}
         <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@adasoft" />
+        <meta name="twitter:creator" content="@adasoft" />
         <meta name="twitter:title" content={post.title} />
         <meta name="twitter:description" content={post.description} />
         <meta name="twitter:image" content={imageUrl} />
+        <meta name="twitter:image:alt" content={post.title} />
+
+        {/* Additional SEO Meta Tags */}
+        <meta name="robots" content="index, follow" />
+        <meta name="author" content="ADASOFT" />
+        <meta name="publisher" content="ADASOFT" />
       </Helmet>
 
       <Box sx={{ pt: { xs: '64px', sm: '72px' }, pb: 8, bgcolor: '#f5f5f5', minHeight: '100vh' }}>
