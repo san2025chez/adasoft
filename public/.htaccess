@@ -1,6 +1,13 @@
 RewriteEngine On
 RewriteBase /
 RewriteRule ^index\.html$ - [L]
+
+# Special handling for social media crawler user agents
+RewriteCond %{HTTP_USER_AGENT} (facebookexternalhit|Twitterbot|LinkedInBot|WhatsApp|Discordbot|TelegramBot|Pinterest|Slackbot) [NC]
+RewriteCond %{REQUEST_URI} ^/blog/([^/]+)$ [NC]
+RewriteRule ^blog/(.*)$ /blog/%1.html [L]
+
+# Normal SPA routing
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-l
@@ -17,3 +24,8 @@ Header set Cache-Control "max-age=2592000, public"
 # Forzar HTTPS
 RewriteCond %{HTTPS} !=on
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301,NE]
+
+# Configuración específica para compartir en redes sociales
+<FilesMatch "^blog/.*\.html$">
+    Header set Cache-Control "max-age=86400, public"
+</FilesMatch>

@@ -23,32 +23,19 @@ const BlogPost = () => {
   const baseUrl = 'https://adasoft.com.ar';
   const shareUrl = `${baseUrl}/blog/${id}`;
   
-  // Forzar actualización de meta tags
   useEffect(() => {
     if (!post) return;
-
-    // Actualizar meta tags
-    const updateMetaTags = () => {
-      // Actualizar Open Graph meta tags
-      document.querySelector('meta[property="og:url"]')?.setAttribute('content', shareUrl);
-      document.querySelector('meta[property="og:title"]')?.setAttribute('content', post.title);
-      document.querySelector('meta[property="og:description"]')?.setAttribute('content', post.description);
-      document.querySelector('meta[property="og:image"]')?.setAttribute('content', post.image.startsWith('http') ? post.image : `${baseUrl}${post.image}`);
-      
-      // Actualizar Twitter meta tags
-      document.querySelector('meta[name="twitter:url"]')?.setAttribute('content', shareUrl);
-      document.querySelector('meta[name="twitter:title"]')?.setAttribute('content', post.title);
-      document.querySelector('meta[name="twitter:description"]')?.setAttribute('content', post.description);
-      document.querySelector('meta[name="twitter:image"]')?.setAttribute('content', post.image.startsWith('http') ? post.image : `${baseUrl}${post.image}`);
-    };
-
-    // Actualizar meta tags después de que el componente se monte
-    updateMetaTags();
-
-    // Actualizar Facebook si está disponible
+    
+    // Actualizar Facebook si está disponible (esto ayuda con FBXML)
     if (typeof window.FB !== 'undefined') {
       window.FB.XFBML.parse();
     }
+    
+    // Aseguramos que las meta tags se carguen correctamente para crawlers
+    document.querySelector('meta[property="og:url"]')?.setAttribute('content', shareUrl);
+    document.querySelector('meta[property="og:title"]')?.setAttribute('content', post.title);
+    document.querySelector('meta[property="og:description"]')?.setAttribute('content', post.description);
+    document.querySelector('meta[property="og:image"]')?.setAttribute('content', post.image.startsWith('http') ? post.image : `${baseUrl}${post.image}`);
   }, [post, shareUrl]);
 
   if (!post || !id) {
@@ -83,6 +70,7 @@ const BlogPost = () => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@adasoft" />
         <meta name="twitter:creator" content="@adasoft" />
+        <meta name="twitter:url" content={shareUrl} />
         <meta name="twitter:title" content={post.title} />
         <meta name="twitter:description" content={post.description} />
         <meta name="twitter:image" content={imageUrl} />
@@ -117,16 +105,16 @@ const BlogPost = () => {
                   ¿Te gustó este artículo? ¡Compártelo!
                 </Typography>
                 <Stack direction="row" spacing={2} justifyContent="center">
-                  <FacebookShareButton url={shareUrl} quote={post.title}>
+                  <FacebookShareButton url={shareUrl} quote={post.title} description={post.description} hashtag="#ADASOFT">
                     <FacebookIcon size={40} round />
                   </FacebookShareButton>
-                  <TwitterShareButton url={shareUrl} title={post.title}>
+                  <TwitterShareButton url={shareUrl} title={post.title} via="adasoft" hashtags={["Automatización", "Productividad", "Tecnología"]}>
                     <TwitterIcon size={40} round />
                   </TwitterShareButton>
-                  <LinkedinShareButton url={shareUrl} title={post.title}>
+                  <LinkedinShareButton url={shareUrl} title={post.title} summary={post.description} source="ADASOFT">
                     <LinkedinIcon size={40} round />
                   </LinkedinShareButton>
-                  <WhatsappShareButton url={shareUrl} title={post.title}>
+                  <WhatsappShareButton url={shareUrl} title={`${post.title}\n${post.description}`}>
                     <WhatsappIcon size={40} round />
                   </WhatsappShareButton>
                 </Stack>
