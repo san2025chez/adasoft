@@ -1,38 +1,91 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <meta charset="utf-8">
-    <title>ADASOFT - Redirigiendo...</title>
-    <script type="text/javascript">
-        // Función para obtener los parámetros de la URL
-        function getQueryParameters() {
-            var params = {};
-            window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi,
-                function(str, key, value) {
-                    params[key] = value;
-                }
-            );
-            return params;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, follow">
+    <title>Página no encontrada | ADASOFT - Desarrollo de Software</title>
+    <meta name="description" content="Lo sentimos, la página que estás buscando no existe o ha sido movida. Descubre nuestros servicios de desarrollo de software y diseño web.">
+    <style>
+        body {
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f9ff;
+            color: #333;
+            line-height: 1.6;
         }
-
-        // Redirigir a la página principal con la ruta correcta
-        var segmentCount = 0;
-        var location = window.location;
-        var redirect = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '');
-        var path = location.pathname;
-        
-        // Si la ruta contiene blog, mantener la ruta completa
-        if (path.includes('/blog/')) {
-            redirect = redirect + path;
-        } else {
-            redirect = redirect + path;
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            text-align: center;
         }
-        
-        window.location.replace(redirect);
+        .logo {
+            max-width: 180px;
+            margin-bottom: 30px;
+        }
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #2A1BA1;
+        }
+        p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+        .error-code {
+            font-size: 120px;
+            font-weight: bold;
+            color: rgba(42, 27, 161, 0.1);
+            margin: 0;
+            line-height: 1;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #2A1BA1;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s;
+            margin: 10px;
+        }
+        .btn:hover {
+            background-color: #1F147D;
+        }
+        .btn.secondary {
+            background-color: transparent;
+            border: 2px solid #2A1BA1;
+            color: #2A1BA1;
+        }
+        .btn.secondary:hover {
+            background-color: rgba(42, 27, 161, 0.1);
+        }
+        .links {
+            margin-top: 40px;
+        }
+    </style>
+    <script>
+        // Script para redirigir a la página principal después de 10 segundos
+        setTimeout(function() {
+            window.location.href = 'https://adasoft.com.ar/';
+        }, 10000);
     </script>
 </head>
 <body>
-    <h1>Redirigiendo...</h1>
-    <p>Si no eres redirigido automáticamente, <a href="/">haz clic aquí</a>.</p>
+    <div class="container">
+        <img src="/images/logotrans2.png" alt="ADASOFT Logo" class="logo">
+        <p class="error-code">404</p>
+        <h1>Página no encontrada</h1>
+        <p>Lo sentimos, la página que estás buscando no existe o ha sido movida.</p>
+        <p>Serás redirigido automáticamente a nuestra página principal en 10 segundos.</p>
+        
+        <div class="links">
+            <a href="https://adasoft.com.ar/" class="btn">Ir a la página principal</a>
+            <a href="https://adasoft.com.ar/#/contacto" class="btn secondary">Contactar con nosotros</a>
+        </div>
+    </div>
 </body>
 </html>
