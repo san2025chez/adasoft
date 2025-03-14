@@ -7,6 +7,11 @@ RewriteCond %{HTTP_USER_AGENT} (facebookexternalhit|Twitterbot|LinkedInBot|Whats
 RewriteCond %{REQUEST_URI} ^/blog/([^/]+)$ [NC]
 RewriteRule ^blog/(.*)$ /blog/%1.html [L]
 
+# Handle direct access to blog URLs
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_URI} ^/blog/([^/]+)$ [NC]
+RewriteRule ^blog/(.*)$ /blog/%1.html [L]
+
 # Normal SPA routing
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

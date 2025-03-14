@@ -7,14 +7,14 @@
   
   <!-- SEO Meta Tags -->
   <title>¿Make o n8n? ¿Cuál elegir para automatizar tus flujos de trabajo? | ADASOFT</title>
-  <meta name="description" content="Descubre las diferencias clave entre Make o n8n para elegir la mejor herramienta de automatización para tus necesidades. 🚀 #Automatización #Productividad" />
+  <meta name="description" content="Descubre las diferencias clave entre Make o n8n para elegir la mejor herramienta de automatización para tus necesidades. #Automatización #Productividad" />
   <link rel="canonical" href="https://adasoft.com.ar/blog/make-vs-n8n" />
   
   <!-- Open Graph / Facebook Meta Tags -->
   <meta property="og:url" content="https://adasoft.com.ar/blog/make-vs-n8n" />
   <meta property="og:type" content="article" />
   <meta property="og:title" content="¿Make o n8n? ¿Cuál elegir para automatizar tus flujos de trabajo?" />
-  <meta property="og:description" content="Descubre las diferencias clave entre Make o n8n para elegir la mejor herramienta de automatización para tus necesidades. 🚀 #Automatización #Productividad" />
+  <meta property="og:description" content="Descubre las diferencias clave entre Make o n8n para elegir la mejor herramienta de automatización para tus necesidades. #Automatización #Productividad" />
   <meta property="og:image" content="https://adasoft.com.ar/images/make-vs-n8n.jpg" />
   <meta property="og:image:secure_url" content="https://adasoft.com.ar/images/make-vs-n8n.jpg" />
   <meta property="og:image:width" content="1200" />
@@ -30,7 +30,7 @@
   <meta name="twitter:creator" content="@adasoft" />
   <meta name="twitter:url" content="https://adasoft.com.ar/blog/make-vs-n8n" />
   <meta name="twitter:title" content="¿Make o n8n? ¿Cuál elegir para automatizar tus flujos de trabajo?" />
-  <meta name="twitter:description" content="Descubre las diferencias clave entre Make o n8n para elegir la mejor herramienta de automatización para tus necesidades. 🚀 #Automatización #Productividad" />
+  <meta name="twitter:description" content="Descubre las diferencias clave entre Make o n8n para elegir la mejor herramienta de automatización para tus necesidades. #Automatización #Productividad" />
   <meta name="twitter:image" content="https://adasoft.com.ar/images/make-vs-n8n.jpg" />
   <meta name="twitter:image:alt" content="¿Make o n8n? ¿Cuál elegir para automatizar tus flujos de trabajo?" />
 
@@ -43,9 +43,16 @@
   <link rel="icon" href="/images/logotrans2.png" />
   <link rel="apple-touch-icon" href="/images/logotrans2.png" />
   
-  <!-- Redirect to the actual React app -->
+  <!-- Redirect script with hash-based routing -->
   <script>
-    window.location.href = '/blog/make-vs-n8n';
+    // Detectar si es un crawler de redes sociales
+    const isSocialCrawler = /facebookexternalhit|Twitterbot|LinkedInBot|WhatsApp|Discordbot|TelegramBot|Pinterest|Slackbot/i.test(navigator.userAgent);
+    
+    // Solo redireccionar si NO es un crawler
+    if (!isSocialCrawler) {
+      // Usar hash-based routing para evitar problemas de redirección
+      window.location.replace('/#/blog/make-vs-n8n');
+    }
   </script>
   <style>
     body {
@@ -80,8 +87,11 @@
 <body>
   <div class="container">
     <h1>¿Make o n8n? ¿Cuál elegir para automatizar tus flujos de trabajo?</h1>
-    <p>Descubre las diferencias clave entre Make o n8n para elegir la mejor herramienta de automatización para tus necesidades. 🚀 #Automatización #Productividad</p>
-    <p class="redirect">Redirigiendo a la página del blog...</p>
+    <p>Descubre las diferencias clave entre Make o n8n para elegir la mejor herramienta de automatización para tus necesidades. #Automatización #Productividad</p>
+    <p class="redirect">Cargando el blog...</p>
+    <noscript>
+      <p>Esta página requiere JavaScript para funcionar correctamente. Por favor, habilítalo en tu navegador o <a href="https://adasoft.com.ar">visita nuestra página principal</a>.</p>
+    </noscript>
   </div>
 </body>
 </html>

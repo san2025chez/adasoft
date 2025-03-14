@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { Container, Typography, Box, Paper, CardMedia, Stack } from '@mui/material';
 import { blogPosts } from '../data/blogData';
 import { Helmet } from 'react-helmet-async';
@@ -17,6 +17,7 @@ import {
 const BlogPost = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
   const post = blogPosts.find(post => post.id === id);
   
   // Asegurarnos de que las URLs sean absolutas y accesibles
@@ -24,8 +25,17 @@ const BlogPost = () => {
   const shareUrl = `${baseUrl}/blog/${id}`;
   
   useEffect(() => {
-    if (!post) return;
+    // Debug para ayudar en el diagnóstico
+    console.log('Cargando blog post:', id);
+    console.log('Location:', location.pathname);
     
+    // Si no se encuentra el post, redirigir al blog
+    if (!post) {
+      console.error(`Post no encontrado: ${id}`);
+      navigate('/blog');
+      return;
+    }
+
     // Actualizar Facebook si está disponible (esto ayuda con FBXML)
     if (typeof window.FB !== 'undefined') {
       window.FB.XFBML.parse();
@@ -36,19 +46,53 @@ const BlogPost = () => {
     document.querySelector('meta[property="og:title"]')?.setAttribute('content', post.title);
     document.querySelector('meta[property="og:description"]')?.setAttribute('content', post.description);
     document.querySelector('meta[property="og:image"]')?.setAttribute('content', post.image.startsWith('http') ? post.image : `${baseUrl}${post.image}`);
-  }, [post, shareUrl]);
 
-  if (!post || !id) {
-    navigate('/blog');
+    // Añadir palabras clave relevantes al título de la página
+    document.title = `${post.title} | ADASOFT - Desarrollo de Software y Diseño Web`;
+  }, [post, shareUrl, id, location, navigate]);
+
+  // Si no hay post, no renderizamos nada (el efecto se encargará de redirigir)
+  if (!post) {
     return null;
   }
 
   const imageUrl = post.image.startsWith('http') ? post.image : `${baseUrl}${post.image}`;
+  
+  // Crear fecha en formato ISO para Schema.org
+  const isoDate = post.date ? new Date(post.date).toISOString() : new Date().toISOString();
+
+  // Preparar Schema.org JSON-LD para el artículo
+  const schemaOrgArticle = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    'mainEntityOfPage': {
+      '@type': 'WebPage',
+      '@id': shareUrl
+    },
+    'headline': post.title,
+    'description': post.description,
+    'image': imageUrl,
+    'author': {
+      '@type': 'Organization',
+      'name': 'ADASOFT',
+      'url': 'https://adasoft.com.ar'
+    },
+    'publisher': {
+      '@type': 'Organization',
+      'name': 'ADASOFT',
+      'logo': {
+        '@type': 'ImageObject',
+        'url': 'https://adasoft.com.ar/images/logotrans2.png'
+      }
+    },
+    'datePublished': isoDate,
+    'dateModified': isoDate
+  };
 
   return (
     <>
       <Helmet prioritizeSeoTags>
-        <title>{`${post.title} | ADASOFT`}</title>
+        <title>{`${post.title} | ADASOFT - Desarrollo de Software y Diseño Web`}</title>
         <meta name="description" content={post.description} />
         <link rel="canonical" href={shareUrl} />
         
@@ -63,8 +107,10 @@ const BlogPost = () => {
         <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content={post.title} />
         <meta property="og:site_name" content="ADASOFT" />
-        <meta property="article:published_time" content={post.date} />
+        <meta property="article:published_time" content={isoDate} />
         <meta property="article:author" content="ADASOFT" />
+        <meta property="article:section" content="Tecnología" />
+        <meta property="article:tag" content="software, desarrollo web, diseño web, servicios informáticos" />
         
         {/* Twitter Meta Tags */}
         <meta name="twitter:card" content="summary_large_image" />
@@ -77,9 +123,15 @@ const BlogPost = () => {
         <meta name="twitter:image:alt" content={post.title} />
 
         {/* Additional SEO Meta Tags */}
-        <meta name="robots" content="index, follow" />
+        <meta name="robots" content="index, follow, max-image-preview:large" />
         <meta name="author" content="ADASOFT" />
         <meta name="publisher" content="ADASOFT" />
+        <meta name="keywords" content="desarrollo software, páginas web, aplicaciones, diseño web, software a medida, soluciones tecnológicas" />
+        
+        {/* Schema.org JSON-LD structured data */}
+        <script type="application/ld+json">
+          {JSON.stringify(schemaOrgArticle)}
+        </script>
       </Helmet>
 
       <Box sx={{ pt: { xs: '64px', sm: '72px' }, pb: 8, bgcolor: '#f5f5f5', minHeight: '100vh' }}>

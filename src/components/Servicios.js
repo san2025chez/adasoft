@@ -17,6 +17,7 @@ import { Fade } from 'react-awesome-reveal'
 import styled from '@emotion/styled';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
+import { Helmet } from 'react-helmet-async';
 
 const rollInRight = keyframes`
 0% {
@@ -41,12 +42,58 @@ const StyledDescription = styled(Typography)`
   text-transform: capitalize;
 `;
 
+// Definición de servicios con descripciones optimizadas para SEO
 const services = [
   {
-    "id": "1",
-    "description": ""
+    id: "1",
+    title: "Landing Page",
+    description: "Desarrollamos Landing Pages profesionales que convierten visitantes en clientes. Diseño web personalizado, responsive y optimizado para SEO que impulsa tu negocio online y maximiza tus conversiones.",
+    keywords: ["landing page", "diseño web", "conversión", "página de aterrizaje", "responsive"]
+  },
+  {
+    id: "2",
+    title: "Desarrollo de Aplicaciones Web",
+    description: "Creamos aplicaciones web a medida que potencian tu negocio. Implementamos soluciones tecnológicas innovadoras con interfaces intuitivas, adaptadas a tus necesidades específicas para mejorar la eficiencia y productividad.",
+    keywords: ["aplicaciones web", "desarrollo web", "software personalizado", "aplicaciones a medida", "soluciones digitales"]
+  },
+  {
+    id: "3",
+    title: "Tiendas Online",
+    description: "Diseñamos y desarrollamos tiendas online efectivas que impulsan tus ventas. E-commerce personalizado con pasarelas de pago seguras, gestión de inventario y experiencia de usuario óptima para maximizar tus conversiones.",
+    keywords: ["tienda online", "e-commerce", "comercio electrónico", "venta online", "tienda virtual"]
+  },
+  {
+    id: "4",
+    title: "Mantenimiento",
+    description: "Servicio profesional de mantenimiento web que garantiza la seguridad, rendimiento y actualización de tu sitio. Monitoreo continuo, backups regulares y soporte técnico para mantener tu presencia online siempre funcionando perfectamente.",
+    keywords: ["mantenimiento web", "soporte técnico", "actualización", "seguridad web", "rendimiento"]
+  },
+  {
+    id: "5",
+    title: "Integración de Inteligencia Artificial",
+    description: "Implementamos soluciones de Inteligencia Artificial que transforman tu negocio. Desde chatbots inteligentes hasta análisis predictivo y automatización de procesos, nuestra tecnología AI potencia la eficiencia y competitividad de tu empresa.",
+    keywords: ["inteligencia artificial", "IA", "machine learning", "automatización", "chatbots", "análisis predictivo"]
+  },
+  {
+    id: "6",
+    title: "Desarrollo de Software a Medida",
+    description: "Desarrollamos software personalizado que se adapta perfectamente a los procesos de tu empresa. Soluciones tecnológicas a medida que optimizan operaciones, mejoran la eficiencia y resuelven problemas específicos de tu negocio.",
+    keywords: ["software a medida", "desarrollo personalizado", "aplicaciones de negocio", "soluciones empresariales", "desarrollo de sistemas"]
+  },
+  {
+    id: "7",
+    title: "Clases de Informática y Programación",
+    description: "Ofrecemos formación especializada en informática y programación con métodos didácticos adaptados a cada nivel. Aprende desarrollo web, programación, bases de datos y nuevas tecnologías con nuestros planes de aprendizaje personalizados.",
+    keywords: ["clases programación", "formación informática", "aprendizaje tecnológico", "cursos desarrollo web", "educación digital"]
+  },
+  {
+    id: "8",
+    title: "Consultoría en Arquitectura de Software",
+    description: "Consultoría experta en arquitectura de software para optimizar tus proyectos tecnológicos. Asesoramiento estratégico para diseñar sistemas escalables, seguros y eficientes que impulsen el crecimiento sostenible de tu negocio.",
+    keywords: ["consultoría software", "arquitectura de sistemas", "asesoramiento tecnológico", "diseño de soluciones", "optimización de procesos"]
   }
-]
+];
+
 const Servicios = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -74,149 +121,74 @@ const Servicios = () => {
     };
   }, [inView, roll]);
 
+  // Crear esquema de datos estructurados para los servicios
+  const servicesSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": services.map((service, index) => ({
+      "@type": "Service",
+      "position": index + 1,
+      "name": service.title,
+      "description": service.description,
+      "provider": {
+        "@type": "Organization",
+        "name": "ADASOFT",
+        "url": "https://adasoft.com.ar"
+      },
+      "serviceType": service.title
+    }))
+  };
 
   return (
-    <Paper
-      id="servicios"
-      elevation={3}
-      style={{
-        padding: '20px 10px', margin: '20px 20px 20px ', textAlign: 'center', boxShadow: 'none',
-        animation: roll ? `${rollInRight} 0.6s ease-out both` : 'none'
-      }}
+    <>
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify(servicesSchema)}
+        </script>
+      </Helmet>
+      
+      <Paper
+        id="servicios"
+        elevation={3}
+        style={{
+          padding: '20px 10px', margin: '20px 20px 20px ', textAlign: 'center', boxShadow: 'none',
+          animation: roll ? `${rollInRight} 0.6s ease-out both` : 'none'
+        }}
+      >
+        <Container maxWidth="lg" >
+          <Typography variant="h2" style={{
+            color: '#444',
+            fontSize: isMobile ? '23px' : '30px',
+            letterSpacing: '4px',
+            marginBottom: '32px',
+            fontWeight: 300,
+            lineHeight: isMobile ? '23px' : '28px',
+            textTransform: 'uppercase',
+            padding: '15px'
+          }}>
+            Nuestros Servicios
+          </Typography>
 
-    >
-      <Container maxWidth="lg" >
-        <Typography variant="h2" style={{
-          color: '#444',
-          fontSize: isMobile ? '23px' : '30px',
-          letterSpacing: '4px',
-          marginBottom: '32px',
-          fontWeight: 300,
-          lineHeight: isMobile ? '23px' : '28px',
-          textTransform: 'uppercase',
-          padding: '15px'
-        }}>
-          Servicios
-        </Typography>
-
-        <Grid container spacing={4} justifyContent="center" >
-          <Grid item xs={12} md={3} >
-            <Fade direction='left' triggerOnce='true'>
-              <Card variant="outlined" style={{ borderRadius: "15px", border: "none", boxShadow: "none" }}>
-                <CardContent>
-                  <Typography variant="h6" style={{ paddingBottom: '10px', textAlign: 'center' }}> Landing Page</Typography>
-                  <StyledDescription style={{ textAlign: 'center'}}>
-                    Desarrollamos Landing Pages personalizadas que se ajustan perfectamente a las necesidades de tu negocio.
-                    Creamos un diseño cautivador que no solo transmite tu mensaje de manera impactante,
-                    sino que también convierte visitas en valiosos clientes potenciales.
-                  </StyledDescription>
-                </CardContent>
-              </Card>
-            </Fade>
+          <Grid container spacing={4} justifyContent="center" >
+            {services.map((service) => (
+              <Grid item xs={12} md={3} key={service.id}>
+                <Fade direction={service.id % 2 === 0 ? 'right' : 'left'} triggerOnce='true'>
+                  <Card variant="outlined" style={{ borderRadius: "15px", border: "none", boxShadow: "none" }}>
+                    <CardContent>
+                      <Typography variant="h6" style={{ paddingBottom: '10px', textAlign: 'center' }}>{service.title}</Typography>
+                      <StyledDescription style={{ textAlign: 'center' }}>
+                        {service.description}
+                      </StyledDescription>
+                    </CardContent>
+                  </Card>
+                </Fade>
+              </Grid>
+            ))}
           </Grid>
-          <Grid item xs={12} md={3}>
-            <Fade direction='right' triggerOnce='true' >
-              <Card variant="outlined" style={{ borderRadius: "15px", border: "none", boxShadow: "none" }}>
-                <CardContent>
-                  <Typography variant="h6" style={{ paddingBottom: '10px', textAlign: 'center' }}>Desarrollo de Aplicaciones Web</Typography>
-                  <StyledDescription style={{ textAlign: 'center' }}>
-                    Desarrollamos aplicaciones web a medida,
-                    ayudándote a construir la web que realmente deseas y que mejor se adapte a tus necesidades.
-                    Juntos, convertiremos tus ideas en una realidad digital que te beneficie al máximo.
-                  </StyledDescription>
-                </CardContent>
-              </Card>
-            </Fade>
-          </Grid>
-          <Grid item xs={12} md={3}>
-            <Fade direction='left' triggerOnce='true'>
-              <Card variant="outlined" style={{ borderRadius: "15px", border: "none", boxShadow: "none" }}>
-                <CardContent>
-                  <Typography variant="h6" style={{ paddingBottom: '10px', textAlign: 'center' }}>Tiendas Online</Typography>
-                  <StyledDescription style={{ textAlign: 'center'}}>
-                    Creamos tiendas online personalizadas, con un diseño atractivo y funcionalidades
-                    que te ayudarán a vender tus productos de forma efectiva.
-                  </StyledDescription>
-                </CardContent>
-              </Card>
-            </Fade>
-          </Grid>
-          <Grid item xs={12} md={3}>
-            <Fade direction='right' triggerOnce='true' >
-              <Card variant="outlined" style={{ borderRadius: "15px", border: "none", boxShadow: "none" }}>
-                <CardContent>
-                  <Typography variant="h6" style={{ paddingBottom: '10px', textAlign: 'center' }}>Mantenimiento</Typography>
-                  <StyledDescription style={{ textAlign: 'center' }}>
-                    Ofrecemos un servicio completo de mantenimiento para asegurarnos de que tu presencia en línea esté siempre actualizada, segura y en su mejor forma.
-                  </StyledDescription>
-                </CardContent>
-              </Card>
-            </Fade>
-          </Grid>
-          <Grid item xs={12} md={3}>
-            <Fade direction='left' triggerOnce='true'>
-              <Card variant="outlined" style={{ borderRadius: "15px", border: "none", boxShadow: "none" }}>
-                <CardContent>
-                  <Typography variant="h6" style={{ paddingBottom: '10px', textAlign: 'center' }}>Integración de Inteligencia Artificial</Typography>
-                  <StyledDescription style={{ textAlign: 'center'}}>
-                    Hacemos que tu negocio sea más inteligente y eficiente. Automatizamos tareas repetitivas, creamos asistentes virtuales que atienden a tus clientes 24/7, y desarrollamos sistemas que aprenden de tus datos para ayudarte a tomar mejores decisiones comerciales.
-                  </StyledDescription>
-                </CardContent>
-              </Card>
-            </Fade>
-          </Grid>
-          <Grid item xs={12} md={3}>
-            <Fade direction='right' triggerOnce='true' >
-              <Card variant="outlined" style={{ borderRadius: "15px", border: "none", boxShadow: "none" }}>
-                <CardContent>
-                  <Typography variant="h6" style={{ paddingBottom: '10px', textAlign: 'center' }}>Desarrollo de Software a Medida</Typography>
-                  <StyledDescription style={{ textAlign: 'center' }}>
-                  Realizamos software a medida que se adapta perfectamente a tus requerimientos específicos, ofreciendo soluciones personalizadas que optimizan tus procesos y mejoran la eficiencia de tu negocio.
-                  </StyledDescription>
-                </CardContent>
-              </Card>
-            </Fade>
-          </Grid>
-          <Grid item xs={12} md={3}>
-            <Fade direction='right' triggerOnce='true' >
-              <Card variant="outlined" style={{ borderRadius: "15px", border: "none", boxShadow: "none" }}>
-                <CardContent>
-                  <Typography variant="h6" style={{ paddingBottom: '10px', textAlign: 'center' }}>Clases de Informatica y Programacion </Typography>
-                  <StyledDescription style={{ textAlign: 'center' }}>
-                 Aprende Informatica de forma sencilla y divertida con nuestros cursos
-                  de Informatica y programacion. 
-                 Adaptamos nuestro plan personalizado para tu aprendizaje           </StyledDescription>
-                </CardContent>
-              </Card>
-            </Fade>
-          </Grid>
-          <Grid item xs={12} md={3}>
-            <Fade direction='right' triggerOnce='true' >
-              <Card variant="outlined" style={{ borderRadius: "15px", border: "none", boxShadow: "none" }}>
-                <CardContent>
-                  <Typography variant="h6" style={{ paddingBottom: '10px', textAlign: 'center' }}>Consultoría en Arquitectura de Software</Typography>
-                  <StyledDescription style={{ textAlign: 'center' }}>
-                  Ofrecemos asesoramiento experto para diseñar arquitecturas de software robustas y escalables que satisfagan tus necesidades actuales y futuras.
-                  </StyledDescription>
-                </CardContent>
-              </Card>
-            </Fade>
-          </Grid>
-          <Grid item xs={12} md={3}>
-            {/* <Fade direction='right' triggerOnce='true' >
-              <Card variant="outlined" style={{ borderRadius: "15px", border: "none", boxShadow: "none" }}>
-                <CardContent>
-                  <Typography variant="h6" style={{ paddingBottom: '10px', textAlign: 'center' }}>Clases de Informatica y Programación</Typography>
-                  <StyledDescription style={{ textAlign: 'center' }}>
-                  Aprende a tu propio ritmo y con un enfoque adaptado a tus necesidades. Dominarás los conceptos clave y desarrollarás proyectos práctico</StyledDescription>
-                </CardContent>
-              </Card>
-            </Fade> */}
-          </Grid>
-        </Grid>
-
-      </Container>
-    </Paper>
+        </Container>
+      </Paper>
+    </>
   );
 };
+
 export default Servicios;

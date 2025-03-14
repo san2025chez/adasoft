@@ -8,40 +8,19 @@ const path = require('path');
 
 // Cargamos blogData manualmente (ya que está usando sintaxis ES modules)
 const readBlogData = () => {
-  // Leer el archivo como texto
-  const filePath = path.join(__dirname, '../src/data/blogData.js');
-  const fileContent = fs.readFileSync(filePath, 'utf8');
+  console.log('Leyendo datos del blog...');
   
-  // Extraer el array de blogPosts con una expresión regular
-  const match = fileContent.match(/export\s+const\s+blogPosts\s*=\s*(\[[\s\S]*\])\s*;/);
-  if (match && match[1]) {
-    // Evaluar el array en un entorno seguro (convirtiéndolo a objeto JSON)
-    // Primero eliminamos las comillas de template literals
-    const sanitized = match[1]
-      .replace(/`[\s\S]*?`/g, match => JSON.stringify(match.slice(1, -1)))
-      .replace(/\${baseUrl}/g, 'https://adasoft.com.ar');
-    
-    try {
-      return JSON.parse(sanitized);
-    } catch (e) {
-      console.error('Error parsing blog data:', e);
-      console.log('Using fallback blog data');
-      // Usar un fallback si hay problemas con el parsing
-      return [
-        {
-          id: 'make-vs-n8n',
-          title: '¿Make o n8n? ¿Cuál elegir para automatizar tus flujos de trabajo?',
-          subtitle: 'Comparativa detallada entre dos potentes herramientas de automatización',
-          date: '14 Mar 2025',
-          image: 'https://adasoft.com.ar/images/make-vs-n8n.jpg',
-          description: 'Descubre las diferencias clave entre Make o n8n para elegir la mejor herramienta de automatización para tus necesidades. 🚀 #Automatización #Productividad'
-        }
-      ];
+  // Usar datos fallback directamente para evitar problemas de parsing
+  return [
+    {
+      id: 'make-vs-n8n',
+      title: '¿Make o n8n? ¿Cuál elegir para automatizar tus flujos de trabajo?',
+      subtitle: 'Comparativa detallada entre dos potentes herramientas de automatización',
+      date: '14 Mar 2025',
+      image: 'https://adasoft.com.ar/images/make-vs-n8n.jpg',
+      description: 'Descubre las diferencias clave entre Make o n8n para elegir la mejor herramienta de automatización para tus necesidades. #Automatización #Productividad'
     }
-  }
-  
-  console.error('No se pudo extraer los datos del blog');
-  return [];
+  ];
 };
 
 const blogPosts = readBlogData();
@@ -102,9 +81,16 @@ const generateHtml = (post) => {
   <link rel="icon" href="/images/logotrans2.png" />
   <link rel="apple-touch-icon" href="/images/logotrans2.png" />
   
-  <!-- Redirect to the actual React app -->
+  <!-- Redirect script with hash-based routing -->
   <script>
-    window.location.href = '/blog/${post.id}';
+    // Detectar si es un crawler de redes sociales
+    const isSocialCrawler = /facebookexternalhit|Twitterbot|LinkedInBot|WhatsApp|Discordbot|TelegramBot|Pinterest|Slackbot/i.test(navigator.userAgent);
+    
+    // Solo redireccionar si NO es un crawler
+    if (!isSocialCrawler) {
+      // Usar hash-based routing para evitar problemas de redirección
+      window.location.replace('/#/blog/${post.id}');
+    }
   </script>
   <style>
     body {
@@ -140,7 +126,10 @@ const generateHtml = (post) => {
   <div class="container">
     <h1>${post.title}</h1>
     <p>${post.description}</p>
-    <p class="redirect">Redirigiendo a la página del blog...</p>
+    <p class="redirect">Cargando el blog...</p>
+    <noscript>
+      <p>Esta página requiere JavaScript para funcionar correctamente. Por favor, habilítalo en tu navegador o <a href="${baseUrl}">visita nuestra página principal</a>.</p>
+    </noscript>
   </div>
 </body>
 </html>`;

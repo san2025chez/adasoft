@@ -13,13 +13,40 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
+import { Helmet } from 'react-helmet-async';
 
+// Menú items con descripciones y títulos SEO-friendly
 const menuItems = [
-  { id: 'servicios', label: 'Servicios' },
-  { id: 'metodologia', label: 'Metodología' },
-  { id: 'nosotros', label: 'Nosotros' },
-  { id: 'blog', label: 'Blog' },
-  { id: 'contacto', label: 'Contacto' },
+  { 
+    id: 'servicios', 
+    label: 'Servicios', 
+    title: 'Servicios de Desarrollo Web, Software y AI',
+    description: 'Servicios profesionales de desarrollo de software, diseño web, aplicaciones a medida e implementación de inteligencia artificial'
+  },
+  { 
+    id: 'metodologia', 
+    label: 'Metodología',
+    title: 'Nuestra metodología de trabajo ágil',
+    description: 'Metodología ágil de trabajo para desarrollo de software y proyectos digitales eficientes'
+  },
+  { 
+    id: 'nosotros', 
+    label: 'Nosotros',
+    title: 'Sobre ADASOFT - Expertos en desarrollo tecnológico',
+    description: 'Equipo de profesionales especializados en desarrollo de software, diseño web e implementación de inteligencia artificial'
+  },
+  { 
+    id: 'blog', 
+    label: 'Blog',
+    title: 'Blog de tecnología, desarrollo y tendencias digitales',
+    description: 'Artículos y recursos sobre desarrollo, tecnología, inteligencia artificial y tendencias digitales'
+  },
+  { 
+    id: 'contacto', 
+    label: 'Contacto',
+    title: 'Contacta con ADASOFT - Solicita tu presupuesto',
+    description: 'Contacta con nuestro equipo para solicitar presupuesto o información sobre servicios de desarrollo'
+  },
 ];
 
 export const NavBar = () => {
@@ -57,40 +84,21 @@ export const NavBar = () => {
         }
       }, 100);
     } else {
-      if (id === 'inicio') {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        setActiveSection('inicio');
-        if (isMobile) {
-          setNavColor('transparent');
-          setLogoColor('white');
-          setMenuIconColor('white');
-        } else {
-          setNavColor('#19d8db');
-        }
-      } else {
-        const element = document.getElementById(id);
-        if (element) {
-          const offset = 60;
-          const elementPosition = element.getBoundingClientRect().top;
-          const offsetPosition = elementPosition + window.pageYOffset - offset;
-          
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-          });
-          
-          setDrawerOpen(false);
-          setActiveSection(id);
-          if (!isMobile) {
-            setNavColor('#19d8db');
-          } else if (id === 'servicios') {
-            setNavColor('white');
-            setLogoColor('black');
-            setMenuIconColor('#00000080');
-          }
-        }
+      const element = document.getElementById(id);
+      if (element) {
+        const offset = 60; // Adjust this value according to your navbar height
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - offset;
+        
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
       }
     }
+    
+    setActiveSection(id);
+    setDrawerOpen(false);
   };
 
   useEffect(() => {
@@ -132,100 +140,116 @@ export const NavBar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [location.pathname]);
 
-  return (
-    <AppBar position="fixed" sx={{ 
-      backgroundColor: navColor,
-      boxShadow: 'none',
-      transition: 'background-color 0.3s ease'
-    }}>
-      <Toolbar>
-        <Typography
-          variant="h6"
-          component="div"
-          sx={{
-            flexGrow: 1,
-            color: logoColor,
-            cursor: 'pointer',
-            transition: 'color 0.3s ease'
-          }}
-          onClick={() => scrollToSection('inicio')}
-        >
-          ADA SOFTWARE
-        </Typography>
+  // Encuentra el título y descripción del enlace activo para el SEO
+  const activeMenuItem = menuItems.find(item => item.id === activeSection) || {
+    title: 'ADASOFT - Desarrollo de Software, Diseño Web e Inteligencia Artificial',
+    description: 'Empresa especializada en desarrollo de software a medida, diseño web profesional e implementación de soluciones con inteligencia artificial'
+  };
 
-        {isMobile ? (
-          <>
-            <IconButton
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              onClick={() => setDrawerOpen(true)}
-              sx={{ 
-                color: menuIconColor,
-                padding: '12px',
-                '& .MuiSvgIcon-root': {
-                  fontSize: '2rem' // Aumentando el tamaño del icono
-                }
-              }}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Drawer
-              anchor="right"
-              open={drawerOpen}
-              onClose={() => setDrawerOpen(false)}
-              PaperProps={{
-                sx: {
-                  width: '280px', // Haciendo el drawer un poco más ancho
-                  '& .MuiListItem-root': {
-                    padding: '12px 24px', // Aumentando el padding de los items
-                    '& .MuiListItemText-primary': {
-                      fontSize: '1.1rem' // Aumentando el tamaño del texto
-                    }
-                  }
-                }
-              }}
-            >
-              <Box sx={{ width: '100%' }} role="presentation">
-                <List>
-                  {menuItems.map((item) => (
-                    <ListItem
-                      button
-                      key={item.id}
-                      onClick={() => scrollToSection(item.id)}
-                      selected={activeSection === item.id}
-                    >
-                      <ListItemText primary={item.label} />
-                    </ListItem>
-                  ))}
-                </List>
-              </Box>
-            </Drawer>
-          </>
-        ) : (
-          <Box sx={{ display: 'flex', gap: 2 }}>
-            {menuItems.map((item) => (
-              <Button
-                key={item.id}
+  return (
+    <>
+      <Helmet>
+        <title>{activeMenuItem.title}</title>
+        <meta name="description" content={activeMenuItem.description} />
+      </Helmet>
+      
+      <AppBar 
+        position="fixed" 
+        sx={{ 
+          backgroundColor: navColor,
+          boxShadow: navColor === 'transparent' ? 'none' : '',
+          transition: 'background-color 0.5s ease, box-shadow 0.5s ease',
+        }}
+      >
+        <Toolbar>
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{
+              flexGrow: 1,
+              color: logoColor,
+              cursor: 'pointer',
+              transition: 'color 0.3s ease'
+            }}
+            onClick={() => scrollToSection('inicio')}
+          >
+            ADA SOFTWARE
+          </Typography>
+
+          {isMobile ? (
+            <>
+              <IconButton
+                edge="start"
                 color="inherit"
-                onClick={() => scrollToSection(item.id)}
-                sx={{
-                  color: logoColor,
-                  '&:hover': {
-                    backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                  },
-                  ...(activeSection === item.id && {
-                    borderBottom: '2px solid',
-                    borderRadius: 0,
-                  }),
+                aria-label="menu"
+                onClick={() => setDrawerOpen(true)}
+                sx={{ 
+                  color: menuIconColor,
+                  padding: '12px',
+                  '& .MuiSvgIcon-root': {
+                    fontSize: '2rem' // Aumentando el tamaño del icono
+                  }
                 }}
               >
-                {item.label}
-              </Button>
-            ))}
-          </Box>
-        )}
-      </Toolbar>
-    </AppBar>
+                <MenuIcon />
+              </IconButton>
+              <Drawer
+                anchor="right"
+                open={drawerOpen}
+                onClose={() => setDrawerOpen(false)}
+                PaperProps={{
+                  sx: {
+                    width: '280px', // Haciendo el drawer un poco más ancho
+                    '& .MuiListItem-root': {
+                      padding: '12px 24px', // Aumentando el padding de los items
+                      '& .MuiListItemText-primary': {
+                        fontSize: '1.1rem' // Aumentando el tamaño del texto
+                      }
+                    }
+                  }
+                }}
+              >
+                <Box sx={{ width: '100%' }} role="presentation">
+                  <List>
+                    {menuItems.map((item) => (
+                      <ListItem
+                        button
+                        key={item.id}
+                        onClick={() => scrollToSection(item.id)}
+                        selected={activeSection === item.id}
+                      >
+                        <ListItemText primary={item.label} />
+                      </ListItem>
+                    ))}
+                  </List>
+                </Box>
+              </Drawer>
+            </>
+          ) : (
+            <Box sx={{ display: 'flex', gap: 2 }}>
+              {menuItems.map((item) => (
+                <Button
+                  key={item.id}
+                  color="inherit"
+                  onClick={() => scrollToSection(item.id)}
+                  sx={{
+                    color: logoColor,
+                    '&:hover': {
+                      backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                    },
+                    ...(activeSection === item.id && {
+                      borderBottom: '2px solid',
+                      borderRadius: 0,
+                    }),
+                  }}
+                >
+                  {item.label}
+                </Button>
+              ))}
+            </Box>
+          )}
+        </Toolbar>
+      </AppBar>
+    </>
   );
 };
