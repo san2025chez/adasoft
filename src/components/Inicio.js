@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Button, useMediaQuery, useTheme, Typography, Box, Container } from '@mui/material';
+import { Grid, useMediaQuery, useTheme, Typography, Box, Container } from '@mui/material';
 import { Fade } from 'react-awesome-reveal';
 import { Helmet } from 'react-helmet-async';
 import './inicio.css';
@@ -69,17 +69,20 @@ const Inicio = () => {
       <Box 
         className="contenedor-imagen" 
         sx={{
-          paddingTop: { xs: '80px', sm: '100px', md: '130px' }, 
-          minHeight: { md: '100vh' },
+          paddingTop: { xs: '80px', sm: '100px', md: '130px' },
+          minHeight: { xs: 'auto', md: '90vh' },
           overflow: 'hidden',
-          width: '100%'
+          width: '100%',
+          display: 'flex',
+          alignItems: 'center'
         }}
       >
         <Container 
           maxWidth="xl" 
           disableGutters={isMobile} 
           sx={{ 
-            overflow: 'hidden'
+            overflow: 'hidden',
+            width: '100%'
           }}
         >
           <Grid 
@@ -90,7 +93,7 @@ const Inicio = () => {
             sx={{
               m: 0, 
               width: '100%',
-              pt: { xs: 0, md: '0.5rem' } 
+              pt: { xs: 0, md: '0.5rem' }
             }}
           >
             {/* Primera división con grid - Texto */}
@@ -119,7 +122,7 @@ const Inicio = () => {
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  mt: { xs: 0, md: '-0.5rem' } 
+                  mt: { xs: 0, md: '-0.5rem' }
                 }}
               >
                 <Fade direction='down' triggerOnce={true}>
@@ -128,7 +131,7 @@ const Inicio = () => {
                     sx={{ 
                       fontWeight: 700, 
                       textTransform: 'uppercase', 
-                      marginBottom: { xs: '1.2rem', md: '1.3rem' }, 
+                      marginBottom: { xs: '1.2rem', md: '1.3rem' },
                       fontSize: { 
                         xs: '1.1rem', 
                         md: '1.2rem'
@@ -147,7 +150,7 @@ const Inicio = () => {
                   <Typography 
                     variant={isMobile ? 'body2' : 'body1'} 
                     sx={{ 
-                      marginBottom: { xs: '1.5rem', md: '1.6rem' }, 
+                      marginBottom: { xs: '1.5rem', md: '2rem' }, 
                       fontSize: { 
                         xs: '0.8rem', 
                         md: '0.95rem'
@@ -162,39 +165,6 @@ const Inicio = () => {
                     En ADASOFT desarrollamos software a medida, páginas web profesionales y soluciones con inteligencia artificial que transforman y optimizan los procesos de tu empresa.
                   </Typography>
                 </Fade>
-                <Fade direction='up' triggerOnce={true} delay={200}>
-                  <Button 
-                    variant="contained" 
-                    href="#contacto"
-                    sx={{ 
-                      background: 'linear-gradient(135deg, #3a7bd5 0%, #00d2ff 100%)',
-                      marginTop: { xs: '0.8rem', md: '0.7rem' }, 
-                      fontWeight: 600,
-                      padding: { xs: '10px 24px', md: '12px 28px' },
-                      borderRadius: '30px',
-                      fontSize: { xs: '0.8rem', md: '0.85rem' },
-                      textTransform: 'none',
-                      boxShadow: '0 4px 20px rgba(0, 183, 255, 0.3)',
-                      transition: 'all 0.3s ease',
-                      alignSelf: 'center', 
-                      '&:hover': {
-                        background: 'linear-gradient(135deg, #3a7bd5 0%, #00d2ff 70%)',
-                        transform: 'translateY(-2px)',
-                        boxShadow: '0 6px 25px rgba(0, 183, 255, 0.5)',
-                      }
-                    }}
-                    component="a"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      const contactoSection = document.getElementById('contacto');
-                      if (contactoSection) {
-                        contactoSection.scrollIntoView({ behavior: 'smooth' });
-                      }
-                    }}
-                  >
-                    ¡Cotiza tu proyecto ahora!
-                  </Button>
-                </Fade>
               </Box>
             </Grid>
 
@@ -207,11 +177,11 @@ const Inicio = () => {
                 sx={{
                   display: 'flex',
                   justifyContent: 'center',
-                  alignItems: 'center', 
-                  padding: { xs: '0.5rem', md: '0.5rem 1.5rem' }, 
+                  alignItems: 'center',
+                  padding: { xs: '0.5rem', md: '0.5rem 1.5rem' },
                   position: 'relative',
                   marginTop: {
-                    xs: '1rem',
+                    xs: '0', 
                     md: '0'
                   },
                   zIndex: 1,
@@ -225,7 +195,7 @@ const Inicio = () => {
                     display: 'flex',
                     justifyContent: 'center',
                     maxWidth: { xs: '75%', sm: '70%', md: '85%', lg: '80%' },
-                    mt: { xs: 0, md: '0' }, 
+                    mt: { xs: 0, md: '0' },
                     '&::before': {
                       content: '""',
                       position: 'absolute',
