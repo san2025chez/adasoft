@@ -157,8 +157,8 @@ export const NavBar = () => {
         position="fixed" 
         sx={{ 
           backgroundColor: navColor,
-          boxShadow: navColor === 'transparent' ? 'none' : '',
-          transition: 'background-color 0.5s ease, box-shadow 0.5s ease',
+          boxShadow: 'none',
+          transition: 'background-color 0.5s ease',
         }}
       >
         <Toolbar>
@@ -238,7 +238,7 @@ export const NavBar = () => {
                       backgroundColor: 'rgba(255, 255, 255, 0.1)',
                     },
                     ...(activeSection === item.id && {
-                      borderBottom: '2px solid',
+                      borderBottom: 'none',
                       borderRadius: 0,
                     }),
                   }}

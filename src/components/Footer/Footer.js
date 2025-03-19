@@ -77,7 +77,7 @@ const Footer = () => {
         
         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1 }}>
           <StyledTypography variant="body2">
-            <FaMapMarkerAlt /> Perico, Jujuy, Argentina
+            <FaMapMarkerAlt />Jujuy, Argentina
           </StyledTypography>
           <StyledTypography variant="body2">
             &copy; {new Date().getFullYear()} ADA SOFTWARE. Todos los derechos reservados.

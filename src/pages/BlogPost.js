@@ -134,29 +134,149 @@ const BlogPost = () => {
         </script>
       </Helmet>
 
-      <Box sx={{ pt: { xs: '64px', sm: '72px' }, pb: 8, bgcolor: '#f5f5f5', minHeight: '100vh' }}>
-        <Container maxWidth="lg">
-          <Paper elevation={3} sx={{ overflow: 'hidden', mb: 4 }}>
+      <Box sx={{ pt: { xs: '64px', sm: '72px' }, pb: 8, bgcolor: '#f8f9fa', minHeight: '100vh' }}>
+        <Container maxWidth="lg" disableGutters={true} sx={{ px: { xs: 0, sm: 2 } }}>
+          {/* Box styling with conditional rendering for mobile devices */}
+          <Box sx={{ 
+            overflow: 'hidden', 
+            mb: 4, 
+            bgcolor: 'white',
+            // Remove borders and shadows on mobile
+            borderRadius: { xs: 0, sm: '8px' },
+            boxShadow: { xs: 'none', sm: '0 4px 20px rgba(0,0,0,0.06)' }
+          }}>
             <CardMedia
               component="img"
-              sx={{ width: '100%', height: { xs: '300px', sm: '400px', md: '500px' }, objectFit: 'cover' }}
+              sx={{ 
+                width: '100%', 
+                height: { xs: '180px', sm: '300px', md: '400px', lg: '500px' }, 
+                objectFit: 'cover' 
+              }}
               image={imageUrl}
               alt={post.title}
             />
-            <Box sx={{ p: { xs: 3, md: 5 } }}>
-              <Typography variant="h3" component="h1" sx={{ mb: 2, color: '#333', fontWeight: 'bold', fontSize: { xs: '2rem', md: '2.5rem' } }}>
+            <Box sx={{ 
+              p: { xs: 2, sm: 3, md: 5 },
+              maxWidth: '100%',
+              mx: 'auto'
+            }}>
+              <Typography 
+                variant="h3" 
+                component="h1" 
+                sx={{ 
+                  mb: 2, 
+                  color: '#1a1a2e', 
+                  fontWeight: 'bold', 
+                  fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem', lg: '3rem' },
+                  lineHeight: { xs: 1.3, md: 1.2 }
+                }}
+              >
                 {post.title}
               </Typography>
-              <Typography variant="subtitle1" color="text.secondary" sx={{ mb: 3, fontSize: { xs: '1rem', md: '1.1rem' } }}>
+              <Typography 
+                variant="subtitle1" 
+                color="text.secondary" 
+                sx={{ 
+                  mb: 4, 
+                  fontSize: { xs: '0.875rem', sm: '1rem', md: '1.1rem' },
+                  fontStyle: 'italic'
+                }}
+              >
                 {post.date}
               </Typography>
-              <Typography variant="body1" component="div" sx={{ color: '#333', lineHeight: 1.7, fontSize: { xs: '0.875rem', sm: '1rem' } }} dangerouslySetInnerHTML={{ __html: post.content }} />
+              <Typography 
+                variant="body1" 
+                component="div" 
+                sx={{ 
+                  color: '#333', 
+                  lineHeight: 1.8,
+                  fontSize: { xs: '1rem', sm: '1.05rem', md: '1.1rem' },
+                  // Improve content readability on mobile
+                  wordBreak: 'break-word',
+                  '& img': {
+                    maxWidth: '100%',
+                    height: 'auto',
+                    display: 'block',
+                    margin: '0 auto'
+                  },
+                  '& h3': {
+                    fontSize: { xs: '1.3rem', sm: '1.6rem', md: '1.8rem' },
+                    fontWeight: 600,
+                    mt: 4,
+                    mb: 2,
+                    color: '#1a1a2e'
+                  },
+                  '& h4': {
+                    fontSize: { xs: '1.1rem', sm: '1.3rem', md: '1.5rem' },
+                    fontWeight: 600,
+                    mt: 3,
+                    mb: 2,
+                    color: '#1a1a2e'
+                  },
+                  '& p': {
+                    mb: 2.5,
+                    letterSpacing: '0.015em'
+                  },
+                  '& ul, & ol': {
+                    ml: { xs: 2, sm: 3 },
+                    mb: 2.5,
+                    pr: { xs: 1, sm: 0 }
+                  },
+                  '& li': {
+                    mb: 1
+                  },
+                  '& a': {
+                    color: '#0066cc',
+                    textDecoration: 'none',
+                    wordBreak: 'break-word',
+                    '&:hover': {
+                      textDecoration: 'underline'
+                    }
+                  },
+                  '& blockquote': {
+                    borderLeft: '4px solid #ddd',
+                    pl: 2,
+                    py: 1,
+                    my: 2,
+                    color: '#555',
+                    fontStyle: 'italic'
+                  },
+                  '& pre, & code': {
+                    overflowX: 'auto',
+                    maxWidth: '100%',
+                    padding: { xs: 1, sm: 2 },
+                    borderRadius: '4px',
+                    backgroundColor: '#f5f5f5',
+                    fontSize: { xs: '0.85rem', sm: '0.9rem' }
+                  }
+                }} 
+                dangerouslySetInnerHTML={{ __html: post.content }} 
+              />
               
-              <Box sx={{ mt: 6, p: 4, bgcolor: '#fff', borderRadius: 2, boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
-                <Typography variant="h6" sx={{ mb: 3, textAlign: 'center', fontWeight: 'bold', color: '#333' }}>
+              <Box sx={{ 
+                mt: 6, 
+                p: { xs: 2, md: 4 }, 
+                bgcolor: { xs: 'transparent', sm: '#f8f9fa' }, 
+                borderRadius: { xs: 0, sm: 2 },
+                boxShadow: { xs: 'none', sm: '0 2px 12px rgba(0,0,0,0.05)' },
+                textAlign: 'center'
+              }}>
+                <Typography 
+                  variant="h6" 
+                  sx={{ 
+                    mb: 3, 
+                    fontWeight: 'bold', 
+                    color: '#333',
+                    fontSize: { xs: '1.1rem', md: '1.25rem' }
+                  }}
+                >
                   ¿Te gustó este artículo? ¡Compártelo!
                 </Typography>
-                <Stack direction="row" spacing={2} justifyContent="center">
+                <Stack 
+                  direction="row" 
+                  spacing={{ xs: 1, sm: 2 }} 
+                  justifyContent="center"
+                >
                   <FacebookShareButton url={shareUrl} quote={post.title} description={post.description} hashtag="#ADASOFT">
                     <FacebookIcon size={40} round />
                   </FacebookShareButton>
@@ -172,7 +292,7 @@ const BlogPost = () => {
                 </Stack>
               </Box>
             </Box>
-          </Paper>
+          </Box>
         </Container>
       </Box>
     </>
