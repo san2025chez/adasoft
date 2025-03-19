@@ -68,10 +68,24 @@
         }
     </style>
     <script>
-        // Script para redirigir a la página principal después de 10 segundos
-        setTimeout(function() {
-            window.location.href = 'https://adasoft.com.ar/';
-        }, 10000);
+        // Script mejorado para manejar URLs de blog y preservar la ruta
+        (function() {
+            // Obtener la ruta actual
+            var path = window.location.pathname;
+            
+            // Verificar si es una ruta de blog
+            if (path.indexOf('/blog/') !== -1) {
+                // Extraer el ID del blog de la URL
+                var blogId = path.split('/blog/')[1];
+                // Redirigir a la versión con hash de la URL
+                window.location.href = 'https://adasoft.com.ar/#/blog/' + blogId;
+            } else {
+                // Redirigir a la página principal después de 10 segundos
+                setTimeout(function() {
+                    window.location.href = 'https://adasoft.com.ar/';
+                }, 10000);
+            }
+        })();
     </script>
 </head>
 <body>
@@ -83,7 +97,7 @@
         <p>Serás redirigido automáticamente a nuestra página principal en 10 segundos.</p>
         
         <div class="links">
-            <a href="https://adasoft.com.ar/" class="btn">Ir a la página principal</a>
+            <a href="https://adasoft.com.ar/#/" class="btn">Ir a la página principal</a>
             <a href="https://adasoft.com.ar/#/contacto" class="btn secondary">Contactar con nosotros</a>
         </div>
     </div>

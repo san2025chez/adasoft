@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
-import { Container, Typography, Box, Paper, CardMedia, Stack } from '@mui/material';
+import { Container, Typography, Box, Paper, CardMedia, Stack, Link } from '@mui/material';
 import { blogPosts } from '../data/blogData';
 import { Helmet } from 'react-helmet-async';
 import {
@@ -22,12 +22,45 @@ const BlogPost = () => {
   
   // Asegurarnos de que las URLs sean absolutas y accesibles
   const baseUrl = 'https://adasoft.com.ar';
-  const shareUrl = `${baseUrl}/blog/${id}`;
+  // Usar el formato con hash para que funcione con GitHub Pages y HashRouter
+  const shareUrl = `${baseUrl}/#/blog/${id}`;
   
+  // Preparar las variables de imagen SOLO si el post existe
+  let imageUrl = '';
+  let optimizedImageUrl = '';
+  let isoDate = new Date().toISOString();
+  const timestamp = new Date().getTime();
+  
+  // Preparar datos solo si el post existe
+  if (post) {
+    // Aseguramos que la URL de la imagen sea absoluta
+    imageUrl = post.image;
+    
+    // Si la URL no comienza con http, construimos la URL absoluta
+    if (!post.image.startsWith('http')) {
+      imageUrl = `${baseUrl}${post.image}`;
+    }
+    
+    // Añadimos parámetros para evitar el caché
+    const sessionTimestamp = localStorage.getItem('sessionTimestamp') || new Date().getTime();
+    if (!localStorage.getItem('sessionTimestamp')) {
+      localStorage.setItem('sessionTimestamp', sessionTimestamp);
+    }
+    
+    optimizedImageUrl = `${imageUrl}?v=${sessionTimestamp}&width=1200&height=630&fit=crop`;
+    
+    // Crear fecha en formato ISO para Schema.org
+    isoDate = post.date ? new Date(post.date).toISOString() : new Date().toISOString();
+  }
+  
+  // IMPORTANTE: Todos los hooks deben ser usados antes de cualquier return condicional
   useEffect(() => {
     // Debug para ayudar en el diagnóstico
     console.log('Cargando blog post:', id);
     console.log('Location:', location.pathname);
+    console.log('Post image:', post?.image);
+    console.log('Share URL:', shareUrl);
+    console.log('Refresh Facebook cache with:', `https://developers.facebook.com/tools/debug/?q=${encodeURIComponent(shareUrl)}`);
     
     // Si no se encuentra el post, redirigir al blog
     if (!post) {
@@ -36,31 +69,44 @@ const BlogPost = () => {
       return;
     }
 
+    // Precargar la imagen solo si tenemos un post válido
+    if (optimizedImageUrl) {
+      const preloadImage = new Image();
+      preloadImage.src = optimizedImageUrl;
+      preloadImage.onload = () => {
+        console.log('Imagen precargada correctamente:', optimizedImageUrl);
+      };
+      preloadImage.onerror = () => {
+        console.error('Error al precargar la imagen:', optimizedImageUrl);
+      };
+    }
+
     // Actualizar Facebook si está disponible (esto ayuda con FBXML)
     if (typeof window.FB !== 'undefined') {
       window.FB.XFBML.parse();
     }
     
-    // Aseguramos que las meta tags se carguen correctamente para crawlers
-    document.querySelector('meta[property="og:url"]')?.setAttribute('content', shareUrl);
-    document.querySelector('meta[property="og:title"]')?.setAttribute('content', post.title);
-    document.querySelector('meta[property="og:description"]')?.setAttribute('content', post.description);
-    document.querySelector('meta[property="og:image"]')?.setAttribute('content', post.image.startsWith('http') ? post.image : `${baseUrl}${post.image}`);
-
-    // Añadir palabras clave relevantes al título de la página
-    document.title = `${post.title} | ADASOFT - Desarrollo de Software y Diseño Web`;
-  }, [post, shareUrl, id, location, navigate]);
+    // Configurar el título del documento
+    if (post) {
+      document.title = `${post.title} | ADASOFT - Desarrollo de Software y Diseño Web`;
+    }
+    
+    // Forzar refresco de meta tags para redes sociales
+    const metaTags = document.getElementsByTagName('meta');
+    for (let i = 0; i < metaTags.length; i++) {
+      if (metaTags[i].getAttribute('property') === 'og:image' || 
+          metaTags[i].getAttribute('name') === 'twitter:image') {
+        // No hacemos nada aquí porque ahora usamos optimizedImageUrl en las etiquetas meta
+        // que ya incluye el timestamp
+      }
+    }
+  }, [post, shareUrl, id, location, navigate, optimizedImageUrl]);
 
   // Si no hay post, no renderizamos nada (el efecto se encargará de redirigir)
   if (!post) {
     return null;
   }
-
-  const imageUrl = post.image.startsWith('http') ? post.image : `${baseUrl}${post.image}`;
   
-  // Crear fecha en formato ISO para Schema.org
-  const isoDate = post.date ? new Date(post.date).toISOString() : new Date().toISOString();
-
   // Preparar Schema.org JSON-LD para el artículo
   const schemaOrgArticle = {
     '@context': 'https://schema.org',
@@ -71,7 +117,7 @@ const BlogPost = () => {
     },
     'headline': post.title,
     'description': post.description,
-    'image': imageUrl,
+    'image': `${optimizedImageUrl}`,
     'author': {
       '@type': 'Organization',
       'name': 'ADASOFT',
@@ -96,21 +142,27 @@ const BlogPost = () => {
         <meta name="description" content={post.description} />
         <link rel="canonical" href={shareUrl} />
         
+        {/* Control de caché para forzar a los crawlers a obtener siempre la última versión */}
+        <meta httpEquiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+        <meta httpEquiv="Pragma" content="no-cache" />
+        <meta httpEquiv="Expires" content="0" />
+        
         {/* Open Graph / Facebook Meta Tags */}
         <meta property="og:url" content={shareUrl} />
         <meta property="og:type" content="article" />
         <meta property="og:title" content={post.title} />
         <meta property="og:description" content={post.description} />
-        <meta property="og:image" content={imageUrl} />
-        <meta property="og:image:secure_url" content={imageUrl} />
+        <meta property="og:image" content={`${optimizedImageUrl}`} />
+        <meta property="og:image:secure_url" content={`${optimizedImageUrl}`} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content={post.title} />
         <meta property="og:site_name" content="ADASOFT" />
+        <meta property="fb:app_id" content="your-fb-app-id" /> {/* Reemplaza con tu Facebook App ID si lo tienes */}
         <meta property="article:published_time" content={isoDate} />
         <meta property="article:author" content="ADASOFT" />
         <meta property="article:section" content="Tecnología" />
-        <meta property="article:tag" content="software, desarrollo web, diseño web, servicios informáticos" />
+        <meta property="article:tag" content={post.tags ? post.tags.join(', ') : "software, desarrollo web, diseño web, servicios informáticos"} />
         
         {/* Twitter Meta Tags */}
         <meta name="twitter:card" content="summary_large_image" />
@@ -119,14 +171,27 @@ const BlogPost = () => {
         <meta name="twitter:url" content={shareUrl} />
         <meta name="twitter:title" content={post.title} />
         <meta name="twitter:description" content={post.description} />
-        <meta name="twitter:image" content={imageUrl} />
+        <meta name="twitter:image" content={`${optimizedImageUrl}`} />
         <meta name="twitter:image:alt" content={post.title} />
 
         {/* Additional SEO Meta Tags */}
         <meta name="robots" content="index, follow, max-image-preview:large" />
         <meta name="author" content="ADASOFT" />
         <meta name="publisher" content="ADASOFT" />
-        <meta name="keywords" content="desarrollo software, páginas web, aplicaciones, diseño web, software a medida, soluciones tecnológicas" />
+        <meta name="keywords" content={post.tags ? post.tags.join(', ') : "desarrollo software, páginas web, aplicaciones, diseño web, software a medida, soluciones tecnológicas"} />
+        
+        {/* LinkedIn specific tags */}
+        <meta property="linkedin:title" content={post.title} />
+        <meta property="linkedin:description" content={post.description} />
+        <meta property="linkedin:image" content={optimizedImageUrl} />
+        
+        {/* WhatsApp specific preview */}
+        <meta property="og:site_name" content="ADASOFT" />
+        <meta property="og:locale" content="es_ES" />
+        
+        {/* Force social media platforms to use fresh content */}
+        <meta name="theme-color" content="#2c3e50" />
+        <meta http-equiv="x-dns-prefetch-control" content="on" />
         
         {/* Schema.org JSON-LD structured data */}
         <script type="application/ld+json">
@@ -158,7 +223,7 @@ const BlogPost = () => {
                 objectFit: 'cover',
                 objectPosition: 'center'
               }}
-              image={imageUrl}
+              image={optimizedImageUrl}
               alt={post.title}
             />
             <Box sx={{ 
@@ -303,6 +368,39 @@ const BlogPost = () => {
           </Box>
         </Container>
       </Box>
+
+      {/* Debug panel for admin - hidden in production */}
+      {process.env.NODE_ENV === 'development' && (
+        <Box sx={{ mt: 4, p: 2, bgcolor: '#f5f5f5', borderRadius: 2, mx: 'auto', maxWidth: 'md' }}>
+          <Typography variant="h6" gutterBottom>Debug Info (solo visible en desarrollo)</Typography>
+          <Typography variant="body2">ID del post: {id}</Typography>
+          <Typography variant="body2">URL para compartir: {shareUrl}</Typography>
+          <Typography variant="body2">URL de la imagen original: {imageUrl}</Typography>
+          <Typography variant="body2">URL de la imagen optimizada: {optimizedImageUrl}</Typography>
+          <Box sx={{ mt: 2 }}>
+            <Typography variant="body2" gutterBottom>Para forzar la actualización del caché de Facebook:</Typography>
+            <Link
+              href={`https://developers.facebook.com/tools/debug/?q=${encodeURIComponent(shareUrl)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              sx={{ wordBreak: 'break-all' }}
+            >
+              Abrir Depurador de Facebook
+            </Link>
+          </Box>
+          <Box sx={{ mt: 2 }}>
+            <Typography variant="body2" gutterBottom>Para forzar la actualización del caché de Twitter:</Typography>
+            <Link
+              href={`https://cards-dev.twitter.com/validator?url=${encodeURIComponent(shareUrl)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              sx={{ wordBreak: 'break-all' }}
+            >
+              Abrir Validador de Twitter Cards
+            </Link>
+          </Box>
+        </Box>
+      )}
     </>
   );
 };
