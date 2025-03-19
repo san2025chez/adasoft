@@ -169,10 +169,15 @@ const Servicios = () => {
             Nuestros Servicios
           </Typography>
 
-          <Grid container spacing={4} justifyContent="center" >
-            {services.map((service) => (
+          <Grid container spacing={4} justifyContent="center">
+            {services.map((service, index) => (
               <Grid item xs={12} md={3} key={service.id}>
-                <Fade direction={service.id % 2 === 0 ? 'right' : 'left'} triggerOnce='true'>
+                <Fade 
+                  direction="up" 
+                  triggerOnce={true} 
+                  delay={index * 150}
+                  fraction={0.1}
+                >
                   <Card variant="outlined" style={{ borderRadius: "15px", border: "none", boxShadow: "none" }}>
                     <CardContent>
                       <Typography variant="h6" style={{ paddingBottom: '10px', textAlign: 'center' }}>{service.title}</Typography>

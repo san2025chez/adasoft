@@ -74,7 +74,9 @@ const Blog = () => {
         bgcolor: '#f8f9fa', 
         minHeight: '100vh' 
       }}>
-        <Container maxWidth="lg" disableGutters={true} sx={{ px: { xs: 1, sm: 2 } }}>
+        <Container maxWidth="lg" sx={{ 
+          px: { xs: 2, sm: 3, md: 4 }
+        }}>
           <Typography 
             variant="h2" 
             component="h1" 
@@ -114,15 +116,14 @@ const Blog = () => {
                     flexDirection: 'column',
                     transition: 'all 0.3s ease',
                     border: 'none',
-                    borderRadius: { xs: 0, sm: '8px' },
+                    borderRadius: '8px',
                     overflow: 'hidden',
-                    boxShadow: { xs: 'none', sm: '0 4px 20px rgba(0,0,0,0.06)' },
-                    mx: { xs: -1, sm: 0 }, // Negative margin on mobile to extend to full width
+                    boxShadow: '0 4px 20px rgba(0,0,0,0.06)',
                     '&:hover': {
                       transform: { xs: 'none', sm: 'translateY(-8px)' },
-                      boxShadow: { xs: 'none', sm: '0 10px 25px rgba(0,0,0,0.1)' }
+                      boxShadow: '0 10px 25px rgba(0,0,0,0.1)'
                     },
-                    mb: { xs: 1, sm: 0 }, // Add a small gap between cards on mobile
+                    mb: { xs: 1, sm: 0 },
                   }}
                 >
                   <CardActionArea 
@@ -143,13 +144,17 @@ const Blog = () => {
                       image={post.image}
                       alt={post.title}
                       sx={{ 
-                        height: { xs: '180px', sm: '200px' },
-                        objectFit: 'cover'
+                        height: { xs: '200px', sm: '220px' },
+                        objectFit: 'cover',
+                        transition: 'transform 0.5s ease',
+                        '&:hover': {
+                          transform: 'scale(1.05)'
+                        }
                       }}
                     />
                     <CardContent sx={{ 
                       flexGrow: 1, 
-                      p: { xs: 2, sm: 3 },
+                      p: { xs: 3, sm: 3 },
                       display: 'flex',
                       flexDirection: 'column',
                       justifyContent: 'space-between',

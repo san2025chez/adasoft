@@ -134,8 +134,13 @@ const BlogPost = () => {
         </script>
       </Helmet>
 
-      <Box sx={{ pt: { xs: '64px', sm: '72px' }, pb: 8, bgcolor: '#f8f9fa', minHeight: '100vh' }}>
-        <Container maxWidth="lg" disableGutters={true} sx={{ px: { xs: 0, sm: 2 } }}>
+      <Box sx={{ 
+        bgcolor: '#f8f9fa', 
+        minHeight: '100vh',
+        pt: { xs: 0, sm: '72px' }, 
+        pb: 8
+      }}>
+        <Container maxWidth="lg" sx={{ px: { xs: 0, sm: 2, md: 3 } }}>
           {/* Box styling with conditional rendering for mobile devices */}
           <Box sx={{ 
             overflow: 'hidden', 
@@ -149,14 +154,15 @@ const BlogPost = () => {
               component="img"
               sx={{ 
                 width: '100%', 
-                height: { xs: '180px', sm: '300px', md: '400px', lg: '500px' }, 
-                objectFit: 'cover' 
+                height: { xs: '220px', sm: '300px', md: '400px', lg: '500px' }, 
+                objectFit: 'cover',
+                objectPosition: 'center'
               }}
               image={imageUrl}
               alt={post.title}
             />
             <Box sx={{ 
-              p: { xs: 2, sm: 3, md: 5 },
+              p: { xs: 3, sm: 4, md: 5 },
               maxWidth: '100%',
               mx: 'auto'
             }}>
@@ -197,7 +203,9 @@ const BlogPost = () => {
                     maxWidth: '100%',
                     height: 'auto',
                     display: 'block',
-                    margin: '0 auto'
+                    margin: '2rem auto',
+                    borderRadius: '8px',
+                    boxShadow: '0 2px 10px rgba(0,0,0,0.1)'
                   },
                   '& h3': {
                     fontSize: { xs: '1.3rem', sm: '1.6rem', md: '1.8rem' },
