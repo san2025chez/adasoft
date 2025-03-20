@@ -32,12 +32,13 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "predeploy": "npm run build && echo 'adasoft.com.ar' > ./build/CNAME && cp public/_redirects build/ && cp build/index.html build/404.html && cp build/index.html build/200.html",
+    "predeploy": "npm run build && node scripts/generate-blog-html.js && echo 'adasoft.com.ar' > ./build/CNAME && cp public/_redirects build/ && cp build/index.html build/404.html && cp build/index.html build/200.html && cp -r public/blog build/",
     "deploy": "gh-pages -d build -b gh-pages",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "generate-blog-html": "node scripts/generate-blog-html.js"
   },
   "eslintConfig": {
     "extends": [

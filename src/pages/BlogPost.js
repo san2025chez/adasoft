@@ -61,6 +61,9 @@ const BlogPost = () => {
   // Usar el formato con hash para que funcione con GitHub Pages y HashRouter
   const shareUrl = `${baseUrl}/#/blog/${id}`;
   
+  // URL específica para compartir en Facebook (apunta al HTML estático pre-renderizado)
+  const facebookShareUrl = `${baseUrl}/blog/${id}.html`;
+  
   // Preparar las variables de imagen SOLO si el post existe
   let imageUrl = '';
   let optimizedImageUrl = '';
@@ -203,7 +206,7 @@ const BlogPost = () => {
 
   // Función para forzar la actualización de la caché de Facebook (solo para desarrollo)
   const forceRefreshFacebookCache = () => {
-    const debugUrl = `https://developers.facebook.com/tools/debug/?q=${encodeURIComponent(shareUrl)}`;
+    const debugUrl = `https://developers.facebook.com/tools/debug/?q=${encodeURIComponent(facebookShareUrl)}`;
     window.open(debugUrl, '_blank');
   };
 
@@ -458,7 +461,7 @@ const BlogPost = () => {
                   spacing={{ xs: 1, sm: 2 }} 
                   justifyContent="center"
                 >
-                  <FacebookShareButton url={shareUrl} quote={post.title} description={post.description} hashtag="#ADASOFT" onClick={() => customFacebookShare(shareUrl, post.title, () => console.log('Compartido en Facebook'))}>
+                  <FacebookShareButton url={facebookShareUrl} quote={post.title} description={post.description} hashtag="#ADASOFT" onClick={() => customFacebookShare(facebookShareUrl, post.title, () => console.log('Compartido en Facebook'))}>
                     <FacebookIcon size={40} round />
                   </FacebookShareButton>
                   <TwitterShareButton url={shareUrl} title={post.title} via="adasoft" hashtags={["Automatización", "Productividad", "Tecnología"]}>
@@ -489,7 +492,7 @@ const BlogPost = () => {
           <Box sx={{ mt: 2 }}>
             <Typography variant="body2" gutterBottom>Para forzar la actualización del caché de Facebook:</Typography>
             <Link
-              href={`https://developers.facebook.com/tools/debug/?q=${encodeURIComponent(shareUrl)}`}
+              href={`https://developers.facebook.com/tools/debug/?q=${encodeURIComponent(facebookShareUrl)}`}
               target="_blank"
               rel="noopener noreferrer"
               sx={{ wordBreak: 'break-all' }}
