@@ -14,6 +14,42 @@ import {
   WhatsappIcon
 } from 'react-share';
 
+// Función personalizada para compartir en Facebook con refresco de caché
+const customFacebookShare = (url, quote, callback) => {
+  // Si la API de FB está disponible, intentamos refrescar el caché antes de compartir
+  if (window.FB) {
+    console.log('Intentando refrescar caché de Facebook para:', url);
+    try {
+      // Primero actualizamos los metadatos en Facebook usando el SDK
+      window.FB.api(
+        '/me/feed',
+        'post',
+        {
+          message: quote,
+          link: url,
+          scrape: true
+        },
+        function(response) {
+          if (!response || response.error) {
+            console.error('Error al intentar refrescar caché en FB:', response?.error);
+            // Usar método de respaldo en caso de error
+            if (callback) callback();
+          } else {
+            console.log('Caché actualizado en Facebook, respuesta:', response);
+            if (callback) callback();
+          }
+        }
+      );
+    } catch (error) {
+      console.error('Error al usar FB SDK:', error);
+      if (callback) callback();
+    }
+  } else {
+    console.log('FB SDK no disponible, usando método estándar de compartir');
+    if (callback) callback();
+  }
+};
+
 const BlogPost = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -57,7 +93,9 @@ const BlogPost = () => {
     }
     
     // Asegurarnos de que la URL absoluta sea correcta para redes sociales
-    absoluteImageUrl = cleanImageUrl;
+    // Añadir timestamp para evitar caché en Facebook
+    const cacheBuster = `?v=${new Date().getTime()}`;
+    absoluteImageUrl = cleanImageUrl + cacheBuster;
     console.log('URL absoluta final para meta tags:', absoluteImageUrl);
     
     // Añadimos parámetros para evitar el caché solo para la versión optimizada
@@ -124,6 +162,51 @@ const BlogPost = () => {
     }
   }, [post, shareUrl, id, location, navigate, optimizedImageUrl]);
 
+  // Efecto adicional para forzar la actualización de metatags específicamente para Facebook
+  useEffect(() => {
+    if (!post) return;
+    
+    // Este efecto se ejecuta solo una vez cuando se carga el componente
+    const forceFacebookUpdate = async () => {
+      try {
+        // Crear o actualizar dinámicamente el meta tag og:image para Facebook
+        let ogImageTag = document.querySelector('meta[property="og:image"]');
+        if (!ogImageTag) {
+          ogImageTag = document.createElement('meta');
+          ogImageTag.setAttribute('property', 'og:image');
+          document.head.appendChild(ogImageTag);
+        }
+        ogImageTag.setAttribute('content', absoluteImageUrl);
+        
+        console.log('Forzando actualización de meta tag para Facebook:', absoluteImageUrl);
+        
+        // Esperar para asegurarse de que la imagen se ha cargado correctamente
+        return new Promise((resolve) => {
+          const img = new Image();
+          img.onload = () => {
+            console.log('Imagen verificada y accesible');
+            resolve(true);
+          };
+          img.onerror = () => {
+            console.error('Imagen no accesible, Facebook podría usar imagen fallback');
+            resolve(false);
+          };
+          img.src = absoluteImageUrl;
+        });
+      } catch (error) {
+        console.error('Error al forzar actualización para Facebook:', error);
+      }
+    };
+    
+    forceFacebookUpdate();
+  }, [post, absoluteImageUrl]);
+
+  // Función para forzar la actualización de la caché de Facebook (solo para desarrollo)
+  const forceRefreshFacebookCache = () => {
+    const debugUrl = `https://developers.facebook.com/tools/debug/?q=${encodeURIComponent(shareUrl)}`;
+    window.open(debugUrl, '_blank');
+  };
+
   // Si no hay post, no renderizamos nada (el efecto se encargará de redirigir)
   if (!post) {
     return null;
@@ -179,6 +262,7 @@ const BlogPost = () => {
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content={post.title} />
+        <meta property="og:image:type" content="image/jpeg" />
         <meta property="og:site_name" content="ADASOFT" />
         <meta property="og:updated_time" content={new Date().toISOString()} />
         <meta property="fb:app_id" content="2375482829489229" />
@@ -374,7 +458,7 @@ const BlogPost = () => {
                   spacing={{ xs: 1, sm: 2 }} 
                   justifyContent="center"
                 >
-                  <FacebookShareButton url={shareUrl} quote={post.title} description={post.description} hashtag="#ADASOFT">
+                  <FacebookShareButton url={shareUrl} quote={post.title} description={post.description} hashtag="#ADASOFT" onClick={() => customFacebookShare(shareUrl, post.title, () => console.log('Compartido en Facebook'))}>
                     <FacebookIcon size={40} round />
                   </FacebookShareButton>
                   <TwitterShareButton url={shareUrl} title={post.title} via="adasoft" hashtags={["Automatización", "Productividad", "Tecnología"]}>
@@ -423,6 +507,10 @@ const BlogPost = () => {
             >
               Abrir Validador de Twitter Cards
             </Link>
+          </Box>
+          <Box sx={{ mt: 2 }}>
+            <Typography variant="body2" gutterBottom>Botón de depuración para forzar actualización de caché de Facebook:</Typography>
+            <button onClick={forceRefreshFacebookCache}>Forzar actualización de caché de Facebook</button>
           </Box>
         </Box>
       )}
