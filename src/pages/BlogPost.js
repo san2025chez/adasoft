@@ -28,26 +28,48 @@ const BlogPost = () => {
   // Preparar las variables de imagen SOLO si el post existe
   let imageUrl = '';
   let optimizedImageUrl = '';
+  let absoluteImageUrl = '';
   let isoDate = new Date().toISOString();
   const timestamp = new Date().getTime();
   
   // Preparar datos solo si el post existe
   if (post) {
+    console.log('Procesando post con ID:', id);
+    console.log('Imagen del post:', post.image);
+    
     // Aseguramos que la URL de la imagen sea absoluta
     imageUrl = post.image;
     
     // Si la URL no comienza con http, construimos la URL absoluta
     if (!post.image.startsWith('http')) {
       imageUrl = `${baseUrl}${post.image}`;
+      console.log('URL relativa detectada, convertida a absoluta:', imageUrl);
+    } else {
+      console.log('URL ya es absoluta:', imageUrl);
     }
     
-    // Añadimos parámetros para evitar el caché
+    // Para la URL absoluta usada en meta tags, eliminamos cualquier parámetro existente
+    // que podría estar causando problemas con las redes sociales
+    let cleanImageUrl = imageUrl;
+    if (cleanImageUrl.includes('?')) {
+      cleanImageUrl = cleanImageUrl.split('?')[0];
+      console.log('Limpiando URL de parámetros:', cleanImageUrl);
+    }
+    
+    // Asegurarnos de que la URL absoluta sea correcta para redes sociales
+    absoluteImageUrl = cleanImageUrl;
+    console.log('URL absoluta final para meta tags:', absoluteImageUrl);
+    
+    // Añadimos parámetros para evitar el caché solo para la versión optimizada
+    // que se usa dentro de la página
     const sessionTimestamp = localStorage.getItem('sessionTimestamp') || new Date().getTime();
     if (!localStorage.getItem('sessionTimestamp')) {
       localStorage.setItem('sessionTimestamp', sessionTimestamp);
     }
     
-    optimizedImageUrl = `${imageUrl}?v=${sessionTimestamp}&width=1200&height=630&fit=crop`;
+    // Creamos la URL optimizada para mostrar en la página
+    optimizedImageUrl = `${cleanImageUrl}?v=${sessionTimestamp}&width=1200&height=630&fit=crop`;
+    console.log('URL optimizada para visualización:', optimizedImageUrl);
     
     // Crear fecha en formato ISO para Schema.org
     isoDate = post.date ? new Date(post.date).toISOString() : new Date().toISOString();
@@ -117,7 +139,7 @@ const BlogPost = () => {
     },
     'headline': post.title,
     'description': post.description,
-    'image': `${optimizedImageUrl}`,
+    'image': absoluteImageUrl,
     'author': {
       '@type': 'Organization',
       'name': 'ADASOFT',
@@ -152,14 +174,16 @@ const BlogPost = () => {
         <meta property="og:type" content="article" />
         <meta property="og:title" content={post.title} />
         <meta property="og:description" content={post.description} />
-        <meta property="og:image" content={`${optimizedImageUrl}`} />
-        <meta property="og:image:secure_url" content={`${optimizedImageUrl}`} />
+        <meta property="og:image" content={absoluteImageUrl} />
+        <meta property="og:image:secure_url" content={absoluteImageUrl} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content={post.title} />
         <meta property="og:site_name" content="ADASOFT" />
-        <meta property="fb:app_id" content="your-fb-app-id" /> {/* Reemplaza con tu Facebook App ID si lo tienes */}
+        <meta property="og:updated_time" content={new Date().toISOString()} />
+        <meta property="fb:app_id" content="2375482829489229" />
         <meta property="article:published_time" content={isoDate} />
+        <meta property="article:modified_time" content={new Date().toISOString()} />
         <meta property="article:author" content="ADASOFT" />
         <meta property="article:section" content="Tecnología" />
         <meta property="article:tag" content={post.tags ? post.tags.join(', ') : "software, desarrollo web, diseño web, servicios informáticos"} />
@@ -171,7 +195,7 @@ const BlogPost = () => {
         <meta name="twitter:url" content={shareUrl} />
         <meta name="twitter:title" content={post.title} />
         <meta name="twitter:description" content={post.description} />
-        <meta name="twitter:image" content={`${optimizedImageUrl}`} />
+        <meta name="twitter:image" content={absoluteImageUrl} />
         <meta name="twitter:image:alt" content={post.title} />
 
         {/* Additional SEO Meta Tags */}
@@ -183,7 +207,7 @@ const BlogPost = () => {
         {/* LinkedIn specific tags */}
         <meta property="linkedin:title" content={post.title} />
         <meta property="linkedin:description" content={post.description} />
-        <meta property="linkedin:image" content={optimizedImageUrl} />
+        <meta property="linkedin:image" content={absoluteImageUrl} />
         
         {/* WhatsApp specific preview */}
         <meta property="og:site_name" content="ADASOFT" />
@@ -376,6 +400,7 @@ const BlogPost = () => {
           <Typography variant="body2">ID del post: {id}</Typography>
           <Typography variant="body2">URL para compartir: {shareUrl}</Typography>
           <Typography variant="body2">URL de la imagen original: {imageUrl}</Typography>
+          <Typography variant="body2">URL absoluta de la imagen: {absoluteImageUrl}</Typography>
           <Typography variant="body2">URL de la imagen optimizada: {optimizedImageUrl}</Typography>
           <Box sx={{ mt: 2 }}>
             <Typography variant="body2" gutterBottom>Para forzar la actualización del caché de Facebook:</Typography>
