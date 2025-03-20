@@ -32,14 +32,11 @@ blogPosts.forEach(post => {
   <title>${post.title} | ADASOFT - Desarrollo de Software y Diseño Web</title>
   <meta name="description" content="${post.description}" />
   
-  <!-- Canonical URL (apunta a la versión con hash) -->
-  <link rel="canonical" href="https://adasoft.com.ar/#/blog/${post.id}" />
-  
-  <!-- Redirección automática a la versión con hash -->
-  <meta http-equiv="refresh" content="0;URL='https://adasoft.com.ar/#/blog/${post.id}'" />
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://adasoft.com.ar/blog/${post.id}.html" />
   
   <!-- Open Graph / Facebook Meta Tags -->
-  <meta property="og:url" content="https://adasoft.com.ar/#/blog/${post.id}" />
+  <meta property="og:url" content="https://adasoft.com.ar/blog/${post.id}.html" />
   <meta property="og:type" content="article" />
   <meta property="og:title" content="${post.title}" />
   <meta property="og:description" content="${post.description}" />
@@ -59,13 +56,66 @@ blogPosts.forEach(post => {
   <meta name="twitter:description" content="${post.description}" />
   <meta name="twitter:image" content="${imageUrl}" />
   <meta name="twitter:image:alt" content="${post.title}" />
+
+  <style>
+    body {
+      font-family: 'Poppins', Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    .container {
+      text-align: center;
+      margin-top: 40px;
+    }
+    .blog-image {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+    .title {
+      color: #333;
+      font-size: 28px;
+    }
+    .description {
+      color: #666;
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+    .button {
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: #1976d2;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: 500;
+      transition: background-color 0.3s;
+    }
+    .button:hover {
+      background-color: #1565c0;
+    }
+  </style>
 </head>
 <body>
-  <h1>${post.title}</h1>
-  <p>${post.description}</p>
-  <p>Redireccionando a la página principal del blog...</p>
+  <div class="container">
+    <h1 class="title">${post.title}</h1>
+    <p class="description">${post.description}</p>
+    <img src="${imageUrl}" alt="${post.title}" class="blog-image">
+    <p>Este es un artículo del blog de ADASOFT. Para una mejor experiencia, accede a nuestra web:</p>
+    <a href="https://adasoft.com.ar/#/blog/${post.id}" class="button">Ver artículo completo</a>
+  </div>
   <script>
-    window.location.href = "https://adasoft.com.ar/#/blog/${post.id}";
+    // Esperar unos segundos para que Facebook pueda rastrear la página
+    // antes de redirigir al usuario a la aplicación React
+    const isBot = /bot|crawler|spider|crawling/i.test(navigator.userAgent);
+    if (!isBot) {
+      setTimeout(function() {
+        window.location.href = "https://adasoft.com.ar/#/blog/${post.id}";
+      }, 3000); // Esperar 3 segundos
+    }
   </script>
 </body>
 </html>`;

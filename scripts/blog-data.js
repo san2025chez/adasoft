@@ -29,6 +29,16 @@ const blogPosts = [
     description: 'Descubre por qué el comercio electrónico es esencial para el crecimiento de tu negocio en la economía digital. Analizamos las mejores plataformas, estrategias de venta y opciones de pago para maximizar tus ventas online. 🛒 #Ecommerce #VentasOnline',
     tags: ['e-commerce', 'ventas online', 'tiendas virtuales', 'comercio electrónico', 'pago online'],
     author: 'ADASOFT'
+  },
+  {
+    id: 'make-vs-n8n',
+    title: '¿Make o n8n? ¿Cuál elegir para automatizar tus flujos de trabajo?',
+    subtitle: 'Comparativa detallada entre dos potentes herramientas de automatización',
+    date: '14 Mar 2025',
+    image: 'https://adasoft.com.ar/images/make-vs-n8n.jpg',
+    description: 'Descubre las diferencias clave entre Make o n8n para elegir la mejor herramienta de automatización para tus necesidades. 🚀 #Automatización #Productividad',
+    tags: ['automatización', 'productividad', 'herramientas', 'make', 'n8n', 'flujos de trabajo'],
+    author: 'ADASOFT'
   }
   // Puedes añadir más posts aquí siguiendo el mismo formato
 ];

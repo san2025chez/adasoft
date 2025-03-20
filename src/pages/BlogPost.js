@@ -16,38 +16,52 @@ import {
 
 // Función personalizada para compartir en Facebook con refresco de caché
 const customFacebookShare = (url, quote, callback) => {
-  // Si la API de FB está disponible, intentamos refrescar el caché antes de compartir
-  if (window.FB) {
-    console.log('Intentando refrescar caché de Facebook para:', url);
-    try {
-      // Primero actualizamos los metadatos en Facebook usando el SDK
-      window.FB.api(
-        '/me/feed',
-        'post',
-        {
-          message: quote,
-          link: url,
-          scrape: true
-        },
-        function(response) {
+  console.log('Compartiendo en Facebook con URL:', url);
+  
+  // Intentamos forzar la actualización de la caché de Facebook
+  const fbDebuggerUrl = `https://developers.facebook.com/tools/debug/?q=${encodeURIComponent(url)}&scrape=true`;
+  
+  // Abrir depurador de Facebook en una nueva ventana para forzar el refresco
+  const debugWindow = window.open(fbDebuggerUrl, '_blank');
+  
+  // Esperar un momento antes de abrir la ventana de compartir
+  setTimeout(() => {
+    // Si la API de FB está disponible, intentamos compartir directamente con ella
+    if (window.FB) {
+      console.log('Usando Facebook SDK para compartir');
+      try {
+        window.FB.ui({
+          method: 'share',
+          href: url,
+          quote: quote,
+          mobile_iframe: true
+        }, function(response) {
           if (!response || response.error) {
-            console.error('Error al intentar refrescar caché en FB:', response?.error);
-            // Usar método de respaldo en caso de error
+            console.error('Error al compartir con FB SDK:', response?.error);
+            // Si falla, cerrar la ventana del depurador y abrir diálogo normal
+            if (debugWindow) debugWindow.close();
             if (callback) callback();
           } else {
-            console.log('Caché actualizado en Facebook, respuesta:', response);
+            console.log('Compartido correctamente en Facebook:', response);
+            if (debugWindow) debugWindow.close();
             if (callback) callback();
           }
-        }
-      );
-    } catch (error) {
-      console.error('Error al usar FB SDK:', error);
+        });
+      } catch (error) {
+        console.error('Error al usar FB SDK:', error);
+        if (debugWindow) debugWindow.close();
+        if (callback) callback();
+      }
+    } else {
+      console.log('FB SDK no disponible, usando método estándar de compartir');
+      // Cerrar la ventana del depurador después de unos segundos para dar tiempo a que se actualice la caché
+      setTimeout(() => {
+        if (debugWindow) debugWindow.close();
+      }, 3000);
+      
       if (callback) callback();
     }
-  } else {
-    console.log('FB SDK no disponible, usando método estándar de compartir');
-    if (callback) callback();
-  }
+  }, 2000); // Esperar 2 segundos para dar tiempo al depurador a actualizar la caché
 };
 
 const BlogPost = () => {
@@ -62,7 +76,7 @@ const BlogPost = () => {
   const shareUrl = `${baseUrl}/#/blog/${id}`;
   
   // URL específica para compartir en Facebook (apunta al HTML estático pre-renderizado)
-  const facebookShareUrl = `${baseUrl}/blog/${id}.html`;
+  const facebookShareUrl = `${baseUrl}/blog/${id}.html?t=${new Date().getTime()}`;
   
   // Preparar las variables de imagen SOLO si el post existe
   let imageUrl = '';
@@ -204,10 +218,18 @@ const BlogPost = () => {
     forceFacebookUpdate();
   }, [post, absoluteImageUrl]);
 
-  // Función para forzar la actualización de la caché de Facebook (solo para desarrollo)
+  // Función para forzar la actualización de la caché de Facebook manualmente
   const forceRefreshFacebookCache = () => {
-    const debugUrl = `https://developers.facebook.com/tools/debug/?q=${encodeURIComponent(facebookShareUrl)}`;
-    window.open(debugUrl, '_blank');
+    if (!post) return;
+    
+    // URL con un parámetro de tiempo para evitar caché
+    const urlWithTimestamp = `${facebookShareUrl}&fresh=${new Date().getTime()}`;
+    
+    // Abrir el depurador de Facebook en una nueva ventana con la URL con timestamp
+    window.open(`https://developers.facebook.com/tools/debug/?q=${encodeURIComponent(urlWithTimestamp)}&scrape=true`, '_blank');
+    
+    // Mostrar mensaje al usuario
+    alert('Se ha abierto el depurador de Facebook en una nueva ventana. Haz clic en el botón "Depurar" para forzar la actualización del caché.');
   };
 
   // Si no hay post, no renderizamos nada (el efecto se encargará de redirigir)
@@ -464,13 +486,13 @@ const BlogPost = () => {
                   <FacebookShareButton url={facebookShareUrl} quote={post.title} description={post.description} hashtag="#ADASOFT" onClick={() => customFacebookShare(facebookShareUrl, post.title, () => console.log('Compartido en Facebook'))}>
                     <FacebookIcon size={40} round />
                   </FacebookShareButton>
-                  <TwitterShareButton url={shareUrl} title={post.title} via="adasoft" hashtags={["Automatización", "Productividad", "Tecnología"]}>
+                  <TwitterShareButton url={facebookShareUrl} title={post.title} via="adasoft" hashtags={["Automatización", "Productividad", "Tecnología"]}>
                     <TwitterIcon size={40} round />
                   </TwitterShareButton>
-                  <LinkedinShareButton url={shareUrl} title={post.title} summary={post.description} source="ADASOFT">
+                  <LinkedinShareButton url={facebookShareUrl} title={post.title} summary={post.description} source="ADASOFT">
                     <LinkedinIcon size={40} round />
                   </LinkedinShareButton>
-                  <WhatsappShareButton url={shareUrl} title={`${post.title}\n${post.description}`}>
+                  <WhatsappShareButton url={facebookShareUrl} title={post.title} separator=" - ">
                     <WhatsappIcon size={40} round />
                   </WhatsappShareButton>
                 </Stack>
