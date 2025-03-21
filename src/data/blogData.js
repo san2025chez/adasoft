@@ -4,7 +4,7 @@ export const blogPosts = [
     title: 'Desarrollo Web Moderno: Crea tu Presencia Online Profesional',
     subtitle: 'Tendencias y mejores prácticas para un sitio web exitoso',
     date: '24 Feb 2025',
-    image: 'https://adasoft.com.ar/images/blog-1.jpg',
+    image: '/images/web-ia.jpg',
     description: '¿Por qué tu negocio necesita una página web profesional? Descubre cómo el desarrollo web moderno puede impulsar tu credibilidad, alcance global y ventas en el mundo digital actual. Diseño web responsive, SEO y marketing digital combinados. 🚀 #DesarrolloWeb #Marketing',
     content: `
 <h3>Por qué Tener una Página Web es Imprescindible en el Mundo Digital Actual</h3>
@@ -47,7 +47,7 @@ En ADASOFT, nos especializamos en el desarrollo de páginas web personalizadas q
     title: 'Inteligencia Artificial en 2025: El Futuro de la Tecnología',
     subtitle: 'Descubre cómo la IA está transformando la industria del software',
     date: '23 Feb 2025',
-    image: 'https://adasoft.com.ar/images/blog-2.jpg',
+    image: '/images/blog-2.jpg',
     description: 'Explora cómo la IA está revolucionando la industria del software y qué podemos esperar en los próximos años. Aprende sobre Machine Learning, Deep Learning y más.',
     content: `El Machine Learning (ML) es una rama de la inteligencia artificial que permite a las máquinas aprender de datos y mejorar su rendimiento sin ser programadas explícitamente. Desde recomendaciones personalizadas en Netflix hasta diagnósticos médicos precisos, el ML está revolucionando industrias enteras.
 
@@ -86,7 +86,7 @@ El algoritmo aprende mediante prueba y error, recibiendo recompensas por decisio
     title: 'Seguridad en Aplicaciones Web: Protege tu Negocio',
     subtitle: 'Aprende las mejores prácticas de seguridad para proteger tus aplicaciones web',
     date: '22 Feb 2025',
-    image: 'https://adasoft.com.ar/images/blog-3.webp',
+    image: '/images/blog-3.webp',
     description: 'Aprende las mejores prácticas de seguridad para proteger tus aplicaciones web contra amenazas modernas. Descubre cómo proteger tus datos y mantener la confianza de tus clientes.',
     content: `La seguridad es un aspecto crucial en el desarrollo de aplicaciones web modernas. Con el aumento de las amenazas cibernéticas, es fundamental implementar medidas de seguridad robustas.
 
@@ -97,7 +97,7 @@ El algoritmo aprende mediante prueba y error, recibiendo recompensas por decisio
     title: '¿Make o n8n? ¿Cuál elegir para automatizar tus flujos de trabajo?',
     subtitle: 'Comparativa detallada entre dos potentes herramientas de automatización',
     date: '14 Mar 2025',
-    image: 'https://adasoft.com.ar/images/make-vs-n8n.jpg',
+    image: '/images/make-vs-n8n.jpg',
     description: 'Descubre las diferencias clave entre Make o n8n para elegir la mejor herramienta de automatización para tus necesidades. 🚀 #Automatización #Productividad',
     content: `
 <h3>Make vs n8n: La Batalla de las Herramientas de Automatización</h3>

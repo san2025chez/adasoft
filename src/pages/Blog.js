@@ -141,7 +141,7 @@ const Blog = () => {
                   >
                     <CardMedia
                       component="img"
-                      image={post.image}
+                      image={`${post.image}?t=${new Date().getTime()}`}
                       alt={post.title}
                       sx={{ 
                         height: { xs: '200px', sm: '220px' },

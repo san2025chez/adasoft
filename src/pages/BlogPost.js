@@ -19,7 +19,10 @@ const customFacebookShare = (url, quote, callback) => {
   console.log('Compartiendo en Facebook con URL:', url);
   
   // Intentamos forzar la actualización de la caché de Facebook
-  const fbDebuggerUrl = `https://developers.facebook.com/tools/debug/?q=${encodeURIComponent(url)}&scrape=true`;
+  const fbDebuggerUrl = `https://developers.facebook.com/tools/debug/?q=${encodeURIComponent(url)}`;
+  
+  // Mostrar alerta para informar al usuario sobre el depurador
+  alert('Se abrirá el depurador de Facebook en una nueva ventana. Haz clic en "Depurar" para actualizar la caché y luego podrás compartir el contenido.');
   
   // Abrir depurador de Facebook en una nueva ventana para forzar el refresco
   const debugWindow = window.open(fbDebuggerUrl, '_blank');
@@ -53,11 +56,8 @@ const customFacebookShare = (url, quote, callback) => {
         if (callback) callback();
       }
     } else {
-      console.log('FB SDK no disponible, usando método estándar de compartir');
-      // Cerrar la ventana del depurador después de unos segundos para dar tiempo a que se actualice la caché
-      setTimeout(() => {
-        if (debugWindow) debugWindow.close();
-      }, 3000);
+      console.log('Facebook SDK no disponible, usando diálogo de compartir normal');
+      if (debugWindow) debugWindow.close();
       
       if (callback) callback();
     }
@@ -112,18 +112,21 @@ const BlogPost = () => {
     // Asegurarnos de que la URL absoluta sea correcta para redes sociales
     // Añadir timestamp para evitar caché en Facebook
     const cacheBuster = `?v=${new Date().getTime()}`;
-    absoluteImageUrl = cleanImageUrl + cacheBuster;
+    absoluteImageUrl = cleanImageUrl; // Sin cache buster para meta tags
     console.log('URL absoluta final para meta tags:', absoluteImageUrl);
     
-    // Añadimos parámetros para evitar el caché solo para la versión optimizada
-    // que se usa dentro de la página
-    const sessionTimestamp = localStorage.getItem('sessionTimestamp') || new Date().getTime();
-    if (!localStorage.getItem('sessionTimestamp')) {
-      localStorage.setItem('sessionTimestamp', sessionTimestamp);
+    // Para la imagen que se muestra en la página, si es una ruta relativa, usar directamente la ruta relativa
+    if (post.image.startsWith('/')) {
+      // Es una ruta relativa, usarla directamente
+      optimizedImageUrl = `${post.image}?v=${timestamp}`;
+    } else if (post.image.startsWith('http')) {
+      // Es una URL absoluta, usarla con timestamp
+      optimizedImageUrl = `${cleanImageUrl}?v=${timestamp}`;
+    } else {
+      // Si no tiene / al inicio, añadirla
+      optimizedImageUrl = `/${post.image}?v=${timestamp}`;
     }
     
-    // Creamos la URL optimizada para mostrar en la página
-    optimizedImageUrl = `${cleanImageUrl}?v=${sessionTimestamp}&width=1200&height=630&fit=crop`;
     console.log('URL optimizada para visualización:', optimizedImageUrl);
     
     // Crear fecha en formato ISO para Schema.org
