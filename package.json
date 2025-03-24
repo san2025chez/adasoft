@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "https://adasoft.com.ar/",
   "dependencies": {
-    "@emailjs/browser": "^3.11.0",
+    "@emailjs/browser": "^4.4.1",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.15.0",
@@ -13,7 +13,6 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "emailjs-com": "^3.2.0",
     "gh-pages": "^6.1.0",
     "react": "^18.2.0",
     "react-awesome-reveal": "^4.2.8",

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,6 +12,8 @@ import emailjs from '@emailjs/browser';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import './Formulrio.css'
+
+// No es necesario inicializar EmailJS de esta manera con la nueva versión
 
 const theme = createTheme({
   palette: {
@@ -39,14 +41,62 @@ export const Formulario = () => {
 
   const sendEmail = (e) => {
     e.preventDefault();
+    console.log("Formulario a enviar:", form.current);
+    
+    // Primero verificamos que el formulario tiene los campos necesarios
+    const formData = new FormData(form.current);
+    console.log("Contenido del formulario:");
+    for (let [key, value] of formData.entries()) {
+      console.log(`${key}: ${value}`);
+    }
 
-    emailjs.sendForm('service_mo6xcsa', 'template_49qbndc', form.current, 'XT5EO2oI14qIFykvW')
+    // Para depurar, creamos un objeto con los datos del formulario
+    const templateParams = {
+      user_name: form.current.user_name.value,
+      user_email: form.current.user_email.value,
+      message: form.current.message.value
+    };
+    
+    console.log("Enviando con parámetros:", templateParams);
+    
+    // Utilizando la forma recomendada por EmailJS
+    emailjs.sendForm(
+      'service_wzijndk',  // Tu Service ID actualizado
+      'template_49qbndc', // Tu Template ID
+      form.current, 
+      {
+        publicKey: 'XT5EO2oI14qIFykvW', // Tu Public Key
+      }
+    )
       .then((result) => {
-        console.log(result.text);
+        console.log('SUCCESS!', result.text);
         form.current.reset();
         setOpenSnackbar(true);
       }, (error) => {
-        console.log(error.text);
+        console.error('FAILED...', error.text);
+        console.error('Error completo:', error);
+        
+        // Si falla sendForm, intentamos el método alternativo con send
+        console.log("Intentando método alternativo...");
+        
+        emailjs.send(
+          'service_wzijndk',
+          'template_49qbndc',
+          templateParams,
+          {
+            publicKey: 'XT5EO2oI14qIFykvW',
+          }
+        ).then(
+          (result) => {
+            console.log('ÉXITO CON MÉTODO ALTERNATIVO!', result.text);
+            form.current.reset();
+            setOpenSnackbar(true);
+          },
+          (error) => {
+            console.error('AMBOS MÉTODOS FALLARON:', error.text);
+            alert('Error al enviar el formulario: ' + error.text);
+          }
+        );
       });
   };
 
