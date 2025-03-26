@@ -117,137 +117,7 @@ Si estás considerando implementar soluciones de IA para optimizar procesos o cr
     tags: ['inteligencia artificial', 'machine learning', 'deep learning', 'tecnología'],
     author: 'ADASOFT'
   },
-  {
-    id: '3',
-    title: 'Seguridad en Aplicaciones Web: Protege tu Negocio',
-    subtitle: 'Aprende las mejores prácticas de seguridad para proteger tus aplicaciones web',
-    date: '22 Feb 2025',
-    image: '/images/blog-3.webp',
-    description: 'Aprende las mejores prácticas de seguridad para proteger tus aplicaciones web contra amenazas modernas. Descubre cómo proteger tus datos y mantener la confianza de tus clientes.',
-    content: `
-<p>
-En la era digital actual, la seguridad de las aplicaciones web se ha convertido en una preocupación fundamental para las empresas de todos los tamaños. Con el aumento de los ataques cibernéticos y las brechas de datos, proteger tus aplicaciones web no es solo una buena práctica, sino una necesidad absoluta.
-</p>
-
-<h2>¿Por qué es crucial la seguridad en las aplicaciones web?</h2>
-
-<p>
-Las aplicaciones web modernas manejan información sensible, desde datos personales de usuarios hasta información financiera y comercial. Una brecha de seguridad puede tener consecuencias devastadoras:
-</p>
-
-<ul>
-  <li>Pérdida de datos sensibles de clientes</li>
-  <li>Daño a la reputación de la marca</li>
-  <li>Costos financieros significativos</li>
-  <li>Posibles implicaciones legales y regulatorias</li>
-</ul>
-
-<p>
-Según estudios recientes, el costo promedio de una brecha de datos para una empresa es de millones de dólares, sin mencionar el daño incalculable a la confianza del cliente.
-</p>
-
-<h2>Amenazas comunes a la seguridad web</h2>
-
-<h3>1. Inyección SQL</h3>
-<p>
-Los ataques de inyección SQL ocurren cuando un atacante inserta código SQL malicioso en las entradas de una aplicación, potencialmente permitiéndoles acceder o manipular la base de datos subyacente. Para prevenir estos ataques, es crucial implementar declaraciones parametrizadas, un ORM (Object-Relational Mapping) confiable o procedimientos almacenados.
-</p>
-
-<h3>2. Cross-Site Scripting (XSS)</h3>
-<p>
-Los ataques XSS implican inyectar scripts maliciosos en páginas web vistas por otros usuarios. Estos scripts pueden robar información, secuestrar sesiones de usuario o redirigir a los usuarios a sitios fraudulentos. La sanitización adecuada de la entrada del usuario y el uso de encabezados HTTP de seguridad como Content-Security-Policy pueden ayudar a mitigar estos riesgos.
-</p>
-
-<h3>3. Cross-Site Request Forgery (CSRF)</h3>
-<p>
-Los ataques CSRF engañan a los usuarios autenticados para que ejecuten acciones no deseadas en una aplicación web sin su conocimiento. Implementar tokens anti-CSRF y verificar el encabezado Referer puede proporcionar protección contra estos ataques.
-</p>
-
-<h3>4. Fallas de autenticación y gestión de sesiones</h3>
-<p>
-Las vulnerabilidades en los sistemas de autenticación y gestión de sesiones pueden permitir a los atacantes comprometer contraseñas, claves o tokens de sesión. Implementar una autenticación sólida, como la autenticación de dos factores (2FA), y una gestión segura de sesiones es fundamental para proteger las cuentas de usuario.
-</p>
-
-<h2>Mejores prácticas para la seguridad de aplicaciones web</h2>
-
-<h3>1. Mantenerse actualizado</h3>
-<p>
-Mantén todos los componentes de tu aplicación web, incluidos los frameworks, bibliotecas y sistemas de gestión de contenido, actualizados con los últimos parches de seguridad.
-</p>
-
-<h3>2. Implementar HTTPS</h3>
-<p>
-HTTPS encripta los datos transmitidos entre el navegador del usuario y el servidor, protegiendo la información sensible de los ataques de intermediarios. Siempre utiliza HTTPS para tu aplicación web.
-</p>
-
-<h3>3. Seguir el principio del menor privilegio</h3>
-<p>
-Asegúrate de que los usuarios y los componentes del sistema solo tengan acceso a los recursos que necesitan para realizar sus funciones, limitando así el impacto potencial de una brecha.
-</p>
-
-<h3>4. Realizar pruebas de seguridad regulares</h3>
-<p>
-Realiza evaluaciones de vulnerabilidad, pruebas de penetración y revisiones de código de forma regular para identificar y abordar las debilidades de seguridad antes de que puedan ser explotadas.
-</p>
-
-<h3>5. Educar a tu equipo</h3>
-<p>
-Asegúrate de que todos los miembros del equipo de desarrollo comprendan los principios básicos de la seguridad web y sigan las mejores prácticas al construir y mantener aplicaciones.
-</p>
-
-<h3>En Conclusión</h3>
-<p>
-La seguridad de las aplicaciones web no es una característica opcional, sino un aspecto fundamental del desarrollo web moderno. Al comprender las amenazas comunes y seguir las mejores prácticas de seguridad, puedes proteger a tu empresa y a tus usuarios de las consecuencias potencialmente devastadoras de una brecha de seguridad.
-</p>
-
-<h3>¿Necesitas mejorar la seguridad de tus aplicaciones web?</h3>
-Si estás preocupado por la seguridad de tus aplicaciones web, en <a onClick="window.location.href='/'" style="color: #1976d2; text-decoration: underline; font-weight: bold; cursor: pointer;">ADASOFT</a> te podemos ayudar. Nuestros expertos en seguridad web pueden realizar auditorías de seguridad, implementar medidas de protección y garantizar que tus aplicaciones estén protegidas contra las amenazas más recientes. <a onClick="(() => {
-  window.location.href='#/';
-  setTimeout(() => {
-    document.getElementById('contacto').scrollIntoView({behavior: 'smooth'});
-  }, 500);
-})()" style="color: #1976d2; text-decoration: underline; font-weight: bold; cursor: pointer;">Contáctanos</a> para una evaluación de la seguridad de tus aplicaciones web.
-
-<div style="background-color: #f7f9fc; padding: 25px; border-radius: 8px; margin-top: 30px; border-left: 4px solid #1976d2;">
-  <h3 style="color: #1976d2; margin-top: 0;">¿Está tu negocio protegido contra las amenazas cibernéticas actuales?</h3>
-
-  <p>En un mundo donde los ataques informáticos son cada vez más sofisticados, <strong>la seguridad ya no es opcional</strong>. En <a onClick="window.location.href='/'" style="color: #1976d2; text-decoration: underline; font-weight: bold; cursor: pointer;">ADASOFT</a> ofrecemos <strong>soluciones de seguridad robustas</strong> que protegen tu negocio sin comprometer la experiencia del usuario.</p>
-
-  <h4 style="margin-bottom: 10px; margin-top: 20px;">Nuestros servicios de seguridad incluyen:</h4>
-  <ul style="margin-bottom: 20px; padding-left: 20px;">
-    <li><strong>Auditorías de seguridad completas</strong> - Identificamos vulnerabilidades antes que los atacantes</li>
-    <li><strong>Desarrollo seguro desde el diseño</strong> - Implementamos mejores prácticas OWASP en cada proyecto</li>
-    <li><strong>Protección contra ataques comunes</strong> - Defensa contra SQL Injection, XSS, CSRF y otras amenazas</li>
-    <li><strong>Monitoreo continuo</strong> - Vigilancia 24/7 de actividades sospechosas</li>
-  </ul>
-
-  <h4 style="margin-bottom: 10px;">Los clientes que confían en nuestra seguridad obtienen:</h4>
-  <ul style="margin-bottom: 25px; padding-left: 20px;">
-    <li>Reducción de hasta un 95% en incidentes de seguridad</li>
-    <li>Cumplimiento con normativas internacionales (GDPR, PCI DSS)</li>
-    <li>Protección de datos sensibles y propiedad intelectual</li>
-    <li>Confianza renovada de sus clientes y stakeholders</li>
-  </ul>
-
-  <div style="background-color: #e8f4fe; padding: 15px; border-radius: 6px; margin-bottom: 20px;">
-    <p style="margin: 0; font-style: italic;">"Después de sufrir un ataque que nos costó miles de euros, contratamos a ADASOFT para proteger nuestros sistemas. En el último año, han bloqueado más de 1,200 intentos de intrusión y nos han ayudado a cumplir con todas las normativas de protección de datos."</p>
-    <p style="margin: 5px 0 0; text-align: right; font-weight: bold;">— Javier Rodríguez, CTO de FinSecure</p>
-  </div>
-
-  <p style="text-align: center; margin: 25px 0 10px;">
-    <a onClick="(() => {
-      window.location.href='#/';
-      setTimeout(() => {
-        document.getElementById('contacto').scrollIntoView({behavior: 'smooth'});
-      }, 500);
-    })()" style="background-color: #1976d2; color: white; text-decoration: none; font-weight: bold; padding: 12px 24px; border-radius: 4px; display: inline-block; cursor: pointer; transition: background-color 0.3s;">SOLICITA TU AUDITORÍA DE SEGURIDAD GRATUITA</a>
-  </p>
-  <p style="text-align: center; margin: 0; font-size: 0.9em; color: #666;">Limitado a las primeras 10 empresas cada mes. Informe detallado de vulnerabilidades incluido.</p>
-</div>`,
-    tags: ['seguridad', 'aplicaciones web', 'ciberseguridad'],
-    author: 'ADASOFT'
-  },
-  {
+   {
     id: 'make-vs-n8n',
     title: '¿Make o n8n? ¿Cuál elegir para automatizar tus flujos de trabajo?',
     subtitle: 'Comparativa detallada entre dos potentes herramientas de automatización',
@@ -369,7 +239,7 @@ Tus equipos liberados de tareas repetitivas. Tu negocio operando con mayor preci
   <ul style="margin-bottom: 20px; padding-left: 20px;">
     <li><strong>Gestión de datos</strong> - Extracción, transformación y carga sin intervención manual</li>
     <li><strong>Integración entre sistemas</strong> - Conexión fluida entre todas tus herramientas empresariales</li>
-    <li><strong>Procesos administrativos</strong> - Desde facturación hasta gestión de inventario</li>
+    <li><strong>Procesos administrativos</strong> - Gestión de inventario</li>
     <li><strong>Comunicación omnicanal</strong> - Respuestas automáticas inteligentes en todos tus canales</li>
   </ul>
 
