@@ -1,5 +1,130 @@
 export const blogPosts = [
   {
+    id: '4',
+    title: 'Automatización de Envío de Correos con n8n, Groq y QWQ: Caso Práctico',
+    subtitle: 'Cómo optimizamos un proceso manual en solo horas',
+    date: '16 Apr 2025',
+    image: '/images/gmail.webp',
+    description: 'Automatiza el envío de correos con n8n y Groq: caso práctico con resultados medibles. ¡Descubre cómo transformamos tareas repetitivas en procesos eficientes con tecnología!',
+    tags: ['automatización', 'n8n','gmail', 'groq', 'productividad', 'caso-práctico'],
+    author: 'Escrito por Ana Sanchez',
+    authorImage: '/images/Ana.jpeg',
+    content: `
+<h2>Automatización de Envío de Correos con n8n y Groq: Caso Práctico</h2>
+
+<div style="text-align: center; margin: 2rem 0;">
+  <img src="/images/n8n-automation.png" alt="Arquitectura del flujo automatizado en n8n" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+  <p style="font-style: italic; color: #666; margin-top: 0.5rem; font-size: 0.9rem;">Arquitectura del flujo automatizado en n8n</p>
+</div>
+
+<p>En <a onClick="window.location.href='/'" style="color: #2563EB; text-decoration: underline; font-weight: bold; cursor: pointer;">Adasoft</a>, transformamos tareas repetitivas en procesos eficientes con tecnología. Hoy compartimos un caso real donde automatizamos el envío de correos electrónicos al recibir órdenes de pedido, usando <strong>n8n</strong>, <strong>Groq</strong> y <strong>Gmail</strong>.</p>
+
+<h3>El Problema: Procesos Manuales Ineficientes</h3>
+
+<p>Nuestro cliente enfrentaba estos desafíos:</p>
+
+<ul>
+  <li><strong>⏳ Pérdida de tiempo:</strong> 2-3 horas diarias gestionando respuestas manuales.</li>
+  <li><strong>✉️ Errores humanos:</strong> Omisión de datos clave en correos.</li>
+  <li><strong>📉 Escalabilidad limitada:</strong> Crecimiento obstaculizado por procesos manuales.</li>
+</ul>
+
+<h3>La Solución: Automatización End-to-End</h3>
+
+<p>Implementamos este flujo en menos de 1 día:</p>
+
+<h4>Trigger inteligente:</h4>
+<p>Configuramos un webhook en n8n para capturar órdenes desde el formulario de contacto del cliente, su CRM y correos electrónicos entrantes.</p>
+
+<h4>Procesamiento con Groq:</h4>
+<p>Utilizamos Groq para extraer automáticamente datos clave como número de pedido, información del cliente y productos solicitados, todo con precisión y sin intervención humana.</p>
+
+<h4>Envío automático vía Gmail:</h4>
+<p>Implementamos un sistema de generación y envío de correos personalizados que opera en segundos, manteniendo la identidad de marca y asegurando que toda la información relevante se incluya.</p>
+
+
+
+<h3>Resultados Tangibles</h3>
+
+<div style="display: flex; flex-wrap: wrap; gap: 1rem; margin: 2rem 0;">
+  <div style="flex: 1; min-width: 250px; background-color: #f8fafc; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+    <h4 style="margin-top: 0; color: #1E3A8A;">🚀 Ahorro de tiempo</h4>
+    <p style="font-size: 2rem; font-weight: bold; color: #2563EB; margin: 0.5rem 0;">90%</p>
+    <p>Reducción en tiempo de gestión</p>
+  </div>
+  
+  <div style="flex: 1; min-width: 250px; background-color: #f8fafc; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+    <h4 style="margin-top: 0; color: #1E3A8A;">📈 Precisión</h4>
+    <p style="font-size: 2rem; font-weight: bold; color: #2563EB; margin: 0.5rem 0;">100%</p>
+    <p>Eliminación de errores de comunicación</p>
+  </div>
+  
+  <div style="flex: 1; min-width: 250px; background-color: #f8fafc; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+    <h4 style="margin-top: 0; color: #1E3A8A;">💡 Escalabilidad</h4>
+    <p style="font-size: 2rem; font-weight: bold; color: #2563EB; margin: 0.5rem 0;">500+</p>
+    <p>Órdenes procesadas por día sin intervención</p>
+  </div>
+</div>
+
+<h3>¿Quieres Automatizar Tus Procesos?</h3>
+
+<p>En <a onClick="window.location.href='/'" style="color: #2563EB; text-decoration: underline; font-weight: bold; cursor: pointer;">Adasoft</a>, creamos soluciones a medida para:</p>
+
+<ul>
+  <li><strong>✨ Automatización de correos y notificaciones.</strong> Implementamos sistemas que responden automáticamente con la información adecuada en el momento preciso.</li>
+  <li><strong>🤖 Integración de IA</strong> (Groq, OpenAI) con tus herramientas existentes para potenciar tus capacidades de procesamiento de datos.</li>
+  <li><strong>📊 Optimización de flujos</strong> con n8n, Zapier o Make, adaptándonos a tu stack tecnológico actual.</li>
+</ul>
+
+<div style="background-color: #1E3A8A; color: white; padding: 2rem; border-radius: 8px; margin: 2rem 0; text-align: center;">
+  <h3 style="color: white; margin-top: 0;">¡Agenda una consulta gratis!</h3>
+  <p style="margin-bottom: 1.5rem;">Descubre cómo podemos ayudarte a automatizar tus procesos y liberar el potencial de tu equipo.</p>
+  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;">
+    <a onClick="(() => {
+      window.location.href='#/';
+      setTimeout(() => {
+        document.getElementById('contacto').scrollIntoView({behavior: 'smooth'});
+      }, 500);
+    })()" style="display: inline-block; background-color: white; color: #1E3A8A; padding: 0.75rem 1.5rem; border-radius: 6px; text-decoration: none; font-weight: bold; cursor: pointer;">Programar llamada</a>
+        
+     </div>
+</div>
+
+<div style="border-top: 1px solid #e2e8f0; margin-top: 2rem; padding-top: 2rem;">
+  <h4>Preguntas Frecuentes</h4>
+  
+  <div itemscope itemtype="https://schema.org/FAQPage">
+    <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <h5 itemprop="name" style="color: #1E3A8A; font-weight: bold;">¿Qué es n8n?</h5>
+      <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+        <div itemprop="text">
+          <p>n8n es una plataforma de automatización de flujos de trabajo de código abierto que permite conectar diferentes servicios y APIs para crear flujos de trabajo automatizados complejos sin necesidad de programación avanzada.</p>
+        </div>
+      </div>
+    </div>
+    
+    <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <h5 itemprop="name" style="color: #1E3A8A; font-weight: bold;">¿Qué ventajas tiene Groq sobre otros modelos de IA?</h5>
+      <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+        <div itemprop="text">
+          <p>Groq se destaca por su capacidad de comprender y procesar lenguaje natural de manera contextual, permitiendo extraer información estructurada de textos no estructurados con gran precisión, ideal para automatizar la interpretación de correos y formularios.</p>
+        </div>
+      </div>
+    </div>
+    
+    <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <h5 itemprop="name" style="color: #1E3A8A; font-weight: bold;">¿Cuánto tiempo toma implementar una solución similar?</h5>
+      <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+        <div itemprop="text">
+          <p>Dependiendo de la complejidad de tu flujo actual, podemos implementar soluciones iniciales en 1-3 días, con resultados inmediatos. Soluciones más complejas con múltiples integraciones pueden tomar entre 1-2 semanas.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`
+  },
+  {
     id: '1',
     title: 'Desarrollo Web Moderno: Crea tu Presencia Online Profesional',
     subtitle: 'Tendencias y mejores prácticas para un sitio web exitoso',

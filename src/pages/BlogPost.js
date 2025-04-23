@@ -130,7 +130,12 @@ const BlogPost = () => {
     console.log('URL optimizada para visualización:', optimizedImageUrl);
     
     // Crear fecha en formato ISO para Schema.org
-    isoDate = post.date ? new Date(post.date).toISOString() : new Date().toISOString();
+    try {
+      isoDate = post.date ? new Date(post.date).toISOString() : new Date().toISOString();
+    } catch (e) {
+      console.warn(`Could not parse date for post ${id}: ${post.date}`);
+      isoDate = new Date().toISOString();
+    }
   }
   
   // IMPORTANTE: Todos los hooks deben ser usados antes de cualquier return condicional
@@ -391,6 +396,27 @@ const BlogPost = () => {
               >
                 {post.date}
               </Typography>
+              {/* Autor del post */}
+              {post.author && post.authorImage && (
+                <Box sx={{ display: 'flex', alignItems: 'center', mb: 4 }}>
+                  <CardMedia
+                    component="img"
+                    image={post.authorImage}
+                    alt={post.author}
+                    sx={{
+                      width: 48,
+                      height: 48,
+                      borderRadius: '50%',
+                      objectFit: 'cover',
+                      boxShadow: '0 2px 8px rgba(0,0,0,0.10)',
+                      mr: 2
+                    }}
+                  />
+                  <Typography variant="subtitle2" color="text.primary" sx={{ fontWeight: 500 }}>
+                    {post.author}
+                  </Typography>
+                </Box>
+              )}
               <Typography 
                 variant="body1" 
                 component="div" 

@@ -23,18 +23,28 @@ const Blog = () => {
         'url': `${baseUrl}/images/logotrans2.png`
       }
     },
-    'blogPost': blogPosts.map(post => ({
-      '@type': 'BlogPosting',
-      'headline': post.title,
-      'description': post.description,
-      'datePublished': post.date ? new Date(post.date).toISOString() : new Date().toISOString(),
-      'image': post.image.startsWith('http') ? post.image : `${baseUrl}${post.image}`,
-      'url': `${baseUrl}/blog/${post.id}`,
-      'author': {
-        '@type': 'Organization',
-        'name': 'ADASOFT'
+    'blogPost': blogPosts.map(post => {
+      let dateISO;
+      try {
+        dateISO = post.date ? new Date(post.date).toISOString() : new Date().toISOString();
+      } catch (e) {
+        console.warn(`Could not parse date for post ${post.id}: ${post.date}`);
+        dateISO = new Date().toISOString();
       }
-    }))
+      
+      return {
+        '@type': 'BlogPosting',
+        'headline': post.title,
+        'description': post.description,
+        'datePublished': dateISO,
+        'image': post.image.startsWith('http') ? post.image : `${baseUrl}${post.image}`,
+        'url': `${baseUrl}/blog/${post.id}`,
+        'author': {
+          '@type': 'Organization',
+          'name': 'ADASOFT'
+        }
+      };
+    })
   };
 
   return (
