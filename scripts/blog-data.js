@@ -39,7 +39,16 @@ const blogPosts = [
     description: 'Descubre las diferencias clave entre Make o n8n para elegir la mejor herramienta de automatización para tus necesidades. 🚀 #Automatización #Productividad',
     tags: ['automatización', 'productividad', 'herramientas', 'make', 'n8n', 'flujos de trabajo'],
     author: 'ADASOFT'
-  }
+  },
+  {
+    id: '4',
+    title: 'Automatización de Envío de Correos con n8n, Groq y QWQ: Caso Práctico',
+    subtitle: 'Cómo optimizamos un proceso manual en solo horas',
+    date: '16 Apr 2025',
+    image: '/images/gmail.webp',
+    description: 'Automatiza el envío de correos con n8n y Groq: caso práctico con resultados medibles. ¡Descubre cómo transformamos tareas repetitivas en procesos eficientes con tecnología!',
+    tags: ['automatización', 'n8n','gmail', 'groq', 'productividad', 'caso-práctico'],
+    author: 'Escrito por Ana Sanchez'   }
   // Puedes añadir más posts aquí siguiendo el mismo formato
 ];
 

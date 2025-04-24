@@ -5,6 +5,11 @@ import { Helmet } from 'react-helmet-async';
 import './inicio.css';
 
 const Inicio = () => {
+  // Forzar scroll al tope al montar
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const isTablet = useMediaQuery(theme.breakpoints.down('md'));
@@ -70,7 +75,7 @@ const Inicio = () => {
         className="contenedor-imagen" 
         sx={{
           paddingTop: { xs: '80px', sm: '100px', md: '130px' },
-          minHeight: { xs: 'auto', md: '90vh' },
+          minHeight: { xs: '100vh', md: '90vh' },
           overflow: 'hidden',
           width: '100%',
           display: 'flex',
@@ -125,7 +130,7 @@ const Inicio = () => {
                   mt: { xs: 0, md: '-0.5rem' }
                 }}
               >
-                <Fade direction='down' triggerOnce={true}>
+                <Fade direction='down' triggerOnce={true} duration={500}>
                   <Typography 
                     variant={isMobile ? 'h5' : 'h4'} 
                     sx={{ 
@@ -146,7 +151,7 @@ const Inicio = () => {
                     ¡Potencia el crecimiento de tu negocio con soluciones tecnológicas!
                   </Typography>
                 </Fade>
-                <Fade direction='up' triggerOnce={true}>
+                <Fade direction='up' triggerOnce={true} duration={500}>
                   <Typography 
                     variant={isMobile ? 'body2' : 'body1'} 
                     sx={{ 
@@ -223,12 +228,16 @@ const Inicio = () => {
                   <img
                     src={`${process.env.PUBLIC_URL}/images/imageSOFT.png`}
                     alt="Soluciones tecnológicas ADASOFT"
+                    width="600"
+                    height="400"
                     style={{
                       width: '100%',
                       height: 'auto',
+                      aspectRatio: '3/2',
                       objectFit: 'contain',
                       filter: 'drop-shadow(0 10px 20px rgba(0, 0, 0, 0.15))',
                       animation: 'float 6s ease-in-out infinite',
+                      display: 'block',
                     }}
                   />
                 </Box>
