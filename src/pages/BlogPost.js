@@ -236,6 +236,9 @@ const BlogPost = () => {
           ? absoluteImageUrl 
           : `${baseUrl}${absoluteImageUrl}`;
         
+        // Meta tag obligatorio para Facebook
+        updateMetaTag('fb:app_id', '2375482829489229');
+        
         // Metadatos para Facebook/Open Graph
         updateMetaTag('og:url', shareUrl);
         updateMetaTag('og:type', 'article');
@@ -334,6 +337,9 @@ const BlogPost = () => {
         <meta httpEquiv="Pragma" content="no-cache" />
         <meta httpEquiv="Expires" content="0" />
         
+        {/* Meta tag obligatorio para Facebook */}
+        <meta property="fb:app_id" content="2375482829489229" />
+        
         {/* Open Graph / Facebook Meta Tags - Mejorados para redes sociales */}
         <meta property="og:url" content={shareUrl} />
         <meta property="og:type" content="article" />
@@ -347,7 +353,6 @@ const BlogPost = () => {
         <meta property="og:image:type" content={post.image.endsWith('.webp') ? "image/jpeg" : "image/jpeg"} />
         <meta property="og:site_name" content="ADASOFT" />
         <meta property="og:updated_time" content={new Date().toISOString()} />
-        <meta property="fb:app_id" content="2375482829489229" />
         <meta property="article:published_time" content={isoDate} />
         <meta property="article:modified_time" content={new Date().toISOString()} />
         <meta property="article:author" content="ADASOFT" />
