@@ -31,7 +31,7 @@ const blogPosts = [
     author: 'ADASOFT'
   },
   {
-    id: 'make-vs-n8n',
+    id: '-vs-n8n',
     title: '¿Make o n8n? ¿Cuál elegir para automatizar tus flujos de trabajo?',
     subtitle: 'Comparativa detallada entre dos potentes herramientas de automatización',
     date: '14 Mar 2025',

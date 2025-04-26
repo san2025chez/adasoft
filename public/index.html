@@ -43,30 +43,28 @@
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/images/logotrans2.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <title>ADASOFT - Desarrollo de Software y Diseño Web Profesional | Soluciones Tecnológicas a Medida</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
     
-    <!-- Facebook SDK -->
-    <div id="fb-root"></div>
+    <!-- Facebook SDK para depurar y optimizar las comparticiones -->
     <script>
       window.fbAsyncInit = function() {
         FB.init({
-          appId            : '2375482829489229',
-          autoLogAppEvents : true,
-          xfbml            : true,
-          version          : 'v19.0'
+          appId      : '2375482829489229',
+          xfbml      : true,
+          version    : 'v18.0'
         });
       };
-      
-      (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = "https://connect.facebook.net/es_LA/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));
+    
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "https://connect.facebook.net/es_LA/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
     </script>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
     
     <div id="root"></div>
     <!--

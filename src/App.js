@@ -79,7 +79,7 @@ const App = () => {
   };
 
   const GridItem = styled.div`
-    background-image: url("${process.env.PUBLIC_URL}/images/metodologia-transformed.jpeg");
+    background-image: url(${process.env.PUBLIC_URL}/images/metodologia-transformed.jpeg);
     background-size: cover;
     background-position: center;
     height: 95%;
@@ -111,7 +111,7 @@ const App = () => {
   `;
 
   const GridItemNosotros = styled.div`
-    background-image: url('${process.env.PUBLIC_URL}/images/nosotros2.jpeg');
+    background-image: url(${process.env.PUBLIC_URL}/images/nosotros2.jpeg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

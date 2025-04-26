@@ -38,6 +38,15 @@ if (process.env.NODE_ENV === 'development') {
   };
 }
 
+// Suprimir error de ResizeObserver
+const originalError = window.console.error;
+window.console.error = function(msg) {
+  if (typeof msg === 'string' && msg.includes('ResizeObserver loop completed with undelivered notifications')) {
+    return;
+  }
+  originalError.apply(console, arguments);
+};
+
 const rootElement = document.getElementById('root');
 
 if (rootElement.hasChildNodes()) {

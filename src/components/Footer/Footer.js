@@ -63,7 +63,7 @@ const Footer = () => {
               <LinkedInIcon />
             </IconButton>
           </Link>
-          <Link href="https://www.facebook.com/adasoft.ar" target="_blank" rel="noopener noreferrer" color="inherit">
+          <Link href="https://www.facebook.com/adasoftwareIT" target="_blank" rel="noopener noreferrer" color="inherit">
             <IconButton size="large">
               <FacebookIcon />
             </IconButton>
