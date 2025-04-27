@@ -5,47 +5,54 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-// Silenciar warning ResizeObserver loop en desarrollo (console y overlay)
-if (process.env.NODE_ENV === 'development') {
-  const realWarn = console.warn;
-  console.warn = (...args) => {
-    if (
-      typeof args[0] === 'string' &&
-      args[0].includes('ResizeObserver loop completed')
-    ) {
+// Solución mejorada para ResizeObserver
+// Esta implementación debe ejecutarse lo antes posible
+(function() {
+  const consoleWarn = window.console.warn;
+  const consoleError = window.console.error;
+  
+  // Suprimir todos los mensajes relacionados con ResizeObserver
+  window.console.warn = function(...args) {
+    if (args[0] && typeof args[0] === 'string' && args[0].includes('ResizeObserver')) {
       return;
     }
-    realWarn(...args);
+    consoleWarn.apply(console, args);
   };
-  // Filtrar en errores globales para evitar overlay
-  window.addEventListener('error', function(e) {
-    if (
-      typeof e.message === 'string' &&
-      e.message.includes('ResizeObserver loop completed')
-    ) {
-      e.stopImmediatePropagation();
-      e.preventDefault();
-      return false;
+  
+  window.console.error = function(...args) {
+    if (args[0] && typeof args[0] === 'string' && args[0].includes('ResizeObserver')) {
+      return;
+    }
+    consoleError.apply(console, args);
+  };
+  
+  // Capturar y prevenir errores de ResizeObserver
+  const errorHandler = function(event) {
+    if (event && event.message && typeof event.message === 'string' && 
+        (event.message.includes('ResizeObserver loop') || 
+         event.message.includes('ResizeObserver'))) {
+      event.stopImmediatePropagation();
+      event.preventDefault();
+      return true;
+    }
+  };
+  
+  window.addEventListener('error', errorHandler, true);
+  window.addEventListener('unhandledrejection', function(event) {
+    if (event && event.reason && event.reason.message && 
+        typeof event.reason.message === 'string' && 
+        event.reason.message.includes('ResizeObserver')) {
+      event.stopImmediatePropagation();
+      event.preventDefault();
     }
   }, true);
-  window.onerror = function(message, source, lineno, colno, error) {
-    if (
-      typeof message === 'string' &&
-      message.includes('ResizeObserver loop completed')
-    ) {
-      return true; // Evita que el error llegue al overlay
+  
+  window.onerror = function(message) {
+    if (message && typeof message === 'string' && message.includes('ResizeObserver')) {
+      return true;
     }
   };
-}
-
-// Suprimir error de ResizeObserver
-const originalError = window.console.error;
-window.console.error = function(msg) {
-  if (typeof msg === 'string' && msg.includes('ResizeObserver loop completed with undelivered notifications')) {
-    return;
-  }
-  originalError.apply(console, arguments);
-};
+})();
 
 const rootElement = document.getElementById('root');
 
