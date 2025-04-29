@@ -14,6 +14,8 @@
   margin-top: 0;
   position: relative;
   width: 100%;
+  min-height: 100vh; /* Ensure minimum height */
+  contain: layout paint; /* Improve performance */
 
 /*   background-color: #19d8db;
  */
@@ -34,7 +36,8 @@
   justify-content: center;
   align-items: center;
   height: 100%;
-  padding-top: 20px; /* Ajusta este valor según sea necesario */
+  width: 100%;
+  padding-top: 0; /* Remove variable padding */
 }
 
 .centrado > div {
@@ -44,7 +47,7 @@
   letter-spacing: .05em;
   line-height: 1.9em;
   text-transform: capitalize;
-  margin-top: -100px; /* Ajusta este valor para subir el texto */
+  margin-top: 0; /* Remove negative margin that causes jump */
  
 }
 
@@ -77,17 +80,19 @@ padding-right: 10px; }
 padding-right: 10px; 
   }
   .centrado > div {
-   padding-top: 100px;
-   margin-top: 30px;
-padding-left: 9px;
-padding-right: 9px;
-letter-spacing: .03em;
-  line-height: 2.0em;
+   padding-top: 0; /* Remove padding that causes shifting */
+   margin-top: 0; /* Remove margin that causes shifting */
+   padding-left: 9px;
+   padding-right: 9px;
+   letter-spacing: .03em;
+   line-height: 2.0em;
+   position: relative; /* Ensure positioning context */
+   top: 0; /* Fix position */
   }
 
   .centrado > div p {
     font-size: 15px; /* Ajusta según sea necesario */
-    margin-top: 30px; /* Espacio entre el h2 y el párrafo */
+    margin-top: 20px; /* Reduced space between h2 and paragraph */
     letter-spacing: .00em;
     line-height: 1.8em;
 

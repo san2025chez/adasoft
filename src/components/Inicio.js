@@ -8,6 +8,15 @@ const Inicio = () => {
   // Forzar scroll al tope al montar
   React.useEffect(() => {
     window.scrollTo(0, 0);
+    
+    // Fix for mobile layout shifting by preloading critical images
+    const preloadImages = () => {
+      // Preload the main hero image
+      const img = new Image();
+      img.src = `${process.env.PUBLIC_URL}/images/optimized/imageSOFT-600.webp`;
+    };
+    
+    preloadImages();
   }, []);
 
   const theme = useTheme();
@@ -195,51 +204,48 @@ const Inicio = () => {
               >
                 <Box
                   sx={{
-                    position: 'relative',
-                    width: '100%',
                     display: 'flex',
                     justifyContent: 'center',
-                    maxWidth: { xs: '75%', sm: '70%', md: '85%', lg: '80%' },
-                    mt: { xs: 0, md: '0' },
-                    '&::before': {
-                      content: '""',
-                      position: 'absolute',
-                      width: { xs: '150px', sm: '200px', md: '250px' },
-                      height: { xs: '150px', sm: '200px', md: '250px' },
-                      borderRadius: '50%',
-                      background: 'radial-gradient(circle, rgba(58, 123, 213, 0.1) 0%, rgba(0, 210, 255, 0.05) 70%)',
-                      top: { xs: '-10px', md: '-20px' },
-                      right: { xs: '-20px', md: '-40px' },
-                      zIndex: -1
-                    },
-                    '&::after': {
-                      content: '""',
-                      position: 'absolute',
-                      width: { xs: '120px', sm: '150px', md: '180px' },
-                      height: { xs: '120px', sm: '150px', md: '180px' },
-                      borderRadius: '50%',
-                      background: 'radial-gradient(circle, rgba(0, 210, 255, 0.08) 0%, rgba(58, 123, 213, 0.03) 70%)',
-                      bottom: { xs: '-15px', md: '-30px' },
-                      left: { xs: '-10px', md: '-20px' },
-                      zIndex: -1
-                    }
+                    width: '100%',
+                    height: '100%',
+                    minHeight: isMobile ? '250px' : '300px', // Set minimum height to prevent layout shift
+                    position: 'relative'
                   }}
                 >
-                  <img
-                    src={`${process.env.PUBLIC_URL}/images/imageSOFT.png`}
-                    alt="Soluciones tecnológicas ADASOFT"
-                    width="600"
-                    height="400"
-                    style={{
-                      width: '100%',
-                      height: 'auto',
-                      aspectRatio: '3/2',
-                      objectFit: 'contain',
-                      filter: 'drop-shadow(0 10px 20px rgba(0, 0, 0, 0.15))',
-                      animation: 'float 6s ease-in-out infinite',
-                      display: 'block',
-                    }}
-                  />
+                  <picture>
+                    {/* WebP format for browsers that support it */}
+                    <source
+                      srcSet={`
+                        ${process.env.PUBLIC_URL}/images/optimized/imageSOFT-300.webp 300w,
+                        ${process.env.PUBLIC_URL}/images/optimized/imageSOFT-600.webp 600w, 
+                        ${process.env.PUBLIC_URL}/images/optimized/imageSOFT-900.webp 900w
+                      `}
+                      sizes="(max-width: 600px) 100vw, 600px"
+                      type="image/webp"
+                    />
+                    {/* Fallback for browsers that don't support WebP */}
+                    <source
+                      srcSet={`${process.env.PUBLIC_URL}/images/optimized/imageSOFT-600.png`}
+                      type="image/png"
+                    />
+                    {/* Fallback image for older browsers */}
+                    <img
+                      src={`${process.env.PUBLIC_URL}/images/optimized/imageSOFT-600.png`}
+                      alt="Soluciones tecnológicas ADASOFT"
+                      loading="eager" 
+                      width="600"
+                      height="400"
+                      style={{
+                        width: '100%',
+                        height: 'auto',
+                        aspectRatio: '3/2',
+                        objectFit: 'contain',
+                        filter: 'drop-shadow(0 10px 20px rgba(0, 0, 0, 0.15))',
+                        animation: 'float 6s ease-in-out infinite',
+                        display: 'block',
+                      }}
+                    />
+                  </picture>
                 </Box>
               </Grid>
             )}
