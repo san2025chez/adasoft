@@ -91,7 +91,26 @@ const services = [
     title: "Consultoría en Arquitectura de Software",
     description: "Consultoría experta en arquitectura de software para optimizar tus proyectos tecnológicos. Asesoramiento estratégico para diseñar sistemas escalables, seguros y eficientes que impulsen el crecimiento sostenible de tu negocio.",
     keywords: ["consultoría software", "arquitectura de sistemas", "asesoramiento tecnológico", "diseño de soluciones", "optimización de procesos"]
+  },
+ /*  {
+    id: "9",
+    title: "Reparación y Mantenimiento de Netbooks y PCs",
+    description: "Servicio técnico especializado en reparación y mantenimiento de netbooks y computadoras. Diagnóstico preciso, limpieza interna, cambio de componentes y optimización para alargar la vida útil de tus equipos.",
+    keywords: ["reparación de netbooks", "mantenimiento de PCs", "servicio técnico computadoras", "hardware", "optimización de equipos"]
+  }, */
+  {
+    id: "10",
+    title: "Instalación de Sistemas Operativos",
+    description: "Instalación de sistemas operativos (Windows, Linux) con configuración personalizada. Formateo seguro, migración de datos y garantía de funcionamiento óptimo en tu dispositivo.",
+    keywords: ["instalación de Windows", "formateo de PC", "instalación Linux", "sistemas operativos", "configuración de software"]
+  },
+  {
+    id: "11",
+    title: "Instalación de Programas y Antivirus",
+    description: "Configuración e instalación de software esencial (ofimática, diseño, antivirus) para garantizar seguridad y productividad.",
+    keywords: ["instalación de programas", "antivirus", "optimización de PC"]
   }
+
 ];
 
 const Servicios = () => {
