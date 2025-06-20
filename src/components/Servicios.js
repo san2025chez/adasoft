@@ -91,7 +91,19 @@ const services = [
     title: "Consultoría en Arquitectura de Software",
     description: "Consultoría experta en arquitectura de software para optimizar tus proyectos tecnológicos. Asesoramiento estratégico para diseñar sistemas escalables, seguros y eficientes que impulsen el crecimiento sostenible de tu negocio.",
     keywords: ["consultoría software", "arquitectura de sistemas", "asesoramiento tecnológico", "diseño de soluciones", "optimización de procesos"]
-  }
+  },
+  {
+    id: "9",
+    title: "Instalación de Sistemas Operativos",
+    description: "Instalación de sistemas operativos (Windows, Linux) con configuración personalizada. Formateo seguro, migración de datos y garantía de funcionamiento óptimo en tu dispositivo",
+    keywords: ["formateo", "instalación", "sistemas operativos", "asesoramiento tecnológico", "diseño de soluciones", "optimización de procesos"]
+  },
+  {
+    id: "10",
+    title: "Instalación de Programas y Antivirus",
+    description: "Configuración e instalación de software esencial (ofimática, diseño, antivirus) para garantizar seguridad y productividad.",
+    keywords: ["formateo", "instalación", "sistemas operativos", "antivirus", "diseño de soluciones", "optimización de procesos"]
+  } 
 ];
 
 const Servicios = () => {

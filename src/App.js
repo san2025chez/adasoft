@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, lazy, useRef, useEffect } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
@@ -19,7 +19,7 @@ import './App.css';
 import styled from '@emotion/styled';
 import { HelmetProvider } from 'react-helmet-async';
 import {Fade} from 'react-awesome-reveal'
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 
 // Carga diferida de páginas principales
 const Inicio = lazy(() => import('./components/Inicio'));
@@ -68,15 +68,46 @@ const theme = createTheme({
   }
 });
 
-const App = () => {
+const App = () => (
+  <Router>
+    <AppContent />
+  </Router>
+);
+
+const AppContent = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-  
-  const scrollToSection = (id) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+
+  const sectionRefs = {
+    inicio: useRef(null),
+    servicios: useRef(null),
+    metodologia: useRef(null),
+    nosotros: useRef(null),
+    contacto: useRef(null),
   };
+
+  useEffect(() => {
+    if (location.state && location.state.scrollTo) {
+      console.log('App.js useEffect triggered for section:', location.state.scrollTo);
+      // Using a small timeout to ensure the component has rendered.
+      const timer = setTimeout(() => {
+        const ref = sectionRefs[location.state.scrollTo];
+        if (ref && ref.current) {
+          console.log('Scrolling to ref:', ref.current);
+          const offset = 60; // Navbar height
+          const elementPosition = ref.current.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - offset;
+          window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+          // Clean up state after scrolling to prevent re-triggering.
+          navigate(location.pathname, { replace: true, state: {} });
+        } else {
+          console.error('Ref not found or .current is null for section:', location.state.scrollTo);
+        }
+      }, 100);
+      return () => clearTimeout(timer); // Cleanup timeout on unmount
+    }
+  }, [location, navigate, sectionRefs]);
 
   const GridItem = styled.div`
     background-image: url(${process.env.PUBLIC_URL}/images/metodologia-transformed.jpeg);
@@ -266,42 +297,48 @@ const App = () => {
   return (
     <HelmetProvider>
       <ThemeProvider theme={theme}>
-        <Router>
-          <div className="App">
-            <CssBaseline />
-            <GreenIconButton
-              component="a"
-              href="https://wa.link/3311zp"
-              target="_blank"
-              rel="noopener noreferrer"
-              sx={{
-                position: 'fixed',
-                bottom: 10,
-                right: 20,
-                zIndex: 1000,
-                '&:hover': {
-                  backgroundColor: '#64dd17',
-                }
-              }}
-            >
-              <WhatsAppIcon />
-            </GreenIconButton>
-            <Container maxWidth="xl" style={{ padding: 0, margin: 0, minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-              <NavBar />
-              <Suspense fallback={<div style={{padding: '3rem', textAlign: 'center'}}>Cargando...</div>}>
-                <Routes>
-                  <Route path="/blog" element={<Blog />} />
-                  <Route path="/blog/:id" element={<BlogPost />} />
-                  <Route path="/" element={
-                    <>
-                      <Paper id="inicio" elevation={3} style={{ textAlign: 'center', boxShadow: 'none' }}>
-                        <Inicio id="inicio" />
+        <div className="App">
+          <CssBaseline />
+          <GreenIconButton
+            component="a"
+            href="https://wa.link/3311zp"
+            target="_blank"
+            rel="noopener noreferrer"
+            sx={{
+              position: 'fixed',
+              bottom: 10,
+              right: 20,
+              zIndex: 1000,
+              '&:hover': {
+                backgroundColor: '#64dd17',
+              }
+            }}
+          >
+            <WhatsAppIcon />
+          </GreenIconButton>
+          <Container maxWidth="xl" style={{ padding: 0, margin: 0, minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+            <NavBar sectionRefs={sectionRefs} />
+            <Suspense fallback={<div style={{padding: '3rem', textAlign: 'center'}}>Cargando...</div>}>
+              <Routes>
+                <Route path="/blog" element={<Blog />} />
+                <Route path="/blog/:id" element={<BlogPost />} />
+                <Route path="/" element={
+                  <>
+                    <div id="inicio" ref={sectionRefs.inicio}>
+                      <Paper elevation={3} style={{ textAlign: 'center', boxShadow: 'none' }}>
+                        <Inicio />
                       </Paper>
+                    </div>
+                    <div id="servicios" ref={sectionRefs.servicios}>
                       <Fade triggerOnce='true'>
                         <Servicios/>
                       </Fade>
-                      <Metodologias></Metodologias>
-                      <Paper id="nosotros" elevation={3} component="div" style={{ 
+                    </div>
+                    <div id="metodologia" ref={sectionRefs.metodologia}>
+                      <Metodologias />
+                    </div>
+                    <div id="nosotros" ref={sectionRefs.nosotros}>
+                      <Paper component="div" style={{ 
                         margin: '20px 0px', 
                         boxShadow: 'none',
                         padding: isMobile ? '1px 15px 15px' : '25px 25px 25px',
@@ -311,8 +348,8 @@ const App = () => {
                         justifyContent: 'flex-start',
                         backgroundColor: 'rgba(255, 255, 255, 0.7)'
                       }}>
-                        <Typography variant="h2" style={{ 
-                          color: '#444',
+                         <Typography variant="h2" style={{ 
+                           color: '#444',
                           fontSize: isMobile ? '23px' : '30px',
                           letterSpacing: '4px',
                           marginBottom: '20px',
@@ -366,7 +403,9 @@ const App = () => {
                           </Fade>
                         </Container>
                       </Paper>
-                      <Paper id="contacto" elevation={3} style={{
+                    </div>
+                    <div id="contacto" ref={sectionRefs.contacto}>
+                      <Paper style={{
                         boxShadow: 'none',
                         backgroundImage: `url(${process.env.PUBLIC_URL}/images/Contact.png)`,
                         backgroundRepeat: 'no-repeat',
@@ -384,7 +423,7 @@ const App = () => {
                           paddingTop: '50px',
                           paddingBottom: '50px',
                           backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url(${process.env.PUBLIC_URL}/images/Contact.png)`,
-                          backgroundBlendMode: 'overlay',
+                        backgroundBlendMode: 'overlay',
                         },
                         '@media (max-width: 1199px)': {
                           paddingBottom: '80px',
@@ -437,7 +476,7 @@ const App = () => {
                           }}>
                             Contacto
                           </Typography>
-                          <Formulario></Formulario>
+                          <Formulario />
                         </Container>
                         <style>
                           {`
@@ -496,14 +535,14 @@ const App = () => {
                           `}
                         </style>
                       </Paper>
-                      <Footer />
-                    </>
-                  } />
-                </Routes>
-              </Suspense>
-            </Container>
-          </div>
-        </Router>
+                    </div>
+                    <Footer />
+                  </>
+                } />
+              </Routes>
+            </Suspense>
+          </Container>
+        </div>
       </ThemeProvider>
     </HelmetProvider>
   );

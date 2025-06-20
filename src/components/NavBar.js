@@ -49,7 +49,7 @@ const menuItems = [
   },
 ];
 
-export const NavBar = () => {
+export const NavBar = ({ sectionRefs }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -61,84 +61,109 @@ export const NavBar = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   const scrollToSection = (id) => {
+    setDrawerOpen(false); // Close mobile drawer immediately
+
+    // Case 1: Navigate to the Blog page
     if (id === 'blog') {
+      console.log('Action: Navigating to /blog');
       navigate('/blog');
-      setDrawerOpen(false);
+      return; // The scroll handler will update the active section
+    }
+
+    // Case 2: Navigate back to Home page to scroll to a section
+    if (location.pathname !== '/') {
+      console.log(`Action: Navigating to home to scroll to "${id}"`);
+      navigate('/', { state: { scrollTo: id } });
+      return;
+    }
+    
+    // Case 3: Already on the Home page, scroll to the section
+    console.log(`Action: Scrolling to section "${id}" on the current page.`);
+    setActiveSection(id); // Set active section for immediate UI feedback
+
+    if (id === 'inicio') {
+      console.log('Scrolling to top of the page.');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
 
-    if (location.pathname !== '/') {
-      navigate('/');
-      // Wait for navigation to complete before scrolling
-      setTimeout(() => {
-        const element = document.getElementById(id);
-        if (element) {
-          const offset = 60;
-          const elementPosition = element.getBoundingClientRect().top;
-          const offsetPosition = elementPosition + window.pageYOffset - offset;
-          
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-          });
-        }
-      }, 100);
+    const ref = sectionRefs[id];
+    console.log(`Retrieved ref for "${id}":`, ref);
+
+    if (ref && ref.current) {
+      const offset = 60; // Navbar height
+      const elementPosition = ref.current.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+      
+      console.log(`Scrolling to position: ${offsetPosition}`);
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth',
+      });
     } else {
-      const element = document.getElementById(id);
-      if (element) {
-        const offset = 60; // Adjust this value according to your navbar height
-        const elementPosition = element.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - offset;
-        
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
-      }
+      console.error(`Error: Could not find ref or ref.current for section "${id}". Ref is:`, ref);
     }
-    
-    setActiveSection(id);
-    setDrawerOpen(false);
   };
 
   useEffect(() => {
+    let isMounted = true;
+    let animationFrameId = null;
+
     const handleScroll = () => {
-      if (location.pathname === '/blog') {
-        setNavColor('#19d8db');
-        setLogoColor('white');
-        setMenuIconColor('white');
-        return;
+      if (!isMounted) return;
+
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
       }
 
-      const offset = window.scrollY;
-      const isHomePage = location.pathname === '/';
-      
-      if (isHomePage && offset < 100) {
-        // En el inicio (primeros 100px), navbar transparente
-        setNavColor('transparent');
-        setLogoColor('white');
-        setMenuIconColor('white');
-        setActiveSection('inicio');
-      } else {
-        // En cualquier otra sección o página, navbar con color sólido
-        setNavColor('#19d8db');
-        setLogoColor('white');
-        setMenuIconColor('white');
-        
-        if (isHomePage) {
-          const sectionHeight = window.innerHeight;
-          const section = Math.floor(offset / sectionHeight);
-          setActiveSection(section === 0 ? 'inicio' : menuItems[section - 1]?.id || '');
+      animationFrameId = requestAnimationFrame(() => {
+        const scrollPosition = window.scrollY;
+        const isScrolled = scrollPosition > 50;
+
+        setNavColor(isScrolled ? 'white' : 'transparent');
+        setLogoColor(isScrolled ? 'black' : 'white');
+        setMenuIconColor(isScrolled ? 'black' : 'white');
+
+        if (location.pathname !== '/') {
+          if (activeSection !== '') {
+            setActiveSection('');
+          }
+          return;
         }
-      }
+
+        const offset = 150;
+        let currentSectionId = 'inicio';
+
+        for (const sectionId in sectionRefs) {
+          const ref = sectionRefs[sectionId];
+          if (ref && ref.current) {
+            const elementTop = ref.current.offsetTop - offset;
+            const elementBottom = elementTop + ref.current.offsetHeight;
+
+            if (scrollPosition >= elementTop && scrollPosition < elementBottom) {
+              currentSectionId = sectionId;
+              break;
+            }
+          }
+        }
+
+        if (activeSection !== currentSectionId) {
+          setActiveSection(currentSectionId);
+        }
+      });
     };
 
-    // Ejecutar handleScroll al montar el componente
-    handleScroll();
-    
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [location.pathname]);
+    handleScroll();
+
+    return () => {
+      isMounted = false;
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [location.pathname, sectionRefs, activeSection]);
 
   // Encuentra el título y descripción del enlace activo para el SEO
   const activeMenuItem = menuItems.find(item => item.id === activeSection) || {
