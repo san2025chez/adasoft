@@ -15,23 +15,44 @@ import {
 } from 'react-share';
 
 // Función personalizada para compartir en Facebook con refresco de caché
-const customFacebookShare = (url, title, description, imageUrl, postId) => {
+const customFacebookShare = (url, title, description, imageUrl) => {
   console.log('Compartiendo en Facebook con URL:', url);
   console.log('Título:', title);
   console.log('Descripción:', description);
   console.log('Imagen:', imageUrl);
-  console.log('Post ID:', postId);
   
-  // Crear una URL simple para compartir - enfoque directo y efectivo
-  // Agregamos un parámetro de timestamp para que Facebook reconozca la URL como única
-  const timestamp = new Date().getTime();
-  const shareUrlWithParams = `${url}?t=${timestamp}`;
+  // Método moderno utilizando la API de Facebook si está disponible
+  if (window.FB) {
+    try {
+      console.log('Usando FB.ui para compartir contenido');
+      
+      window.FB.ui({
+        method: 'share',
+        href: url,
+        quote: `${title} - ${description}`,
+      }, function(response) {
+        if (response && !response.error_message) {
+          console.log('Contenido compartido exitosamente');
+        } else {
+          console.error('Error al compartir en Facebook:', response?.error_message);
+          // Si falla, usar el método básico como fallback
+          fallbackShare();
+        }
+      });
+    } catch (error) {
+      console.error('Error al usar FB.ui:', error);
+      fallbackShare();
+    }
+  } else {
+    console.log('FB SDK no disponible, usando método básico');
+    fallbackShare();
+  }
   
-  // URL para compartir en Facebook con título y descripción
-  const fbShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrlWithParams)}&quote=${encodeURIComponent(title + ' - ' + description)}`;
-  
-  // Abrir ventana de Facebook para compartir
-  window.open(fbShareUrl, '_blank', 'width=626,height=436');
+  // Método básico como fallback
+  function fallbackShare() {
+    const fbShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(title + ' - ' + description)}`;
+    window.open(fbShareUrl, '_blank', 'width=626,height=436');
+  }
 };
 
 const BlogPost = () => {
@@ -83,13 +104,16 @@ const BlogPost = () => {
     
     // Manejo especial para el post id:4 - Reemplazar webp con jpg para mejor compatibilidad con redes sociales
     if (id === '4') {
-      // Forzar a usar una URL de imagen completa y accesible públicamente
-      // Esta debe ser una imagen jpg de alta calidad y bien dimensionada
-      absoluteImageUrl = `${baseUrl}/images/gmail-ai.jpg?cache=${timestamp}`;
-      console.log('Imagen especial para post 4 (forzando actualización):', absoluteImageUrl);
+      // Para el post 4, usar la imagen específica jpg en lugar de webp
+      absoluteImageUrl = `${baseUrl}/images/gmail-ai.webp`;
       
-      // También actualizamos la URL original para asegurar consistencia
-      imageUrl = absoluteImageUrl;
+      // Facebook prefiere jpg para thumbnails, así que convertimos si es necesario
+      if (absoluteImageUrl.endsWith('.webp')) {
+        const jpgVersion = absoluteImageUrl.replace(/\.webp$/, '.jpg');
+        absoluteImageUrl = jpgVersion;
+      }
+      
+      console.log('Imagen especial para post 4:', absoluteImageUrl);
     }
     
     // Crear fecha en formato ISO para Schema.org
@@ -167,14 +191,6 @@ const BlogPost = () => {
     // Este efecto se ejecuta solo una vez cuando se carga el componente
     const forceMetaTagsUpdate = async () => {
       try {
-        // IMPORTANTE: Si es el post 4, primero eliminamos TODOS los meta tags de Open Graph
-        // para asegurarnos que no haya conflictos
-        if (id === '4') {
-          const existingOgTags = document.querySelectorAll('meta[property^="og:"]');
-          existingOgTags.forEach(tag => tag.remove());
-          console.log('Meta tags de OG eliminados para evitar conflictos:', existingOgTags.length);
-        }
-        
         // Crear tags directamente en la cabecera HTML principal (no solo en React-Helmet)
         // para asegurar que los crawlers de redes sociales los detecten inmediatamente
         const head = document.querySelector('head');
@@ -223,48 +239,23 @@ const BlogPost = () => {
         // Meta tag obligatorio para Facebook
         updateMetaTag('fb:app_id', '2375482829489229');
         
-        // Metadatos para Facebook/Open Graph - Asegurarnos que estén correctos para el post específico
+        // Metadatos para Facebook/Open Graph
         updateMetaTag('og:url', shareUrl);
         updateMetaTag('og:type', 'article');
         updateMetaTag('og:title', post.title);
         updateMetaTag('og:description', post.description);
+        updateMetaTag('og:image', finalImageUrl);
+        updateMetaTag('og:image:secure_url', finalImageUrl);
+        updateMetaTag('og:image:width', '1200');
+        updateMetaTag('og:image:height', '630');
+        updateMetaTag('og:image:alt', post.title);
         updateMetaTag('og:site_name', 'ADASOFT');
-        
-        // Manejo especial para el post id:4
-        if (id === '4') {
-          // Crear una URL de imagen absoluta garantizada para Facebook
-          // Usado en plataformas como Facebook/Instagram que priorizan jpg de alta resolución
-          const cacheBuster = new Date().getTime();
-          const fbOptimizedImage = `${baseUrl}/images/gmail-ai.jpg?v=${cacheBuster}`;
-          
-          console.log('URL optimizada para Facebook:', fbOptimizedImage);
-          
-          // Actualizar TODOS los meta tags relevantes con esta imagen optimizada
-          updateMetaTag('og:image', fbOptimizedImage);
-          updateMetaTag('og:image:secure_url', fbOptimizedImage);
-          updateMetaTag('og:image:type', 'image/jpeg');
-          updateMetaTag('og:image:width', '1200');
-          updateMetaTag('og:image:height', '630');
-          updateMetaTag('og:image:alt', post.title);
-          updateMetaTag('twitter:image', fbOptimizedImage, true);
-          
-          // Forzar una actualización adicional en caso de que la imagen cambie
-          const preloadImage = new Image();
-          preloadImage.src = fbOptimizedImage;
-        } else {
-          // Para el resto de posts, usar el comportamiento normal
-          updateMetaTag('og:image', finalImageUrl);
-          updateMetaTag('og:image:secure_url', finalImageUrl);
-          updateMetaTag('og:image:width', '1200');
-          updateMetaTag('og:image:height', '630');
-          updateMetaTag('og:image:alt', post.title);
-          updateMetaTag('twitter:image', finalImageUrl, true);
-        }
         
         // Metadatos para Twitter
         updateMetaTag('twitter:card', 'summary_large_image', true);
         updateMetaTag('twitter:title', post.title, true);
         updateMetaTag('twitter:description', post.description, true);
+        updateMetaTag('twitter:image', finalImageUrl, true);
         
         // Realizar una precarga de la imagen para asegurar que está en caché
         const img = new Image();
@@ -278,7 +269,7 @@ const BlogPost = () => {
             console.error('Error al precargar la imagen:', finalImageUrl);
             // Intentar con una imagen de respaldo si es necesario
             if (id === '4') {
-              const fallbackImage = `${baseUrl}/images/gmail-ai.jpg`;
+              const fallbackImage = `${baseUrl}/images/gmail.jpg`;
               console.log('Usando imagen de respaldo:', fallbackImage);
               updateMetaTag('og:image', fallbackImage);
               updateMetaTag('og:image:secure_url', fallbackImage);
@@ -298,16 +289,6 @@ const BlogPost = () => {
     
     return () => {
       // Cleanup for this effect
-      // Limpiamos los meta tags específicos al desmontar
-      if (id === '4') {
-        try {
-          // Eliminar los meta tags de Open Graph para evitar conflictos
-          const ogTags = document.querySelectorAll('meta[property^="og:"]');
-          ogTags.forEach(tag => tag.remove());
-        } catch (e) {
-          console.error('Error al limpiar meta tags:', e);
-        }
-      }
     };
   }, [post, absoluteImageUrl, shareUrl, id, baseUrl, imageUrl, timestamp]);
   
@@ -546,7 +527,7 @@ const BlogPost = () => {
                       spacing={{ xs: 1, sm: 2 }} 
                       justifyContent="center"
                     >
-                      <div onClick={() => customFacebookShare(shareUrl, post.title, post.description, absoluteImageUrl, id)} style={{ cursor: 'pointer' }}>
+                      <div onClick={() => customFacebookShare(shareUrl, post.title, post.description, absoluteImageUrl)} style={{ cursor: 'pointer' }}>
                         <FacebookIcon size={40} round />
                       </div>
                       <TwitterShareButton 
