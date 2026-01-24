@@ -1,16 +1,12 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import './Servicios.css';
-import keyframes from '@emotion/styled';
+import { keyframes } from '@emotion/react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import { Fade } from 'react-awesome-reveal'
@@ -30,6 +26,21 @@ const rollInRight = keyframes`
           transform: translateX(0);
   opacity: 1;
 }`
+
+const floatSlow = keyframes`
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(-2deg); }
+  50% { transform: translate3d(0, -14px, 0) rotate(2deg); }
+`;
+
+const drift = keyframes`
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(18px, -8px, 0); }
+`;
+
+const pulseSpin = keyframes`
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+  50% { transform: translate3d(-10px, 10px, 0) rotate(6deg) scale(1.03); }
+`;
 
 const StyledDescription = styled(Typography)`
   font-family: 'Poppins', sans-serif;
@@ -117,20 +128,7 @@ const Servicios = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   useEffect(() => {
-    const handleScroll = () => {
-      // Check if the component is in view and has not already rolled in
-      if (inView && !roll) {
-        setRoll(true);
-      }
-    };
-
-    // Attach scroll event listener
-    window.addEventListener('scroll', handleScroll);
-
-    // Remove the event listener when the component unmounts
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    if (inView && !roll) setRoll(true);
   }, [inView, roll]);
 
   // Crear esquema de datos estructurados para los servicios
@@ -162,38 +160,189 @@ const Servicios = () => {
       <Paper
         id="servicios"
         elevation={3}
-        style={{
-          padding: '20px 10px', margin: '20px 20px 20px ', textAlign: 'center', boxShadow: 'none',
-          animation: roll ? `${rollInRight} 0.6s ease-out both` : 'none'
+        className="servicios-root"
+        ref={ref}
+        sx={{
+          position: 'relative',
+          overflow: 'hidden',
+          textAlign: 'center',
+          boxShadow: 'none',
+          borderRadius: { xs: 0, md: 4 },
+          mx: { xs: 0, md: 2.5 },
+          my: { xs: 0, md: 2.5 },
+          px: { xs: 2, sm: 3, md: 4 },
+          py: { xs: 7, sm: 8, md: 10 },
+          // Color base de la sección (los títulos se definen abajo; la descripción se fuerza aparte)
+          color: '#212529',
+          backgroundColor: '#fff',
+          animation: roll ? `${rollInRight} 0.6s ease-out both` : 'none',
         }}
       >
-        <Container maxWidth="lg" >
-          <Typography variant="h2" style={{
-            color: '#444',
-            fontSize: isMobile ? '23px' : '30px',
-            letterSpacing: '4px',
-            marginBottom: '32px',
-            fontWeight: 300,
-            lineHeight: isMobile ? '23px' : '28px',
-            textTransform: 'uppercase',
-            padding: '15px'
-          }}>
+        {/* Todas las imágenes van detrás del contenido y conservan su color original */}
+        <Box
+          component="img"
+          src={`${process.env.PUBLIC_URL}/images/team-bg.png`}
+          alt=""
+          aria-hidden="true"
+          draggable={false}
+          sx={{
+            position: 'absolute',
+            inset: { xs: '-10%', md: '-20%' },
+            width: '140%',
+            height: '140%',
+            objectFit: 'cover',
+            zIndex: 0,
+            pointerEvents: 'none',
+            userSelect: 'none',
+            opacity: 1,
+          }}
+        />
+
+        <Box
+          component="img"
+          src={`${process.env.PUBLIC_URL}/images/team.png`}
+          alt=""
+          aria-hidden="true"
+          draggable={false}
+          sx={{
+            position: 'absolute',
+            left: { xs: '50%', md: '55%' },
+            top: { xs: '52%', md: '50%' },
+            transform: 'translate(-50%, -50%)',
+            width: { xs: 220, sm: 320, md: 420 },
+            height: 'auto',
+            zIndex: 0,
+            pointerEvents: 'none',
+            userSelect: 'none',
+            opacity: 1,
+            animation: `${pulseSpin} 11s ease-in-out infinite`,
+            '@media (prefers-reduced-motion: reduce)': { animation: 'none' },
+          }}
+        />
+        {/* Decoración animada (solo visual) */}
+        <Box
+          component="img"
+          src={`${process.env.PUBLIC_URL}/images/team1.png`}
+          alt=""
+          aria-hidden="true"
+          draggable={false}
+          className="servicios-deco servicios-deco--a"
+          sx={{
+            position: 'absolute',
+            left: { xs: '-28px', sm: '-16px', md: '24px' },
+            top: { xs: '38px', sm: '44px', md: '54px' },
+            width: { xs: 120, sm: 160, md: 220 },
+            height: 'auto',
+            opacity: 1,
+            zIndex: 0,
+            animation: `${floatSlow} 7.5s ease-in-out infinite`,
+            '@media (prefers-reduced-motion: reduce)': { animation: 'none' },
+          }}
+        />
+        <Box
+          component="img"
+          src={`${process.env.PUBLIC_URL}/images/team3.png`}
+          alt=""
+          aria-hidden="true"
+          draggable={false}
+          className="servicios-deco servicios-deco--b"
+          sx={{
+            position: 'absolute',
+            right: { xs: '-36px', sm: '-18px', md: '28px' },
+            bottom: { xs: '18px', sm: '22px', md: '34px' },
+            width: { xs: 140, sm: 190, md: 260 },
+            height: 'auto',
+            opacity: 1,
+            zIndex: 0,
+            animation: `${drift} 9s ease-in-out infinite`,
+            '@media (prefers-reduced-motion: reduce)': { animation: 'none' },
+          }}
+        />
+
+        <Container
+          maxWidth="lg"
+          sx={{
+            position: 'relative',
+            zIndex: 2,
+          }}
+        >
+          {/* Estilo/tipografía igual a la sección Metodología */}
+          <Typography
+            variant="h2"
+            sx={{
+              // Re-override del título para mantener jerarquía (no 15px)
+              color: '#444',
+              fontSize: `${isMobile ? '22px' : '30px'} !important`,
+              letterSpacing: '4px !important',
+              marginBottom: '32px',
+              fontWeight: 300,
+              lineHeight: `${isMobile ? '23px' : '28px'} !important`,
+              textTransform: 'uppercase !important',
+              padding: '15px',
+            }}
+          >
             Nuestros Servicios
           </Typography>
 
-          <Grid container spacing={4} justifyContent="center">
+          <Grid container spacing={4} justifyContent="center" alignItems="stretch">
             {services.map((service, index) => (
-              <Grid item xs={12} md={3} key={service.id}>
+              <Grid
+                item
+                xs={12}
+                sm={6}
+                md={3}
+                key={service.id}
+                sx={{ display: 'flex', justifyContent: 'center' }}
+              >
                 <Fade 
                   direction="up" 
                   triggerOnce={true} 
                   delay={index * 150}
                   fraction={0.1}
                 >
-                  <Card variant="outlined" style={{ borderRadius: "15px", border: "none", boxShadow: "none" }}>
-                    <CardContent>
-                      <Typography variant="h6" style={{ paddingBottom: '10px', textAlign: 'center' }}>{service.title}</Typography>
-                      <StyledDescription style={{ textAlign: 'center' }}>
+                  <Card
+                    variant="outlined"
+                    sx={{
+                      width: '100%',
+                      maxWidth: '300px', // igual que Metodología
+                      height: '100%',
+                      borderRadius: 4,
+                      border: '1px solid rgba(0,0,0,0.08)',
+                      backgroundColor: '#fff',
+                      boxShadow: 'none',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      transition: 'transform 0.3s ease-in-out, border-color 180ms ease',
+                      '&:hover': {
+                        transform: { xs: 'none', md: 'translateY(-5px)' },
+                        borderColor: 'rgba(25, 216, 219, 0.55)',
+                      },
+                    }}
+                  >
+                    <CardContent sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+                      <Typography
+                        variant="h6"
+                        sx={{
+                          pb: 1.2,
+                          textAlign: 'center',
+                          // Re-override del título de card para mantener jerarquía (no 15px)
+                          color: '#222',
+                          fontWeight: 600,
+                          letterSpacing: '0.02em',
+                          fontSize: { xs: '1.05rem', md: '1.1rem' },
+                          lineHeight: 1.4,
+                          textTransform: 'none',
+                        }}
+                      >
+                        {service.title}
+                      </Typography>
+                      <StyledDescription
+                        className="service-description"
+                        sx={{
+                          flexGrow: 1,
+                          color: '#777 !important',
+                        }}
+                      >
                         {service.description}
                       </StyledDescription>
                     </CardContent>

@@ -81,7 +81,8 @@ const Inicio = () => {
           display: 'flex',
           alignItems: 'center',
           position: 'relative',
-          background: 'transparent',
+          // Solo mobile: que ocupe toda la pantalla y se vea del mismo color del hero
+          backgroundColor: { xs: '#19d8db', sm: 'transparent' },
           // Forzar texto en blanco en toda la sección Inicio (evita estilos globales en negro)
           color: '#fff !important',
           '& .MuiTypography-root': { color: '#fff !important' },
@@ -109,6 +110,8 @@ const Inicio = () => {
             zIndex: 0,
             pointerEvents: 'none',
             userSelect: 'none',
+            // Solo mobile: ocultamos la imagen para que no aparezcan zonas blancas
+            display: { xs: 'none', sm: 'block' },
           }}
         />
         <Container 
@@ -179,7 +182,7 @@ const Inicio = () => {
                       width: '100%'
                     }}
                   >
-                    ¡Potencia el crecimiento de tu negocio con soluciones tecnológicas!
+                    Creamos tecnología que impulsa tu negocio.
                   </Typography>
                 </Fade>
                 <Fade direction='up' triggerOnce={true} duration={500}>
@@ -198,7 +201,7 @@ const Inicio = () => {
                       width: '100%'
                     }}
                   >
-                    En ADASOFT desarrollamos software a medida, páginas web profesionales y soluciones con inteligencia artificial que transforman y optimizan los procesos de tu empresa.
+                    Desarrollamos páginas web, sistemas personalizados y soluciones con inteligencia artificial para aumentar tu productividad, mejorar tu imagen digital y atraer más clientes.
                   </Typography>
                 </Fade>
               </Box>

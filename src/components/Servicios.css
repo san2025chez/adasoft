@@ -6,7 +6,53 @@
   .aparecer {
     opacity: 1;
   }
-  .MuiGrid-root {
+  /* Evitar reglas globales sobre MUI: scopear a la sección Servicios */
+  .servicios-root .MuiGrid-root {
     border: none;
   }
+
+/* =========================
+   Base styles SOLO para la sección "Nuestros Servicios"
+   (equivalentes a los estilos que pasaste, pero scopeados)
+   ========================= */
+.servicios-root,
+.servicios-root *,
+.servicios-root *::before,
+.servicios-root *::after {
+  box-sizing: border-box;
+}
+
+.servicios-root {
+  /* Base tipo "body" */
+  color: #212529;
+  font-family: Poppins, sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.servicios-root ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+/* Descripción de cada servicio: mismos estilos que Metodologías (fijado con mayor prioridad) */
+.servicios-root .service-description {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  text-align: left;
+  color: #777 !important;
+  font-size: 15px;
+  letter-spacing: .03em;
+  line-height: 1.8em;
+  text-transform: capitalize;
+}
+
+@media (max-width: 992px) {
+  .servicios-root * {
+    animation: none !important;
+  }
+}
   
