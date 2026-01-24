@@ -3,6 +3,7 @@ import { Grid, useMediaQuery, useTheme, Typography, Box, Container } from '@mui/
 import { Fade } from 'react-awesome-reveal';
 import { Helmet } from 'react-helmet-async';
 import './inicio.css';
+import bgInicio from '../assets/home3-slider.png';
 
 const Inicio = () => {
   // Forzar scroll al tope al montar
@@ -12,7 +13,6 @@ const Inicio = () => {
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-  const isTablet = useMediaQuery(theme.breakpoints.down('md'));
   const isLandscape = useMediaQuery('(orientation: landscape)');
   const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
   
@@ -79,15 +79,46 @@ const Inicio = () => {
           overflow: 'hidden',
           width: '100%',
           display: 'flex',
-          alignItems: 'center'
+          alignItems: 'center',
+          position: 'relative',
+          background: 'transparent',
+          // Forzar texto en blanco en toda la sección Inicio (evita estilos globales en negro)
+          color: '#fff !important',
+          '& .MuiTypography-root': { color: '#fff !important' },
+          '& p, & h1, & h2, & h3, & h4, & h5, & h6': { color: '#fff !important' },
+          '& a': { color: '#fff !important' },
         }}
       >
+        {/* Fondo como IMG (más estable que ::before, evita “desaparece” por orden/inyección de estilos) */}
+        <Box
+          component="img"
+          src={bgInicio}
+          alt=""
+          aria-hidden="true"
+          draggable={false}
+          loading="eager"
+          sx={{
+            position: 'absolute',
+            inset: 0,
+            width: '100%',
+            height: '100%',
+            // Para que NO queden franjas/espacios en blanco en los costados:
+            // "cover" llena todo el contenedor (puede recortar un poco).
+            objectFit: 'cover',
+            objectPosition: 'bottom center',
+            zIndex: 0,
+            pointerEvents: 'none',
+            userSelect: 'none',
+          }}
+        />
         <Container 
           maxWidth="xl" 
           disableGutters={isMobile} 
           sx={{ 
             overflow: 'hidden',
-            width: '100%'
+            width: '100%',
+            position: 'relative',
+            zIndex: 1,
           }}
         >
           <Grid 

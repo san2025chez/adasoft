@@ -1,74 +1,61 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { hydrate, render } from 'react-dom';
+import { createRoot, hydrateRoot } from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-// Solución mejorada para ResizeObserver
-// Esta implementación debe ejecutarse lo antes posible
-(function() {
-  const consoleWarn = window.console.warn;
-  const consoleError = window.console.error;
-  
-  // Suprimir todos los mensajes relacionados con ResizeObserver
-  window.console.warn = function(...args) {
-    if (args[0] && typeof args[0] === 'string' && args[0].includes('ResizeObserver')) {
-      return;
-    }
-    consoleWarn.apply(console, args);
-  };
-  
-  window.console.error = function(...args) {
-    if (args[0] && typeof args[0] === 'string' && args[0].includes('ResizeObserver')) {
-      return;
-    }
-    consoleError.apply(console, args);
-  };
-  
-  // Capturar y prevenir errores de ResizeObserver
-  const errorHandler = function(event) {
-    if (event && event.message && typeof event.message === 'string' && 
-        (event.message.includes('ResizeObserver loop') || 
-         event.message.includes('ResizeObserver'))) {
-      event.stopImmediatePropagation();
-      event.preventDefault();
-      return true;
-    }
-  };
-  
-  window.addEventListener('error', errorHandler, true);
-  window.addEventListener('unhandledrejection', function(event) {
-    if (event && event.reason && event.reason.message && 
-        typeof event.reason.message === 'string' && 
-        event.reason.message.includes('ResizeObserver')) {
-      event.stopImmediatePropagation();
-      event.preventDefault();
-    }
-  }, true);
-  
-  window.onerror = function(message) {
-    if (message && typeof message === 'string' && message.includes('ResizeObserver')) {
-      return true;
-    }
-  };
+// Evita que el overlay de CRA “mate” la pantalla con el falso runtime error de Chrome:
+// "ResizeObserver loop completed with undelivered notifications."
+// Importante: solo en development.
+(() => {
+  if (process.env.NODE_ENV !== 'development') return;
+
+  const isResizeObserverNoise = (msg) =>
+    typeof msg === 'string' && msg.includes('ResizeObserver');
+
+  window.addEventListener(
+    'error',
+    (event) => {
+      const message =
+        event?.message ||
+        (event?.error && typeof event.error.message === 'string' ? event.error.message : '');
+
+      if (isResizeObserverNoise(message)) {
+        event.stopImmediatePropagation();
+      }
+    },
+    true
+  );
+
+  window.addEventListener(
+    'unhandledrejection',
+    (event) => {
+      const message =
+        event?.reason && typeof event.reason.message === 'string' ? event.reason.message : '';
+
+      if (isResizeObserverNoise(message)) {
+        event.stopImmediatePropagation();
+      }
+    },
+    true
+  );
 })();
 
 const rootElement = document.getElementById('root');
 
 if (rootElement.hasChildNodes()) {
-  hydrate(
+  hydrateRoot(
+    rootElement,
     <React.StrictMode>
       <App />
-    </React.StrictMode>,
-    rootElement
+    </React.StrictMode>
   );
 } else {
-  render(
+  const root = createRoot(rootElement);
+  root.render(
     <React.StrictMode>
       <App />
-    </React.StrictMode>,
-    rootElement
+    </React.StrictMode>
   );
 }
 
