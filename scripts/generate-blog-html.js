@@ -44,7 +44,13 @@ blogPosts.forEach(post => {
   const dimensions = imageDimensions[imagePath] || { width: 1200, height: 630 };
   
   // Preparar descripción mejorada para compartir (sin hashtags y con "Continuar leyendo")
-  const shareDescription = `${post.description.split('#')[0].trim()} - Continuar leyendo →`;
+  // Limitar a aproximadamente 2 líneas (120-150 caracteres) para WhatsApp
+  let shareDescription = post.description.split('#')[0].trim();
+  // Si es muy larga, truncar a 120 caracteres
+  if (shareDescription.length > 120) {
+    shareDescription = shareDescription.substring(0, 117) + '...';
+  }
+  shareDescription = `${shareDescription} - Continuar leyendo →`;
   
   // URL para compartir (HTML estático que WhatsApp puede leer)
   const shareUrl = `https://adasoft.com.ar/blog/${post.id}.html`;
@@ -74,10 +80,13 @@ blogPosts.forEach(post => {
   <meta property="og:image:width" content="${dimensions.width}" />
   <meta property="og:image:height" content="${dimensions.height}" />
   <meta property="og:image:alt" content="${post.title}" />
+  <meta property="og:image:url" content="${imageUrl}" />
   <meta property="og:site_name" content="ADASOFT" />
   <meta property="og:locale" content="es_AR" />
   <meta property="fb:app_id" content="2375482829489229" />
   <meta property="article:author" content="ADASOFT" />
+  <!-- Meta tags adicionales para WhatsApp -->
+  <meta name="twitter:image:src" content="${imageUrl}" />
   
   <!-- Twitter Meta Tags -->
   <meta name="twitter:card" content="summary_large_image" />
@@ -135,8 +144,9 @@ blogPosts.forEach(post => {
     <h1 class="title">${post.title}</h1>
     <p class="description">${post.description}</p>
     <img src="${imageUrl}" alt="${post.title}" class="blog-image">
-    <p>Este es un artículo del blog de ADASOFT. Para una mejor experiencia, accede a nuestra web:</p>
-    <a href="https://adasoft.com.ar/#/blog/${post.id}" class="button" id="blog-link">Ver artículo completo</a>
+    <div style="margin-top: 2rem;">
+      <a href="https://adasoft.com.ar/#/blog/${post.id}" class="button" id="blog-link" style="display: inline-block; padding: 12px 24px; background-color: #19d8db; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 1.1rem; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(25, 216, 219, 0.3); cursor: pointer;">Ver artículo completo →</a>
+    </div>
   </div>
   <script>
     // Detectar si es un bot de redes sociales (no redirigir automáticamente)

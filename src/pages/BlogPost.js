@@ -115,7 +115,12 @@ const BlogPost = () => {
     if (!post) return;
     
     // Actualizar meta tags inmediatamente para que WhatsApp los lea
-    const shareDescription = `${post.description.split('#')[0].trim()} - Continuar leyendo →`;
+    // Limitar descripción a aproximadamente 2 líneas (120 caracteres) para WhatsApp
+    let shareDescription = post.description.split('#')[0].trim();
+    if (shareDescription.length > 120) {
+      shareDescription = shareDescription.substring(0, 117) + '...';
+    }
+    shareDescription = `${shareDescription} - Continuar leyendo →`;
     
     // Actualizar meta tags en el head inmediatamente
     const updateMetaTagImmediate = (property, content, isName = false) => {
@@ -273,7 +278,12 @@ const BlogPost = () => {
         updateMetaTag('fb:app_id', '2375482829489229');
         
         // Preparar descripción mejorada para compartir (sin hashtags y con "Continuar leyendo")
-        const shareDescription = `${post.description.split('#')[0].trim()} - Continuar leyendo →`;
+        // Limitar descripción a aproximadamente 2 líneas (120 caracteres) para WhatsApp
+        let shareDescription = post.description.split('#')[0].trim();
+        if (shareDescription.length > 120) {
+          shareDescription = shareDescription.substring(0, 117) + '...';
+        }
+        shareDescription = `${shareDescription} - Continuar leyendo →`;
         
         // Metadatos Open Graph - Usado por Facebook, Instagram, LinkedIn y WhatsApp
         updateMetaTag('og:url', shareUrl);
@@ -388,7 +398,13 @@ const BlogPost = () => {
             <meta property="og:url" content={shareUrl} />
             <meta property="og:type" content="article" />
             <meta property="og:title" content={post.title} />
-            <meta property="og:description" content={`${post.description.split('#')[0].trim()} - Continuar leyendo →`} />
+            <meta property="og:description" content={(() => {
+              let desc = post.description.split('#')[0].trim();
+              if (desc.length > 120) {
+                desc = desc.substring(0, 117) + '...';
+              }
+              return `${desc} - Continuar leyendo →`;
+            })()} />
             <meta property="og:image" content={absoluteImageUrl} />
             <meta property="og:image:secure_url" content={absoluteImageUrl} />
             <meta property="og:image:type" content="image/jpeg" />
