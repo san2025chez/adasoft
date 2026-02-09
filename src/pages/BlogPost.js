@@ -79,20 +79,20 @@ const BlogPost = () => {
     console.log('Procesando post con ID:', id);
     console.log('Imagen del post:', post.image);
     
-    // Aseguramos que la URL de la imagen sea absoluta
-    imageUrl = post.image;
+    // Para la imagen de visualización, usar ruta relativa (funciona en dev y prod)
+    // En desarrollo, usar la ruta relativa directamente
+    // En producción, el build process manejará las rutas correctamente
+    imageUrl = post.image.startsWith('/') ? post.image : `/${post.image}`;
     
-    // Si la URL no comienza con http, construimos la URL absoluta
+    // Para meta tags de redes sociales, necesitamos URL absoluta
+    let imageForMetaTags = post.image;
     if (!post.image.startsWith('http')) {
-      imageUrl = `${baseUrl}${post.image}`;
-      console.log('URL relativa detectada, convertida a absoluta:', imageUrl);
-    } else {
-      console.log('URL ya es absoluta:', imageUrl);
+      imageForMetaTags = `${baseUrl}${post.image.startsWith('/') ? post.image : `/${post.image}`}`;
     }
     
     // Para la URL absoluta usada en meta tags, eliminamos cualquier parámetro existente
     // que podría estar causando problemas con las redes sociales
-    let cleanImageUrl = imageUrl;
+    let cleanImageUrl = imageForMetaTags;
     if (cleanImageUrl.includes('?')) {
       cleanImageUrl = cleanImageUrl.split('?')[0];
       console.log('Limpiando URL de parámetros:', cleanImageUrl);
@@ -239,23 +239,37 @@ const BlogPost = () => {
         // Meta tag obligatorio para Facebook
         updateMetaTag('fb:app_id', '2375482829489229');
         
-        // Metadatos para Facebook/Open Graph
+        // Preparar descripción mejorada para compartir (sin hashtags y con "Continuar leyendo")
+        const shareDescription = `${post.description.split('#')[0].trim()} - Continuar leyendo →`;
+        
+        // Metadatos Open Graph - Usado por Facebook, Instagram, LinkedIn y WhatsApp
         updateMetaTag('og:url', shareUrl);
         updateMetaTag('og:type', 'article');
         updateMetaTag('og:title', post.title);
-        updateMetaTag('og:description', post.description);
+        updateMetaTag('og:description', shareDescription);
         updateMetaTag('og:image', finalImageUrl);
         updateMetaTag('og:image:secure_url', finalImageUrl);
+        updateMetaTag('og:image:type', 'image/jpeg');
         updateMetaTag('og:image:width', '1200');
         updateMetaTag('og:image:height', '630');
         updateMetaTag('og:image:alt', post.title);
         updateMetaTag('og:site_name', 'ADASOFT');
+        updateMetaTag('og:locale', 'es_AR');
+        updateMetaTag('article:author', 'ADASOFT');
+        updateMetaTag('article:published_time', isoDate);
+        updateMetaTag('article:modified_time', isoDate);
+        
+        // Meta description estándar - Usado por buscadores y algunas redes
+        updateMetaTag('description', shareDescription, true);
         
         // Metadatos para Twitter
         updateMetaTag('twitter:card', 'summary_large_image', true);
         updateMetaTag('twitter:title', post.title, true);
-        updateMetaTag('twitter:description', post.description, true);
+        updateMetaTag('twitter:description', shareDescription, true);
         updateMetaTag('twitter:image', finalImageUrl, true);
+        updateMetaTag('twitter:image:alt', post.title, true);
+        updateMetaTag('twitter:site', '@adasoft', true);
+        updateMetaTag('twitter:creator', '@adasoft', true);
         
         // Realizar una precarga de la imagen para asegurar que está en caché
         const img = new Image();
@@ -336,24 +350,35 @@ const BlogPost = () => {
             {/* Link canónico para la URL */}
             <link rel="canonical" href={shareUrl} />
             
-            {/* Metadatos para Facebook/Open Graph */}
+            {/* Metadatos Open Graph - Usado por Facebook, Instagram, LinkedIn y WhatsApp */}
             <meta property="fb:app_id" content="2375482829489229" />
             <meta property="og:url" content={shareUrl} />
             <meta property="og:type" content="article" />
             <meta property="og:title" content={post.title} />
-            <meta property="og:description" content={post.description} />
+            <meta property="og:description" content={`${post.description.split('#')[0].trim()} - Continuar leyendo →`} />
             <meta property="og:image" content={absoluteImageUrl} />
             <meta property="og:image:secure_url" content={absoluteImageUrl} />
+            <meta property="og:image:type" content="image/jpeg" />
             <meta property="og:image:width" content="1200" />
             <meta property="og:image:height" content="630" />
             <meta property="og:image:alt" content={post.title} />
             <meta property="og:site_name" content="ADASOFT" />
+            <meta property="og:locale" content="es_AR" />
+            <meta property="article:author" content="ADASOFT" />
+            <meta property="article:published_time" content={isoDate} />
+            <meta property="article:modified_time" content={isoDate} />
+            
+            {/* Meta description estándar - Usado por buscadores y algunas redes */}
+            <meta name="description" content={`${post.description.split('#')[0].trim()} - Continuar leyendo →`} />
             
             {/* Metadatos para Twitter */}
             <meta name="twitter:card" content="summary_large_image" />
             <meta name="twitter:title" content={post.title} />
-            <meta name="twitter:description" content={post.description} />
+            <meta name="twitter:description" content={`${post.description.split('#')[0].trim()} - Continuar leyendo →`} />
             <meta name="twitter:image" content={absoluteImageUrl} />
+            <meta name="twitter:image:alt" content={post.title} />
+            <meta name="twitter:site" content="@adasoft" />
+            <meta name="twitter:creator" content="@adasoft" />
           </Helmet>
 
           <Box sx={{ 
@@ -380,9 +405,13 @@ const BlogPost = () => {
                     objectFit: 'cover',
                     objectPosition: 'center'
                   }}
-                  image={`${imageUrl}?v=${timestamp}`}
+                  image={imageUrl.startsWith('http') ? `${imageUrl}?v=${timestamp}` : `${process.env.PUBLIC_URL || ''}${imageUrl}`}
                   alt={post.title}
-                  loading="lazy" // Add lazy loading to reduce initial layout shifts
+                  loading="eager"
+                  onError={(e) => {
+                    console.error('Error cargando imagen:', imageUrl);
+                    e.target.style.display = 'none';
+                  }}
                 />
                 <Box sx={{ 
                   p: { xs: 3, sm: 4, md: 5 },
@@ -441,6 +470,9 @@ const BlogPost = () => {
                       fontSize: { xs: '1rem', sm: '1.05rem', md: '1.1rem' },
                       // Improve content readability on mobile
                       wordBreak: 'break-word',
+                      maxWidth: { xs: '100%', sm: '90%', md: '85%', lg: '80%', xl: '75%' },
+                      mx: 'auto',
+                      px: { xs: 1, sm: 2, md: 2.5, lg: 3, xl: 3.5 },
                       '& img': {
                         maxWidth: '100%',
                         height: 'auto',
@@ -462,6 +494,10 @@ const BlogPost = () => {
                         mt: 3,
                         mb: 2,
                         color: '#1a1a2e'
+                      },
+                      // Grid responsive para cards de beneficios - móvil en columna, desktop en fila
+                      '& .benefits-grid-professional, & .benefits-grid-client': {
+                        gridTemplateColumns: { xs: '1fr', md: 'repeat(3, 1fr)' },
                       },
                       '& p': {
                         mb: 2.5,
@@ -527,30 +563,33 @@ const BlogPost = () => {
                       spacing={{ xs: 1, sm: 2 }} 
                       justifyContent="center"
                     >
-                      <div onClick={() => customFacebookShare(shareUrl, post.title, post.description, absoluteImageUrl)} style={{ cursor: 'pointer' }}>
+                      <div onClick={() => {
+                        const shareDesc = `${post.description.split('#')[0].trim()} - Continuar leyendo →`;
+                        customFacebookShare(shareUrl, post.title, shareDesc, absoluteImageUrl);
+                      }} style={{ cursor: 'pointer' }}>
                         <FacebookIcon size={40} round />
                       </div>
                       <TwitterShareButton 
                         url={shareUrl} 
                         title={post.title}
                         via="adasoft"
-                        hashtags={["Automatización", "Productividad", "Tecnología"]}
-                        description={post.description}
+                        hashtags={["Tecnología", "Jujuy", "Profesionales"]}
+                        description={`${post.description.split('#')[0].trim()} - Continuar leyendo →`}
                       >
                         <TwitterIcon size={40} round />
                       </TwitterShareButton>
                       <LinkedinShareButton 
                         url={shareUrl} 
                         title={post.title} 
-                        summary={post.description} 
+                        summary={`${post.description.split('#')[0].trim()} - Continuar leyendo →`} 
                         source="ADASOFT"
-                        description={post.description}
+                        description={`${post.description.split('#')[0].trim()} - Continuar leyendo →`}
                       >
                         <LinkedinIcon size={40} round />
                       </LinkedinShareButton>
                       <WhatsappShareButton 
                         url={shareUrl} 
-                        title={`${post.title} - ${post.description}`} 
+                        title={`${post.title} - ${post.description.split('#')[0].trim()} - Continuar leyendo →`} 
                         separator=" " 
                       >
                         <WhatsappIcon size={40} round />

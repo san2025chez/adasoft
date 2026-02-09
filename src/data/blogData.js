@@ -394,4 +394,173 @@ Tus equipos liberados de tareas repetitivas. Tu negocio operando con mayor preci
     tags: ['automatización', 'productividad', 'herramientas de automatización'],
     author: 'ADASOFT'
   },
+  {
+    id: 'profesionales-oficios-jujuy',
+    title: 'El Puente Digital que Jujuy Necesitaba: Todo el Talento Local en un Solo Lugar',
+    subtitle: 'La plataforma que centraliza y potencia el trabajo jujeño',
+    date: '24 Ene 2025',
+    image: '/images/profesionales-oficios-portada.jpg',
+    description: 'Encontrar a un profesional de confianza en nuestra provincia no debería ser una tarea de investigación. Conoce ProfesionalesOficios, la plataforma diseñada para centralizar, organizar y potenciar el trabajo jujeño. Descubre cómo conectamos profesionales con clientes en Jujuy.',
+    tags: ['plataforma digital', 'profesionales', 'jujuy', 'aplicación web', 'directorio', 'servicios locales'],
+    author: 'ADASOFT',
+    content: `
+<div style="max-width: 100%; width: 100%; margin: 0 auto; line-height: 1.8; color: #333; padding: 0 1.5rem;">
+  <p style="font-size: 1.1rem; margin-bottom: 1.5rem; color: #444;">Encontrar a un profesional de confianza en nuestra provincia no debería ser una tarea de investigación. Hoy, la información está dispersa: entre grupos de Facebook saturados de avisos y perfiles de Instagram que el algoritmo decide ocultar, tanto el profesional como el cliente terminan perdiendo tiempo y oportunidades.</p>
+
+  <p style="font-size: 1.1rem; margin-bottom: 2.5rem; color: #444;">Con esa problemática en mente, nace <strong style="color: #19d8db;">ProfesionalesOficios</strong>, la plataforma diseñada para centralizar, organizar y potenciar el trabajo jujeño.</p>
+
+  <h3 style="color: #1a1a2e; font-size: 1.8rem; font-weight: 600; margin-top: 3rem; margin-bottom: 1.5rem; border-bottom: 2px solid #19d8db; padding-bottom: 0.5rem;">¿Qué es ProfesionalesOficios?</h3>
+
+  <p style="font-size: 1.05rem; margin-bottom: 2rem; color: #555; line-height: 1.9;">Es un ecosistema digital creado para conectar de forma directa a quienes ofrecen un servicio con quienes lo necesitan. Desde un médico especialista hasta un plomero de urgencia, nuestra misión es que nadie en Jujuy quede invisible por no tener una red social activa o un presupuesto de marketing.</p>
+
+  <h3 style="color: #1a1a2e; font-size: 1.8rem; font-weight: 600; margin-top: 3rem; margin-bottom: 1.5rem; border-bottom: 2px solid #19d8db; padding-bottom: 0.5rem;">Beneficios para el Profesional y el Trabajador de Oficio</h3>
+
+  <p style="font-size: 1.05rem; margin-bottom: 2rem; color: #555;">Si brindás un servicio, esta plataforma es tu nueva vidriera digital gratuita:</p>
+
+  <div class="benefits-grid-professional" style="display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin: 2rem 0;">
+    <div style="background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%); padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border-top: 4px solid #19d8db;">
+      <h4 style="color: #19d8db; font-size: 1.3rem; font-weight: 600; margin-top: 0; margin-bottom: 1rem;">👁️ Visibilidad Estructurada</h4>
+      <p style="color: #555; margin: 0; line-height: 1.7;">Ya no sos un comentario perdido en un grupo de "Alguien sabe". Ahora tenés un perfil profesional categorizado y fácil de encontrar.</p>
+    </div>
+
+    <div style="background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%); padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border-top: 4px solid #19d8db;">
+      <h4 style="color: #19d8db; font-size: 1.3rem; font-weight: 600; margin-top: 0; margin-bottom: 1rem;">🔗 Conexión Directa</h4>
+      <p style="color: #555; margin: 0; line-height: 1.7;">El cliente te contacta a un clic de distancia, directamente a tu WhatsApp o teléfono, sin intermediarios ni comisiones.</p>
+    </div>
+
+    <div style="background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%); padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border-top: 4px solid #19d8db;">
+      <h4 style="color: #19d8db; font-size: 1.3rem; font-weight: 600; margin-top: 0; margin-bottom: 1rem;">💼 Profesionalismo</h4>
+      <p style="color: #555; margin: 0; line-height: 1.7;">Al aparecer en un directorio dedicado, tu trabajo gana una capa extra de seriedad y confianza frente al cliente.</p>
+    </div>
+  </div>
+
+  <h3 style="color: #1a1a2e; font-size: 1.8rem; font-weight: 600; margin-top: 3rem; margin-bottom: 1.5rem; border-bottom: 2px solid #19d8db; padding-bottom: 0.5rem;">Beneficios para el Usuario (El Cliente)</h3>
+
+  <p style="font-size: 1.05rem; margin-bottom: 2rem; color: #555;">Buscamos simplificar tu vida cuando más lo necesitás:</p>
+
+  <div class="benefits-grid-client" style="display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin: 2rem 0;">
+    <div style="background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%); padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border-top: 4px solid #19d8db;">
+      <h4 style="color: #19d8db; font-size: 1.3rem; font-weight: 600; margin-top: 0; margin-bottom: 1rem;">📍 Todo en un solo lugar</h4>
+      <p style="color: #555; margin: 0; line-height: 1.7;">Ahorrá tiempo filtrando por oficio o profesión técnica.</p>
+    </div>
+
+    <div style="background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%); padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border-top: 4px solid #19d8db;">
+      <h4 style="color: #19d8db; font-size: 1.3rem; font-weight: 600; margin-top: 0; margin-bottom: 1rem;">✅ Información Real</h4>
+      <p style="color: #555; margin: 0; line-height: 1.7;">Accedé a datos de contacto verificados y actualizados.</p>
+    </div>
+
+    <div style="background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%); padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border-top: 4px solid #19d8db;">
+      <h4 style="color: #19d8db; font-size: 1.3rem; font-weight: 600; margin-top: 0; margin-bottom: 1rem;">🚀 Sin Registros Tediosos</h4>
+      <p style="color: #555; margin: 0; line-height: 1.7;">Buscá y encontrá lo que necesitás sin necesidad de crear cuentas complejas.</p>
+    </div>
+  </div>
+
+  <h3 style="color: #1a1a2e; font-size: 1.8rem; font-weight: 600; margin-top: 3rem; margin-bottom: 1.5rem; border-bottom: 2px solid #19d8db; padding-bottom: 0.5rem;">Una Aplicación Web: Pensada para tu Comodidad</h3>
+
+  <p style="font-size: 1.05rem; margin-bottom: 2rem; color: #555; line-height: 1.9;">Sabemos que hoy en día el espacio en el celular es oro. Muchas aplicaciones se vuelven una carga porque saturan la memoria y ralentizan el dispositivo. Por eso, hemos decidido que <strong style="color: #19d8db;">ProfesionalesOficios</strong> funcione 100% como una Aplicación Web.</p>
+
+  <div style="background: linear-gradient(135deg, #e8f8f9 0%, #f0fdfe 100%); padding: 2rem; border-radius: 12px; margin: 2rem 0; border-left: 5px solid #19d8db;">
+    <h4 style="color: #1a1a2e; font-size: 1.4rem; font-weight: 600; margin-top: 0; margin-bottom: 1.5rem;">¿Qué significa esto para vos?</h4>
+    
+    <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+      <div style="display: flex; align-items: flex-start; gap: 1rem;">
+        <div style="background: #19d8db; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;">1</div>
+        <div>
+          <h5 style="color: #1a1a2e; font-size: 1.2rem; font-weight: 600; margin: 0 0 0.5rem 0;">Cero Descargas</h5>
+          <p style="color: #555; margin: 0; line-height: 1.7;">No necesitás ir a la Play Store ni ocupar megabytes valiosos de tu memoria.</p>
+        </div>
+      </div>
+
+      <div style="display: flex; align-items: flex-start; gap: 1rem;">
+        <div style="background: #19d8db; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;">2</div>
+        <div>
+          <h5 style="color: #1a1a2e; font-size: 1.2rem; font-weight: 600; margin: 0 0 0.5rem 0;">Acceso Instantáneo</h5>
+          <p style="color: #555; margin: 0; line-height: 1.7;">Entrás desde el navegador de tu celular (Chrome, Safari, etc.) y la experiencia es tan fluida como una app instalada.</p>
+        </div>
+      </div>
+
+      <div style="display: flex; align-items: flex-start; gap: 1rem;">
+        <div style="background: #19d8db; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;">3</div>
+        <div>
+          <h5 style="color: #1a1a2e; font-size: 1.2rem; font-weight: 600; margin: 0 0 0.5rem 0;">Universal</h5>
+          <p style="color: #555; margin: 0; line-height: 1.7;">Funciona en cualquier teléfono, sin importar si es el último modelo o uno con poco espacio de almacenamiento.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background: linear-gradient(135deg, #19d8db 0%, #0fb9b9 100%); color: white; padding: 2.5rem; border-radius: 12px; margin: 3rem 0; box-shadow: 0 8px 24px rgba(25, 216, 219, 0.3); text-align: center;">
+    <div style="font-size: 3rem; margin-bottom: 1rem;">🤝</div>
+    <h3 style="color: white; font-size: 1.8rem; font-weight: 600; margin-top: 0; margin-bottom: 1rem;">Inclusión Total: Si tu oficio no está, lo creamos</h3>
+    <p style="font-size: 1.1rem; margin-bottom: 1.5rem; line-height: 1.8; opacity: 0.95;">En <strong>ProfesionalesOficios</strong>, nuestra prioridad es que nadie quede fuera. Entendemos que la diversidad de talentos en Jujuy es inmensa y evoluciona día a día.</p>
+    <p style="font-size: 1.1rem; margin-bottom: 1.5rem; line-height: 1.8; opacity: 0.95;">Por eso, si al momento de registrarte no encontrás una categoría que represente exactamente lo que hacés, no te preocupes. Hemos habilitado un canal directo con nuestro equipo de soporte técnico en <strong>ADASOFT</strong>. Solo tenés que contactarnos y nosotros nos encargaremos de añadir la categoría correspondiente a la brevedad.</p>
+    <p style="font-size: 1.1rem; margin: 0; line-height: 1.8; opacity: 0.95;">Queremos que cada trabajador, desde la especialidad más tradicional hasta el oficio más innovador, tenga su lugar asegurado en nuestro mapa digital.</p>
+  </div>
+
+  <div style="background-color: #f7f9fc; padding: 2rem; border-radius: 12px; margin: 2.5rem 0; border-left: 5px solid #19d8db; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+    <p style="font-style: italic; margin: 0; font-size: 1.15rem; color: #333; line-height: 1.8; text-align: center;">"Nuestra prioridad es la inclusión. Queremos que el vecino que necesita un flete y el médico que busca pacientes puedan conectarse sin barreras técnicas ni falta de espacio en el dispositivo."</p>
+  </div>
+
+  <h3 style="color: #1a1a2e; font-size: 1.8rem; font-weight: 600; margin-top: 3rem; margin-bottom: 1.5rem; border-bottom: 2px solid #19d8db; padding-bottom: 0.5rem;">Sumate a la Fase Beta</h3>
+
+  <p style="font-size: 1.05rem; margin-bottom: 2rem; color: #555; line-height: 1.9;">Estamos en pleno lanzamiento en la provincia de Jujuy y queremos que seas parte. Si sos profesional o brindás un oficio, registrate hoy mismo y ayudanos a construir la comunidad laboral más grande de la región.</p>
+</div>
+
+  <div style="background: linear-gradient(135deg, #19d8db 0%, #0fb9b9 100%); color: white; padding: 3rem 2rem; border-radius: 12px; margin: 3rem 0; text-align: center; box-shadow: 0 8px 24px rgba(25, 216, 219, 0.3);">
+    <div style="font-size: 3.5rem; margin-bottom: 1rem;">🚀</div>
+    <h3 style="color: white; font-size: 2rem; font-weight: 600; margin-top: 0; margin-bottom: 1rem;">¡Visitá nuestra plataforma!</h3>
+    <p style="margin-bottom: 2rem; font-size: 1.15rem; opacity: 0.95; line-height: 1.7;">Conectá con profesionales de confianza en Jujuy</p>
+    <a href="https://profesionalesoficios.vercel.app/" target="_blank" rel="noopener noreferrer" style="display: inline-block; background-color: white; color: #19d8db; padding: 1rem 2.5rem; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 1.1rem; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">Visitar ProfesionalesOficios →</a>
+  </div>
+
+  <div style="background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%); padding: 3rem 2.5rem; border-radius: 12px; margin-top: 3rem; border-left: 5px solid #19d8db; box-shadow: 0 4px 16px rgba(0,0,0,0.08);">
+    <h3 style="color: #1a1a2e; font-size: 1.8rem; font-weight: 600; margin-top: 0; margin-bottom: 1.5rem;">¿Necesitás desarrollar una plataforma similar para tu región?</h3>
+
+    <p style="font-size: 1.05rem; margin-bottom: 2rem; color: #555; line-height: 1.8;">En <a onClick="window.location.href='/'" style="color: #19d8db; text-decoration: none; font-weight: 600; border-bottom: 2px solid #19d8db; cursor: pointer;">ADASOFT</a> creamos soluciones tecnológicas a medida que conectan comunidades y potencian negocios locales.</p>
+
+    <h4 style="color: #1a1a2e; font-size: 1.3rem; font-weight: 600; margin-bottom: 1.5rem; margin-top: 2rem;">Nos especializamos en:</h4>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 2.5rem;">
+      <div style="display: flex; align-items: flex-start; gap: 1rem;">
+        <div style="color: #19d8db; font-size: 1.5rem; flex-shrink: 0;">✓</div>
+        <div>
+          <strong style="color: #1a1a2e; display: block; margin-bottom: 0.3rem;">Aplicaciones Web Progresivas (PWA)</strong>
+          <span style="color: #666; font-size: 0.95rem;">Funcionan como apps nativas sin ocupar espacio</span>
+        </div>
+      </div>
+      <div style="display: flex; align-items: flex-start; gap: 1rem;">
+        <div style="color: #19d8db; font-size: 1.5rem; flex-shrink: 0;">✓</div>
+        <div>
+          <strong style="color: #1a1a2e; display: block; margin-bottom: 0.3rem;">Plataformas de directorio</strong>
+          <span style="color: #666; font-size: 0.95rem;">Conectamos profesionales con clientes</span>
+        </div>
+      </div>
+      <div style="display: flex; align-items: flex-start; gap: 1rem;">
+        <div style="color: #19d8db; font-size: 1.5rem; flex-shrink: 0;">✓</div>
+        <div>
+          <strong style="color: #1a1a2e; display: block; margin-bottom: 0.3rem;">Soluciones inclusivas</strong>
+          <span style="color: #666; font-size: 0.95rem;">Accesibles para todos los dispositivos</span>
+        </div>
+      </div>
+      <div style="display: flex; align-items: flex-start; gap: 1rem;">
+        <div style="color: #19d8db; font-size: 1.5rem; flex-shrink: 0;">✓</div>
+        <div>
+          <strong style="color: #1a1a2e; display: block; margin-bottom: 0.3rem;">Desarrollo a medida</strong>
+          <span style="color: #666; font-size: 0.95rem;">Adaptado a las necesidades de tu comunidad</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 2.5rem; padding-top: 2rem; border-top: 2px solid #e9ecef;">
+      <a onClick="(() => {
+        window.location.href='#/';
+        setTimeout(() => {
+          document.getElementById('contacto').scrollIntoView({behavior: 'smooth'});
+        }, 500);
+      })()" style="background: linear-gradient(135deg, #19d8db 0%, #0fb9b9 100%); color: white; text-decoration: none; font-weight: 600; padding: 1rem 2.5rem; border-radius: 8px; display: inline-block; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(25, 216, 219, 0.3); font-size: 1.1rem;">SOLICITA TU CONSULTA GRATUITA</a>
+      <p style="margin-top: 1rem; margin-bottom: 0; font-size: 0.9rem; color: #666;">Sin compromisos. Evaluamos tu proyecto y proponemos soluciones a medida.</p>
+    </div>
+  </div>
+</div>
+`
+  },
 ];
