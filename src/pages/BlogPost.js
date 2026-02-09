@@ -21,38 +21,10 @@ const customFacebookShare = (url, title, description, imageUrl) => {
   console.log('Descripción:', description);
   console.log('Imagen:', imageUrl);
   
-  // Método moderno utilizando la API de Facebook si está disponible
-  if (window.FB) {
-    try {
-      console.log('Usando FB.ui para compartir contenido');
-      
-      window.FB.ui({
-        method: 'share',
-        href: url,
-        quote: `${title} - ${description}`,
-      }, function(response) {
-        if (response && !response.error_message) {
-          console.log('Contenido compartido exitosamente');
-        } else {
-          console.error('Error al compartir en Facebook:', response?.error_message);
-          // Si falla, usar el método básico como fallback
-          fallbackShare();
-        }
-      });
-    } catch (error) {
-      console.error('Error al usar FB.ui:', error);
-      fallbackShare();
-    }
-  } else {
-    console.log('FB SDK no disponible, usando método básico');
-    fallbackShare();
-  }
-  
-  // Método básico como fallback
-  function fallbackShare() {
-    const fbShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(title + ' - ' + description)}`;
-    window.open(fbShareUrl, '_blank', 'width=626,height=436');
-  }
+  // Usar método básico de compartir de Facebook (no requiere configuración de dominio)
+  // Este método lee los meta tags Open Graph directamente de la página
+  const fbShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+  window.open(fbShareUrl, '_blank', 'width=626,height=436');
 };
 
 const BlogPost = () => {
