@@ -407,7 +407,7 @@ Tus equipos liberados de tareas repetitivas. Tu negocio operando con mayor preci
 <div style="max-width: 100%; width: 100%; margin: 0 auto; line-height: 1.8; color: #333; padding: 0 1.5rem;">
   <p style="font-size: 1.1rem; margin-bottom: 1.5rem; color: #444;">Encontrar a un profesional de confianza en nuestra provincia no debería ser una tarea de investigación. Hoy, la información está dispersa: entre grupos de Facebook saturados de avisos y perfiles de Instagram que el algoritmo decide ocultar, tanto el profesional como el cliente terminan perdiendo tiempo y oportunidades.</p>
 
-  <p style="font-size: 1.1rem; margin-bottom: 2.5rem; color: #444;">Con esa problemática en mente, nace <strong style="color: #19d8db;">ProfesionalesOficios</strong>, la plataforma diseñada para centralizar, organizar y potenciar el trabajo jujeño.</p>
+  <p style="font-size: 1.1rem; margin-bottom: 2.5rem; color: #444;">Con esa problemática en mente, nace <a href="https://profesionalesoficios.vercel.app/" target="_blank" rel="noopener noreferrer" style="color: #19d8db; text-decoration: none; font-weight: 600; border-bottom: 2px solid #19d8db;"><strong style="color: #19d8db;">ProfesionalesOficios</strong></a>, la plataforma diseñada para centralizar, organizar y potenciar el trabajo jujeño.</p>
 
   <h3 style="color: #1a1a2e; font-size: 1.8rem; font-weight: 600; margin-top: 3rem; margin-bottom: 1.5rem; border-bottom: 2px solid #19d8db; padding-bottom: 0.5rem;">¿Qué es ProfesionalesOficios?</h3>
 
@@ -457,7 +457,7 @@ Tus equipos liberados de tareas repetitivas. Tu negocio operando con mayor preci
 
   <h3 style="color: #1a1a2e; font-size: 1.8rem; font-weight: 600; margin-top: 3rem; margin-bottom: 1.5rem; border-bottom: 2px solid #19d8db; padding-bottom: 0.5rem;">Una Aplicación Web: Pensada para tu Comodidad</h3>
 
-  <p style="font-size: 1.05rem; margin-bottom: 2rem; color: #555; line-height: 1.9;">Sabemos que hoy en día el espacio en el celular es oro. Muchas aplicaciones se vuelven una carga porque saturan la memoria y ralentizan el dispositivo. Por eso, hemos decidido que <strong style="color: #19d8db;">ProfesionalesOficios</strong> funcione 100% como una Aplicación Web.</p>
+  <p style="font-size: 1.05rem; margin-bottom: 2rem; color: #555; line-height: 1.9;">Sabemos que hoy en día el espacio en el celular es oro. Muchas aplicaciones se vuelven una carga porque saturan la memoria y ralentizan el dispositivo. Por eso, hemos decidido que <a href="https://profesionalesoficios.vercel.app/" target="_blank" rel="noopener noreferrer" style="color: #19d8db; text-decoration: none; font-weight: 600; border-bottom: 2px solid #19d8db;"><strong style="color: #19d8db;">ProfesionalesOficios</strong></a> funcione 100% como una Aplicación Web.</p>
 
   <div style="background: linear-gradient(135deg, #e8f8f9 0%, #f0fdfe 100%); padding: 2rem; border-radius: 12px; margin: 2rem 0; border-left: 5px solid #19d8db;">
     <h4 style="color: #1a1a2e; font-size: 1.4rem; font-weight: 600; margin-top: 0; margin-bottom: 1.5rem;">¿Qué significa esto para vos?</h4>
@@ -492,7 +492,7 @@ Tus equipos liberados de tareas repetitivas. Tu negocio operando con mayor preci
   <div style="background: linear-gradient(135deg, #19d8db 0%, #0fb9b9 100%); color: white; padding: 2.5rem; border-radius: 12px; margin: 3rem 0; box-shadow: 0 8px 24px rgba(25, 216, 219, 0.3); text-align: center;">
     <div style="font-size: 3rem; margin-bottom: 1rem;">🤝</div>
     <h3 style="color: white; font-size: 1.8rem; font-weight: 600; margin-top: 0; margin-bottom: 1rem;">Inclusión Total: Si tu oficio no está, lo creamos</h3>
-    <p style="font-size: 1.1rem; margin-bottom: 1.5rem; line-height: 1.8; opacity: 0.95;">En <strong>ProfesionalesOficios</strong>, nuestra prioridad es que nadie quede fuera. Entendemos que la diversidad de talentos en Jujuy es inmensa y evoluciona día a día.</p>
+    <p style="font-size: 1.1rem; margin-bottom: 1.5rem; line-height: 1.8; opacity: 0.95;">En <a href="https://profesionalesoficios.vercel.app/" target="_blank" rel="noopener noreferrer" style="color: white; text-decoration: none; font-weight: 600; border-bottom: 2px solid rgba(255,255,255,0.7);"><strong>ProfesionalesOficios</strong></a>, nuestra prioridad es que nadie quede fuera. Entendemos que la diversidad de talentos en Jujuy es inmensa y evoluciona día a día.</p>
     <p style="font-size: 1.1rem; margin-bottom: 1.5rem; line-height: 1.8; opacity: 0.95;">Por eso, si al momento de registrarte no encontrás una categoría que represente exactamente lo que hacés, no te preocupes. Hemos habilitado un canal directo con nuestro equipo de soporte técnico en <strong>ADASOFT</strong>. Solo tenés que contactarnos y nosotros nos encargaremos de añadir la categoría correspondiente a la brevedad.</p>
     <p style="font-size: 1.1rem; margin: 0; line-height: 1.8; opacity: 0.95;">Queremos que cada trabajador, desde la especialidad más tradicional hasta el oficio más innovador, tenga su lugar asegurado en nuestro mapa digital.</p>
   </div>
@@ -503,7 +503,11 @@ Tus equipos liberados de tareas repetitivas. Tu negocio operando con mayor preci
 
   <h3 style="color: #1a1a2e; font-size: 1.8rem; font-weight: 600; margin-top: 3rem; margin-bottom: 1.5rem; border-bottom: 2px solid #19d8db; padding-bottom: 0.5rem;">Sumate a la Fase Beta</h3>
 
-  <p style="font-size: 1.05rem; margin-bottom: 2rem; color: #555; line-height: 1.9;">Estamos en pleno lanzamiento en la provincia de Jujuy y queremos que seas parte. Si sos profesional o brindás un oficio, registrate hoy mismo y ayudanos a construir la comunidad laboral más grande de la región.</p>
+  <p style="font-size: 1.05rem; margin-bottom: 2rem; color: #555; line-height: 1.9;">Estamos en pleno lanzamiento en la provincia de Jujuy y queremos que seas parte. Si sos profesional o brindás un oficio, <a href="https://profesionalesoficios.vercel.app/" target="_blank" rel="noopener noreferrer" style="color: #19d8db; text-decoration: none; font-weight: 600; border-bottom: 2px solid #19d8db;">registrate hoy mismo</a> y ayudanos a construir la comunidad laboral más grande de la región.</p>
+  
+  <div style="text-align: center; margin: 2rem 0;">
+    <a href="https://profesionalesoficios.vercel.app/" target="_blank" rel="noopener noreferrer" style="display: inline-block; background: linear-gradient(135deg, #19d8db 0%, #0fb9b9 100%); color: white; padding: 1rem 2.5rem; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 1.1rem; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(25, 216, 219, 0.3);">Registrarme en ProfesionalesOficios →</a>
+  </div>
 </div>
 
   <div style="background: linear-gradient(135deg, #19d8db 0%, #0fb9b9 100%); color: white; padding: 3rem 2rem; border-radius: 12px; margin: 3rem 0; text-align: center; box-shadow: 0 8px 24px rgba(25, 216, 219, 0.3);">
