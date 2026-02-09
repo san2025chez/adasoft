@@ -136,17 +136,67 @@ blogPosts.forEach(post => {
     <p class="description">${post.description}</p>
     <img src="${imageUrl}" alt="${post.title}" class="blog-image">
     <p>Este es un artículo del blog de ADASOFT. Para una mejor experiencia, accede a nuestra web:</p>
-    <a href="https://adasoft.com.ar/#/blog/${post.id}" class="button">Ver artículo completo</a>
+    <a href="https://adasoft.com.ar/#/blog/${post.id}" class="button" id="blog-link">Ver artículo completo</a>
   </div>
   <script>
-    // Esperar unos segundos para que Facebook pueda rastrear la página
-    // antes de redirigir al usuario a la aplicación React
-    const isBot = /bot|crawler|spider|crawling/i.test(navigator.userAgent);
-    if (!isBot) {
-      setTimeout(function() {
-        window.location.href = "https://adasoft.com.ar/#/blog/${post.id}";
-      }, 3000); // Esperar 3 segundos
+    // Detectar si es un bot de redes sociales (no redirigir automáticamente)
+    const isBot = /bot|crawler|spider|crawling|facebookexternalhit|Twitterbot|LinkedInBot|WhatsApp|Discordbot|TelegramBot|Pinterest|Slackbot/i.test(navigator.userAgent);
+    
+    // URL del blog post
+    const blogUrl = "https://adasoft.com.ar/#/blog/${post.id}";
+    
+    // Función para redirigir al blog post de forma robusta
+    function redirectToBlog() {
+      // Intentar múltiples métodos para asegurar que funcione
+      try {
+        // Método 1: window.location.href (más compatible)
+        window.location.href = blogUrl;
+      } catch(e) {
+        try {
+          // Método 2: window.location.replace (fallback)
+          window.location.replace(blogUrl);
+        } catch(e2) {
+          // Método 3: window.open como último recurso
+          window.open(blogUrl, '_self');
+        }
+      }
     }
+    
+    // Si no es un bot, redirigir automáticamente después de un tiempo
+    if (!isBot) {
+      // Redirigir automáticamente después de 2 segundos para que los bots puedan leer los meta tags
+      setTimeout(redirectToBlog, 2000);
+    }
+    
+    // Asegurar que el enlace del botón funcione correctamente
+    (function() {
+      function setupLink() {
+        const blogLink = document.getElementById('blog-link');
+        if (blogLink) {
+          // Remover cualquier listener previo
+          const newLink = blogLink.cloneNode(true);
+          blogLink.parentNode.replaceChild(newLink, blogLink);
+          
+          // Agregar el listener al nuevo elemento
+          newLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            redirectToBlog();
+            return false;
+          });
+          
+          // También configurar el href directamente
+          newLink.href = blogUrl;
+        }
+      }
+      
+      // Ejecutar cuando el DOM esté listo
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupLink);
+      } else {
+        setupLink();
+      }
+    })();
   </script>
 </body>
 </html>`;

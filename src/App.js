@@ -19,7 +19,7 @@ import './App.css';
 import styled from '@emotion/styled';
 import { HelmetProvider } from 'react-helmet-async';
 import {Fade} from 'react-awesome-reveal'
-import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 
 // Carga diferida de páginas principales
 const Inicio = lazy(() => import('./components/Inicio'));
