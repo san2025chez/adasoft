@@ -48,8 +48,57 @@
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <title>ADASOFT - Desarrollo de Software y Diseño Web Profesional | Soluciones Tecnológicas a Medida</title>
     
-    <!-- Facebook SDK para depurar y optimizar las comparticiones -->
+    <!-- Script para actualizar meta tags dinámicamente antes de que WhatsApp haga scraping -->
     <script>
+      // Detectar si es un bot de redes sociales
+      const isSocialBot = /facebookexternalhit|Twitterbot|LinkedInBot|WhatsApp|Discordbot|TelegramBot|Pinterest|Slackbot|Googlebot/i.test(navigator.userAgent);
+      
+      // Si es un bot y hay un hash en la URL, actualizar meta tags basado en el hash
+      if (isSocialBot && window.location.hash) {
+        const hash = window.location.hash;
+        const blogMatch = hash.match(/#\/blog\/([^\/]+)/);
+        
+        if (blogMatch) {
+          const blogId = blogMatch[1];
+          
+          // Mapeo de IDs de blog a sus imágenes (se actualizará dinámicamente desde React)
+          const blogImages = {
+            'profesionales-oficios-jujuy': 'https://adasoft.com.ar/images/profesionales-oficios-portada.jpg',
+            '1': 'https://adasoft.com.ar/images/web-ia.jpg',
+            '2': 'https://adasoft.com.ar/images/blog-2.jpg',
+            '3': 'https://adasoft.com.ar/images/blog-3.jpg',
+            '4': 'https://adasoft.com.ar/images/gmail.webp',
+            '-vs-n8n': 'https://adasoft.com.ar/images/make-vs-n8n.jpg'
+          };
+          
+          const imageUrl = blogImages[blogId];
+          
+          if (imageUrl) {
+            // Actualizar meta tags inmediatamente
+            const updateMetaTag = (property, content, isName = false) => {
+              const selector = isName ? `meta[name="${property}"]` : `meta[property="${property}"]`;
+              let meta = document.querySelector(selector);
+              if (!meta) {
+                meta = document.createElement('meta');
+                if (isName) {
+                  meta.setAttribute('name', property);
+                } else {
+                  meta.setAttribute('property', property);
+                }
+                document.head.appendChild(meta);
+              }
+              meta.setAttribute('content', content);
+            };
+            
+            // Actualizar og:image inmediatamente
+            updateMetaTag('og:image', imageUrl);
+            updateMetaTag('og:image:secure_url', imageUrl);
+            updateMetaTag('twitter:image', imageUrl, true);
+          }
+        }
+      }
+      
+      // Facebook SDK para depurar y optimizar las comparticiones
       window.fbAsyncInit = function() {
         FB.init({
           appId      : '2375482829489229',

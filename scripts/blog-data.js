@@ -48,7 +48,18 @@ const blogPosts = [
     image: '/images/gmail.webp',
     description: 'Automatiza el envío de correos con n8n y Groq: caso práctico con resultados medibles. ¡Descubre cómo transformamos tareas repetitivas en procesos eficientes con tecnología!',
     tags: ['automatización', 'n8n','gmail', 'groq', 'productividad', 'caso-práctico'],
-    author: 'Escrito por Ana Sanchez'   }
+    author: 'Escrito por Ana Sanchez'
+  },
+  {
+    id: 'profesionales-oficios-jujuy',
+    title: 'El Puente Digital que Jujuy Necesitaba: Todo el Talento Local en un Solo Lugar',
+    subtitle: 'La plataforma que centraliza y potencia el trabajo jujeño',
+    date: '24 Ene 2025',
+    image: '/images/profesionales-oficios-portada.jpg',
+    description: 'Encontrar a un profesional de confianza en nuestra provincia no debería ser una tarea de investigación. Conoce ProfesionalesOficios, la plataforma diseñada para centralizar, organizar y potenciar el trabajo jujeño. Descubre cómo conectamos profesionales con clientes en Jujuy.',
+    tags: ['plataforma digital', 'profesionales', 'jujuy', 'aplicación web', 'directorio', 'servicios locales'],
+    author: 'ADASOFT'
+  }
   // Puedes añadir más posts aquí siguiendo el mismo formato
 ];
 

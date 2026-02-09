@@ -107,6 +107,42 @@ const BlogPost = () => {
     }
   }
   
+  // IMPORTANTE: Actualizar meta tags inmediatamente (antes de que WhatsApp haga scraping)
+  useEffect(() => {
+    if (!post) return;
+    
+    // Actualizar meta tags inmediatamente para que WhatsApp los lea
+    const shareDescription = `${post.description.split('#')[0].trim()} - Continuar leyendo →`;
+    
+    // Actualizar meta tags en el head inmediatamente
+    const updateMetaTagImmediate = (property, content, isName = false) => {
+      const selector = isName ? `meta[name="${property}"]` : `meta[property="${property}"]`;
+      let meta = document.querySelector(selector);
+      if (!meta) {
+        meta = document.createElement('meta');
+        if (isName) {
+          meta.setAttribute('name', property);
+        } else {
+          meta.setAttribute('property', property);
+        }
+        document.head.appendChild(meta);
+      }
+      meta.setAttribute('content', content);
+    };
+    
+    // Actualizar meta tags críticos inmediatamente
+    updateMetaTagImmediate('og:title', post.title);
+    updateMetaTagImmediate('og:description', shareDescription);
+    updateMetaTagImmediate('og:image', absoluteImageUrl);
+    updateMetaTagImmediate('og:image:secure_url', absoluteImageUrl);
+    updateMetaTagImmediate('og:url', shareUrl);
+    updateMetaTagImmediate('description', shareDescription, true);
+    updateMetaTagImmediate('twitter:title', post.title, true);
+    updateMetaTagImmediate('twitter:description', shareDescription, true);
+    updateMetaTagImmediate('twitter:image', absoluteImageUrl, true);
+    
+  }, [post, absoluteImageUrl, shareUrl]);
+  
   // IMPORTANTE: Todos los hooks deben ser usados antes de cualquier return condicional
   useEffect(() => {
     // Debug para ayudar en el diagnóstico

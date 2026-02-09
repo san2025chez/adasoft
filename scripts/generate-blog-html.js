@@ -17,11 +17,23 @@ if (!fs.existsSync(outputDir)) {
 
 // Generar un archivo HTML para cada entrada de blog
 blogPosts.forEach(post => {
-  // Asegurarse de que la URL de la imagen sea absoluta
+  // Asegurarse de que la URL de la imagen sea absoluta y HTTPS
   let imageUrl = post.image;
   if (!post.image.startsWith('http')) {
-    imageUrl = `https://adasoft.com.ar${post.image}`;
+    // Asegurar que la ruta comience con /
+    const imagePath = post.image.startsWith('/') ? post.image : `/${post.image}`;
+    imageUrl = `https://adasoft.com.ar${imagePath}`;
   }
+  // Forzar HTTPS
+  if (imageUrl.startsWith('http://')) {
+    imageUrl = imageUrl.replace('http://', 'https://');
+  }
+  
+  // Preparar descripción mejorada para compartir (sin hashtags y con "Continuar leyendo")
+  const shareDescription = `${post.description.split('#')[0].trim()} - Continuar leyendo →`;
+  
+  // URL canónica con hash router
+  const canonicalUrl = `https://adasoft.com.ar/#/blog/${post.id}`;
 
   // Crear contenido HTML con las meta etiquetas de Open Graph correctas
   const htmlContent = `<!DOCTYPE html>
@@ -30,30 +42,33 @@ blogPosts.forEach(post => {
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>${post.title} | ADASOFT - Desarrollo de Software y Diseño Web</title>
-  <meta name="description" content="${post.description}" />
+  <meta name="description" content="${shareDescription}" />
   
   <!-- Canonical URL -->
-  <link rel="canonical" href="https://adasoft.com.ar/blog/${post.id}.html" />
+  <link rel="canonical" href="${canonicalUrl}" />
   
-  <!-- Open Graph / Facebook Meta Tags -->
-  <meta property="og:url" content="https://adasoft.com.ar/blog/${post.id}.html" />
+  <!-- Open Graph / Facebook Meta Tags - Usado por Facebook, Instagram, LinkedIn y WhatsApp -->
+  <meta property="og:url" content="${canonicalUrl}" />
   <meta property="og:type" content="article" />
   <meta property="og:title" content="${post.title}" />
-  <meta property="og:description" content="${post.description}" />
+  <meta property="og:description" content="${shareDescription}" />
   <meta property="og:image" content="${imageUrl}" />
   <meta property="og:image:secure_url" content="${imageUrl}" />
+  <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="${post.title}" />
-  <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:site_name" content="ADASOFT" />
+  <meta property="og:locale" content="es_AR" />
   <meta property="fb:app_id" content="2375482829489229" />
+  <meta property="article:author" content="ADASOFT" />
   
   <!-- Twitter Meta Tags -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@adasoft" />
+  <meta name="twitter:creator" content="@adasoft" />
   <meta name="twitter:title" content="${post.title}" />
-  <meta name="twitter:description" content="${post.description}" />
+  <meta name="twitter:description" content="${shareDescription}" />
   <meta name="twitter:image" content="${imageUrl}" />
   <meta name="twitter:image:alt" content="${post.title}" />
 
