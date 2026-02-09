@@ -78,16 +78,19 @@ const BlogPost = () => {
   if (post) {
     console.log('Procesando post con ID:', id);
     console.log('Imagen del post:', post.image);
+    console.log('Base URL:', baseUrl);
     
     // Para la imagen de visualización, usar ruta relativa (funciona en dev y prod)
     // En desarrollo, usar la ruta relativa directamente
     // En producción, el build process manejará las rutas correctamente
     imageUrl = post.image.startsWith('/') ? post.image : `/${post.image}`;
     
-    // Para meta tags de redes sociales, necesitamos URL absoluta
+    // Para meta tags de redes sociales, necesitamos URL absoluta HTTPS
     let imageForMetaTags = post.image;
     if (!post.image.startsWith('http')) {
-      imageForMetaTags = `${baseUrl}${post.image.startsWith('/') ? post.image : `/${post.image}`}`;
+      // Asegurar que la ruta comience con /
+      const imagePath = post.image.startsWith('/') ? post.image : `/${post.image}`;
+      imageForMetaTags = `${baseUrl}${imagePath}`;
     }
     
     // Para la URL absoluta usada en meta tags, eliminamos cualquier parámetro existente
@@ -98,9 +101,16 @@ const BlogPost = () => {
       console.log('Limpiando URL de parámetros:', cleanImageUrl);
     }
     
+    // Asegurarnos de que la URL sea HTTPS (WhatsApp requiere HTTPS)
+    if (cleanImageUrl.startsWith('http://')) {
+      cleanImageUrl = cleanImageUrl.replace('http://', 'https://');
+      console.log('Convirtiendo HTTP a HTTPS:', cleanImageUrl);
+    }
+    
     // Asegurarnos de que la URL absoluta sea correcta para redes sociales
     absoluteImageUrl = cleanImageUrl; // Sin cache buster para meta tags
     console.log('URL absoluta final para meta tags:', absoluteImageUrl);
+    console.log('Verificar que la imagen sea accesible en:', absoluteImageUrl);
     
     // Manejo especial para el post id:4 - Reemplazar webp con jpg para mejor compatibilidad con redes sociales
     if (id === '4') {
@@ -231,10 +241,22 @@ const BlogPost = () => {
           head.appendChild(link);
         }
         
-        // Asegurarse de que la url de la imagen sea absoluta
-        const finalImageUrl = absoluteImageUrl.startsWith('http') 
+        // Asegurarse de que la url de la imagen sea absoluta y HTTPS
+        let finalImageUrl = absoluteImageUrl.startsWith('http') 
           ? absoluteImageUrl 
-          : `${baseUrl}${absoluteImageUrl}`;
+          : `${baseUrl}${absoluteImageUrl.startsWith('/') ? absoluteImageUrl : `/${absoluteImageUrl}`}`;
+        
+        // Forzar HTTPS (WhatsApp y otras redes requieren HTTPS)
+        if (finalImageUrl.startsWith('http://')) {
+          finalImageUrl = finalImageUrl.replace('http://', 'https://');
+        }
+        
+        // Asegurar que no tenga parámetros de caché para meta tags
+        if (finalImageUrl.includes('?')) {
+          finalImageUrl = finalImageUrl.split('?')[0];
+        }
+        
+        console.log('URL de imagen final para meta tags:', finalImageUrl);
         
         // Meta tag obligatorio para Facebook
         updateMetaTag('fb:app_id', '2375482829489229');
@@ -362,6 +384,8 @@ const BlogPost = () => {
             <meta property="og:image:width" content="1200" />
             <meta property="og:image:height" content="630" />
             <meta property="og:image:alt" content={post.title} />
+            {/* Meta tag adicional para WhatsApp - asegurar que use HTTPS */}
+            <meta property="og:image:url" content={absoluteImageUrl} />
             <meta property="og:site_name" content="ADASOFT" />
             <meta property="og:locale" content="es_AR" />
             <meta property="article:author" content="ADASOFT" />
