@@ -37,8 +37,11 @@ const BlogPost = () => {
   
   // Asegurarnos de que las URLs sean absolutas y accesibles
   const baseUrl = 'https://adasoft.com.ar';
-  // Usar el formato con hash para que funcione con GitHub Pages y HashRouter
-  const shareUrl = `${baseUrl}/#/blog/${id}`;
+  // URL para compartir: usar HTML estático para que WhatsApp pueda leer los meta tags
+  // El HTML estático se genera en /blog/{id}.html y tiene los meta tags correctos
+  const shareUrl = `${baseUrl}/blog/${id}.html`;
+  // URL canónica con hash para la navegación interna
+  const canonicalUrl = `${baseUrl}/#/blog/${id}`;
   
   // Preparar las variables de imagen SOLO si el post existe
   let imageUrl = '';
@@ -377,8 +380,8 @@ const BlogPost = () => {
             {/* Título básico del documento */}
             <title>{post.title} | ADASOFT</title>
             
-            {/* Link canónico para la URL */}
-            <link rel="canonical" href={shareUrl} />
+            {/* Link canónico para la URL - usar URL con hash para SEO */}
+            <link rel="canonical" href={canonicalUrl} />
             
             {/* Metadatos Open Graph - Usado por Facebook, Instagram, LinkedIn y WhatsApp */}
             <meta property="fb:app_id" content="2375482829489229" />

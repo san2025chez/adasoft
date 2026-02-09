@@ -32,7 +32,9 @@ blogPosts.forEach(post => {
   // Preparar descripción mejorada para compartir (sin hashtags y con "Continuar leyendo")
   const shareDescription = `${post.description.split('#')[0].trim()} - Continuar leyendo →`;
   
-  // URL canónica con hash router
+  // URL para compartir (HTML estático que WhatsApp puede leer)
+  const shareUrl = `https://adasoft.com.ar/blog/${post.id}.html`;
+  // URL canónica con hash router para SEO
   const canonicalUrl = `https://adasoft.com.ar/#/blog/${post.id}`;
 
   // Crear contenido HTML con las meta etiquetas de Open Graph correctas
@@ -44,11 +46,11 @@ blogPosts.forEach(post => {
   <title>${post.title} | ADASOFT - Desarrollo de Software y Diseño Web</title>
   <meta name="description" content="${shareDescription}" />
   
-  <!-- Canonical URL -->
+  <!-- Canonical URL - usar URL con hash para SEO -->
   <link rel="canonical" href="${canonicalUrl}" />
   
   <!-- Open Graph / Facebook Meta Tags - Usado por Facebook, Instagram, LinkedIn y WhatsApp -->
-  <meta property="og:url" content="${canonicalUrl}" />
+  <meta property="og:url" content="${shareUrl}" />
   <meta property="og:type" content="article" />
   <meta property="og:title" content="${post.title}" />
   <meta property="og:description" content="${shareDescription}" />
