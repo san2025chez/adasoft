@@ -55,7 +55,7 @@ const blogPosts = [
     title: 'El Puente Digital que Jujuy Necesitaba: Todo el Talento Local en un Solo Lugar',
     subtitle: 'La plataforma que centraliza y potencia el trabajo jujeño',
     date: '24 Ene 2025',
-    image: '/images/profesionales-oficios-portada.jpg',
+    image: '/images/oficios.png',
     description: 'Encontrar a un profesional de confianza en nuestra provincia no debería ser una tarea de investigación. Conoce ProfesionalesOficios, la plataforma diseñada para centralizar, organizar y potenciar el trabajo jujeño. Descubre cómo conectamos profesionales con clientes en Jujuy.',
     tags: ['plataforma digital', 'profesionales', 'jujuy', 'aplicación web', 'directorio', 'servicios locales'],
     author: 'ADASOFT'

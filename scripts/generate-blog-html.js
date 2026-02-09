@@ -29,6 +29,20 @@ blogPosts.forEach(post => {
     imageUrl = imageUrl.replace('http://', 'https://');
   }
   
+  // Obtener dimensiones reales de la imagen (usar valores por defecto si no se pueden obtener)
+  // Dimensiones específicas por imagen para que coincidan con las reales
+  const imageDimensions = {
+    '/images/oficios.png': { width: 1024, height: 630 },
+    '/images/make-vs-n8n.jpg': { width: 1200, height: 628 },
+    '/images/web-ia.jpg': { width: 1200, height: 630 },
+    '/images/blog-2.jpg': { width: 1200, height: 630 },
+    '/images/blog-3.jpg': { width: 1200, height: 630 },
+    '/images/gmail.webp': { width: 1200, height: 630 }
+  };
+  
+  const imagePath = post.image.startsWith('/') ? post.image : `/${post.image}`;
+  const dimensions = imageDimensions[imagePath] || { width: 1200, height: 630 };
+  
   // Preparar descripción mejorada para compartir (sin hashtags y con "Continuar leyendo")
   const shareDescription = `${post.description.split('#')[0].trim()} - Continuar leyendo →`;
   
@@ -56,9 +70,9 @@ blogPosts.forEach(post => {
   <meta property="og:description" content="${shareDescription}" />
   <meta property="og:image" content="${imageUrl}" />
   <meta property="og:image:secure_url" content="${imageUrl}" />
-  <meta property="og:image:type" content="image/jpeg" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
+  <meta property="og:image:type" content="${imagePath.endsWith('.png') ? 'image/png' : 'image/jpeg'}" />
+  <meta property="og:image:width" content="${dimensions.width}" />
+  <meta property="og:image:height" content="${dimensions.height}" />
   <meta property="og:image:alt" content="${post.title}" />
   <meta property="og:site_name" content="ADASOFT" />
   <meta property="og:locale" content="es_AR" />
