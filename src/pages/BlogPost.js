@@ -438,7 +438,7 @@ const BlogPost = () => {
             pt: { xs: 0, sm: '72px' }, 
             pb: 8
           }}>
-            <Container maxWidth="lg" sx={{ px: { xs: 0, sm: 2, md: 3 } }}>
+            <Container maxWidth="lg" sx={{ px: { xs: 1, sm: 2, md: 3 } }}>
               {/* Box styling with conditional rendering for mobile devices */}
               <Box sx={{ 
                 overflow: 'hidden', 
@@ -465,7 +465,7 @@ const BlogPost = () => {
                   }}
                 />
                 <Box sx={{ 
-                  p: { xs: 3, sm: 4, md: 5 },
+                  p: { xs: 2, sm: 4, md: 5 },
                   maxWidth: '100%',
                   mx: 'auto'
                 }}>
@@ -476,7 +476,7 @@ const BlogPost = () => {
                       mb: 2, 
                       color: '#1a1a2e', 
                       fontWeight: 'bold', 
-                      fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem', lg: '3rem' },
+                      fontSize: { xs: '1.4rem', sm: '2rem', md: '2.5rem', lg: '3rem' },
                       lineHeight: { xs: 1.3, md: 1.2 }
                     }}
                   >
@@ -518,12 +518,15 @@ const BlogPost = () => {
                     sx={{ 
                       color: '#333', 
                       lineHeight: 1.8,
-                      fontSize: { xs: '1rem', sm: '1.05rem', md: '1.1rem' },
+                      fontSize: { xs: '0.95rem', sm: '1.05rem', md: '1.1rem' },
                       // Improve content readability on mobile
                       wordBreak: 'break-word',
                       maxWidth: { xs: '100%', sm: '90%', md: '85%', lg: '80%', xl: '75%' },
                       mx: 'auto',
-                      px: { xs: 1, sm: 2, md: 2.5, lg: 3, xl: 3.5 },
+                      px: { xs: 0.5, sm: 2, md: 2.5, lg: 3, xl: 3.5 },
+                      '& .blog-post-content': {
+                        padding: { xs: '0 0.5rem !important', sm: '0 1rem !important', md: '0 1.5rem !important' }
+                      },
                       '& img': {
                         maxWidth: '100%',
                         height: 'auto',
@@ -532,40 +535,81 @@ const BlogPost = () => {
                         borderRadius: '8px',
                         boxShadow: '0 2px 10px rgba(0,0,0,0.1)'
                       },
-                      '& h3': {
-                        fontSize: { xs: '1.3rem', sm: '1.6rem', md: '1.8rem' },
+                      '& h3, & .blog-post-h3': {
+                        fontSize: { xs: '1.25rem !important', sm: '1.5rem !important', md: '1.8rem !important' },
                         fontWeight: 600,
-                        mt: 4,
-                        mb: 2,
-                        color: '#1a1a2e'
+                        mt: { xs: 2.5, sm: 4 },
+                        mb: { xs: 1.2, sm: 2 },
+                        color: '#1a1a2e',
+                        lineHeight: { xs: 1.3, sm: 1.4 }
                       },
-                      '& h4': {
-                        fontSize: { xs: '1.1rem', sm: '1.3rem', md: '1.5rem' },
+                      '& h4, & .blog-post-h4': {
+                        fontSize: { xs: '1rem !important', sm: '1.2rem !important', md: '1.3rem !important' },
                         fontWeight: 600,
-                        mt: 3,
-                        mb: 2,
-                        color: '#1a1a2e'
+                        mt: { xs: 2, sm: 3 },
+                        mb: { xs: 1, sm: 2 },
+                        color: '#1a1a2e',
+                        lineHeight: { xs: 1.3, sm: 1.4 }
+                      },
+                      '& h5, & .blog-post-h5': {
+                        fontSize: { xs: '0.95rem !important', sm: '1.1rem !important', md: '1.2rem !important' },
+                        fontWeight: 600,
+                        lineHeight: { xs: 1.3, sm: 1.4 }
+                      },
+                      '& p, & .blog-post-p': {
+                        mb: { xs: 1.5, sm: 2.5 },
+                        letterSpacing: '0.015em',
+                        fontSize: { xs: '0.9rem !important', sm: '0.95rem !important', md: '1rem !important' },
+                        lineHeight: { xs: 1.7, sm: 1.8 }
                       },
                       // Grid responsive para cards de beneficios - móvil en columna, desktop en fila
                       '& .benefits-grid-professional, & .benefits-grid-client': {
-                        gridTemplateColumns: { xs: '1fr', md: 'repeat(3, 1fr)' },
+                        gridTemplateColumns: { xs: '1fr !important', md: 'repeat(3, 1fr) !important' },
+                        gap: { xs: '1rem !important', sm: '1.2rem !important', md: '1.5rem !important' },
+                        margin: { xs: '1.5rem 0 !important', sm: '2rem 0 !important' }
                       },
-                      '& p': {
-                        mb: 2.5,
-                        letterSpacing: '0.015em'
+                      '& .benefit-card': {
+                        padding: { xs: '1.2rem !important', sm: '1.5rem !important', md: '2rem !important' }
+                      },
+                      '& .blog-feature-box': {
+                        padding: { xs: '1.2rem !important', sm: '1.5rem !important', md: '2rem !important' },
+                        margin: { xs: '1.5rem 0 !important', sm: '2rem 0 !important' }
+                      },
+                      '& .blog-cta-box': {
+                        padding: { xs: '1.5rem 1rem !important', sm: '2rem 1.5rem !important', md: '2.5rem 2rem !important' },
+                        margin: { xs: '2rem 0 !important', sm: '2.5rem 0 !important', md: '3rem 0 !important' },
+                        '& h3': {
+                          fontSize: { xs: '1.2rem !important', sm: '1.4rem !important', md: '1.8rem !important' }
+                        },
+                        '& p': {
+                          fontSize: { xs: '0.9rem !important', sm: '0.95rem !important', md: '1.1rem !important' }
+                        }
+                      },
+                      '& .blog-quote-box': {
+                        padding: { xs: '1.2rem !important', sm: '1.5rem !important', md: '2rem !important' },
+                        margin: { xs: '1.5rem 0 !important', sm: '2rem 0 !important', md: '2.5rem 0 !important' },
+                        '& p': {
+                          fontSize: { xs: '0.9rem !important', sm: '1rem !important', md: '1.15rem !important' }
+                        }
+                      },
+                      '& .blog-services-box': {
+                        padding: { xs: '1.5rem 1rem !important', sm: '2rem 1.5rem !important', md: '3rem 2.5rem !important' },
+                        marginTop: { xs: '2rem !important', sm: '2.5rem !important', md: '3rem !important' }
                       },
                       '& ul, & ol': {
-                        ml: { xs: 2, sm: 3 },
-                        mb: 2.5,
-                        pr: { xs: 1, sm: 0 }
+                        ml: { xs: 1.5, sm: 3 },
+                        mb: { xs: 1.5, sm: 2.5 },
+                        pr: { xs: 0.5, sm: 0 }
                       },
                       '& li': {
-                        mb: 1
+                        mb: 1,
+                        fontSize: { xs: '0.9rem', sm: '0.95rem', md: '1rem' }
                       },
                       '& a': {
                         color: '#0066cc',
                         textDecoration: 'none',
                         wordBreak: 'break-word',
+                        fontSize: { xs: '0.9rem', sm: '0.95rem', md: '1rem' },
                         '&:hover': {
                           textDecoration: 'underline'
                         }

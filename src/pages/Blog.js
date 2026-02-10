@@ -95,7 +95,7 @@ const Blog = () => {
               mt: { xs: 3, md: 4 }, 
               fontWeight: 'bold', 
               color: '#1a1a2e',
-              fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
+              fontSize: { xs: '1.75rem', sm: '2.25rem', md: '3rem' },
               textAlign: { xs: 'center', md: 'left' },
               px: { xs: 1, sm: 0 }
             }}
@@ -107,7 +107,7 @@ const Blog = () => {
             sx={{ 
               mb: { xs: 4, md: 6 }, 
               color: '#666',
-              fontSize: { xs: '1.1rem', sm: '1.25rem', md: '1.5rem' },
+              fontSize: { xs: '1rem', sm: '1.15rem', md: '1.5rem' },
               textAlign: { xs: 'center', md: 'left' },
               maxWidth: '800px',
               px: { xs: 1, sm: 0 }
@@ -189,7 +189,7 @@ const Blog = () => {
                             fontWeight: 600,
                             mb: 1,
                             color: '#1a1a2e',
-                            fontSize: { xs: '1.1rem', sm: '1.25rem', md: '1.4rem' },
+                            fontSize: { xs: '1rem', sm: '1.15rem', md: '1.4rem' },
                             lineHeight: 1.3
                           }}
                         >
@@ -199,7 +199,7 @@ const Blog = () => {
                           variant="body2" 
                           color="text.secondary"
                           sx={{ 
-                            fontSize: { xs: '0.875rem', sm: '0.9rem', md: '1rem' },
+                            fontSize: { xs: '0.85rem', sm: '0.875rem', md: '1rem' },
                             lineHeight: 1.6,
                             // Limit to 3 lines with ellipsis
                             display: '-webkit-box',
