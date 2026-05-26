@@ -68,7 +68,7 @@ const Footer = () => {
               <FacebookIcon />
             </IconButton>
           </Link>
-          <Link href="https://wa.link/3311zp" target="_blank" rel="noopener noreferrer" color="inherit">
+          <Link href="https://wa.link/lwpeuq" target="_blank" rel="noopener noreferrer" color="inherit">
             <IconButton size="large">
               <WhatsAppIcon />
             </IconButton>
