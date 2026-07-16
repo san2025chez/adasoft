@@ -300,22 +300,39 @@ const AppContent = () => {
         <div className="App">
           <CssBaseline />
           <GreenIconButton
-            component="a"
-            href="https://wa.link/3311zp"
-            target="_blank"
-            rel="noopener noreferrer"
-            sx={{
-              position: 'fixed',
-              bottom: 10,
-              right: 20,
-              zIndex: 1000,
-              '&:hover': {
-                backgroundColor: '#64dd17',
-              }
-            }}
-          >
-            <WhatsAppIcon />
-          </GreenIconButton>
+  component="a"
+  href="https://wa.link/lwpeuq"
+  target="_blank"
+  rel="noopener noreferrer"
+  sx={{
+    position: "fixed",
+    bottom: { xs: 12, sm: 16, md: 20 },
+    right: { xs: 12, sm: 16, md: 20 },
+    zIndex: 1000,
+
+    // Tamaño responsivo
+    width: { xs: 56, sm: 62, md: 68 },
+    height: { xs: 56, sm: 62, md: 68 },
+
+    borderRadius: "50%",
+    transition: "all 0.3s ease",
+
+    "&:hover": {
+      backgroundColor: "#64dd17",
+      transform: "scale(1.08)",
+    },
+  }}
+>
+  <WhatsAppIcon
+    sx={{
+      fontSize: {
+        xs: 30,
+        sm: 34,
+        md: 38,
+      },
+    }}
+  />
+</GreenIconButton>
           <Container maxWidth="xl" style={{ padding: 0, margin: 0, minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
             <NavBar sectionRefs={sectionRefs} />
             <Suspense fallback={<div style={{padding: '3rem', textAlign: 'center'}}>Cargando...</div>}>

@@ -91,12 +91,7 @@ const services = [
     description: "Desarrollamos software personalizado que se adapta perfectamente a los procesos de tu empresa. Soluciones tecnológicas a medida que optimizan operaciones, mejoran la eficiencia y resuelven problemas específicos de tu negocio.",
     keywords: ["software a medida", "desarrollo personalizado", "aplicaciones de negocio", "soluciones empresariales", "desarrollo de sistemas"]
   },
-  {
-    id: "7",
-    title: "Clases de Informática y Programación",
-    description: "Ofrecemos formación especializada en informática y programación con métodos didácticos adaptados a cada nivel. Aprende desarrollo web, programación, bases de datos y nuevas tecnologías con nuestros planes de aprendizaje personalizados.",
-    keywords: ["clases programación", "formación informática", "aprendizaje tecnológico", "cursos desarrollo web", "educación digital"]
-  },
+ 
   {
     id: "8",
     title: "Consultoría en Arquitectura de Software",
