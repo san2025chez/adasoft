@@ -2,8 +2,15 @@ import React from 'react';
 import { Grid, useMediaQuery, useTheme, Typography, Box, Container } from '@mui/material';
 import { Fade } from 'react-awesome-reveal';
 import { Helmet } from 'react-helmet-async';
+import { keyframes } from '@emotion/react';
 import './inicio.css';
 import bgInicio from '../assets/home3-slider.png';
+
+const float = keyframes`
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+`;
 
 const Inicio = () => {
   // Forzar scroll al tope al montar
@@ -165,9 +172,10 @@ const Inicio = () => {
                 }}
               >
                 <Fade direction='down' triggerOnce={true} duration={500}>
-                  <Typography 
-                    variant={isMobile ? 'h5' : 'h4'} 
-                    sx={{ 
+                  <Typography
+                    variant={isMobile ? 'h5' : 'h4'}
+                    component="h1"
+                    sx={{
                       fontWeight: 700, 
                       textTransform: 'uppercase', 
                       marginBottom: { xs: '1.2rem', md: '1.3rem' },
@@ -259,19 +267,21 @@ const Inicio = () => {
                     }
                   }}
                 >
-                  <img
+                  <Box
+                    component="img"
                     src={`${process.env.PUBLIC_URL}/images/imageSOFT.png`}
                     alt="Soluciones tecnológicas ADASOFT"
                     width="600"
                     height="400"
-                    style={{
+                    sx={{
                       width: '100%',
                       height: 'auto',
                       aspectRatio: '3/2',
                       objectFit: 'contain',
                       filter: 'drop-shadow(0 10px 20px rgba(0, 0, 0, 0.15))',
-                      animation: 'float 6s ease-in-out infinite',
+                      animation: `${float} 6s ease-in-out infinite`,
                       display: 'block',
+                      '@media (prefers-reduced-motion: reduce)': { animation: 'none' },
                     }}
                   />
                 </Box>
@@ -280,19 +290,6 @@ const Inicio = () => {
           </Grid>
         </Container>
       </Box>
-      <style jsx>{`
-        @keyframes float {
-          0% {
-            transform: translateY(0px);
-          }
-          50% {
-            transform: translateY(-10px);
-          }
-          100% {
-            transform: translateY(0px);
-          }
-        }
-      `}</style>
     </>
   );
 };

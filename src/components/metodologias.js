@@ -3,6 +3,7 @@ import { Paper, Typography, Container, Grid, Card, CardContent, Box, useMediaQue
 import { Fade } from 'react-awesome-reveal';
 import styled from '@emotion/styled';
 import { useTheme } from '@mui/material/styles';
+import SectionTitle from './SectionTitle';
 
 const StyledPaper2 = styled(Paper)`
   background-image: url(${process.env.PUBLIC_URL}/images/team-bg.png);
@@ -17,29 +18,15 @@ const StyledCard = styled(Card)`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: transform 0.3s ease-in-out;
-  background-color: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  transition: transform 0.3s ease-in-out, border-color 180ms ease, box-shadow 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.9);
   box-shadow: none;
   &:hover {
     transform: translateY(-5px);
-  }
-`;
-
-const PhoneImage = styled.img`
-  width: 100%;
-  max-width: 400px;
-  height: auto;
-  object-fit: contain;
-  animation: float 3s ease-in-out infinite;
-  
-  @keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
-    100% { transform: translateY(0px); }
-  }
-  
-  @media (max-width: 960px) {
-    margin-bottom: 30px;
+    border-color: rgba(15, 184, 178, 0.55);
+    box-shadow: 0 16px 32px -16px rgba(15, 184, 178, 0.35);
   }
 `;
 
@@ -91,26 +78,15 @@ const IndexImage = styled.img`
   margin-right: 10px;
 `;
 
-const StyledDescription = styled.li`
-  font-family: 'Poppins', sans-serif;
-  font-weight: 400;
-  text-align: left;
-  color: #777;
-  font-size: 15px;
-  letter-spacing: .03em;
-  line-height: 1.8em;
-  text-transform: capitalize;
-`;
-
-const StyledTitle = styled(Typography)`
-  color: #444;
-  font-size: ${props => props.isMobile ? '22px' : '30px'};
-  letter-spacing: 4px;
-  margin-bottom: 32px;
-  font-weight: 300;
-  line-height: ${props => props.isMobile ? '23px' : '28px'};
-  text-transform: uppercase;
-`;
+const StyledDescription = styled.li(({ theme }) => ({
+  fontFamily: '"Poppins", sans-serif',
+  fontWeight: 400,
+  textAlign: 'left',
+  color: theme.palette.text.secondary,
+  fontSize: 15,
+  letterSpacing: '.03em',
+  lineHeight: '1.8em',
+}));
 
 const Metodologias = () => {
   const theme = useTheme();
@@ -148,7 +124,7 @@ const Metodologias = () => {
 
   return (
     <StyledPaper2 id="metodologia" elevation={3} style={{ boxShadow: 'none' }}>
-      <StyledTitle variant="h2" color="primary" style={{ textAlign: 'center', position: 'relative', zIndex: 2 }} isMobile={isMobile}>Metodología</StyledTitle>
+      <SectionTitle sx={{ position: 'relative', zIndex: 2 }}>Metodología</SectionTitle>
       <Container maxWidth="lg" style={{ padding: '0px', boxShadow: 'none' }}>
         <Grid container spacing={3} alignItems="center" justifyContent="center">
           <Grid item xs={12} style={{ 

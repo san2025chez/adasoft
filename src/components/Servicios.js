@@ -14,6 +14,7 @@ import styled from '@emotion/styled';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import { Helmet } from 'react-helmet-async';
+import SectionTitle from './SectionTitle';
 
 const rollInRight = keyframes`
 0% {
@@ -27,11 +28,6 @@ const rollInRight = keyframes`
   opacity: 1;
 }`
 
-const floatSlow = keyframes`
-  0%, 100% { transform: translate3d(0, 0, 0) rotate(-2deg); }
-  50% { transform: translate3d(0, -14px, 0) rotate(2deg); }
-`;
-
 const drift = keyframes`
   0%, 100% { transform: translate3d(0, 0, 0); }
   50% { transform: translate3d(18px, -8px, 0); }
@@ -42,16 +38,15 @@ const pulseSpin = keyframes`
   50% { transform: translate3d(-10px, 10px, 0) rotate(6deg) scale(1.03); }
 `;
 
-const StyledDescription = styled(Typography)`
-  font-family: 'Poppins', sans-serif;
-  font-weight: 400;
-  text-align: left;
-  color: #777;
-  font-size: 15px;
-  letter-spacing: .03em;
-  line-height: 1.8em;
-  text-transform: capitalize;
-`;
+const StyledDescription = styled(Typography)(({ theme }) => ({
+  fontFamily: '"Poppins", sans-serif',
+  fontWeight: 400,
+  textAlign: 'left',
+  color: theme.palette.text.secondary,
+  fontSize: 15,
+  letterSpacing: '.03em',
+  lineHeight: '1.8em',
+}));
 
 // Definición de servicios con descripciones optimizadas para SEO
 const services = [
@@ -167,9 +162,8 @@ const Servicios = () => {
           my: { xs: 0, md: 2.5 },
           px: { xs: 2, sm: 3, md: 4 },
           py: { xs: 7, sm: 8, md: 10 },
-          // Color base de la sección (los títulos se definen abajo; la descripción se fuerza aparte)
-          color: '#212529',
-          backgroundColor: '#fff',
+          color: 'text.primary',
+          backgroundColor: 'background.paper',
           animation: roll ? `${rollInRight} 0.6s ease-out both` : 'none',
         }}
       >
@@ -214,7 +208,7 @@ const Servicios = () => {
             '@media (prefers-reduced-motion: reduce)': { animation: 'none' },
           }}
         />
-        {/* Decoración animada (solo visual) */}
+        {/* Decoración estática (solo visual) */}
         <Box
           component="img"
           src={`${process.env.PUBLIC_URL}/images/team1.png`}
@@ -230,8 +224,6 @@ const Servicios = () => {
             height: 'auto',
             opacity: 1,
             zIndex: 0,
-            animation: `${floatSlow} 7.5s ease-in-out infinite`,
-            '@media (prefers-reduced-motion: reduce)': { animation: 'none' },
           }}
         />
         <Box
@@ -261,23 +253,9 @@ const Servicios = () => {
             zIndex: 2,
           }}
         >
-          {/* Estilo/tipografía igual a la sección Metodología */}
-          <Typography
-            variant="h2"
-            sx={{
-              // Re-override del título para mantener jerarquía (no 15px)
-              color: '#444',
-              fontSize: `${isMobile ? '22px' : '30px'} !important`,
-              letterSpacing: '4px !important',
-              marginBottom: '32px',
-              fontWeight: 300,
-              lineHeight: `${isMobile ? '23px' : '28px'} !important`,
-              textTransform: 'uppercase !important',
-              padding: '15px',
-            }}
-          >
+          <SectionTitle sx={{ padding: '15px' }}>
             Nuestros Servicios
-          </Typography>
+          </SectionTitle>
 
           <Grid container spacing={4} justifyContent="center" alignItems="stretch">
             {services.map((service, index) => (
@@ -303,14 +281,15 @@ const Servicios = () => {
                       height: '100%',
                       borderRadius: 4,
                       border: '1px solid rgba(0,0,0,0.08)',
-                      backgroundColor: '#fff',
+                      backgroundColor: 'background.paper',
                       boxShadow: 'none',
                       display: 'flex',
                       flexDirection: 'column',
-                      transition: 'transform 0.3s ease-in-out, border-color 180ms ease',
+                      transition: 'transform 0.3s ease-in-out, border-color 180ms ease, box-shadow 0.3s ease',
                       '&:hover': {
                         transform: { xs: 'none', md: 'translateY(-5px)' },
-                        borderColor: 'rgba(25, 216, 219, 0.55)',
+                        borderColor: 'primary.main',
+                        boxShadow: { xs: 'none', md: '0 16px 32px -16px rgba(15, 184, 178, 0.35)' },
                       },
                     }}
                   >
@@ -320,9 +299,7 @@ const Servicios = () => {
                         sx={{
                           pb: 1.2,
                           textAlign: 'center',
-                          // Re-override del título de card para mantener jerarquía (no 15px)
-                          color: '#222',
-                          fontWeight: 600,
+                          color: 'text.primary',
                           letterSpacing: '0.02em',
                           fontSize: { xs: '1.05rem', md: '1.1rem' },
                           lineHeight: 1.4,
@@ -333,10 +310,7 @@ const Servicios = () => {
                       </Typography>
                       <StyledDescription
                         className="service-description"
-                        sx={{
-                          flexGrow: 1,
-                          color: '#777 !important',
-                        }}
+                        sx={{ flexGrow: 1 }}
                       >
                         {service.description}
                       </StyledDescription>

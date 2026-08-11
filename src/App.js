@@ -1,22 +1,21 @@
 import React, { Suspense, lazy, useRef, useEffect } from 'react';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-import Link from '@mui/material/Link';
 import IconButton from '@mui/material/IconButton';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { Formulario } from './components/Formulario'
 import { NavBar } from "./components/NavBar";
+import SectionTitle from './components/SectionTitle';
+import theme from './theme';
 import './App.css';
 import styled from '@emotion/styled';
+import { keyframes } from '@emotion/react';
 import { HelmetProvider } from 'react-helmet-async';
 import {Fade} from 'react-awesome-reveal'
 import { HashRouter as Router, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
@@ -29,44 +28,11 @@ const Blog = lazy(() => import('./pages/Blog'));
 const BlogPost = lazy(() => import('./pages/BlogPost'));
 const Metodologias = lazy(() => import('./components/metodologias'));
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: 'rgba(42, 27, 161, 0.1)', // Azul claro
-    },
-    secondary: {
-      main: '#1976d2', // Azul más oscuro para acentos
-    },
-  },
-  typography: {
-    fontFamily: "Poppins",
-    fontWeight: 100,
-    fontStyle: 'normal',
-    fontSize: '15px',
-    h6: {
-      fontSize: '1.2rem', // Tamaño base aumentado en 2 puntos
-      '@media (max-width:600px)': {
-        fontSize: '1.1rem', // Tamaño móvil aumentado en 2 puntos
-      },
-      lineHeight: 1.6,
-      marginTop: '1rem',
-      marginBottom: '0.5rem'
-    }
-  },
-  components: {
-    MuiTypography: {
-      styleOverrides: {
-        h6: {
-          fontSize: '1.2rem',
-          '@media (max-width:600px)': {
-            fontSize: '1.1rem',
-          },
-          lineHeight: 1.6
-        }
-      }
-    }
-  }
-});
+const moveLeftBounce = keyframes`
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-16px); }
+  100% { transform: translateY(0px); }
+`;
 
 const App = () => (
   <Router>
@@ -89,57 +55,21 @@ const AppContent = () => {
 
   useEffect(() => {
     if (location.state && location.state.scrollTo) {
-      console.log('App.js useEffect triggered for section:', location.state.scrollTo);
       // Using a small timeout to ensure the component has rendered.
       const timer = setTimeout(() => {
         const ref = sectionRefs[location.state.scrollTo];
         if (ref && ref.current) {
-          console.log('Scrolling to ref:', ref.current);
           const offset = 60; // Navbar height
           const elementPosition = ref.current.getBoundingClientRect().top;
           const offsetPosition = elementPosition + window.pageYOffset - offset;
           window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
           // Clean up state after scrolling to prevent re-triggering.
           navigate(location.pathname, { replace: true, state: {} });
-        } else {
-          console.error('Ref not found or .current is null for section:', location.state.scrollTo);
         }
       }, 100);
       return () => clearTimeout(timer); // Cleanup timeout on unmount
     }
   }, [location, navigate, sectionRefs]);
-
-  const GridItem = styled.div`
-    background-image: url(${process.env.PUBLIC_URL}/images/metodologia-transformed.jpeg);
-    background-size: cover;
-    background-position: center;
-    height: 95%;
-    box-shadow: none;
-    margin-top: 20px;
-    width: 100%;
-    @media (max-width: 600px) {
-      background-size: contain;
-      background-repeat: no-repeat;
-      height: 230px;
-      width: 100%;
-      marginTop: 50px
-      box-shadow: none;
-    }
-    @media (min-width: 601px) and (max-width: 960px) and (orientation: landscape) {
-      /* Estilos para tabletas en orientación horizontal */
-      height: 400px;
-    }
-  
-    @media (min-width: 961px) and (max-width: 1280px) and (orientation: landscape) {
-      /* Estilos para tabletas en orientación horizontal */
-      height: 500px;
-    }
-  
-    @media (min-width: 1281px) and (orientation: landscape) {
-      /* Estilos para pantallas más grandes en orientación horizontal */
-      height: 420px;
-    }
-  `;
 
   const GridItemNosotros = styled.div`
     background-image: url(${process.env.PUBLIC_URL}/images/nosotros2.jpeg);
@@ -174,165 +104,45 @@ const AppContent = () => {
     }
   `;
 
-  const TextComponent = styled.div`
-    fontSize: 20px,
-    marginTop: 40px,
-    paddingTop: 40px
-  `;
-
-  const GridPaper = styled(Paper)`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    margin: 0;
-    box-shadow: none;
-    height: 410px;
-    width: 100%;
-    position: relative;
-
-    @media (max-width: 600px) {
-      height: 150px;
-      background-color: #2196F3;
-      margin-top: 55px;
-
-      img {
-        width: 90%;
-        height: 100%;
-        object-fit: cover;
-      }
-    }
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-  `;
-
-  const StyledPaper = styled(Paper)`
-    margin-top: 30px;
-    padding-top: 20px;
-    box-shadow: none;
-    @media (max-width: 767px) {
-      margin-top: 5px;
-      padding: 5px;
-      box-shadow: none;
-    }
-  `;
-  const StyledPaper2 = styled(Paper)`
-    padding: 0px;
-    margin-top: 30px;
-    margin-left: 103px;
-    margin-right: 0px;
-    text-align: center;
-    box-shadow: none;
-    background-image: url(${process.env.PUBLIC_URL}/images/about-nosotros.png);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    align-items: center;
-    position: relative;
-    width: 100%;
-
-    @media (max-width: 600px) {
-      padding: 10px;
-      margin-top: 10px;
-      margin-left: 0;
-      margin-right: 0;
-      box-shadow: none;
-      background-image: 
-        url(${process.env.PUBLIC_URL}/images/about-nosotros.png),
-       
-      background-size: cover, contain;
-      background-position: center, bottom;
-      background-repeat: no-repeat, no-repeat;
-    }
-
-    @media (min-width: 601px) and (max-width: 960px) {
-      margin-left: 50px;
-      margin-right: 50px;
-    }
-
-    @media (min-width: 961px) {
-      margin-left: 103px;
-      margin-right: 10px;
-    }
-
-    @media (max-width: 1024px) {
-      background-size: contain;
-    }
-
-    @media (max-width: 1366px) {
-      background-position: 100%;
-    }
-
-  `;
-
-  const containerStyles = {
-    marginTop: '10px',
-    padding: '10px',
-  };
-
-  const mobileStyles = {
-    marginTop: '5px',
-    padding: '3px'
-  };
-
-  const GreenIconButton = styled(IconButton)`
-    background-color: #4caf50;
-    color: #fff !important;
-    border-radius: 50%;
-    position: fixed;
-    bottom: 10px;
-    right: 20px;
-    z-index: 1000;
-  `;
-
-  const handleWhatsAppClick = () => {
-    // Aquí puedes agregar la lógica para abrir la ventana de chat de WhatsApp
-    // Puedes usar el API de WhatsApp o simplemente redireccionar a la URL de WhatsApp
-  };
-
   return (
     <HelmetProvider>
       <ThemeProvider theme={theme}>
         <div className="App">
           <CssBaseline />
-          <GreenIconButton
-  component="a"
-  href="https://wa.link/lwpeuq"
-  target="_blank"
-  rel="noopener noreferrer"
-  sx={{
-    position: "fixed",
-    bottom: { xs: 12, sm: 16, md: 20 },
-    right: { xs: 12, sm: 16, md: 20 },
-    zIndex: 1000,
-
-    // Tamaño responsivo
-    width: { xs: 56, sm: 62, md: 68 },
-    height: { xs: 56, sm: 62, md: 68 },
-
-    borderRadius: "50%",
-    transition: "all 0.3s ease",
-
-    "&:hover": {
-      backgroundColor: "#64dd17",
-      transform: "scale(1.08)",
-    },
-  }}
->
-  <WhatsAppIcon
-    sx={{
-      fontSize: {
-        xs: 30,
-        sm: 34,
-        md: 38,
-      },
-    }}
-  />
-</GreenIconButton>
+          <IconButton
+            component="a"
+            href="https://wa.link/lwpeuq"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Contactar por WhatsApp"
+            sx={{
+              position: 'fixed',
+              bottom: { xs: 12, sm: 16, md: 20 },
+              right: { xs: 12, sm: 16, md: 20 },
+              zIndex: 1000,
+              width: { xs: 56, sm: 62, md: 68 },
+              height: { xs: 56, sm: 62, md: 68 },
+              borderRadius: '50%',
+              backgroundColor: '#25D366',
+              color: '#fff',
+              boxShadow: '0 8px 20px -6px rgba(37, 211, 102, 0.6)',
+              transition: 'transform 0.2s ease, background-color 0.2s ease',
+              '&:hover': {
+                backgroundColor: '#1EBE57',
+                transform: 'scale(1.08)',
+              },
+            }}
+          >
+            <WhatsAppIcon
+              sx={{
+                fontSize: {
+                  xs: 30,
+                  sm: 34,
+                  md: 38,
+                },
+              }}
+            />
+          </IconButton>
           <Container maxWidth="xl" style={{ padding: 0, margin: 0, minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
             <NavBar sectionRefs={sectionRefs} />
             <Suspense fallback={<div style={{padding: '3rem', textAlign: 'center'}}>Cargando...</div>}>
@@ -365,26 +175,16 @@ const AppContent = () => {
                         justifyContent: 'flex-start',
                         backgroundColor: 'rgba(255, 255, 255, 0.7)'
                       }}>
-                         <Typography variant="h2" style={{ 
-                           color: '#444',
-                          fontSize: isMobile ? '23px' : '30px',
-                          letterSpacing: '4px',
-                          marginBottom: '20px',
-                          paddingBottom:'15px',
-                          fontWeight: 300,
-                          lineHeight: isMobile ? '23px' : '28px',
-                          textTransform: 'uppercase',
-                          textAlign: 'center'
-                        }}>
+                         <SectionTitle sx={{ marginBottom: '20px', paddingBottom: '15px' }}>
                           Nosotros
-                        </Typography>
+                        </SectionTitle>
                         <Container maxWidth="md" style={{ flexGrow: 1, display: 'flex', alignItems: 'flex-start' }}>
                           <Fade direction='left' triggerOnce='true' delay={200}>
                             <Grid container spacing={isMobile ? 2 : 6} justifyContent="center" alignItems="flex-start">
                               <Grid item xs={12} md={6}>
-                                <Paper style={{ 
-                                  padding: '10px', 
-                                  boxShadow: 'none', 
+                                <Paper style={{
+                                  padding: '10px',
+                                  boxShadow: 'none',
                                   textAlign: 'justify',
                                   backgroundColor: 'transparent',
                                   height: '100%',
@@ -396,7 +196,7 @@ const AppContent = () => {
                                     fontFamily: 'Poppins, sans-serif',
                                     fontWeight: 400,
                                     textAlign: 'left',
-                                    color: '#777',
+                                    color: theme.palette.text.secondary,
                                     fontSize: isMobile ? '14px' : '15px',
                                     letterSpacing: '.03em',
                                     lineHeight: '1.8em',
@@ -448,97 +248,45 @@ const AppContent = () => {
                         },
                         display: 'block'
                       }}>
-                        <div className="contact-decor" style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, zIndex: 1 }}>
-                          <div className="contact-circle1" style={{
+                        <Box sx={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, zIndex: 1 }}>
+                          <Box sx={{
+                            display: { xs: 'none', md: 'block' },
                             bottom: '300px',
                             left: '300px',
                             position: 'absolute',
-                            animation: 'moveleftbounce 3s linear infinite',
+                            animation: `${moveLeftBounce} 3s ease-in-out infinite`,
+                            '@media (prefers-reduced-motion: reduce)': { animation: 'none' },
                             '@media (max-width: 1199px)': {
                               left: '280px',
-                              position: 'absolute',
-                              top: 'auto',
                             }
                           }}>
                             <img src={`${process.env.PUBLIC_URL}/images/main-banner12.png`} alt="" width="120" height="120" style={{ verticalAlign: 'middle' }} />
-                          </div>
-                          <div className="contact-circle2" style={{
+                          </Box>
+                          <Box sx={{
+                            display: { xs: 'none', md: 'block' },
                             bottom: '90px',
                             left: '175px',
                             position: 'absolute',
-                            animation: 'moveleftbounce 3.9s linear infinite',
+                            animation: `${moveLeftBounce} 3.9s ease-in-out infinite`,
+                            '@media (prefers-reduced-motion: reduce)': { animation: 'none' },
                             '@media (max-width: 1024px)': {
                               bottom: '0',
                               left: '10%',
-                              top: 'auto',
                             },
-                            '@media (max-width: 1199px)': {
-                              top: 'auto',
-                            }
                           }}>
                             <img src={`${process.env.PUBLIC_URL}/images/main-banner1.png`} alt="" width="120" height="120" style={{ verticalAlign: 'middle' }} />
-                          </div>
-                        </div>
+                          </Box>
+                        </Box>
                         <Container maxWidth="md" style={{ padding: '20px', position: 'relative', zIndex: 2 }}>
-                          <Typography variant="h2" style={{ 
-                            color: '#444',
-                            fontSize: isMobile ? '23px' : '28px',
-                            letterSpacing: '4px',
-                            marginBottom: '32px',
-                            fontWeight: 300,
-                            lineHeight: isMobile ? '23px' : '28px',
-                            textTransform: 'uppercase',
-                            textAlign: 'center',
-                            paddingBottom: '20px'
-                          }}>
+                          <SectionTitle sx={{ paddingBottom: '20px' }}>
                             Contacto
-                          </Typography>
+                          </SectionTitle>
                           <Formulario />
                         </Container>
                         <style>
                           {`
-                            img, svg {
-                              vertical-align: middle;
-                            }
-                            img {
-                              border-style: none;
-                            }
-                            @media (max-width: 991px) {
-                              #contacto {
-                                background-position: 50%;
-                              }
-                            }
-                            @media (max-width: 1024px) {
-                              #contacto {
-                                background-size: cover;
-                              }
-                            }
-                            #contacto {
-                              background-repeat: no-repeat;
-                              background-size: cover;
-                              overflow: hidden;
-                              position: 'relative';
-                            }
-                            @media (max-width: 576px) {
-                              #contacto {
-                                padding-bottom: 50px;
-                                padding-top: 50px;
-                              }
-                            }
-                            @media (max-width: 1199px) {
-                              #contacto {
-                                padding-bottom: 80px;
-                                padding-top: 80px;
-                              }
-                            }
-                            #contacto {
-                              padding-bottom: 100px;
-                              padding-top: 100px;
-                              position: relative;
-                              display: block;
-                            }
                             .MuiInputBase-root {
-                              background-color: rgba(255, 255, 255, 0.8) !important;
+                              background-color: rgba(255, 255, 255, 0.85) !important;
                               z-index: 1;
                             }
                             .MuiInputLabel-root {

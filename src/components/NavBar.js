@@ -9,7 +9,7 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
@@ -65,43 +65,35 @@ export const NavBar = ({ sectionRefs }) => {
 
     // Case 1: Navigate to the Blog page
     if (id === 'blog') {
-      console.log('Action: Navigating to /blog');
       navigate('/blog');
       return; // The scroll handler will update the active section
     }
 
     // Case 2: Navigate back to Home page to scroll to a section
     if (location.pathname !== '/') {
-      console.log(`Action: Navigating to home to scroll to "${id}"`);
       navigate('/', { state: { scrollTo: id } });
       return;
     }
-    
+
     // Case 3: Already on the Home page, scroll to the section
-    console.log(`Action: Scrolling to section "${id}" on the current page.`);
     setActiveSection(id); // Set active section for immediate UI feedback
 
     if (id === 'inicio') {
-      console.log('Scrolling to top of the page.');
       window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
 
     const ref = sectionRefs[id];
-    console.log(`Retrieved ref for "${id}":`, ref);
 
     if (ref && ref.current) {
       const offset = 60; // Navbar height
       const elementPosition = ref.current.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - offset;
-      
-      console.log(`Scrolling to position: ${offsetPosition}`);
+
       window.scrollTo({
         top: offsetPosition,
         behavior: 'smooth',
       });
-    } else {
-      console.error(`Error: Could not find ref or ref.current for section "${id}". Ref is:`, ref);
     }
   };
 
@@ -178,25 +170,38 @@ export const NavBar = ({ sectionRefs }) => {
         <meta name="description" content={activeMenuItem.description} />
       </Helmet>
       
-      <AppBar 
-        position="fixed" 
-        sx={{ 
+      <AppBar
+        position="fixed"
+        sx={{
           backgroundColor: navColor,
-          boxShadow: 'none',
-          transition: 'background-color 0.5s ease',
+          boxShadow: navColor === 'white' ? '0 2px 16px rgba(15, 23, 42, 0.08)' : 'none',
+          transition: 'background-color 0.3s ease, box-shadow 0.3s ease',
         }}
       >
         <Toolbar>
           <Typography
             variant="h6"
-            component="div"
+            component="button"
+            type="button"
+            onClick={() => scrollToSection('inicio')}
             sx={{
               flexGrow: 1,
+              textAlign: 'left',
               color: logoColor,
               cursor: 'pointer',
-              transition: 'color 0.3s ease'
+              transition: 'color 0.3s ease',
+              background: 'none',
+              border: 'none',
+              padding: 0,
+              font: 'inherit',
+              fontWeight: 700,
+              letterSpacing: '0.02em',
+              '&:focus-visible': {
+                outline: `2px solid ${theme.palette.primary.main}`,
+                outlineOffset: '4px',
+                borderRadius: '4px',
+              },
             }}
-            onClick={() => scrollToSection('inicio')}
           >
             ADA SOFTWARE
           </Typography>
@@ -237,40 +242,67 @@ export const NavBar = ({ sectionRefs }) => {
                 <Box sx={{ width: '100%' }} role="presentation">
                   <List>
                     {menuItems.map((item) => (
-                      <ListItem
-                        button
+                      <ListItemButton
                         key={item.id}
                         onClick={() => scrollToSection(item.id)}
                         selected={activeSection === item.id}
+                        sx={{
+                          '&.Mui-selected': {
+                            backgroundColor: 'rgba(15, 184, 178, 0.1)',
+                            borderRight: `3px solid ${theme.palette.primary.main}`,
+                          },
+                          '&.Mui-selected:hover': {
+                            backgroundColor: 'rgba(15, 184, 178, 0.15)',
+                          },
+                        }}
                       >
-                        <ListItemText primary={item.label} />
-                      </ListItem>
+                        <ListItemText
+                          primary={item.label}
+                          primaryTypographyProps={{
+                            fontWeight: activeSection === item.id ? 700 : 500,
+                          }}
+                        />
+                      </ListItemButton>
                     ))}
                   </List>
                 </Box>
               </Drawer>
             </>
           ) : (
-            <Box sx={{ display: 'flex', gap: 2 }}>
-              {menuItems.map((item) => (
-                <Button
-                  key={item.id}
-                  color="inherit"
-                  onClick={() => scrollToSection(item.id)}
-                  sx={{
-                    color: logoColor,
-                    '&:hover': {
-                      backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                    },
-                    ...(activeSection === item.id && {
-                      borderBottom: 'none',
-                      borderRadius: 0,
-                    }),
-                  }}
-                >
-                  {item.label}
-                </Button>
-              ))}
+            <Box sx={{ display: 'flex', gap: 0.5 }}>
+              {menuItems.map((item) => {
+                const isActive = activeSection === item.id;
+                return (
+                  <Button
+                    key={item.id}
+                    onClick={() => scrollToSection(item.id)}
+                    sx={{
+                      position: 'relative',
+                      color: logoColor,
+                      fontWeight: isActive ? 700 : 500,
+                      '&:hover': {
+                        backgroundColor: navColor === 'white'
+                          ? 'rgba(15, 184, 178, 0.08)'
+                          : 'rgba(255, 255, 255, 0.12)',
+                      },
+                      '&::after': {
+                        content: '""',
+                        position: 'absolute',
+                        left: '20%',
+                        right: '20%',
+                        bottom: 6,
+                        height: 2,
+                        borderRadius: 1,
+                        backgroundColor: theme.palette.primary.main,
+                        opacity: isActive ? 1 : 0,
+                        transition: 'opacity 0.2s ease',
+                      },
+                    }}
+                  >
+                    {item.label}
+                  </Button>
+                );
+              })}
             </Box>
           )}
         </Toolbar>
