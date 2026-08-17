@@ -10,30 +10,8 @@ const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-const textFieldStyle = {
-  '& .MuiOutlinedInput-root': {
-    borderRadius: '16px',
-    backgroundColor: 'rgba(255, 255, 255, 0.9)',
-    transition: 'box-shadow 0.2s ease-in-out, border-color 0.2s ease-in-out',
-    '& fieldset': {
-      borderColor: 'rgba(15, 23, 42, 0.15)',
-    },
-    '&:hover fieldset': {
-      borderColor: 'primary.main',
-    },
-    '&.Mui-focused fieldset': {
-      borderColor: 'primary.main',
-      borderWidth: '2px',
-    },
-    '&.Mui-focused': {
-      boxShadow: '0 0 0 4px rgba(15, 184, 178, 0.15)',
-    },
-  },
-  '& .MuiInputLabel-root': {
-    backgroundColor: 'rgba(255, 255, 255, 0.9)',
-    padding: '0 6px',
-  },
-};
+// El color/borde/glow de foco de los inputs sale de theme.dark.js (MuiOutlinedInput)
+// y de theme.js para la variante clara, así el formulario se ve bien con cualquiera de los dos.
 
 export const Formulario = () => {
   const form = useRef();
@@ -91,8 +69,6 @@ export const Formulario = () => {
         required
         fullWidth
         margin="normal"
-        className="my-input"
-        sx={textFieldStyle}
         InputLabelProps={{ shrink: true }}
       />
       <TextField
@@ -102,8 +78,6 @@ export const Formulario = () => {
         required
         fullWidth
         margin="normal"
-        className="my-input"
-        sx={textFieldStyle}
         InputLabelProps={{ shrink: true }}
       />
       <TextField
@@ -112,8 +86,6 @@ export const Formulario = () => {
         required
         fullWidth
         margin="normal"
-        className="my-input"
-        sx={textFieldStyle}
         InputLabelProps={{ shrink: true }}
         multiline
         rows={6}

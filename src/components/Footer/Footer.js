@@ -1,17 +1,17 @@
 import React from 'react';
-import { styled } from '@mui/material/styles';
-import { AppBar, Toolbar, IconButton, Link, useMediaQuery, Typography, Box } from '@mui/material';
+import { styled, alpha } from '@mui/material/styles';
+import { AppBar, Toolbar, IconButton, Link, Typography, Box } from '@mui/material';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import { FaMapMarkerAlt } from 'react-icons/fa';
-import { useTheme } from '@mui/material/styles';
 
 const StyledFooter = styled(AppBar)(({ theme }) => ({
   position: 'relative',
-  backgroundColor: '#19d8db',
-  padding: '20px 0',
+  backgroundColor: theme.palette.background.paper,
+  borderTop: `1px solid ${alpha(theme.palette.primary.main, 0.15)}`,
+  padding: '28px 0',
   marginTop: 'auto',
 }));
 
@@ -22,70 +22,60 @@ const StyledToolbar = styled(Toolbar)({
   gap: '20px',
 });
 
-const SocialIcons = styled(Box)({
+const SocialIcons = styled(Box)(({ theme }) => ({
   display: 'flex',
   gap: '10px',
   '& .MuiIconButton-root': {
-    color: 'white',
+    color: theme.palette.text.secondary,
     '&:hover': {
-      backgroundColor: 'rgba(255, 255, 255, 0.1)',
+      color: theme.palette.primary.main,
+      backgroundColor: alpha(theme.palette.primary.main, 0.1),
+      transform: 'translateY(-2px)',
     },
   },
   '& .MuiSvgIcon-root': {
     fontSize: '1.8rem',
   },
-});
+}));
 
 const StyledTypography = styled(Typography)(({ theme }) => ({
-  color: 'white',
+  color: theme.palette.text.secondary,
   textAlign: 'center',
   display: 'flex',
   alignItems: 'center',
   gap: '8px',
-  fontSize: '0.9rem',
 }));
 
-const Footer = () => {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+const socialLinks = [
+  { href: 'https://www.instagram.com/adasoft.ar/', label: 'Instagram de ADASOFT', Icon: InstagramIcon },
+  { href: 'https://www.linkedin.com/company/ada-software-argentina/', label: 'LinkedIn de ADASOFT', Icon: LinkedInIcon },
+  { href: 'https://www.facebook.com/adasoftwareIT', label: 'Facebook de ADASOFT', Icon: FacebookIcon },
+  { href: 'https://wa.link/lwpeuq', label: 'WhatsApp de ADASOFT', Icon: WhatsAppIcon },
+];
 
-  return (
-    <StyledFooter position="static">
-      <StyledToolbar>
-        <SocialIcons>
-          <Link href="https://www.instagram.com/adasoft.ar/" target="_blank" rel="noopener noreferrer" color="inherit">
-            <IconButton size="large">
-              <InstagramIcon />
+const Footer = () => (
+  <StyledFooter position="static">
+    <StyledToolbar>
+      <SocialIcons>
+        {socialLinks.map(({ href, label, Icon }) => (
+          <Link key={href} href={href} target="_blank" rel="noopener noreferrer" color="inherit">
+            <IconButton size="large" aria-label={label}>
+              <Icon />
             </IconButton>
           </Link>
-          <Link href="https://www.linkedin.com/company/ada-software-argentina/" target="_blank" rel="noopener noreferrer" color="inherit">
-            <IconButton size="large">
-              <LinkedInIcon />
-            </IconButton>
-          </Link>
-          <Link href="https://www.facebook.com/adasoftwareIT" target="_blank" rel="noopener noreferrer" color="inherit">
-            <IconButton size="large">
-              <FacebookIcon />
-            </IconButton>
-          </Link>
-          <Link href="https://wa.link/lwpeuq" target="_blank" rel="noopener noreferrer" color="inherit">
-            <IconButton size="large">
-              <WhatsAppIcon />
-            </IconButton>
-          </Link>
-        </SocialIcons>
-        
-        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1 }}>
-          <StyledTypography variant="body2">
-            <FaMapMarkerAlt />Jujuy, Argentina
-          </StyledTypography>
-          <StyledTypography variant="body2">
-            &copy; {new Date().getFullYear()} ADA SOFTWARE. Todos los derechos reservados.
-          </StyledTypography>
-        </Box>
-      </StyledToolbar>
-    </StyledFooter>
-  );
-};
+        ))}
+      </SocialIcons>
+
+      <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1 }}>
+        <StyledTypography variant="body2">
+          <FaMapMarkerAlt />Jujuy, Argentina
+        </StyledTypography>
+        <StyledTypography variant="body2">
+          &copy; {new Date().getFullYear()} ADA SOFTWARE. Todos los derechos reservados.
+        </StyledTypography>
+      </Box>
+    </StyledToolbar>
+  </StyledFooter>
+);
 
 export default Footer;

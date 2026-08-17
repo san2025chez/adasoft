@@ -5,6 +5,8 @@ import Toolbar from '@mui/material/Toolbar';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -12,7 +14,7 @@ import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { useTheme } from '@mui/material/styles';
+import { useTheme, alpha } from '@mui/material/styles';
 import { Helmet } from 'react-helmet-async';
 
 // Menú items con descripciones y títulos SEO-friendly
@@ -49,13 +51,11 @@ const menuItems = [
   },
 ];
 
-export const NavBar = ({ sectionRefs }) => {
+export const NavBar = ({ sectionRefs, colorMode, onToggleColorMode }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [navColor, setNavColor] = useState('transparent');
-  const [logoColor, setLogoColor] = useState('white');
-  const [menuIconColor, setMenuIconColor] = useState('white');
+  const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('inicio');
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
@@ -110,11 +110,7 @@ export const NavBar = ({ sectionRefs }) => {
 
       animationFrameId = requestAnimationFrame(() => {
         const scrollPosition = window.scrollY;
-        const isScrolled = scrollPosition > 50;
-
-        setNavColor(isScrolled ? 'white' : 'transparent');
-        setLogoColor(isScrolled ? 'black' : 'white');
-        setMenuIconColor(isScrolled ? 'black' : 'white');
+        setIsScrolled(scrollPosition > 50);
 
         if (location.pathname !== '/') {
           if (activeSection !== '') {
@@ -173,9 +169,11 @@ export const NavBar = ({ sectionRefs }) => {
       <AppBar
         position="fixed"
         sx={{
-          backgroundColor: navColor,
-          boxShadow: navColor === 'white' ? '0 2px 16px rgba(15, 23, 42, 0.08)' : 'none',
-          transition: 'background-color 0.3s ease, box-shadow 0.3s ease',
+          backgroundColor: isScrolled ? alpha(theme.palette.background.default, 0.8) : 'transparent',
+          backdropFilter: isScrolled ? 'blur(12px)' : 'none',
+          boxShadow: isScrolled ? '0 8px 24px -12px rgba(0, 0, 0, 0.5)' : 'none',
+          borderBottom: isScrolled ? `1px solid ${alpha(theme.palette.primary.main, 0.15)}` : '1px solid transparent',
+          transition: 'background-color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease',
         }}
       >
         <Toolbar>
@@ -187,9 +185,8 @@ export const NavBar = ({ sectionRefs }) => {
             sx={{
               flexGrow: 1,
               textAlign: 'left',
-              color: logoColor,
+              color: theme.palette.text.primary,
               cursor: 'pointer',
-              transition: 'color 0.3s ease',
               background: 'none',
               border: 'none',
               padding: 0,
@@ -209,12 +206,19 @@ export const NavBar = ({ sectionRefs }) => {
           {isMobile ? (
             <>
               <IconButton
+                aria-label={colorMode === 'light' ? 'Activar modo oscuro' : 'Activar modo claro'}
+                onClick={onToggleColorMode}
+                sx={{ color: theme.palette.text.primary, padding: '12px' }}
+              >
+                {colorMode === 'light' ? <DarkModeIcon /> : <LightModeIcon />}
+              </IconButton>
+              <IconButton
                 edge="start"
                 color="inherit"
                 aria-label="menu"
                 onClick={() => setDrawerOpen(true)}
-                sx={{ 
-                  color: menuIconColor,
+                sx={{
+                  color: theme.palette.text.primary,
                   padding: '12px',
                   '& .MuiSvgIcon-root': {
                     fontSize: '2rem' // Aumentando el tamaño del icono
@@ -230,6 +234,7 @@ export const NavBar = ({ sectionRefs }) => {
                 PaperProps={{
                   sx: {
                     width: '280px', // Haciendo el drawer un poco más ancho
+                    backgroundColor: 'background.paper',
                     '& .MuiListItem-root': {
                       padding: '12px 24px', // Aumentando el padding de los items
                       '& .MuiListItemText-primary': {
@@ -248,11 +253,11 @@ export const NavBar = ({ sectionRefs }) => {
                         selected={activeSection === item.id}
                         sx={{
                           '&.Mui-selected': {
-                            backgroundColor: 'rgba(15, 184, 178, 0.1)',
+                            backgroundColor: alpha(theme.palette.primary.main, 0.12),
                             borderRight: `3px solid ${theme.palette.primary.main}`,
                           },
                           '&.Mui-selected:hover': {
-                            backgroundColor: 'rgba(15, 184, 178, 0.15)',
+                            backgroundColor: alpha(theme.palette.primary.main, 0.18),
                           },
                         }}
                       >
@@ -278,12 +283,10 @@ export const NavBar = ({ sectionRefs }) => {
                     onClick={() => scrollToSection(item.id)}
                     sx={{
                       position: 'relative',
-                      color: logoColor,
+                      color: theme.palette.text.primary,
                       fontWeight: isActive ? 700 : 500,
                       '&:hover': {
-                        backgroundColor: navColor === 'white'
-                          ? 'rgba(15, 184, 178, 0.08)'
-                          : 'rgba(255, 255, 255, 0.12)',
+                        backgroundColor: alpha(theme.palette.primary.main, 0.12),
                       },
                       '&::after': {
                         content: '""',
@@ -303,6 +306,13 @@ export const NavBar = ({ sectionRefs }) => {
                   </Button>
                 );
               })}
+              <IconButton
+                aria-label={colorMode === 'light' ? 'Activar modo oscuro' : 'Activar modo claro'}
+                onClick={onToggleColorMode}
+                sx={{ color: theme.palette.text.primary, ml: 0.5 }}
+              >
+                {colorMode === 'light' ? <DarkModeIcon /> : <LightModeIcon />}
+              </IconButton>
             </Box>
           )}
         </Toolbar>

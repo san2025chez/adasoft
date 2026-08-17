@@ -1,33 +1,4 @@
-
-.imagen-inicio {
-  width: 100%; /* Asegurar que la imagen ocupa el 100% del ancho del contenedor */
-}
-.metodologia{
- padding: 30px;
-  margin-top: 30px;
-    margin-left: 20px;
-    margin-right: 10px;
-    text-align: center;
-    box-shadow: none;
-}
-/* Media query para dispositivos móviles */
-@media (max-width: 600px) {
-  .imagen-inicio {
-    height: 100%;
-    width: 100%; /* Establecer la altura deseada para dispositivos móviles */
-  }
-}
-@media (max-width: 600px) {
-  /* Estilos específicos para dispositivos móviles */
-  .inicio {
-    height: 200px; /* Ajusta la altura según tus necesidades */
-  }
-}
-
-
-body{
-  font-family: "Montserrat";
-   font-weight: 500;
-  font-style: 'normal';
-  background-color: #F7F6F6;
+body {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
 }

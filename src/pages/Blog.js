@@ -119,12 +119,13 @@ const Blog = () => {
           <Grid container spacing={{ xs: 2, sm: 3, md: 4 }}>
             {blogPosts.map((post) => (
               <Grid item key={post.id} xs={12} sm={6} md={4}>
-                <Card 
-                  sx={{ 
-                    height: '100%', 
-                    display: 'flex', 
+                <Card
+                  sx={{
+                    height: '100%',
+                    display: 'flex',
                     flexDirection: 'column',
                     transition: 'all 0.3s ease',
+                    bgcolor: '#fff',
                     border: 'none',
                     borderRadius: '8px',
                     overflow: 'hidden',
